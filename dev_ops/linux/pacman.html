@@ -1,0 +1,923 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Package Manager (pacman) &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_ops/linux/pacman';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/dev_ops/linux/pacman.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="daphne" href="../daphne.html" />
+    <link rel="prev" title="daphne" href="../linux.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">devops</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../git.html">git</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../git/git_cheetsheet.html">cheet sheet github and git</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../git/git_discribe.html">গিট এর সব essential topicগুলো cover করা হয়েছে।</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../linux.html">daphne</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Package Manager (pacman)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../daphne.html">daphne</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../daphne/daphne_django.html">daphne django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gunicorn.html">gunicorn</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gunicorn/gunicorn_django.html">Gunicorn Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nginx.html">nginx</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nginx/nginx_django.html">Nginx Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../text_editor.html">text editor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/vim_cheatsheet.html">Simple Vim workflow example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/ESLint_workspace-setup-VSCODE.html">SLint, Prettier snippets VSCODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/emojisence.html">Emoji snippet VSCODE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../virtualization.html">virtualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_docker.html">dockers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_py_environment.html">python virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_Vargant.html">Vargant virtualization</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">devops</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../linux.html" class="nav-link">daphne</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Package...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="package-manager-pacman">
+<h1>Package Manager (pacman)<a class="headerlink" href="#package-manager-pacman" title="Link to this heading">#</a></h1>
+<section id="update-and-upgrade">
+<h2>Update and Upgrade<a class="headerlink" href="#update-and-upgrade" title="Link to this heading">#</a></h2>
+<section id="update-package-list">
+<h3>Update package list<a class="headerlink" href="#update-package-list" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Syy</span>
+</pre></div>
+</div>
+</section>
+<section id="update-and-upgrade-all">
+<h3>Update and upgrade all<a class="headerlink" href="#update-and-upgrade-all" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Syu</span>
+</pre></div>
+</div>
+</section>
+<section id="update-and-upgrade-aur-packages">
+<h3>Update and upgrade aur packages<a class="headerlink" href="#update-and-upgrade-aur-packages" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">yaourt</span> <span class="o">-</span><span class="n">Syu</span> <span class="o">--</span><span class="n">aur</span>
+</pre></div>
+</div>
+</section>
+<section id="update-and-upgrade-yaourt-packages">
+<h3>Update and upgrade yaourt packages<a class="headerlink" href="#update-and-upgrade-yaourt-packages" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">yaourt</span> <span class="o">-</span><span class="n">Syua</span>
+</pre></div>
+</div>
+</section>
+<section id="get-distro-version">
+<h3>Get distro version<a class="headerlink" href="#get-distro-version" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">lsb_release</span> <span class="o">-</span><span class="n">a</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="install-or-find-package">
+<h2>Install or find Package<a class="headerlink" href="#install-or-find-package" title="Link to this heading">#</a></h2>
+<section id="install-specific-package">
+<h3>Install specific package<a class="headerlink" href="#install-specific-package" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">pkgname</span>
+</pre></div>
+</div>
+</section>
+<section id="find-available-packages">
+<h3>Find available packages<a class="headerlink" href="#find-available-packages" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Ss</span> <span class="n">keyword</span>
+</pre></div>
+</div>
+</section>
+<section id="find-available-local-packages">
+<h3>Find available local packages<a class="headerlink" href="#find-available-local-packages" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Qs</span> <span class="n">keyword</span>
+</pre></div>
+</div>
+</section>
+<section id="show-packages-of-group-xorg">
+<h3>Show packages of group xorg<a class="headerlink" href="#show-packages-of-group-xorg" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pacman</span> <span class="o">-</span><span class="n">Sg</span> <span class="n">xorg</span>
+</pre></div>
+</div>
+</section>
+<section id="list-all-files-from-package">
+<h3>List all files from package<a class="headerlink" href="#list-all-files-from-package" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pacman</span> <span class="o">-</span><span class="n">Ql</span> <span class="n">pkgname</span>
+</pre></div>
+</div>
+</section>
+<section id="pacman-log-file">
+<h3>Pacman log file<a class="headerlink" href="#pacman-log-file" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">pacman</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="remove-package">
+<h2>Remove Package<a class="headerlink" href="#remove-package" title="Link to this heading">#</a></h2>
+<section id="remove-only-a-package">
+<h3>Remove only a package<a class="headerlink" href="#remove-only-a-package" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pacman</span> <span class="o">-</span><span class="n">R</span> <span class="n">package_name</span>
+</pre></div>
+</div>
+</section>
+<section id="to-remove-a-package-and-its-dependencies-which-are-not-required-by-any-other-installed-package">
+<h3>To remove a package and its dependencies which are not required by any other installed package<a class="headerlink" href="#to-remove-a-package-and-its-dependencies-which-are-not-required-by-any-other-installed-package" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Rs</span> <span class="n">package_name</span>
+</pre></div>
+</div>
+</section>
+<section id="list-all-packages-no-longer-required-as-dependencies">
+<h3>List all packages no longer required as dependencies<a class="headerlink" href="#list-all-packages-no-longer-required-as-dependencies" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Qdt</span>
+</pre></div>
+</div>
+</section>
+<section id="clean-package-cache">
+<h3>Clean package cache<a class="headerlink" href="#clean-package-cache" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pacman</span> <span class="o">-</span><span class="n">Sc</span>
+</pre></div>
+</div>
+</section>
+<section id="screen-recording">
+<h3>Screen recording<a class="headerlink" href="#screen-recording" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">gtk</span><span class="o">-</span><span class="n">recordmydesktop</span>
+</pre></div>
+</div>
+</section>
+<section id="mount-iso-file">
+<h3>Mount iso file<a class="headerlink" href="#mount-iso-file" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">fuseiso</span> <span class="o">-</span><span class="n">p</span>  <span class="n">testimage</span><span class="o">.</span><span class="n">iso</span> <span class="n">testimagemountpoint</span>
+</pre></div>
+</div>
+</section>
+<section id="to-unmount">
+<h3>To unmount<a class="headerlink" href="#to-unmount" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">fusermount</span> <span class="o">-</span><span class="n">u</span> <span class="o">&lt;</span><span class="n">mountpoint</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="get-ip-address">
+<h3>Get IP address<a class="headerlink" href="#get-ip-address" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">ip</span> <span class="n">addr</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="operators">
+<h2>Operators<a class="headerlink" href="#operators" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>used like</p></th>
+<th class="head"><p>Specifications</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-D, –database</p></td>
+<td><p>Operate on the package database</p></td>
+</tr>
+<tr class="row-odd"><td><p>-Q, –query</p></td>
+<td><p>Query the package database</p></td>
+</tr>
+<tr class="row-even"><td><p>-R, –remove</p></td>
+<td><p>Remove package(s) from the system</p></td>
+</tr>
+<tr class="row-odd"><td><p>-S, –sync</p></td>
+<td><p>Synchr­onize packages</p></td>
+</tr>
+<tr class="row-even"><td><p>-T, –deptest</p></td>
+<td><p>Check depend­encies</p></td>
+</tr>
+<tr class="row-odd"><td><p>-U, –upgrade</p></td>
+<td><p>Upgrade or add package(s) to the system</p></td>
+</tr>
+<tr class="row-even"><td><p>-F, –files</p></td>
+<td><p>Query the files database</p></td>
+</tr>
+<tr class="row-odd"><td><p>-V, –version</p></td>
+<td><p>Display version and exit</p></td>
+</tr>
+<tr class="row-even"><td><p>-h, –help</p></td>
+<td><p>Display syntax for the given operation</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>used like</p></th>
+<th class="head"><p>Specifications</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-b, –dbpath</p></td>
+<td><p>Specify an altern­ative database location</p></td>
+</tr>
+<tr class="row-odd"><td><p>-r, –root</p></td>
+<td><p>Specify an altern­ative instal­lation root</p></td>
+</tr>
+<tr class="row-even"><td><p>-v, –verbose</p></td>
+<td><p>Output paths such as as the Root, Conf File, DB Path, Cache Dirs</p></td>
+</tr>
+<tr class="row-odd"><td><p>–arch &lt;ar­ch&gt;</p></td>
+<td><p>Specify an alternate archit­ecture</p></td>
+</tr>
+<tr class="row-even"><td><p>–cachedir &lt;di­r&gt;</p></td>
+<td><p>Specify al altern­ative package cache location</p></td>
+</tr>
+<tr class="row-odd"><td><p>–color &lt;wh­en&gt;</p></td>
+<td><p>Specify when to enable coloring</p></td>
+</tr>
+<tr class="row-even"><td><p>–config &lt;fi­le&gt;</p></td>
+<td><p>Specify an alternate config­uration file</p></td>
+</tr>
+<tr class="row-odd"><td><p>–debug</p></td>
+<td><p>Display debug messages</p></td>
+</tr>
+<tr class="row-even"><td><p>–gpgdir &lt;di­r&gt;</p></td>
+<td><p>Specify a directory of files used by GnuPG to verify package signatures</p></td>
+</tr>
+<tr class="row-odd"><td><p>–hookdir &lt;di­r&gt;</p></td>
+<td><p>Specify an alternate directory containing hook files</p></td>
+</tr>
+<tr class="row-even"><td><p>–logfile &lt;fi­le&gt;</p></td>
+<td><p>Specify an alternate log file</p></td>
+</tr>
+<tr class="row-odd"><td><p>–noco­nfirm</p></td>
+<td><p>Bypass any and all “Are you sure?” messages</p></td>
+</tr>
+<tr class="row-even"><td><p>–confirm</p></td>
+<td><p>Cancels the effects of a previous –noco­nfirm</p></td>
+</tr>
+<tr class="row-odd"><td><p>–disa­ble­-do­wnl­oad­-ti­meout</p></td>
+<td><p>Disable defaults for low speed limit and timeout on downloads</p></td>
+</tr>
+<tr class="row-even"><td><p>–sysroot &lt;di­r&gt;</p></td>
+<td><p>Specify an altern­ative system root</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../linux.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">daphne</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../daphne.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">daphne</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-and-upgrade">Update and Upgrade</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-package-list">Update package list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-and-upgrade-all">Update and upgrade all</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-and-upgrade-aur-packages">Update and upgrade aur packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-and-upgrade-yaourt-packages">Update and upgrade yaourt packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-distro-version">Get distro version</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-or-find-package">Install or find Package</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-specific-package">Install specific package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-available-packages">Find available packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-available-local-packages">Find available local packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#show-packages-of-group-xorg">Show packages of group xorg</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-all-files-from-package">List all files from package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pacman-log-file">Pacman log file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-package">Remove Package</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-only-a-package">Remove only a package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-remove-a-package-and-its-dependencies-which-are-not-required-by-any-other-installed-package">To remove a package and its dependencies which are not required by any other installed package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-all-packages-no-longer-required-as-dependencies">List all packages no longer required as dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-package-cache">Clean package cache</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#screen-recording">Screen recording</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mount-iso-file">Mount iso file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-unmount">To unmount</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-ip-address">Get IP address</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operators">Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#options">Options</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

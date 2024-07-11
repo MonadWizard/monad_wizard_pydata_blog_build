@@ -1,0 +1,1133 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Nginx Django project deploy &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_ops/nginx/nginx_django';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/dev_ops/nginx/nginx_django.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="text editor" href="../text_editor.html" />
+    <link rel="prev" title="nginx" href="../nginx.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">devops</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../git.html">git</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../git/git_cheetsheet.html">cheet sheet github and git</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../git/git_discribe.html">গিট এর সব essential topicগুলো cover করা হয়েছে।</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../linux.html">daphne</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/pacman.html">Package Manager (pacman)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../daphne.html">daphne</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../daphne/daphne_django.html">daphne django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gunicorn.html">gunicorn</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gunicorn/gunicorn_django.html">Gunicorn Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../nginx.html">nginx</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Nginx Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../text_editor.html">text editor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/vim_cheatsheet.html">Simple Vim workflow example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/ESLint_workspace-setup-VSCODE.html">SLint, Prettier snippets VSCODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/emojisence.html">Emoji snippet VSCODE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../virtualization.html">virtualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_docker.html">dockers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_py_environment.html">python virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_Vargant.html">Vargant virtualization</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">devops</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../nginx.html" class="nav-link">nginx</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Nginx...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="nginx-django-project-deploy">
+<h1>Nginx Django project deploy<a class="headerlink" href="#nginx-django-project-deploy" title="Link to this heading">#</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt update
+sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
+</pre></div>
+</div>
+<section id="creating-the-postgresql-database-and-user">
+<h2>Creating the PostgreSQL Database and User<a class="headerlink" href="#creating-the-postgresql-database-and-user" title="Link to this heading">#</a></h2>
+<p>Log into an interactive Postgres session by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="o">-</span><span class="n">u</span> <span class="n">postgres</span> <span class="n">psql</span>
+</pre></div>
+</div>
+</section>
+<section id="first-create-a-database-for-your-project">
+<h2>First, create a database for your project<a class="headerlink" href="#first-create-a-database-for-your-project" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">CREATE</span> <span class="n">DATABASE</span> <span class="n">myproject</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="next-create-a-database-user-for-our-project-make-sure-to-select-a-secure-password">
+<h2>Next, create a database user for our project. Make sure to select a secure password<a class="headerlink" href="#next-create-a-database-user-for-our-project-make-sure-to-select-a-secure-password" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">CREATE</span> <span class="n">USER</span> <span class="n">myprojectuser</span> <span class="n">WITH</span> <span class="n">PASSWORD</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>We are setting the default encoding to UTF-8, which Django expects. We are also setting the default transaction isolation scheme to “read committed”, which blocks reads from uncommitted transactions. Lastly, we are setting the timezone. By default, our Django projects will be set to use UTC. These are all recommendations from the Django project itself:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">ALTER</span> <span class="n">ROLE</span> <span class="n">myprojectuser</span> <span class="n">SET</span> <span class="n">client_encoding</span> <span class="n">TO</span> <span class="s1">&#39;utf8&#39;</span><span class="p">;</span>
+    <span class="n">ALTER</span> <span class="n">ROLE</span> <span class="n">myprojectuser</span> <span class="n">SET</span> <span class="n">default_transaction_isolation</span> <span class="n">TO</span> <span class="s1">&#39;read committed&#39;</span><span class="p">;</span>
+    <span class="n">ALTER</span> <span class="n">ROLE</span> <span class="n">myprojectuser</span> <span class="n">SET</span> <span class="n">timezone</span> <span class="n">TO</span> <span class="s1">&#39;UTC&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now, we can give our new user access to administer our new database:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">GRANT</span> <span class="n">ALL</span> <span class="n">PRIVILEGES</span> <span class="n">ON</span> <span class="n">DATABASE</span> <span class="n">myproject</span> <span class="n">TO</span> <span class="n">myprojectuser</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>When you are finished, exit out of the PostgreSQL prompt by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    \<span class="n">q</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-a-python-virtual-environment-for-your-project">
+<h2>Creating a Python Virtual Environment for your Project<a class="headerlink" href="#creating-a-python-virtual-environment-for-your-project" title="Link to this heading">#</a></h2>
+<p>To do this, we first need access to the virtualenv command. We can install this with pip.If you are using Python 3, upgrade pip and install the package by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+    <span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">pip3</span> <span class="n">install</span> <span class="n">virtualenv</span>
+</pre></div>
+</div>
+<p>With virtualenv installed, we can start forming our project. Create and move into a directory where we can keep our project files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">mkdir</span> <span class="o">~/</span><span class="n">myprojectdir</span>
+    <span class="n">cd</span> <span class="o">~/</span><span class="n">myprojectdir</span>
+</pre></div>
+</div>
+<p>Within the project directory, create a Python virtual environment by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">virtualenv</span> <span class="n">myprojectenv</span>
+</pre></div>
+</div>
+<p>With virtualenv installed, we can start forming our project. Create and move into a directory where we can keep our project files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">source</span> <span class="n">myprojectenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+<p>With your virtual environment active, install Django, Gunicorn, and the psycopg2 PostgreSQL adaptor with the local instance of pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pip</span> <span class="n">install</span> <span class="n">django</span> <span class="n">gunicorn</span> <span class="n">psycopg2</span><span class="o">-</span><span class="n">binary</span>
+</pre></div>
+</div>
+<section id="clone-and-configuring-a-new-django-project">
+<h3>Clone and Configuring a New Django Project<a class="headerlink" href="#clone-and-configuring-a-new-django-project" title="Link to this heading">#</a></h3>
+<p>Clone your existiong Django project from Git :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Git</span> <span class="n">clone</span> <span class="n">HTTP_URL</span>
+</pre></div>
+</div>
+<p>Open the settings file in your text editor:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">nano</span> <span class="o">~/</span><span class="n">myprojectdir</span><span class="o">/</span><span class="n">myproject</span><span class="o">/</span><span class="n">settings</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Start by locating the ALLOWED_HOSTS directive. This defines a list of the server’s addresses or domain names may be used to connect to the Django instance. Any incoming requests with a Host header that is not in this list will raise an exception. Django requires that you set this to prevent a certain class of security vulnerability.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;your_server_domain_or_IP&#39;</span><span class="p">,</span> <span class="s1">&#39;second_domain_or_IP&#39;</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="change-the-settings-with-your-postgresql-database-information-you-can-leave-the-port-setting-as-an-empty-string">
+<h3>Change the settings with your PostgreSQL database information.You can leave the PORT setting as an empty string<a class="headerlink" href="#change-the-settings-with-your-postgresql-database-information-you-can-leave-the-port-setting-as-an-empty-string" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.postgresql_psycopg2&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;myproject&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;myprojectuser&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Next, move down to the bottom of the file and add a setting indicating where the static files should be placed. This is necessary so that Nginx can handle requests for these items. The following line tells Django to place them in a directory called static in the base project directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+    <span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;/static/&#39;</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;static/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Save and close the file when you are finished.</p>
+<p>Completing Initial Project Setup
+Now, we can migrate the initial database schema to our PostgreSQL database using the management script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">~/</span><span class="n">myprojectdir</span><span class="o">/</span><span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">makemigrations</span>
+    <span class="o">~/</span><span class="n">myprojectdir</span><span class="o">/</span><span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
+</pre></div>
+</div>
+<p>Create an administrative user for the project by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">~/</span><span class="n">myprojectdir</span><span class="o">/</span><span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">createsuperuser</span>
+</pre></div>
+</div>
+<p>You will have to select a username, provide an email address, and choose and confirm a password.
+We can collect all of the static content into the directory location we configured by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">~/</span><span class="n">myprojectdir</span><span class="o">/</span><span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">collectstatic</span>
+</pre></div>
+</div>
+<p>You will have to confirm the operation. The static files will then be placed in a directory called static within your project directory.</p>
+<p>Create an exception for port 8000 by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">ufw</span> <span class="n">allow</span> <span class="mi">8000</span>
+</pre></div>
+</div>
+<p>Finally, you can test our your project by starting up the Django development server with this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">~/</span><span class="n">myprojectdir</span><span class="o">/</span><span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">runserver</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">8000</span>
+</pre></div>
+</div>
+<p>In your web browser, visit your server’s domain name or IP address followed by :8000:</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;http://server_domain_or_IP:8000&gt;</span></code></p>
+<p>When you are finished exploring, hit CTRL-C in the terminal window to shut down the development server.</p>
+</section>
+<section id="testing-gunicorns-ability-to-serve-the-project">
+<h3>Testing Gunicorn’s Ability to Serve the Project<a class="headerlink" href="#testing-gunicorns-ability-to-serve-the-project" title="Link to this heading">#</a></h3>
+<p>The last thing we want to do before leaving our virtual environment is test Gunicorn to make sure that it can serve the application. We can do this by entering our project directory and using gunicorn to load the project’s WSGI module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">cd</span> <span class="o">~/</span><span class="n">myprojectdir</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">gunicorn</span> <span class="o">--</span><span class="n">bind</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">8000</span> <span class="n">myproject</span><span class="o">.</span><span class="n">wsgi</span>
+</pre></div>
+</div>
+<p>When you are finished testing, hit <code class="docutils literal notranslate"><span class="pre">CTRL-C</span></code> in the terminal window to stop Gunicorn.</p>
+<section id="creating-systemd-socket-and-service-files-for-gunicorn">
+<h4>Creating systemd Socket and Service Files for Gunicorn<a class="headerlink" href="#creating-systemd-socket-and-service-files-for-gunicorn" title="Link to this heading">#</a></h4>
+<p>The Gunicorn socket will be created at boot and will listen for connections. When a connection occurs, systemd will automatically start the Gunicorn process to handle the connection.</p>
+</section>
+</section>
+</section>
+<section id="gunicorn">
+<h2>Gunicorn<a class="headerlink" href="#gunicorn" title="Link to this heading">#</a></h2>
+<p>Start by creating and opening a systemd socket file for Gunicorn with sudo privileges:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">socket</span>
+</pre></div>
+</div>
+<p>Inside, we will create a <code class="docutils literal notranslate"><span class="pre">[Unit]</span></code> section to describe the socket, a <code class="docutils literal notranslate"><span class="pre">[Socket]</span></code> section to define the socket location, and an <code class="docutils literal notranslate"><span class="pre">[Install]</span></code> section to make sure the socket is created at the right time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
+    <span class="n">Description</span><span class="o">=</span><span class="n">gunicorn</span> <span class="n">socket</span>
+
+    <span class="p">[</span><span class="n">Socket</span><span class="p">]</span>
+    <span class="n">ListenStream</span><span class="o">=/</span><span class="n">run</span><span class="o">/</span><span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">sock</span>
+
+    <span class="p">[</span><span class="n">Install</span><span class="p">]</span>
+    <span class="n">WantedBy</span><span class="o">=</span><span class="n">sockets</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+<p>Save and close the file when you are finished.</p>
+<p>Next, create and open a systemd service file for Gunicorn with sudo privileges in your text editor. The service filename should match the socket filename with the exception of the extension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+<p>Start with the <code class="docutils literal notranslate"><span class="pre">[Unit]</span></code> section, which is used to specify metadata and dependencies. We’ll put a description of our service here and tell the init system to only start this after the networking target has been reached. Because our service relies on the socket from the socket file, we need to include a Requires directive to indicate that relationship:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
+    <span class="n">Description</span><span class="o">=</span><span class="n">gunicorn</span> <span class="n">daemon</span>
+    <span class="n">Requires</span><span class="o">=</span><span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">socket</span>
+    <span class="n">After</span><span class="o">=</span><span class="n">network</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+<p>Next, we’ll open up the <code class="docutils literal notranslate"><span class="pre">[Service]</span></code> section. We’ll specify the user and group that we want to process to run under. We will give our regular user account ownership of the process since it owns all of the relevant files. We’ll give group ownership to the www-data group so that Nginx can communicate easily with Gunicorn.</p>
+<p>We’ll then map out the working directory and specify the command to use to start the service. In this case, we’ll have to specify the full path to the Gunicorn executable, which is installed within our virtual environment. We will bind the process to the Unix socket we created within the /run directory so that the process can communicate with Nginx. We log all data to standard output so that the journald process can collect the Gunicorn logs. We can also specify any optional Gunicorn tweaks here. For example, we specified 3 worker processes in this case:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
+    <span class="n">Description</span><span class="o">=</span><span class="n">gunicorn</span> <span class="n">daemon</span>
+    <span class="n">Requires</span><span class="o">=</span><span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">socket</span>
+    <span class="n">After</span><span class="o">=</span><span class="n">network</span><span class="o">.</span><span class="n">target</span>
+
+    <span class="p">[</span><span class="n">Service</span><span class="p">]</span>
+    <span class="n">User</span><span class="o">=</span><span class="n">serverUsername</span>
+    <span class="n">Group</span><span class="o">=</span><span class="n">www</span><span class="o">-</span><span class="n">data</span>
+    <span class="n">WorkingDirectory</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">myprojectdir</span>
+    <span class="n">ExecStart</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">myprojectdir</span><span class="o">/</span><span class="n">myprojectenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">gunicorn</span> \
+    <span class="o">--</span><span class="n">access</span><span class="o">-</span><span class="n">logfile</span> <span class="o">-</span> \
+    <span class="o">--</span><span class="n">workers</span> <span class="mi">3</span> \
+    <span class="o">--</span><span class="n">bind</span> <span class="n">unix</span><span class="p">:</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">gunicorn</span><span class="o">.</span><span class="n">sock</span> \
+    <span class="n">myproject</span><span class="o">.</span><span class="n">wsgi</span><span class="p">:</span><span class="n">application</span>
+</pre></div>
+</div>
+<p>Finally, we’ll add an <code class="docutils literal notranslate"><span class="pre">[Install]</span></code> section. This will tell systemd what to link this service to if we enable it to start at boot. We want this service to start when the regular multi-user system is up and running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
+    <span class="n">Description</span><span class="o">=</span><span class="n">gunicorn</span> <span class="n">daemon</span>
+    <span class="n">Requires</span><span class="o">=</span><span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">socket</span>
+    <span class="n">After</span><span class="o">=</span><span class="n">network</span><span class="o">.</span><span class="n">target</span>
+
+    <span class="p">[</span><span class="n">Service</span><span class="p">]</span>
+    <span class="n">User</span><span class="o">=</span><span class="n">sammy</span>
+    <span class="n">Group</span><span class="o">=</span><span class="n">www</span><span class="o">-</span><span class="n">data</span>
+    <span class="n">WorkingDirectory</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">myprojectdir</span>
+    <span class="n">ExecStart</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">myprojectdir</span><span class="o">/</span><span class="n">myprojectenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">gunicorn</span> \
+    <span class="o">--</span><span class="n">access</span><span class="o">-</span><span class="n">logfile</span> <span class="o">-</span> \
+    <span class="o">--</span><span class="n">workers</span> <span class="mi">3</span> \
+    <span class="o">--</span><span class="n">bind</span> <span class="n">unix</span><span class="p">:</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">gunicorn</span><span class="o">.</span><span class="n">sock</span> \
+    <span class="n">myproject</span><span class="o">.</span><span class="n">wsgi</span><span class="p">:</span><span class="n">application</span>
+
+    <span class="p">[</span><span class="n">Install</span><span class="p">]</span>
+    <span class="n">WantedBy</span><span class="o">=</span><span class="n">multi</span><span class="o">-</span><span class="n">user</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+<section id="we-can-add-daphne-configuration-on-gunicorn-service">
+<h3>We can add daphne configuration on gunicorn service<a class="headerlink" href="#we-can-add-daphne-configuration-on-gunicorn-service" title="Link to this heading">#</a></h3>
+<p>Daphne can bind with a new port and replace ExecStart part from wsgi to asgi file. Then our full django project can execute with asgi configuration instant of wsgi.</p>
+<p>For that we have to replace previouse ExecStart and add daphne path which install in invironment with an unique port which is allowed and not used.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ExecStart=/home/project/myprojectenv/bin/daphne</span> <span class="pre">-b</span> <span class="pre">0.0.0.0</span> <span class="pre">-p</span> <span class="pre">8001</span> <span class="pre">myproject.asgi:application</span></code></p>
+<p>With daphne full gunicorn configuration is like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
+    <span class="n">Description</span><span class="o">=</span><span class="n">gunicorn</span> <span class="n">daemon</span>
+    <span class="n">Requires</span><span class="o">=</span><span class="n">probashigunicorn</span><span class="o">.</span><span class="n">socket</span>
+    <span class="n">After</span><span class="o">=</span><span class="n">network</span><span class="o">.</span><span class="n">target</span>
+
+    <span class="p">[</span><span class="n">Service</span><span class="p">]</span>
+    <span class="n">User</span><span class="o">=</span><span class="n">root</span>
+    <span class="n">Group</span><span class="o">=</span><span class="n">www</span><span class="o">-</span><span class="n">data</span>
+    <span class="n">WorkingDirectory</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">backend</span><span class="o">/</span><span class="n">probashi_project</span>
+
+    <span class="c1"># ExecStart=/var/www/backend/probashi_project/probashienv/bin/gunicorn \</span>
+
+    <span class="c1"># --access-logfile - \</span>
+
+    <span class="c1"># --workers 3 \</span>
+
+    <span class="c1"># --bind unix:/run/gunicorn.sock \</span>
+
+    <span class="c1"># probashi_backend.wsgi:application</span>
+
+    <span class="n">ExecStart</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">backend</span><span class="o">/</span><span class="n">probashi_project</span><span class="o">/</span><span class="n">probashienv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">daphne</span> <span class="o">-</span><span class="n">b</span> <span class="mf">0.0.0.0</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8001</span> <span class="n">probashi_backend</span><span class="o">.</span><span class="n">asgi</span><span class="p">:</span><span class="n">application</span>
+
+    <span class="p">[</span><span class="n">Install</span><span class="p">]</span>
+    <span class="n">WantedBy</span><span class="o">=</span><span class="n">multi</span><span class="o">-</span><span class="n">user</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+<p>With that, our systemd service file is complete. Save and close it now.</p>
+<p>We can now start and enable the Gunicorn socket. This will create the socket file at <code class="docutils literal notranslate"><span class="pre">/run/myprojectgunicorn.sock</span></code> now and at boot. When a connection is made to that socket, systemd will automatically start the myprojectgunicorn.service to handle it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">start</span> <span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">socket</span>
+    <span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">enable</span> <span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">socket</span>
+</pre></div>
+</div>
+<p>We can confirm that the operation was successful by checking for the socket file.</p>
+</section>
+<section id="checking-for-the-gunicorn-socket-file">
+<h3>Checking for the Gunicorn Socket File<a class="headerlink" href="#checking-for-the-gunicorn-socket-file" title="Link to this heading">#</a></h3>
+<p>Check the status of the process to find out whether it was able to start:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">status</span> <span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">socket</span>
+</pre></div>
+</div>
+<p>You should receive an output like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>● gunicorn.socket - gunicorn socket
+     Loaded: loaded (/etc/systemd/system/myprojectgunicorn.socket; enabled; vendor prese&gt;
+     Active: active (listening) since Fri 2020-06-26 17:53:10 UTC; 14s ago
+   Triggers: ● myprojectgunicorn.service
+     Listen: /run/myprojectgunicorn.sock (Stream)
+      Tasks: 0 (limit: 1137)
+     Memory: 0B
+     CGroup: /system.slice/myprojectgunicorn.socket
+</pre></div>
+</div>
+<p>Next, check for the existence of the myprojectgunicorn.sock file within the /run directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">file</span> <span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">sock</span>
+</pre></div>
+</div>
+<p>Output
+<code class="docutils literal notranslate"><span class="pre">/run/myprojectgunicorn.sock:</span> <span class="pre">socket</span></code></p>
+<p>If the systemctl status command indicated that an error occurred or if you do not find the myprojectgunicorn.sock file in the directory, it’s an indication that the Gunicorn socket was not able to be created correctly. Check the Gunicorn socket’s logs by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">journalctl</span> <span class="o">-</span><span class="n">u</span> <span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">socket</span>
+</pre></div>
+</div>
+<p>Take another look at your <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/myprojectgunicorn.socket</span></code> file to fix any problems before continuing.</p>
+</section>
+</section>
+<section id="testing-socket-activation">
+<h2>Testing Socket Activation<a class="headerlink" href="#testing-socket-activation" title="Link to this heading">#</a></h2>
+<p>Currently, if you’ve only started the myprojectgunicorn.socket unit, the myprojectgunicorn.service will not be active yet since the socket has not yet received any connections. You can check this by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">status</span> <span class="n">myprojectgunicorn</span>
+</pre></div>
+</div>
+<p>Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    ● myprojectgunicorn.service - gunicorn daemon
+    Loaded: loaded (/etc/systemd/system/myprojectgunicorn.service; disabled; vendor preset: enabled)
+    Active: inactive (dead)
+
+</pre></div>
+</div>
+<p>To test the socket activation mechanism, we can send a connection to the socket through curl by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">curl</span> <span class="o">--</span><span class="n">unix</span><span class="o">-</span><span class="n">socket</span> <span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">sock</span> <span class="n">localhost</span>
+</pre></div>
+</div>
+<p>You should receive the HTML output from your application in the terminal. This indicates that Gunicorn was started and was able to serve your Django application. You can verify that the Gunicorn service is running by typing:
+sudo systemctl status myprojectgunicorn</p>
+<p>Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    ● myprojectgunicorn.service - gunicorn daemon
+        Loaded: loaded (/etc/systemd/system/myprojectgunicorn.service; disabled; vendor preset: enabled)
+        Active: active (running) since Fri 2020-06-26 18:52:21 UTC; 2s ago
+    TriggeredBy: ● myprojectgunicorn.socket
+    Main PID: 22914 (myprojectgunicorn)
+        Tasks: 4 (limit: 1137)
+        Memory: 89.1M
+        CGroup: /system.slice/myprojectgunicorn.service
+</pre></div>
+</div>
+<p>If the output from curl or the output of systemctl status indicates that a problem occurred, check the logs for additional details:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">journalctl</span> <span class="o">-</span><span class="n">u</span> <span class="n">myprojectgunicorn</span>
+</pre></div>
+</div>
+<p>Check your <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/myprojectgunicorn.service</span></code> file for problems. If you make changes to the <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/myprojectgunicorn.service</span></code> file, reload the daemon to reread the service definition and restart the Gunicorn process by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">daemon</span><span class="o">-</span><span class="n">reload</span>
+    <span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">myprojectgunicorn</span>
+    <span class="n">Make</span> <span class="n">sure</span> <span class="n">you</span> <span class="n">troubleshoot</span> <span class="n">the</span> <span class="n">above</span> <span class="n">issues</span> <span class="n">before</span> <span class="n">continuing</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="configure-nginx-to-proxy-pass-to-gunicorn">
+<h2>Configure Nginx to Proxy Pass to Gunicorn<a class="headerlink" href="#configure-nginx-to-proxy-pass-to-gunicorn" title="Link to this heading">#</a></h2>
+<p>Now that Gunicorn is set up, we need to configure Nginx to pass traffic to the process.
+Start by creating and opening a new server block in Nginx’s sites-available directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">myproject</span>
+</pre></div>
+</div>
+<p>Inside, open up a new server block. We will start by specifying that this block should listen on the normal port 80 and that it should respond to our server’s domain name or IP address:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">server</span> <span class="p">{</span>
+    <span class="n">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="n">server_name</span> <span class="n">server_domain_or_IP</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Next, we will tell Nginx to ignore any problems with finding a favicon. We will also tell it where to find the static assets that we collected in our <code class="docutils literal notranslate"><span class="pre">~/myprojectdir/static</span></code> directory. All of these files have a standard URI prefix of <code class="docutils literal notranslate"><span class="pre">“/static”</span></code>, so we can create a location block to match those requests:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">server</span> <span class="p">{</span>
+    <span class="n">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="n">server_name</span> <span class="n">server_domain_or_IP</span><span class="p">;</span>
+
+        <span class="n">location</span> <span class="o">=</span> <span class="o">/</span><span class="n">favicon</span><span class="o">.</span><span class="n">ico</span> <span class="p">{</span> <span class="n">access_log</span> <span class="n">off</span><span class="p">;</span> <span class="n">log_not_found</span> <span class="n">off</span><span class="p">;</span> <span class="p">}</span>
+        <span class="n">location</span> <span class="o">/</span><span class="n">static</span><span class="o">/</span> <span class="p">{</span>
+            <span class="n">root</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">myprojectdir</span><span class="p">;</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Finally, we’ll create a location <code class="docutils literal notranslate"><span class="pre">/</span> <span class="pre">{}</span></code> block to match all other requests. Inside of this location, we’ll include the standard proxy_params file included with the Nginx installation and then we will pass the traffic directly to the Gunicorn socket:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">server</span> <span class="p">{</span>
+    <span class="n">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="n">server_name</span> <span class="n">server_domain_or_IP</span><span class="p">;</span>
+
+        <span class="n">location</span> <span class="o">=</span> <span class="o">/</span><span class="n">favicon</span><span class="o">.</span><span class="n">ico</span> <span class="p">{</span> <span class="n">access_log</span> <span class="n">off</span><span class="p">;</span> <span class="n">log_not_found</span> <span class="n">off</span><span class="p">;</span> <span class="p">}</span>
+        <span class="n">location</span> <span class="o">/</span><span class="n">static</span><span class="o">/</span> <span class="p">{</span>
+            <span class="n">root</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">myprojectdir</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+            <span class="n">include</span> <span class="n">proxy_params</span><span class="p">;</span>
+            <span class="n">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">unix</span><span class="p">:</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">sock</span><span class="p">;</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>For channel backend or socket connection we have to add upstream channels-backend :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">upstream</span> <span class="n">channels</span><span class="o">-</span><span class="n">backend</span> <span class="p">{</span>
+<span class="n">server</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">8001</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And proxy location look like :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    location / {
+    include proxy_params;
+    proxy_pass &lt;http://channels-backend&gt;;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_redirect off;
+    }
+</pre></div>
+</div>
+<p>Now full configuration With Channel-backend looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    map $http_upgrade $connection_upgrade {
+    default upgrade;
+    &#39;&#39; close;
+    }
+
+    upstream channels-backend {
+    server localhost:8001;
+    }
+
+    server {
+    listen 80;
+    server_name api.probashi.info www.api.probashi.info;
+
+        location = /favicon.ico { access_log off; log_not_found off; }
+        location /static/ {
+            alias /var/www/backend/probashi_project;
+
+        }
+
+        # Strict Transport Security
+            add_header Strict-Transport-Security max-age=2592000;
+
+            # proxy buffers
+            proxy_buffers 16 64k;
+            proxy_buffer_size 128k;
+
+
+        location / {
+                include proxy_params;
+                proxy_pass http://channels-backend;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection $connection_upgrade;
+                proxy_redirect off;
+            }
+
+    }
+</pre></div>
+</div>
+<p>Save and close the file when you are finished. Now, we can enable the file by linking it to the sites-enabled directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">myproject</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span>
+</pre></div>
+</div>
+<p>Test your Nginx configuration for syntax errors by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">nginx</span> <span class="o">-</span><span class="n">t</span>
+</pre></div>
+</div>
+<p>If no errors are reported, go ahead and restart Nginx by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">nginx</span>
+</pre></div>
+</div>
+<p>Finally, we need to open up our firewall to normal traffic on port 80. Since we no longer need access to the development server, we can remove the rule to open port 8000 as well:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">ufw</span> <span class="n">delete</span> <span class="n">allow</span> <span class="mi">8000</span>
+    <span class="n">sudo</span> <span class="n">ufw</span> <span class="n">allow</span> <span class="s1">&#39;Nginx Full&#39;</span>
+</pre></div>
+</div>
+<p>You should now be able to go to your server’s domain or IP address to view your application.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../nginx.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">nginx</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../text_editor.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">text editor</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-postgresql-database-and-user">Creating the PostgreSQL Database and User</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-create-a-database-for-your-project">First, create a database for your project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-create-a-database-user-for-our-project-make-sure-to-select-a-secure-password">Next, create a database user for our project. Make sure to select a secure password</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-python-virtual-environment-for-your-project">Creating a Python Virtual Environment for your Project</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-and-configuring-a-new-django-project">Clone and Configuring a New Django Project</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#change-the-settings-with-your-postgresql-database-information-you-can-leave-the-port-setting-as-an-empty-string">Change the settings with your PostgreSQL database information.You can leave the PORT setting as an empty string</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-gunicorns-ability-to-serve-the-project">Testing Gunicorn’s Ability to Serve the Project</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-systemd-socket-and-service-files-for-gunicorn">Creating systemd Socket and Service Files for Gunicorn</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gunicorn">Gunicorn</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#we-can-add-daphne-configuration-on-gunicorn-service">We can add daphne configuration on gunicorn service</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-for-the-gunicorn-socket-file">Checking for the Gunicorn Socket File</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-socket-activation">Testing Socket Activation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-nginx-to-proxy-pass-to-gunicorn">Configure Nginx to Proxy Pass to Gunicorn</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

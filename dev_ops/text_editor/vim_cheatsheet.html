@@ -1,0 +1,1077 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Simple Vim workflow example &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_ops/text_editor/vim_cheatsheet';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/dev_ops/text_editor/vim_cheatsheet.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SLint, Prettier snippets VSCODE" href="ESLint_workspace-setup-VSCODE.html" />
+    <link rel="prev" title="text editor" href="../text_editor.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">devops</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../git.html">git</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../git/git_cheetsheet.html">cheet sheet github and git</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../git/git_discribe.html">গিট এর সব essential topicগুলো cover করা হয়েছে।</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../linux.html">daphne</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/pacman.html">Package Manager (pacman)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../daphne.html">daphne</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../daphne/daphne_django.html">daphne django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gunicorn.html">gunicorn</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gunicorn/gunicorn_django.html">Gunicorn Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nginx.html">nginx</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nginx/nginx_django.html">Nginx Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../text_editor.html">text editor</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Simple Vim workflow example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ESLint_workspace-setup-VSCODE.html">SLint, Prettier snippets VSCODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emojisence.html">Emoji snippet VSCODE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../virtualization.html">virtualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_docker.html">dockers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_py_environment.html">python virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_Vargant.html">Vargant virtualization</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">devops</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../text_editor.html" class="nav-link">text editor</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Simple Vim...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="simple-vim-workflow-example">
+<h1>Simple Vim workflow example<a class="headerlink" href="#simple-vim-workflow-example" title="Link to this heading">#</a></h1>
+<p>প্রথমে as a beggener, VIM এর work-flow দেখে নেই। It’s relatively simple:</p>
+<ul class="simple">
+<li><p>Open a new or existing file with <code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">filename</span></code>.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">i</span></code> to switch into insert mode so that you can start editing the file.</p></li>
+<li><p>Enter or modify the text with your file.</p></li>
+<li><p>Once you’re done, press the escape key <code class="docutils literal notranslate"><span class="pre">Esc</span></code> to get out of insert mode and back to command mode.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">:wq</span></code> to save and exit your file.</p></li>
+</ul>
+<p>Of course, there is so much more you can do with Vim.</p>
+<section id="basic-vim-commands">
+<h2>1. Basic Vim commands<a class="headerlink" href="#basic-vim-commands" title="Link to this heading">#</a></h2>
+<p>The most simple commands allow you to open and close documents as well as saving them.</p>
+<p>As with most other text editors, there are protections in place to help you avoid exiting the editor without having saved what you’re working on.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>:help [keyword]</p></td>
+<td><p>Performs a search of help documentation for whatever keyword you enter</p></td>
+</tr>
+<tr class="row-odd"><td><p>:e [file]</p></td>
+<td><p>Opens a file, where [file] is the name of the file you want opened</p></td>
+</tr>
+<tr class="row-even"><td><p>:w</p></td>
+<td><p>Saves the file you are working on</p></td>
+</tr>
+<tr class="row-odd"><td><p>:w [filename]</p></td>
+<td><p>Allows you to save your file with the name you’ve defined</p></td>
+</tr>
+<tr class="row-even"><td><p>:wq</p></td>
+<td><p>Save your file and close Vim</p></td>
+</tr>
+<tr class="row-odd"><td><p>:q!</p></td>
+<td><p>Quit without first saving the file you were working on</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="vim-commands-for-movement">
+<h2>2. Vim commands for movement<a class="headerlink" href="#vim-commands-for-movement" title="Link to this heading">#</a></h2>
+<p>When using movement commands, you can put a number in front of them to make Vim complete a command multiple times.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">5h</span></code> will move your cursor five spaces to the left, and <code class="docutils literal notranslate"><span class="pre">90j</span></code> will put your cursor at the beginning of the 90th line down from where your cursor currently is.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>h</p></td>
+<td><p>Moves the cursor to the left</p></td>
+</tr>
+<tr class="row-odd"><td><p>l</p></td>
+<td><p>Moves the cursor to the right</p></td>
+</tr>
+<tr class="row-even"><td><p>j</p></td>
+<td><p>Moves the cursor down one line</p></td>
+</tr>
+<tr class="row-odd"><td><p>k</p></td>
+<td><p>Moves the cursor up one line</p></td>
+</tr>
+<tr class="row-even"><td><p>H</p></td>
+<td><p>Puts the cursor at the top of the screen</p></td>
+</tr>
+<tr class="row-odd"><td><p>M</p></td>
+<td><p>Puts the cursor in the middle of the screen</p></td>
+</tr>
+<tr class="row-even"><td><p>L</p></td>
+<td><p>Puts the cursor at the bottom of the screen</p></td>
+</tr>
+<tr class="row-odd"><td><p>w</p></td>
+<td><p>Puts the cursor at the start of the next word</p></td>
+</tr>
+<tr class="row-even"><td><p>b</p></td>
+<td><p>Puts the cursor at the start of the previous word</p></td>
+</tr>
+<tr class="row-odd"><td><p>e</p></td>
+<td><p>Puts the cursor at the end of a word</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Places the cursor at the beginning of a line</p></td>
+</tr>
+<tr class="row-odd"><td><p>$</p></td>
+<td><p>Places the cursor at the end of a line</p></td>
+</tr>
+<tr class="row-even"><td><p>)</p></td>
+<td><p>Takes you to the start of the next sentence</p></td>
+</tr>
+<tr class="row-odd"><td><p>(</p></td>
+<td><p>Takes you to the start of the previous sentence</p></td>
+</tr>
+<tr class="row-even"><td><p>}</p></td>
+<td><p>Takes you to the start of the next paragraph or block of text</p></td>
+</tr>
+<tr class="row-odd"><td><p>{</p></td>
+<td><p>Takes you to the start of the previous paragraph or block of text</p></td>
+</tr>
+<tr class="row-even"><td><p>Ctrl + f</p></td>
+<td><p>Takes you one page forward</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ctrl + b</p></td>
+<td><p>Takes you one page back</p></td>
+</tr>
+<tr class="row-even"><td><p>gg</p></td>
+<td><p>Places the cursor at the start of the file</p></td>
+</tr>
+<tr class="row-odd"><td><p>G</p></td>
+<td><p>Places the cursor at the end of the file</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Where # is the number of a line, this command takes you to the line specified</p>
+</section>
+<section id="vim-commands-for-editing">
+<h2>3. Vim commands for editing<a class="headerlink" href="#vim-commands-for-editing" title="Link to this heading">#</a></h2>
+<p>Those who use Vim tend to use the term “yank” where most people would use the terms copy and paste.</p>
+<p>Therefore, the command for copying a word is <code class="docutils literal notranslate"><span class="pre">yw</span></code>, which stands for yank word, and the command for pasting whatever has been copied is <code class="docutils literal notranslate"><span class="pre">p</span></code>, meaning put.</p>
+<p>You can either use commands like <code class="docutils literal notranslate"><span class="pre">dd</span></code>, which deletes a single line, and <code class="docutils literal notranslate"><span class="pre">yy</span></code>, which copies a single line, or you can highlight text and then copy it to the unnamed register.</p>
+<p>As with movement commands, putting a number in front of the command can increase the number of times a task is completed.</p>
+<p>For instance, putting a number in front of <code class="docutils literal notranslate"><span class="pre">yy</span></code> will increase the number of lines copied, so <code class="docutils literal notranslate"><span class="pre">5yy</span></code> will copy five lines.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>yy</p></td>
+<td><p>Copies a line</p></td>
+</tr>
+<tr class="row-odd"><td><p>yw</p></td>
+<td><p>Copies a word</p></td>
+</tr>
+<tr class="row-even"><td><p>y$</p></td>
+<td><p>Copies from where your cursor is to the end of a line</p></td>
+</tr>
+<tr class="row-odd"><td><p>v</p></td>
+<td><p>Highlight one character at a time using arrow buttons or the h, k, j, l buttons</p></td>
+</tr>
+<tr class="row-even"><td><p>V</p></td>
+<td><p>Highlights one line, and movement keys can allow you to highlight additional lines</p></td>
+</tr>
+<tr class="row-odd"><td><p>p</p></td>
+<td><p>Paste whatever has been copied to the unnamed register</p></td>
+</tr>
+<tr class="row-even"><td><p>d</p></td>
+<td><p>Deletes highlighted text</p></td>
+</tr>
+<tr class="row-odd"><td><p>dd</p></td>
+<td><p>Deletes a line of text</p></td>
+</tr>
+<tr class="row-even"><td><p>dw</p></td>
+<td><p>Deletes a word</p></td>
+</tr>
+<tr class="row-odd"><td><p>D</p></td>
+<td><p>Deletes everything from where your cursor is to the end of the line</p></td>
+</tr>
+<tr class="row-even"><td><p>d0</p></td>
+<td><p>Deletes everything from where your cursor is to the beginning of the line</p></td>
+</tr>
+<tr class="row-odd"><td><p>dgg</p></td>
+<td><p>Deletes everything from where your cursor is to the beginning of the file</p></td>
+</tr>
+<tr class="row-even"><td><p>dG</p></td>
+<td><p>Deletes everything from where your cursor is to the end of the file</p></td>
+</tr>
+<tr class="row-odd"><td><p>x</p></td>
+<td><p>Deletes a single character</p></td>
+</tr>
+<tr class="row-even"><td><p>u</p></td>
+<td><p>Undo the last operation; u# allows you to undo multiple actions</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ctrl + r</p></td>
+<td><p>Redo the last undo</p></td>
+</tr>
+<tr class="row-even"><td><p>.</p></td>
+<td><p>Repeats the last action</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="vim-commands-for-searching-text">
+<h2>4. Vim commands for searching text<a class="headerlink" href="#vim-commands-for-searching-text" title="Link to this heading">#</a></h2>
+<p>Like many other text editors, Vim allows you to search your text and find and replace text within your document.</p>
+<p>If you opt to replace multiple instances of the same keyword or phrase, you can set Vim up to require or not require you to confirm each replacement depending on how you put in the command.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>/[keyword]</p></td>
+<td><p>Searches for text in the document where keyword is whatever keyword, phrase or string of characters you’re looking for</p></td>
+</tr>
+<tr class="row-odd"><td><p>?[keyword]</p></td>
+<td><p>Searches previous text for your keyword, phrase or character string</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>Searches your text again in whatever direction your last search was</p></td>
+</tr>
+<tr class="row-odd"><td><p>N</p></td>
+<td><p>Searches your text again in the opposite direction</p></td>
+</tr>
+<tr class="row-even"><td><p>:%s/[pattern]/[replacement]/g</p></td>
+<td><p>This replaces all occurrences of a pattern without confirming each one</p></td>
+</tr>
+<tr class="row-odd"><td><p>:%s/[pattern]/[replacement]/gc</p></td>
+<td><p>Replaces all occurrences of a pattern and confirms each one</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="vim-commands-for-working-with-multiple-files">
+<h2>5. Vim commands for working with multiple files<a class="headerlink" href="#vim-commands-for-working-with-multiple-files" title="Link to this heading">#</a></h2>
+<p>Vim gives you the ability to either split your screen to show more than one file at a time or you can switch back and forth between documents.</p>
+<p>As with other functions, commands make going between documents or buffers, as they’re referred to with Vim, as simple as a few keystrokes.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>:bn</p></td>
+<td><p>Switch to next buffer</p></td>
+</tr>
+<tr class="row-odd"><td><p>:bp</p></td>
+<td><p>Switch to previous buffer</p></td>
+</tr>
+<tr class="row-even"><td><p>:bd</p></td>
+<td><p>Close a buffer</p></td>
+</tr>
+<tr class="row-odd"><td><p>:sp [filename]</p></td>
+<td><p>Opens a new file and splits your screen horizontally to show more than one buffer</p></td>
+</tr>
+<tr class="row-even"><td><p>:vsp [filename]</p></td>
+<td><p>Opens a new file and splits your screen vertically to show more than one buffer</p></td>
+</tr>
+<tr class="row-odd"><td><p>:ls</p></td>
+<td><p>Lists all open buffers</p></td>
+</tr>
+<tr class="row-even"><td><p>Ctrl + ws</p></td>
+<td><p>Split windows horizontally</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ctrl + wv</p></td>
+<td><p>Split windows vertically</p></td>
+</tr>
+<tr class="row-even"><td><p>Ctrl + ww</p></td>
+<td><p>Switch between windows</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ctrl + wq</p></td>
+<td><p>Quit a window</p></td>
+</tr>
+<tr class="row-even"><td><p>Ctrl + wh</p></td>
+<td><p>Moves your cursor to the window to the left</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ctrl + wl</p></td>
+<td><p>Moves your cursor to the window to the right</p></td>
+</tr>
+<tr class="row-even"><td><p>Ctrl + wj</p></td>
+<td><p>Moves your cursor to the window below the one you’re in</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ctrl + wk</p></td>
+<td><p>Moves your cursor to the window above the one you’re in</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="marking-text-visual-mode">
+<h2>6. Marking text (visual mode)<a class="headerlink" href="#marking-text-visual-mode" title="Link to this heading">#</a></h2>
+<p>Visual mode allows you to select a block of text in Vim.</p>
+<p>Once a block of text is selected you can use visual commands to perform actions on the selected text such as deleting it, copying it, etc.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>v</p></td>
+<td><p>starts visual mode, you can then select a range of text, and run a command</p></td>
+</tr>
+<tr class="row-odd"><td><p>V</p></td>
+<td><p>starts linewise visual mode (selects entire lines)</p></td>
+</tr>
+<tr class="row-even"><td><p>Ctrl + v</p></td>
+<td><p>starts visual block mode (selects columns)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ab</p></td>
+<td><p>a block with ()</p></td>
+</tr>
+<tr class="row-even"><td><p>aB</p></td>
+<td><p>a block with {}</p></td>
+</tr>
+<tr class="row-odd"><td><p>ib</p></td>
+<td><p>inner block with ()</p></td>
+</tr>
+<tr class="row-even"><td><p>iB</p></td>
+<td><p>inner block with {}</p></td>
+</tr>
+<tr class="row-odd"><td><p>aw</p></td>
+<td><p>mark a word</p></td>
+</tr>
+<tr class="row-even"><td><p>Esc</p></td>
+<td><p>exit visual mode</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Once you’ve selected a particular range of text, you can then run a command on that text such as the following:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>d</p></td>
+<td><p>delete marked text</p></td>
+</tr>
+<tr class="row-odd"><td><p>y</p></td>
+<td><p>yank (copy) marked text</p></td>
+</tr>
+<tr class="row-even"><td><p>&gt;</p></td>
+<td><p>shift text right</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;</p></td>
+<td><p>shift text left</p></td>
+</tr>
+<tr class="row-even"><td><p>~</p></td>
+<td><p>swap case (upper or lower)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="tab-pages">
+<h2>7. Tab pages<a class="headerlink" href="#tab-pages" title="Link to this heading">#</a></h2>
+<p>Just like any browser, you can also use tabs within Vim.</p>
+<p>This makes it incredibly easy to switch between multiple files while you’re making some code changes instead of working in one single file, closing it, and opening a new one. Below are some useful Vim commands for using tab pages:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>:tabedit file</p></td>
+<td><p>opens a new tab and will take you to edit “file”</p></td>
+</tr>
+<tr class="row-odd"><td><p>gt</p></td>
+<td><p>move to the next tab</p></td>
+</tr>
+<tr class="row-even"><td><p>gT</p></td>
+<td><p>move to the previous tab</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="gt-move-to-a-specific-tab-number-e-g-2gt-takes-you-to-the-second-tab">
+<h2>gt - move to a specific tab number (e.g. 2gt takes you to the second tab)<a class="headerlink" href="#gt-move-to-a-specific-tab-number-e-g-2gt-takes-you-to-the-second-tab" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>:tabs</p></td>
+<td><p>list all open tabs</p></td>
+</tr>
+<tr class="row-odd"><td><p>:tabclose</p></td>
+<td><p>close a single tab</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
+<p>Vim is quite easy to use, it just involves memorizing Vim editor commands and remembering what mode you’re in.</p>
+<p>If you’re used to using keyboard shortcuts like Ctrl + C and Ctrl + S, you shouldn’t have too much difficulty getting used to the way that Vim works.</p>
+<p>While there is a bit of a breaking in period with the editor, you don’t have to worry too much about accidentally deleting large swathes of text without being able to recover them since you can use the undo command multiple times.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../text_editor.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">text editor</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ESLint_workspace-setup-VSCODE.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SLint, Prettier snippets VSCODE</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-vim-commands">1. Basic Vim commands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vim-commands-for-movement">2. Vim commands for movement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vim-commands-for-editing">3. Vim commands for editing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vim-commands-for-searching-text">4. Vim commands for searching text</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vim-commands-for-working-with-multiple-files">5. Vim commands for working with multiple files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marking-text-visual-mode">6. Marking text (visual mode)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tab-pages">7. Tab pages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gt-move-to-a-specific-tab-number-e-g-2gt-takes-you-to-the-second-tab">gt - move to a specific tab number (e.g. 2gt takes you to the second tab)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

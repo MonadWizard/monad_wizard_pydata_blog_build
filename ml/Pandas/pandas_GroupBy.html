@@ -1,0 +1,1676 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pandas GroupBy &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ml/Pandas/pandas_GroupBy';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/ml/Pandas/pandas_GroupBy.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pandas merging Joining Concatenating" href="pandas_mergingJoiningConcatenating.html" />
+    <link rel="prev" title="Pandas multi Index" href="pandas_multiIndex.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning blog</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Numpy.html">Numpy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/numpy_basic.html">numpy basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/numpy_advance.html">numpy Advance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises.html">100 numpy exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises_with_hints.html">100 numpy exercises with hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises_with_solutions.html">100 numpy exercises with solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises_solutions_with_hints.html">100 numpy exercises solutions with hints</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Pandas.html">Pandas</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas_series.html">Pandas Series Blog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_dataFrames.html">Pandas DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_workWithTextData.html">Pandas Text Data</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="pandas_multiIndex.html">Pandas multi Index</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pandas GroupBy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_mergingJoiningConcatenating.html">pandas merging Joining Concatenating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_datesAndTime.html">pandas datesAndTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_Panels.html">pandas Panels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_InputAnd_Output.html">Pandas Input And Output</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../joblib.html">Joblib</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../joblib/joblib_basic.html">joblib basic</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pickel.html">pickel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pickel/pickel_basic.html">pickel</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Machine Learning blog</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../Pandas.html" class="nav-link">Pandas</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Pandas GroupBy</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pandas-groupby">
+<h1>Pandas GroupBy<a class="headerlink" href="#pandas-groupby" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://github.com/dust-nk-org/pandasDataSet/archive/master.zip">প্রয়োজনীয় data-set যা এই post এ ব্যবহার করা হয়েছে DOWNLOAD </a></p>
+<p>এবং <a class="reference external" href="https://pandas.pydata.org/">Official Doc</a></p>
+<p>Pandas এর groupby function টি পাইথনের একটি শক্তিশালী এবং বহুমুখী function. এটি আপনাকে আরও ভাল বিশ্লেষণের জন্য, গণনা সম্পাদনের জন্য, পৃথক গ্রুপে আপনার ডেটা বিভক্ত করতে দেয়।</p>
+<p>common value গুলোকে আলাদা column এ পৃথক করতে বা data-set কে বেশকিছু segment এ ভাগ করতে groupby function অনেক কাজে লাগে।</p>
+<p>fortune নাম এর ১০০০ company এর information সহ একটা data-set থেকে fortune নাম এর একটা data-frame তৈরি করা হয়েছে। এখন ঐ data-frame থেকে sector column টাকে আলাদা একটা group বানানো হয়েছে।</p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#please run one script line than another</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">fortune</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;fortune1000.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Rank&quot;</span><span class="p">)</span>
+<span class="n">sectors</span> <span class="o">=</span> <span class="n">fortune</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Sector&quot;</span><span class="p">)</span>
+<span class="n">fortune</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># data-frame and groupby&#39;s data type are not same</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dataframe type: &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">fortune</span><span class="p">),</span> <span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;groupby object type: &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">sectors</span><span class="p">),</span> <span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">sectors</span><span class="p">)</span>  <span class="c1"># gropeBy create 21 unique group</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;total unique object : &quot;</span><span class="p">,</span><span class="n">fortune</span><span class="p">[</span><span class="s2">&quot;Sector&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># we see total unique object</span>
+
+<span class="c1"># we can see our total unique object with there value by .size()</span>
+<span class="n">sectors</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="c1"># there are 21 sector , we see</span>
+
+<span class="c1"># we can also see our unique object with its value by .value_count() but value_count make sorted as</span>
+<span class="n">fortune</span><span class="p">[</span><span class="s2">&quot;Sector&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>  <span class="c1"># there are 21 sector , we see</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> Output: </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dataframe type:  &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt; 
+
+
+
+groupby object type:  &lt;class &#39;pandas.core.groupby.generic.DataFrameGroupBy&#39;&gt; 
+
+
+
+total unique object :  21 
+
+
+
+
+
+
+
+
+Financials                      139
+Energy                          122
+Technology                      102
+Retailing                        80
+Health Care                      75
+Business Services                51
+Industrials                      46
+Food, Beverages &amp; Tobacco        43
+Materials                        43
+Wholesalers                      40
+Transportation                   36
+Chemicals                        30
+Household Products               28
+Engineering &amp; Construction       26
+Media                            25
+Hotels, Resturants &amp; Leisure     25
+Motor Vehicles &amp; Parts           24
+Aerospace &amp; Defense              20
+Telecommunications               15
+Apparel                          15
+Food and Drug Stores             15
+Name: Sector, dtype: int64
+</pre></div>
+</div>
+<section id="basic-group-object">
+<h2>Basic group object<a class="headerlink" href="#basic-group-object" title="Link to this heading">#</a></h2>
+<p>data-set এর যে সব label এ repeated value থাকে সেই সব labels নিয়ে groupby object বানানো হয়। তাই একটা group value সম্পূর্ণ data-frame এ অনেক বার repeated থাকে।</p>
+<p>আমরা <font color="green"> groupbyDataFrame.first() </font> ব্যবহার করে প্রতিটি group value এর under এ যে row টি প্রথমে আছে তা pick করতে পারি।</p>
+<p>আমরা <font color="green"> groupbyDataFrame.last() </font> ব্যবহার করে প্রতিটি group value এর under এ যে row টি শেষ এ আছে তা pick করতে পারি।</p>
+<p>আমরা <font color="green"> groupbyDataFrame.groups </font> ব্যবহার করে একটি python dictionary পেয়ে থাকি, যার key=each_group_value আর value=index_position_which_are_in_this_group_value.</p>
+<p>আমরা .groups ব্যবহার করে index_number নিতে পারি। যা dataFrame.loc[index_number] এ ব্যবহার করে ঐ index এর সব data পাইতে পারি।</p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#please run one script line than another</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">fortune</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;fortune1000.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Rank&quot;</span><span class="p">)</span>
+<span class="n">sectors</span> <span class="o">=</span> <span class="n">fortune</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Sector&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fortune</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># from 1000 companies total 21 sector&#39;s each values </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fortune</span><span class="p">[</span><span class="s2">&quot;Sector&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span> <span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># we can extract very first row on group by .first()</span>
+<span class="n">first</span><span class="o">=</span><span class="n">sectors</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+<span class="c1"># we can extract last row on group by .first()</span>
+<span class="n">sectors</span><span class="o">.</span><span class="n">last</span><span class="p">()</span>
+
+<span class="c1"># we can represent every group as a python dictionary. each group object represent as key and values are index label as</span>
+<span class="n">sectors</span><span class="o">.</span><span class="n">groups</span>
+
+<span class="c1"># now we see our first keys 1st value what represent by .loc[]</span>
+<span class="n">fortune</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">24</span><span class="p">]</span> <span class="c1"># here sector which is group object, that match with 1st key</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> Output: </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>          Company      Sector                     Industry         Location  \
+Rank                                                                          
+1         Walmart   Retailing        General Merchandisers  Bentonville, AR   
+2     Exxon Mobil      Energy           Petroleum Refining       Irving, TX   
+3           Apple  Technology  Computers, Office Equipment    Cupertino, CA   
+
+      Revenue  Profits  Employees  
+Rank                               
+1      482130    14694    2300000  
+2      246204    16150      75600  
+3      233715    53394     110000   
+
+
+
+Financials                      139
+Energy                          122
+Technology                      102
+Retailing                        80
+Health Care                      75
+Business Services                51
+Industrials                      46
+Food, Beverages &amp; Tobacco        43
+Materials                        43
+Wholesalers                      40
+Transportation                   36
+Chemicals                        30
+Household Products               28
+Engineering &amp; Construction       26
+Media                            25
+Hotels, Resturants &amp; Leisure     25
+Motor Vehicles &amp; Parts           24
+Aerospace &amp; Defense              20
+Telecommunications               15
+Apparel                          15
+Food and Drug Stores             15
+Name: Sector, dtype: int64 
+
+
+
+
+
+
+
+
+Company                     Boeing
+Sector         Aerospace &amp; Defense
+Industry     Aerospace and Defense
+Location               Chicago, IL
+Revenue                      96114
+Profits                       5176
+Employees                   161400
+Name: 24, dtype: object
+</pre></div>
+</div>
+</section>
+<section id="get-group-method">
+<h2>.get_group() Method<a class="headerlink" href="#get-group-method" title="Link to this heading">#</a></h2>
+<p><font color="green"> datafeame.get_group(“target_value”) </font> ব্যবহার করে আমরা DataFrame থেকে যে কোন value define করতে পারি এবং যে সব row তে ঐ value আছে শুধু সেই সব row বিশিষ্ট একটা নতুন dataFrame পেতে পারি।</p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">fortune</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;fortune1000.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Rank&quot;</span><span class="p">)</span>
+<span class="n">sectors</span> <span class="o">=</span> <span class="n">fortune</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Sector&quot;</span><span class="p">)</span>
+<span class="n">fortune</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># now try to create sub-set of all group values separetly by</span>
+<span class="n">fortune</span><span class="p">[</span><span class="n">fortune</span><span class="p">[</span><span class="s2">&quot;Sector&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Apparel&quot;</span><span class="p">]</span>  <span class="c1"># thats create one dataframe similar as .get_group()method</span>
+
+<span class="c1"># or</span>
+<span class="c1"># now we extract any group object&#39;s total value as a sub set by .get_group(&quot;groupObj&quot;)</span>
+<span class="n">energy</span> <span class="o">=</span> <span class="n">sectors</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="s2">&quot;Energy&quot;</span><span class="p">)</span>
+<span class="c1"># same as</span>
+<span class="n">tec</span> <span class="o">=</span> <span class="n">sectors</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="s2">&quot;Technology&quot;</span><span class="p">)</span>
+<span class="n">tec</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> Output: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Company</th>
+      <th>Sector</th>
+      <th>Industry</th>
+      <th>Location</th>
+      <th>Revenue</th>
+      <th>Profits</th>
+      <th>Employees</th>
+    </tr>
+    <tr>
+      <th>Rank</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>Apple</td>
+      <td>Technology</td>
+      <td>Computers, Office Equipment</td>
+      <td>Cupertino, CA</td>
+      <td>233715</td>
+      <td>53394</td>
+      <td>110000</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Amazon.com</td>
+      <td>Technology</td>
+      <td>Internet Services and Retailing</td>
+      <td>Seattle, WA</td>
+      <td>107006</td>
+      <td>596</td>
+      <td>230800</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>HP</td>
+      <td>Technology</td>
+      <td>Computers, Office Equipment</td>
+      <td>Palo Alto, CA</td>
+      <td>103355</td>
+      <td>4554</td>
+      <td>287000</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Microsoft</td>
+      <td>Technology</td>
+      <td>Computer Software</td>
+      <td>Redmond, WA</td>
+      <td>93580</td>
+      <td>12193</td>
+      <td>118000</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>IBM</td>
+      <td>Technology</td>
+      <td>Information Technology Services</td>
+      <td>Armonk, NY</td>
+      <td>82461</td>
+      <td>13190</td>
+      <td>411798</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="methods-on-groupby">
+<h2>Methods on GroupBy<a class="headerlink" href="#methods-on-groupby" title="Link to this heading">#</a></h2>
+<p>groupby দ্বারা specific label আলাদা করে নিয়ে আমরা সকল groupby object থেকে বেশকিছু operation করতে পারি। যা আমাদের analysis কে অনেক efficient করে।</p>
+<p>আমরা আমাদের প্রতিটি group এর under এ যে valueটি maximum বা minimum কিংবা প্রতিটি group এর numerical value নিয়ে arithmatic operation করতে পারি।</p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">fortune</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;fortune1000.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Rank&quot;</span><span class="p">)</span>
+<span class="n">sectors</span> <span class="o">=</span> <span class="n">fortune</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Sector&quot;</span><span class="p">)</span>
+<span class="n">fortune</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># now if we use .max() its display last alphabetcaly or max value of each group object&#39;s very first columns defaultly</span>
+<span class="n">sectors</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="c1"># same for .min() method</span>
+<span class="n">sectors</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+
+<span class="c1"># but for numeric operation it&#39;s just take those columns which have numeric value as</span>
+<span class="n">sectors</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">sectors</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># we can also work same for specific group object by</span>
+<span class="n">sectors</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="s2">&quot;Apparel&quot;</span><span class="p">)[</span><span class="s2">&quot;Revenue&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># we can also work same for specific colums  all value on group boject by</span>
+<span class="n">sectors</span><span class="p">[</span><span class="s2">&quot;Revenue&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">sectors</span><span class="p">[</span><span class="s2">&quot;Employees&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">sectors</span><span class="p">[</span><span class="s2">&quot;Profits&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">sectors</span><span class="p">[[</span><span class="s2">&quot;Employees&quot;</span><span class="p">,</span> <span class="s2">&quot;Profits&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><font color="Salmon"> Output: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Employees</th>
+      <th>Profits</th>
+    </tr>
+    <tr>
+      <th>Sector</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Aerospace &amp; Defense</th>
+      <td>968057</td>
+      <td>28742</td>
+    </tr>
+    <tr>
+      <th>Apparel</th>
+      <td>346397</td>
+      <td>8236</td>
+    </tr>
+    <tr>
+      <th>Business Services</th>
+      <td>1361050</td>
+      <td>28227</td>
+    </tr>
+    <tr>
+      <th>Chemicals</th>
+      <td>463651</td>
+      <td>22628</td>
+    </tr>
+    <tr>
+      <th>Energy</th>
+      <td>1188927</td>
+      <td>-73447</td>
+    </tr>
+    <tr>
+      <th>Engineering &amp; Construction</th>
+      <td>406708</td>
+      <td>5304</td>
+    </tr>
+    <tr>
+      <th>Financials</th>
+      <td>3359948</td>
+      <td>260209</td>
+    </tr>
+    <tr>
+      <th>Food and Drug Stores</th>
+      <td>1395398</td>
+      <td>16759</td>
+    </tr>
+    <tr>
+      <th>Food, Beverages &amp; Tobacco</th>
+      <td>1211632</td>
+      <td>51417</td>
+    </tr>
+    <tr>
+      <th>Health Care</th>
+      <td>2678289</td>
+      <td>106114</td>
+    </tr>
+    <tr>
+      <th>Hotels, Resturants &amp; Leisure</th>
+      <td>2484245</td>
+      <td>20697</td>
+    </tr>
+    <tr>
+      <th>Household Products</th>
+      <td>646038</td>
+      <td>14428</td>
+    </tr>
+    <tr>
+      <th>Industrials</th>
+      <td>1545229</td>
+      <td>20764</td>
+    </tr>
+    <tr>
+      <th>Materials</th>
+      <td>638123</td>
+      <td>4428</td>
+    </tr>
+    <tr>
+      <th>Media</th>
+      <td>550314</td>
+      <td>24347</td>
+    </tr>
+    <tr>
+      <th>Motor Vehicles &amp; Parts</th>
+      <td>1082560</td>
+      <td>25898</td>
+    </tr>
+    <tr>
+      <th>Retailing</th>
+      <td>6227629</td>
+      <td>47830</td>
+    </tr>
+    <tr>
+      <th>Technology</th>
+      <td>3578949</td>
+      <td>180473</td>
+    </tr>
+    <tr>
+      <th>Telecommunications</th>
+      <td>832468</td>
+      <td>48637</td>
+    </tr>
+    <tr>
+      <th>Transportation</th>
+      <td>1536793</td>
+      <td>44169</td>
+    </tr>
+    <tr>
+      <th>Wholesalers</th>
+      <td>525597</td>
+      <td>8233</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="grouping-by-multiple-columns">
+<h2>Grouping By Multiple Columns<a class="headerlink" href="#grouping-by-multiple-columns" title="Link to this heading">#</a></h2>
+<p>আমরা groupby দ্বারা সাধারণত series তৈরি করে থাকি যা প্রদত্ত data-frame এর সঙ্ঘে বিভিন্ন operation করে থাকে। কিন্তু multi-columns এ groupby ব্যবহার করা মানে multi-index series তৈরি করা। আমরা multi-index নিয়ে আগের post এ জেনেছি । আমরা groupby এ list আকারে multiple index define করতে পারি। যা একটি multi-index series.</p>
+<p>আমরা groupby এর যে কোন method ব্যবহার করলে তা প্রথমে outer index টার পর same way তে inner index এ execute হবে।</p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">fortune</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;fortune1000.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Rank&quot;</span><span class="p">)</span>
+<span class="n">sectors</span> <span class="o">=</span> <span class="n">fortune</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;Sector&quot;</span><span class="p">,</span> <span class="s2">&quot;Industry&quot;</span><span class="p">])</span>
+<span class="n">fortune</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># here we can see our created multi indexing</span>
+<span class="n">sectors</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+
+<span class="c1"># now try to work with multiIndex group object</span>
+<span class="n">sectors</span><span class="p">[</span><span class="s2">&quot;Revenue&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> Output: </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Sector               Industry                                     
+Aerospace &amp; Defense  Aerospace and Defense                            357940
+Apparel              Apparel                                           95968
+Business Services    Advertising, marketing                            22748
+                     Diversified Outsourcing Services                  64829
+                     Education                                          7485
+                                                                       ...  
+Transportation       Trucking, Truck Leasing                           35950
+Wholesalers          Miscellaneous                                      8982
+                     Wholesalers: Diversified                         176138
+                     Wholesalers: Electronics and Office Equipment    147906
+                     Wholesalers: Food and Grocery                    111774
+Name: Revenue, Length: 79, dtype: int64
+</pre></div>
+</div>
+</section>
+<section id="agg-method-aggragation">
+<h2>.agg() Method (Aggragation)<a class="headerlink" href="#agg-method-aggragation" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>.agg() method ব্যবহার করে আমরা অনেকগুলো label এ বিভিন্ন type এর operation  একই সঙ্ঘে করতে পারি।</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  groupBy_Object.agg({&quot;labelName1&quot; : [&quot;operation1&quot;, &quot;operation2&quot;],
+                                            &quot;labelName2&quot; : &quot;operation3&quot;,
+                                            &quot;labelName3&quot; : &quot;operation4&quot;})
+</pre></div>
+</div>
+</li>
+<li><p>আবার সকল label এর জন্য বিভিন্ন operation এক সঙ্ঘে define করতে পারি।</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  groupBy_Object.agg([&quot;operation1&quot;,&quot;operation2&quot;,&quot;operation3&quot;])
+</pre></div>
+</div>
+</li>
+</ul>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">fortune</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;fortune1000.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Rank&quot;</span><span class="p">)</span>
+<span class="n">sectors</span> <span class="o">=</span> <span class="n">fortune</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Sector&quot;</span><span class="p">)</span>
+<span class="n">fortune</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># now we can aggragation specific unique column by</span>
+<span class="n">sectors</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;Revenue&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span>
+             <span class="s2">&quot;Profits&quot;</span> <span class="p">:</span> <span class="s2">&quot;sum&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;Employees&quot;</span> <span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">})</span>
+
+<span class="c1"># or we can do same by</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">sectors</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;size&quot;</span><span class="p">,</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span><span class="s2">&quot;mean&quot;</span><span class="p">])</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+<p><font color="Salmon"> Output: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead tr th {
+    text-align: left;
+}
+
+.dataframe thead tr:last-of-type th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="3" halign="left">Revenue</th>
+      <th colspan="3" halign="left">Profits</th>
+      <th colspan="3" halign="left">Employees</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>size</th>
+      <th>sum</th>
+      <th>mean</th>
+      <th>size</th>
+      <th>sum</th>
+      <th>mean</th>
+      <th>size</th>
+      <th>sum</th>
+      <th>mean</th>
+    </tr>
+    <tr>
+      <th>Sector</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Aerospace &amp; Defense</th>
+      <td>20</td>
+      <td>357940</td>
+      <td>17897.000000</td>
+      <td>20</td>
+      <td>28742</td>
+      <td>1437.100000</td>
+      <td>20</td>
+      <td>968057</td>
+      <td>48402.850000</td>
+    </tr>
+    <tr>
+      <th>Apparel</th>
+      <td>15</td>
+      <td>95968</td>
+      <td>6397.866667</td>
+      <td>15</td>
+      <td>8236</td>
+      <td>549.066667</td>
+      <td>15</td>
+      <td>346397</td>
+      <td>23093.133333</td>
+    </tr>
+    <tr>
+      <th>Business Services</th>
+      <td>51</td>
+      <td>272195</td>
+      <td>5337.156863</td>
+      <td>51</td>
+      <td>28227</td>
+      <td>553.470588</td>
+      <td>51</td>
+      <td>1361050</td>
+      <td>26687.254902</td>
+    </tr>
+    <tr>
+      <th>Chemicals</th>
+      <td>30</td>
+      <td>243897</td>
+      <td>8129.900000</td>
+      <td>30</td>
+      <td>22628</td>
+      <td>754.266667</td>
+      <td>30</td>
+      <td>463651</td>
+      <td>15455.033333</td>
+    </tr>
+    <tr>
+      <th>Energy</th>
+      <td>122</td>
+      <td>1517809</td>
+      <td>12441.057377</td>
+      <td>122</td>
+      <td>-73447</td>
+      <td>-602.024590</td>
+      <td>122</td>
+      <td>1188927</td>
+      <td>9745.303279</td>
+    </tr>
+    <tr>
+      <th>Engineering &amp; Construction</th>
+      <td>26</td>
+      <td>153983</td>
+      <td>5922.423077</td>
+      <td>26</td>
+      <td>5304</td>
+      <td>204.000000</td>
+      <td>26</td>
+      <td>406708</td>
+      <td>15642.615385</td>
+    </tr>
+    <tr>
+      <th>Financials</th>
+      <td>139</td>
+      <td>2217159</td>
+      <td>15950.784173</td>
+      <td>139</td>
+      <td>260209</td>
+      <td>1872.007194</td>
+      <td>139</td>
+      <td>3359948</td>
+      <td>24172.287770</td>
+    </tr>
+    <tr>
+      <th>Food and Drug Stores</th>
+      <td>15</td>
+      <td>483769</td>
+      <td>32251.266667</td>
+      <td>15</td>
+      <td>16759</td>
+      <td>1117.266667</td>
+      <td>15</td>
+      <td>1395398</td>
+      <td>93026.533333</td>
+    </tr>
+    <tr>
+      <th>Food, Beverages &amp; Tobacco</th>
+      <td>43</td>
+      <td>555967</td>
+      <td>12929.465116</td>
+      <td>43</td>
+      <td>51417</td>
+      <td>1195.744186</td>
+      <td>43</td>
+      <td>1211632</td>
+      <td>28177.488372</td>
+    </tr>
+    <tr>
+      <th>Health Care</th>
+      <td>75</td>
+      <td>1614707</td>
+      <td>21529.426667</td>
+      <td>75</td>
+      <td>106114</td>
+      <td>1414.853333</td>
+      <td>75</td>
+      <td>2678289</td>
+      <td>35710.520000</td>
+    </tr>
+    <tr>
+      <th>Hotels, Resturants &amp; Leisure</th>
+      <td>25</td>
+      <td>169546</td>
+      <td>6781.840000</td>
+      <td>25</td>
+      <td>20697</td>
+      <td>827.880000</td>
+      <td>25</td>
+      <td>2484245</td>
+      <td>99369.800000</td>
+    </tr>
+    <tr>
+      <th>Household Products</th>
+      <td>28</td>
+      <td>234737</td>
+      <td>8383.464286</td>
+      <td>28</td>
+      <td>14428</td>
+      <td>515.285714</td>
+      <td>28</td>
+      <td>646038</td>
+      <td>23072.785714</td>
+    </tr>
+    <tr>
+      <th>Industrials</th>
+      <td>46</td>
+      <td>497581</td>
+      <td>10816.978261</td>
+      <td>46</td>
+      <td>20764</td>
+      <td>451.391304</td>
+      <td>46</td>
+      <td>1545229</td>
+      <td>33591.934783</td>
+    </tr>
+    <tr>
+      <th>Materials</th>
+      <td>43</td>
+      <td>259145</td>
+      <td>6026.627907</td>
+      <td>43</td>
+      <td>4428</td>
+      <td>102.976744</td>
+      <td>43</td>
+      <td>638123</td>
+      <td>14840.069767</td>
+    </tr>
+    <tr>
+      <th>Media</th>
+      <td>25</td>
+      <td>220764</td>
+      <td>8830.560000</td>
+      <td>25</td>
+      <td>24347</td>
+      <td>973.880000</td>
+      <td>25</td>
+      <td>550314</td>
+      <td>22012.560000</td>
+    </tr>
+    <tr>
+      <th>Motor Vehicles &amp; Parts</th>
+      <td>24</td>
+      <td>482540</td>
+      <td>20105.833333</td>
+      <td>24</td>
+      <td>25898</td>
+      <td>1079.083333</td>
+      <td>24</td>
+      <td>1082560</td>
+      <td>45106.666667</td>
+    </tr>
+    <tr>
+      <th>Retailing</th>
+      <td>80</td>
+      <td>1465076</td>
+      <td>18313.450000</td>
+      <td>80</td>
+      <td>47830</td>
+      <td>597.875000</td>
+      <td>80</td>
+      <td>6227629</td>
+      <td>77845.362500</td>
+    </tr>
+    <tr>
+      <th>Technology</th>
+      <td>102</td>
+      <td>1377600</td>
+      <td>13505.882353</td>
+      <td>102</td>
+      <td>180473</td>
+      <td>1769.343137</td>
+      <td>102</td>
+      <td>3578949</td>
+      <td>35087.735294</td>
+    </tr>
+    <tr>
+      <th>Telecommunications</th>
+      <td>15</td>
+      <td>461834</td>
+      <td>30788.933333</td>
+      <td>15</td>
+      <td>48637</td>
+      <td>3242.466667</td>
+      <td>15</td>
+      <td>832468</td>
+      <td>55497.866667</td>
+    </tr>
+    <tr>
+      <th>Transportation</th>
+      <td>36</td>
+      <td>408508</td>
+      <td>11347.444444</td>
+      <td>36</td>
+      <td>44169</td>
+      <td>1226.916667</td>
+      <td>36</td>
+      <td>1536793</td>
+      <td>42688.694444</td>
+    </tr>
+    <tr>
+      <th>Wholesalers</th>
+      <td>40</td>
+      <td>444800</td>
+      <td>11120.000000</td>
+      <td>40</td>
+      <td>8233</td>
+      <td>205.825000</td>
+      <td>40</td>
+      <td>525597</td>
+      <td>13139.925000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="iterating-through-groups">
+<h2>Iterating through Groups<a class="headerlink" href="#iterating-through-groups" title="Link to this heading">#</a></h2>
+<p>আমাদের data-set এ যে ১০০০ company এর data আছে টার মধ্যে প্রতিটি sector এ highest revenue যে company এর তা বাহির করার try করে দেখি।</p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">fortune</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;fortune1000.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Rank&quot;</span><span class="p">)</span>
+<span class="n">sectors</span> <span class="o">=</span> <span class="n">fortune</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Sector&quot;</span><span class="p">)</span>
+<span class="n">fortune</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+
+<span class="c1"># we can extract every value from a group object with specific operation by</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="n">fortune</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="c1"># seen empty value with all columns</span>
+
+<span class="k">for</span> <span class="n">sector</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sectors</span><span class="p">:</span>
+    <span class="n">highest_revenue_company_in_group</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Revenue&quot;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">highest_revenue_company_in_group</span><span class="p">)</span>
+
+
+
+<span class="c1"># or we can do same by</span>
+<span class="n">cities</span> <span class="o">=</span> <span class="n">fortune</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Location&quot;</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="n">fortune</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">df2</span>  <span class="c1"># seen empty value with all columns</span>
+
+<span class="k">for</span> <span class="n">city</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">cities</span><span class="p">:</span>
+    <span class="n">highest_revenue_in_city</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Revenue&quot;</span><span class="p">)</span>
+    <span class="n">df2</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">highest_revenue_in_city</span><span class="p">)</span>   
+
+<span class="n">df2</span>
+</pre></div>
+</div>
+<p><font color="Salmon"> Output: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Company</th>
+      <th>Sector</th>
+      <th>Industry</th>
+      <th>Location</th>
+      <th>Revenue</th>
+      <th>Profits</th>
+      <th>Employees</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>138</th>
+      <td>Abbott Laboratories</td>
+      <td>Health Care</td>
+      <td>Medical Products and Equipment</td>
+      <td>Abbott Park, IL</td>
+      <td>20661</td>
+      <td>4423</td>
+      <td>74000</td>
+    </tr>
+    <tr>
+      <th>169</th>
+      <td>Goodyear Tire &amp; Rubber</td>
+      <td>Motor Vehicles &amp; Parts</td>
+      <td>Motor Vehicles and Parts</td>
+      <td>Akron, OH</td>
+      <td>16443</td>
+      <td>307</td>
+      <td>66000</td>
+    </tr>
+    <tr>
+      <th>288</th>
+      <td>Air Products &amp; Chemicals</td>
+      <td>Chemicals</td>
+      <td>Chemicals</td>
+      <td>Allentown, PA</td>
+      <td>9895</td>
+      <td>1278</td>
+      <td>19550</td>
+    </tr>
+    <tr>
+      <th>830</th>
+      <td>Benchmark Electronics</td>
+      <td>Technology</td>
+      <td>Semiconductors and Other Electronic Components</td>
+      <td>Angleton, TX</td>
+      <td>2541</td>
+      <td>95</td>
+      <td>10500</td>
+    </tr>
+    <tr>
+      <th>374</th>
+      <td>Casey’s General Stores</td>
+      <td>Retailing</td>
+      <td>Specialty Retailers: Other</td>
+      <td>Ankeny, IA</td>
+      <td>7052</td>
+      <td>181</td>
+      <td>22408</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>CVS Health</td>
+      <td>Food and Drug Stores</td>
+      <td>Food and Drug Stores</td>
+      <td>Woonsocket, RI</td>
+      <td>153290</td>
+      <td>5237</td>
+      <td>199000</td>
+    </tr>
+    <tr>
+      <th>506</th>
+      <td>Hanover Insurance Group</td>
+      <td>Financials</td>
+      <td>Insurance: Property and Casualty (Stock)</td>
+      <td>Worcester, MA</td>
+      <td>5034</td>
+      <td>332</td>
+      <td>4800</td>
+    </tr>
+    <tr>
+      <th>764</th>
+      <td>Penn National Gaming</td>
+      <td>Hotels, Resturants &amp; Leisure</td>
+      <td>Hotels, Casinos, Resorts</td>
+      <td>Wyomissing, PA</td>
+      <td>2838</td>
+      <td>1</td>
+      <td>18204</td>
+    </tr>
+    <tr>
+      <th>773</th>
+      <td>Bon-Ton Stores</td>
+      <td>Retailing</td>
+      <td>General Merchandisers</td>
+      <td>York, PA</td>
+      <td>2790</td>
+      <td>-57</td>
+      <td>24100</td>
+    </tr>
+    <tr>
+      <th>932</th>
+      <td>Herman Miller</td>
+      <td>Household Products</td>
+      <td>Home Equipment, Furnishings</td>
+      <td>Zeeland, MI</td>
+      <td>2142</td>
+      <td>98</td>
+      <td>7510</td>
+    </tr>
+  </tbody>
+</table>
+<p>416 rows × 7 columns</p>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pandas_multiIndex.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pandas multi Index</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pandas_mergingJoiningConcatenating.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">pandas merging Joining Concatenating</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-group-object">Basic group object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-group-method">.get_group() Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-on-groupby">Methods on GroupBy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping-by-multiple-columns">Grouping By Multiple Columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agg-method-aggragation">.agg() Method (Aggragation)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterating-through-groups">Iterating through Groups</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

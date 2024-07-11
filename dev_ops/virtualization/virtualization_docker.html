@@ -1,0 +1,1484 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>dockers &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_ops/virtualization/virtualization_docker';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/dev_ops/virtualization/virtualization_docker.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="python virtual environment" href="virtualization_py_environment.html" />
+    <link rel="prev" title="virtualization" href="../virtualization.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">devops</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../git.html">git</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../git/git_cheetsheet.html">cheet sheet github and git</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../git/git_discribe.html">গিট এর সব essential topicগুলো cover করা হয়েছে।</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../linux.html">daphne</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/pacman.html">Package Manager (pacman)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../daphne.html">daphne</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../daphne/daphne_django.html">daphne django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gunicorn.html">gunicorn</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gunicorn/gunicorn_django.html">Gunicorn Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nginx.html">nginx</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nginx/nginx_django.html">Nginx Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../text_editor.html">text editor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/vim_cheatsheet.html">Simple Vim workflow example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/ESLint_workspace-setup-VSCODE.html">SLint, Prettier snippets VSCODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/emojisence.html">Emoji snippet VSCODE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../virtualization.html">virtualization</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">dockers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualization_py_environment.html">python virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualization_Vargant.html">Vargant virtualization</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">devops</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../virtualization.html" class="nav-link">virtualization</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">dockers</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="dockers">
+<h1>dockers<a class="headerlink" href="#dockers" title="Link to this heading">#</a></h1>
+<section id="why-docker">
+<h2>Why Docker<a class="headerlink" href="#why-docker" title="Link to this heading">#</a></h2>
+<p>With Docker, developers can build any app in any language using any toolchain. “Dockerized” apps are completely portable and can run anywhere - colleagues’ OS X and Windows laptops, QA servers running Ubuntu in the cloud, and production data center VMs running Red Hat.</p>
+<p>Developers can get going quickly by starting with one of the 13,000+ apps available on Docker Hub. Docker manages and tracks changes and dependencies, making it easier for sysadmins to understand how the apps that developers build work. And with Docker Hub, developers can automate their build pipeline and share artifacts with collaborators through public or private repositories.</p>
+<p>Docker helps developers build and ship higher-quality applications, faster.” – <a class="reference external" href="https://www.docker.com/what-docker#copy1">What is Docker</a></p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<p>I use <a class="reference external" href="https://github.com/robbyrussell/oh-my-zsh">Oh My Zsh</a> with the <a class="reference external" href="https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#docker">Docker plugin</a> for autocompletion of docker commands. YMMV.</p>
+<section id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Link to this heading">#</a></h3>
+<p>The 3.10.x kernel is <a class="reference external" href="https://docs.docker.com/engine/installation/binaries/#check-kernel-dependencies">the minimum requirement</a> for Docker.</p>
+</section>
+<section id="macos">
+<h3>MacOS<a class="headerlink" href="#macos" title="Link to this heading">#</a></h3>
+<p>10.8 “Mountain Lion” or newer is required.</p>
+</section>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Linux<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Quick and easy install script provided by Docker:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">sSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">get</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span><span class="o">/</span> <span class="o">|</span> <span class="n">sh</span>
+</pre></div>
+</div>
+<p>If you’re not willing to run a random shell script, please see the <a class="reference external" href="https://docs.docker.com/engine/installation/linux/">installation</a> instructions for your distribution.</p>
+<p>If you are a complete Docker newbie, you should follow the <a class="reference external" href="https://docs.docker.com/engine/getstarted/">series of tutorials</a> now.</p>
+</section>
+<section id="id2">
+<h3>macOS<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Download and install <a class="reference external" href="https://www.docker.com/community-edition">Docker Community Edition</a>. if you have Homebrew-Cask, just type <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">cask</span> <span class="pre">install</span> <span class="pre">docker</span></code>. Or Download and install <a class="reference external" href="https://docs.docker.com/toolbox/overview/">Docker Toolbox</a>. <a class="reference external" href="https://docs.docker.com/docker-for-mac/">Docker For Mac</a> is nice, but it’s not quite as finished as the VirtualBox install. <a class="reference external" href="https://docs.docker.com/docker-for-mac/docker-toolbox/">See the comparison</a>.</p>
+<blockquote>
+<div><p><strong>NOTE</strong> Docker Toolbox is legacy. You should to use Docker Community Edition, See <a class="reference external" href="https://docs.docker.com/toolbox/overview/">Docker Toolbox</a>.</p>
+</div></blockquote>
+<p>Once you’ve installed Docker Community Edition, click the docker icon in Launchpad. Then start up a container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="n">hello</span><span class="o">-</span><span class="n">world</span>
+</pre></div>
+</div>
+<p>That’s it, you have a running Docker container.</p>
+<p>If you are a complete Docker newbie, you should probably follow the <a class="reference external" href="https://docs.docker.com/engine/getstarted/">series of tutorials</a> now.</p>
+</section>
+<section id="check-version">
+<h3>Check Version<a class="headerlink" href="#check-version" title="Link to this heading">#</a></h3>
+<p>It is very important that you always know the current version of Docker you are currently running on at any point in time. This is very helpful because you get to know what features are compatible with what you have running. This is also important because you know what containers to run from the docker store when you are trying to get template containers. That said let see how to know which version of docker we have running currently.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/version/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">version</span></code></a> shows which version of docker you have running.</p></li>
+</ul>
+<p>Get the server version:</p>
+<div class="highlight-doc notranslate"><div class="highlight"><pre><span></span>  $ docker version --format &#39;{{.Server.Version}}&#39;
+
+  1.8.0
+</pre></div>
+</div>
+<p>You can also dump raw JSON data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker version --format &#39;{{json .}}&#39;
+
+{&quot;Client&quot;:{&quot;Version&quot;:&quot;1.8.0&quot;,&quot;ApiVersion&quot;:&quot;1.20&quot;,&quot;GitCommit&quot;:&quot;f5bae0a&quot;,&quot;GoVersion&quot;:&quot;go1.4.2&quot;,&quot;Os&quot;:&quot;linux&quot;,&quot;Arch&quot;:&quot;am&quot;}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="containers">
+<h2>Containers<a class="headerlink" href="#containers" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="http://etherealmind.com/basics-docker-containers-hypervisors-coreos/">Your basic isolated Docker process</a>. Containers are to Virtual Machines as threads are to processes. Or you can think of them as chroots on steroids.</p>
+<section id="lifecycle">
+<h3>Lifecycle<a class="headerlink" href="#lifecycle" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/create"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">create</span></code></a> creates a container but does not start it.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/rename/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rename</span></code></a> allows the container to be renamed.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/run"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code></a> creates and starts a container in one operation.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/rm"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rm</span></code></a> deletes a container.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/update/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">update</span></code></a> updates a container’s resource limits.</p></li>
+</ul>
+<p>Normally if you run a container without options it will start and stop immediately, if you want keep it running you can use the command, <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-td</span> <span class="pre">container_id</span></code> this will use the option <code class="docutils literal notranslate"><span class="pre">-t</span></code> that will allocate a pseudo-TTY session and <code class="docutils literal notranslate"><span class="pre">-d</span></code> that will detach automatically the container (run container in background and print container ID).</p>
+<p>If you want a transient container, <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--rm</span></code> will remove the container after it stops.</p>
+<p>If you want to map a directory on the host to a docker container, <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">$HOSTDIR:$DOCKERDIR</span></code>. Also see <a class="reference external" href="https://github.com/wsargent/docker-cheat-sheet/#volumes">Volumes</a>.</p>
+<p>If you want to remove also the volumes associated with the container, the deletion of the container must include the <code class="docutils literal notranslate"><span class="pre">-v</span></code> switch like in <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rm</span> <span class="pre">-v</span></code>.</p>
+<p>There’s also a <a class="reference external" href="https://docs.docker.com/engine/admin/logging/overview/">logging driver</a> available for individual containers in docker 1.10. To run docker with a custom log driver (i.e., to syslog), use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--log-driver=syslog</span></code>.</p>
+<p>Another useful option is <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">yourname</span> <span class="pre">docker_image</span></code> because when you specify the <code class="docutils literal notranslate"><span class="pre">--name</span></code> inside the run command this will allow you to start and stop a container by calling it with the name the you specified when you created it.</p>
+</section>
+<section id="starting-and-stopping">
+<h3>Starting and Stopping<a class="headerlink" href="#starting-and-stopping" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/start"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">start</span></code></a> starts a container so it is running.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/stop"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">stop</span></code></a> stops a running container.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/restart"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">restart</span></code></a> stops and starts a container.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/pause/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pause</span></code></a> pauses a running container, “freezing” it in place.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/unpause/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">unpause</span></code></a> will unpause a running container.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/wait"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">wait</span></code></a> blocks until running container stops.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/kill"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">kill</span></code></a> sends a SIGKILL to a running container.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/attach"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">attach</span></code></a> will connect to a running container.</p></li>
+</ul>
+<p>If you want to detach from a running container, use <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">p,</span> <span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">q</span></code>.
+If you want to integrate a container with a <a class="reference external" href="https://docs.docker.com/engine/admin/host_integration/">host process manager</a>, start the daemon with <code class="docutils literal notranslate"><span class="pre">-r=false</span></code> then use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">start</span> <span class="pre">-a</span></code>.</p>
+<p>If you want to expose container ports through the host, see the <a class="reference internal" href="#exposing-ports"><span class="xref myst">exposing ports</span></a> section.</p>
+<p>Restart policies on crashed docker instances are <a class="reference external" href="http://container42.com/2014/09/30/docker-restart-policies/">covered here</a>.</p>
+<section id="cpu-constraints">
+<h4>CPU Constraints<a class="headerlink" href="#cpu-constraints" title="Link to this heading">#</a></h4>
+<p>You can limit CPU, either using a percentage of all CPUs, or by using specific cores.</p>
+<p>For example, you can tell the <a class="reference external" href="https://docs.docker.com/engine/reference/run/#/cpu-share-constraint"><code class="docutils literal notranslate"><span class="pre">cpu-shares</span></code></a> setting. The setting is a bit strange – 1024 means 100% of the CPU, so if you want the container to take 50% of all CPU cores, you should specify 512. See <a class="reference external" href="https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu">https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_cpu</a> for more:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="o">-</span><span class="n">c</span> <span class="mi">512</span> <span class="n">agileek</span><span class="o">/</span><span class="n">cpuset</span><span class="o">-</span><span class="n">test</span>
+</pre></div>
+</div>
+<p>You can also only use some CPU cores using <a class="reference external" href="https://docs.docker.com/engine/reference/run/#/cpuset-constraint"><code class="docutils literal notranslate"><span class="pre">cpuset-cpus</span></code></a>. See <a class="reference external" href="https://agileek.github.io/docker/2014/08/06/docker-cpuset/">https://agileek.github.io/docker/2014/08/06/docker-cpuset/</a> for details and some nice videos:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="o">--</span><span class="n">cpuset</span><span class="o">-</span><span class="n">cpus</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span> <span class="n">agileek</span><span class="o">/</span><span class="n">cpuset</span><span class="o">-</span><span class="n">test</span>
+</pre></div>
+</div>
+<p>Note that Docker can still <strong>see</strong> all of the CPUs inside the container – it just isn’t using all of them. See <a class="github reference external" href="https://github.com/docker/docker/issues/20770">docker/docker#20770</a> for more details.</p>
+</section>
+<section id="memory-constraints">
+<h4>Memory Constraints<a class="headerlink" href="#memory-constraints" title="Link to this heading">#</a></h4>
+<p>You can also set <a class="reference external" href="https://docs.docker.com/engine/reference/run/#/user-memory-constraints">memory constraints</a> on Docker:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="o">-</span><span class="n">m</span> <span class="mi">300</span><span class="n">M</span> <span class="n">ubuntu</span><span class="p">:</span><span class="mf">14.04</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
+</pre></div>
+</div>
+</section>
+<section id="capabilities">
+<h4>Capabilities<a class="headerlink" href="#capabilities" title="Link to this heading">#</a></h4>
+<p>Linux capabilities can be set by using <code class="docutils literal notranslate"><span class="pre">cap-add</span></code> and <code class="docutils literal notranslate"><span class="pre">cap-drop</span></code>. See <a class="reference external" href="https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities">https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities</a> for details. This should be used for greater security.</p>
+<p>To mount a FUSE based filesystem, you need to combine both –cap-add and –device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">it</span> <span class="o">--</span><span class="n">cap</span><span class="o">-</span><span class="n">add</span> <span class="n">SYS_ADMIN</span> <span class="o">--</span><span class="n">device</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">fuse</span> <span class="n">sshfs</span>
+</pre></div>
+</div>
+<p>Give access to a single device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="o">--</span><span class="n">device</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span> <span class="n">debian</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<p>Give access to all devices:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="o">--</span><span class="n">privileged</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">bus</span><span class="o">/</span><span class="n">usb</span><span class="p">:</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">bus</span><span class="o">/</span><span class="n">usb</span> <span class="n">debian</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<p>More info about privileged containers <a class="reference external" href="https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities">here</a>.</p>
+</section>
+</section>
+<section id="info">
+<h3>Info<a class="headerlink" href="#info" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/ps"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code></a> shows running containers.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/logs"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span></code></a> gets logs from container. (You can use a custom log driver, but logs is only available for <code class="docutils literal notranslate"><span class="pre">json-file</span></code> and <code class="docutils literal notranslate"><span class="pre">journald</span></code> in 1.10).</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/inspect"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">inspect</span></code></a> looks at all the info on a container (including IP address).</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/events"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">events</span></code></a> gets events from container.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/port"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">port</span></code></a> shows public facing port of container.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/top"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">top</span></code></a> shows running processes in container.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/stats"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">stats</span></code></a> shows containers’ resource usage statistics.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/diff"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">diff</span></code></a> shows changed files in the container’s FS.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code> shows running and stopped containers.</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">stats</span> <span class="pre">--all</span></code> shows a list of all containers, default shows just running.</p>
+</section>
+<section id="import-export">
+<h3>Import / Export<a class="headerlink" href="#import-export" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/cp"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">cp</span></code></a> copies files or folders between a container and the local filesystem.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/export"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">export</span></code></a> turns container filesystem into tarball archive stream to STDOUT.</p></li>
+</ul>
+</section>
+<section id="executing-commands">
+<h3>Executing Commands<a class="headerlink" href="#executing-commands" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/exec"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code></a> to execute a command in container.</p></li>
+</ul>
+<p>To enter a running container, attach a new shell process to a running container called foo, use: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">foo</span> <span class="pre">/bin/bash</span></code>.</p>
+</section>
+</section>
+<section id="images">
+<h2>Images<a class="headerlink" href="#images" title="Link to this heading">#</a></h2>
+<p>Images are just <a class="reference external" href="https://docs.docker.com/engine/understanding-docker/#how-does-a-docker-image-work">templates for docker containers</a>.</p>
+<section id="id3">
+<h3>Lifecycle<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/images"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">images</span></code></a> shows all images.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/import"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">import</span></code></a> creates an image from a tarball.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/build"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code></a> creates image from Dockerfile.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/commit"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">commit</span></code></a> creates image from a container, pausing it temporarily if it is running.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/rmi"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rmi</span></code></a> removes an image.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/load"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">load</span></code></a> loads an image from a tar archive as STDIN, including images and tags (as of 0.7).</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/save"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">save</span></code></a> saves an image to a tar archive stream to STDOUT with all parent layers, tags &amp; versions (as of 0.7).</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Info<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/history"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">history</span></code></a> shows history of image.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/tag"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">tag</span></code></a> tags an image to a name (local or registry).</p></li>
+</ul>
+</section>
+<section id="cleaning-up">
+<h3>Cleaning up<a class="headerlink" href="#cleaning-up" title="Link to this heading">#</a></h3>
+<p>While you can use the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rmi</span></code> command to remove specific images, there’s a tool called <a class="reference external" href="https://github.com/spotify/docker-gc">docker-gc</a> that will safely clean up images that are no longer used by any containers. As of docker 1.13, <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">image</span> <span class="pre">prune</span></code> is also available for removing unused images. See <a class="reference internal" href="#prune"><span class="xref myst">Prune</span></a>.</p>
+</section>
+<section id="load-save-image">
+<h3>Load/Save image<a class="headerlink" href="#load-save-image" title="Link to this heading">#</a></h3>
+<p>Load an image from file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">load</span> <span class="o">&lt;</span> <span class="n">my_image</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>Save an existing image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">save</span> <span class="n">my_image</span><span class="p">:</span><span class="n">my_tag</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span> <span class="n">my_image</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+</section>
+<section id="import-export-container">
+<h3>Import/Export container<a class="headerlink" href="#import-export-container" title="Link to this heading">#</a></h3>
+<p>Import a container as an image from file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">my_container</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">docker</span> <span class="kn">import</span> <span class="o">-</span> <span class="n">my_image</span><span class="p">:</span><span class="n">my_tag</span>
+</pre></div>
+</div>
+<p>Export an existing container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">export</span> <span class="n">my_container</span> <span class="o">|</span> <span class="n">gzip</span> <span class="o">&gt;</span> <span class="n">my_container</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+</section>
+<section id="difference-between-loading-a-saved-image-and-importing-an-exported-container-as-an-image">
+<h3>Difference between loading a saved image and importing an exported container as an image<a class="headerlink" href="#difference-between-loading-a-saved-image-and-importing-an-exported-container-as-an-image" title="Link to this heading">#</a></h3>
+<p>Loading an image using the <code class="docutils literal notranslate"><span class="pre">load</span></code> command creates a new image including its history.<br />
+Importing a container as an image using the <code class="docutils literal notranslate"><span class="pre">import</span></code> command creates a new image excluding the history which results in a smaller image size compared to loading an image.</p>
+</section>
+</section>
+<section id="networks">
+<h2>Networks<a class="headerlink" href="#networks" title="Link to this heading">#</a></h2>
+<p>Docker has a <a class="reference external" href="https://docs.docker.com/engine/userguide/networking/">networks</a> feature. Docker automatically creates 3 network interfaces when you install it (bridge, host none). A new container is launched into the bridge network by default. To enable communication between multiple containers, you can create a new network and launch containers in it. This enbales containers to communicate to each other while being isolated from containers that are not connected to the network. Furthermore, it allows to map container names to their IP addresses. See <a class="reference external" href="https://docs.docker.com/engine/userguide/networking/work-with-networks/">working with networks</a> for more details.</p>
+<section id="id5">
+<h3>Lifecycle<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/network_create/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">network</span> <span class="pre">create</span></code></a> NAME Create a new network (default type: bridge).</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/network_rm/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">network</span> <span class="pre">rm</span></code></a> NAME Remove one or more networks by name or identifier. No containers can be connected to the network when deleting it.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Info<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/network_ls/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">network</span> <span class="pre">ls</span></code></a> List networks</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/network_inspect/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">network</span> <span class="pre">inspect</span></code></a> NAME Display detailed information on one or more networks.</p></li>
+</ul>
+</section>
+<section id="connection">
+<h3>Connection<a class="headerlink" href="#connection" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/network_connect/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">network</span> <span class="pre">connect</span></code></a> NETWORK CONTAINER Connect a container to a network</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/network_disconnect/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">network</span> <span class="pre">disconnect</span></code></a> NETWORK CONTAINER Disconnect a container from a network</p></li>
+</ul>
+<p>You can specify a <a class="reference external" href="https://blog.jessfraz.com/post/ips-for-all-the-things/">specific IP address for a container</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># create a new bridge network with your subnet and gateway for your ip block
+docker network create --subnet 203.0.113.0/24 --gateway 203.0.113.254 iptastic
+
+# run a nginx container with a specific ip in that block
+$ docker run --rm -it --net iptastic --ip 203.0.113.2 nginx
+
+# curl the ip from any other place (assuming this is a public ip block duh)
+$ curl 203.0.113.2
+</pre></div>
+</div>
+</section>
+</section>
+<section id="registry-repository">
+<h2>Registry &amp; Repository<a class="headerlink" href="#registry-repository" title="Link to this heading">#</a></h2>
+<p>A repository is a <em>hosted</em> collection of tagged images that together create the file system for a container.</p>
+<p>A registry is a <em>host</em> – a server that stores repositories and provides an HTTP API for <a class="reference external" href="https://docs.docker.com/engine/tutorials/dockerrepos/">managing the uploading and downloading of repositories</a>.</p>
+<p>Docker.com hosts its own <a class="reference external" href="https://hub.docker.com/">index</a> to a central registry which contains a large number of repositories. Having said that, the central docker registry <a class="reference external" href="https://titanous.com/posts/docker-insecurity">does not do a good job of verifying images</a> and should be avoided if you’re worried about security.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/login"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">login</span></code></a> to login to a registry.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/logout"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logout</span></code></a> to logout from a registry.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/search"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">search</span></code></a> searches registry for image.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/pull"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span></code></a> pulls an image from registry to local machine.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/push"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">push</span></code></a> pushes an image to the registry from local machine.</p></li>
+</ul>
+<section id="run-local-registry">
+<h3>Run local registry<a class="headerlink" href="#run-local-registry" title="Link to this heading">#</a></h3>
+<p>You can run a local registry by using the <a class="reference external" href="https://github.com/docker/distribution">docker distribution</a> project and looking at the <a class="reference external" href="https://github.com/docker/docker.github.io/blob/master/registry/deploying.md">local deploy</a> instructions.</p>
+<p>Also see the <a class="reference external" href="https://groups.google.com/a/dockerproject.org/forum/#!forum/distribution">mailing list</a>.</p>
+</section>
+</section>
+<section id="dockerfile">
+<h2>Dockerfile<a class="headerlink" href="#dockerfile" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/">The configuration file</a>. Sets up a Docker container when you run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code> on it. Vastly preferable to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">commit</span></code>.</p>
+<p>Here are some common text editors and their syntax highlighting modules you could use to create Dockerfiles:</p>
+<ul class="simple">
+<li><p>If you use <a class="reference external" href="http://jedit.org">jEdit</a>, I’ve put up a syntax highlighting module for <a class="reference external" href="https://github.com/wsargent/jedit-docker-mode">Dockerfile</a> you can use.</p></li>
+<li><p><a class="reference external" href="https://packagecontrol.io/packages/Dockerfile%20Syntax%20Highlighting">Sublime Text 2</a></p></li>
+<li><p><a class="reference external" href="https://atom.io/packages/language-docker">Atom</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ekalinin/Dockerfile.vim">Vim</a></p></li>
+<li><p><a class="reference external" href="https://github.com/spotify/dockerfile-mode">Emacs</a></p></li>
+<li><p><a class="reference external" href="https://github.com/docker/docker/tree/master/contrib/syntax/textmate">TextMate</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Microsoft/vscode-docker">VS Code</a></p></li>
+<li><p>Also see <a class="reference external" href="https://domeide.github.io/">Docker meets the IDE</a></p></li>
+</ul>
+<section id="instructions">
+<h3>Instructions<a class="headerlink" href="#instructions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#dockerignore-file">.dockerignore</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#from">FROM</a> Sets the Base Image for subsequent instructions.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#maintainer-deprecated">MAINTAINER (deprecated - use LABEL instead)</a> Set the Author field of the generated images.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#run">RUN</a> execute any commands in a new layer on top of the current image and commit the results.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#cmd">CMD</a> provide defaults for an executing container.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#expose">EXPOSE</a> informs Docker that the container listens on the specified network ports at runtime. NOTE: does not actually make ports accessible.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#env">ENV</a> sets environment variable.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#add">ADD</a> copies new files, directories or remote file to container. Invalidates caches. Avoid <code class="docutils literal notranslate"><span class="pre">ADD</span></code> and use <code class="docutils literal notranslate"><span class="pre">COPY</span></code> instead.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#copy">COPY</a> copies new files or directories to container. By default this copies as root regardless of the USER/WORKDIR settings. Use <code class="docutils literal notranslate"><span class="pre">--chown=&lt;user&gt;:&lt;group&gt;</span></code> to give ownership to another user/group. (Same for <code class="docutils literal notranslate"><span class="pre">ADD</span></code>.)</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#entrypoint">ENTRYPOINT</a> configures a container that will run as an executable.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#volume">VOLUME</a> creates a mount point for externally mounted volumes or other containers.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#user">USER</a> sets the user name for following RUN / CMD / ENTRYPOINT commands.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#workdir">WORKDIR</a> sets the working directory.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#arg">ARG</a> defines a build-time variable.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#onbuild">ONBUILD</a> adds a trigger instruction when the image is used as the base for another build.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#stopsignal">STOPSIGNAL</a> sets the system call signal that will be sent to the container to exit.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/config/labels-custom-metadata/">LABEL</a> apply key/value metadata to your images, containers, or daemons.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#shell">SHELL</a> override default shell is used by docker to run commands.</p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#healthcheck">HEALTHCHECK</a> tells docker how to test a container to check that it is still working.</p></li>
+</ul>
+</section>
+<section id="tutorial">
+<h3>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.flux7.com/tutorial/docker-tutorial-series-part-3-automation-is-the-word-using-dockerfile/">Flux7’s Dockerfile Tutorial</a></p></li>
+</ul>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/builder/#dockerfile-examples">Examples</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/">Best practices for writing Dockerfiles</a></p></li>
+<li><p><a class="reference external" href="http://crosbymichael.com/">Michael Crosby</a> has some more <a class="reference external" href="http://crosbymichael.com/dockerfile-best-practices.html">Dockerfiles best practices</a> / <a class="reference external" href="http://crosbymichael.com/dockerfile-best-practices-take-2.html">take 2</a>.</p></li>
+<li><p><a class="reference external" href="http://jonathan.bergknoff.com/journal/building-good-docker-images">Building Good Docker Images</a> / <a class="reference external" href="http://jonathan.bergknoff.com/journal/building-better-docker-images">Building Better Docker Images</a></p></li>
+<li><p><a class="reference external" href="https://speakerdeck.com/garethr/managing-container-configuration-with-metadata">Managing Container Configuration with Metadata</a></p></li>
+<li><p><a class="reference external" href="https://rock-it.pl/how-to-write-excellent-dockerfiles/">How to write excellent Dockerfiles</a></p></li>
+</ul>
+</section>
+</section>
+<section id="layers">
+<h2>Layers<a class="headerlink" href="#layers" title="Link to this heading">#</a></h2>
+<p>The versioned filesystem in Docker is based on layers. They’re like <a class="reference external" href="https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/">git commits or changesets for filesystems</a>.</p>
+</section>
+<section id="links">
+<h2>Links<a class="headerlink" href="#links" title="Link to this heading">#</a></h2>
+<p>Links are how Docker containers talk to each other <a class="reference external" href="https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/">through TCP/IP ports</a>. <a class="reference external" href="https://blogs.atlassian.com/2013/11/docker-all-the-things-at-atlassian-automation-and-wiring/">Atlassian</a> show worked examples. You can also resolve <a class="reference external" href="https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/#/updating-the-etchosts-file">links by hostname</a>.</p>
+<p>This has been deprecated to some extent by <a class="reference external" href="https://docs.docker.com/network/">user-defined networks</a>.</p>
+<p>NOTE: If you want containers to ONLY communicate with each other through links, start the docker daemon with <code class="docutils literal notranslate"><span class="pre">-icc=false</span></code> to disable inter process communication.</p>
+<p>If you have a container with the name CONTAINER (specified by <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">CONTAINER</span></code>) and in the Dockerfile, it has an exposed port:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EXPOSE</span> <span class="mi">1337</span>
+</pre></div>
+</div>
+<p>Then if we create another container called LINKED like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">link</span> <span class="n">CONTAINER</span><span class="p">:</span><span class="n">ALIAS</span> <span class="o">--</span><span class="n">name</span> <span class="n">LINKED</span> <span class="n">user</span><span class="o">/</span><span class="n">wordpress</span>
+</pre></div>
+</div>
+<p>Then the exposed ports and aliases of CONTAINER will show up in LINKED with the following environment variables:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ALIAS_PORT_1337_TCP_PORT
+$ALIAS_PORT_1337_TCP_ADDR
+</pre></div>
+</div>
+<p>And you can connect to it that way.</p>
+<p>To delete links, use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rm</span> <span class="pre">--link</span></code>.</p>
+<p>Generally, linking between docker services is a subset of “service discovery”, a big problem if you’re planning to use Docker at scale in production. Please read <a class="reference external" href="https://www.digitalocean.com/community/tutorials/the-docker-ecosystem-service-discovery-and-distributed-configuration-stores">The Docker Ecosystem: Service Discovery and Distributed Configuration Stores</a> for more info.</p>
+</section>
+<section id="volumes">
+<h2>Volumes<a class="headerlink" href="#volumes" title="Link to this heading">#</a></h2>
+<p>Docker volumes are <a class="reference external" href="https://docs.docker.com/engine/tutorials/dockervolumes/">free-floating filesystems</a>. They don’t have to be connected to a particular container. You can use volumes mounted from <a class="reference external" href="https://medium.com/&#64;ramangupta/why-docker-data-containers-are-good-589b3c6c749e">data-only containers</a> for portability. As of Docker 1.9.0, Docker has named volumes which replace data-only containers. Consider using named volumes to implement it rather than data containers.</p>
+<section id="id7">
+<h3>Lifecycle<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/volume_create/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">volume</span> <span class="pre">create</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/volume_rm/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">volume</span> <span class="pre">rm</span></code></a></p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>Info<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/volume_ls/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">volume</span> <span class="pre">ls</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/engine/reference/commandline/volume_inspect/"><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">volume</span> <span class="pre">inspect</span></code></a></p></li>
+</ul>
+<p>Volumes are useful in situations where you can’t use links (which are TCP/IP only). For instance, if you need to have two docker instances communicate by leaving stuff on the filesystem.</p>
+<p>You can mount them in several docker containers at once, using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--volumes-from</span></code>.</p>
+<p>Because volumes are isolated filesystems, they are often used to store state from computations between transient containers. That is, you can have a stateless and transient container run from a recipe, blow it away, and then have a second instance of the transient container pick up from where the last one left off.</p>
+<p>See <a class="reference external" href="http://crosbymichael.com/advanced-docker-volumes.html">advanced volumes</a> for more details. <a class="reference external" href="http://container42.com/2014/11/03/docker-indepth-volumes/">Container42</a> is also helpful.</p>
+<p>You can <a class="reference external" href="https://docs.docker.com/engine/tutorials/dockervolumes/#mount-a-host-directory-as-a-data-volume">map MacOS host directories as docker volumes</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">wsargent</span><span class="o">/</span><span class="n">myapp</span><span class="o">/</span><span class="n">src</span><span class="p">:</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+<p>You can use remote NFS volumes if you’re <a class="reference external" href="https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-shared-storage-volume-as-a-data-volume">feeling brave</a>.</p>
+<p>You may also consider running data-only containers as described <a class="reference external" href="http://container42.com/2013/12/16/persistent-volumes-with-docker-container-as-volume-pattern/">here</a> to provide some data portability.</p>
+<p>Be aware that you can <a class="reference internal" href="#volumes-can-be-files"><span class="xref myst">mount files as volumes</span></a>.</p>
+</section>
+</section>
+<section id="exposing-ports">
+<h2>Exposing ports<a class="headerlink" href="#exposing-ports" title="Link to this heading">#</a></h2>
+<p>Exposing incoming ports through the host container is <a class="reference external" href="https://docs.docker.com/engine/reference/run/#expose-incoming-ports">fiddly but doable</a>.</p>
+<p>This is done by mapping the container port to the host port (only using localhost interface) using <code class="docutils literal notranslate"><span class="pre">-p</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
+</pre></div>
+</div>
+<p>You can tell Docker that the container listens on the specified network ports at runtime by using <a class="reference external" href="https://docs.docker.com/engine/reference/builder/#expose">EXPOSE</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EXPOSE</span> <span class="o">&lt;</span><span class="n">CONTAINERPORT</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Note that EXPOSE does not expose the port itself – only <code class="docutils literal notranslate"><span class="pre">-p</span></code> will do that. To expose the container’s port on your localhost’s port:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">iptables</span> <span class="o">-</span><span class="n">t</span> <span class="n">nat</span> <span class="o">-</span><span class="n">A</span> <span class="n">DOCKER</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="o">&lt;</span><span class="n">LOCALHOSTPORT</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">j</span> <span class="n">DNAT</span> <span class="o">--</span><span class="n">to</span><span class="o">-</span><span class="n">destination</span> <span class="o">&lt;</span><span class="n">CONTAINERIP</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">PORT</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>If you’re running Docker in Virtualbox, you then need to forward the port there as well, using <a class="reference external" href="https://docs.vagrantup.com/v2/networking/forwarded_ports.html">forwarded_port</a>. Define a range of ports in your Vagrantfile like this so you can dynamically map them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">VAGRANTFILE_API_VERSION</span><span class="p">)</span> <span class="n">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="o">...</span>
+
+  <span class="p">(</span><span class="mf">49000..49900</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="n">do</span> <span class="o">|</span><span class="n">port</span><span class="o">|</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="p">:</span><span class="n">forwarded_port</span><span class="p">,</span> <span class="p">:</span><span class="n">host</span> <span class="o">=&gt;</span> <span class="n">port</span><span class="p">,</span> <span class="p">:</span><span class="n">guest</span> <span class="o">=&gt;</span> <span class="n">port</span>
+  <span class="n">end</span>
+
+  <span class="o">...</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+<p>If you forget what you mapped the port to on the host container, use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">port</span></code> to show it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker port CONTAINER $CONTAINERPORT
+</pre></div>
+</div>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h2>
+<p>This is where general Docker best practices and war stories go:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://gregoryszorc.com/blog/2014/10/16/the-rabbit-hole-of-using-docker-in-automated-tests/">The Rabbit Hole of Using Docker in Automated Tests</a></p></li>
+<li><p><a class="reference external" href="https://twitter.com/bridgetkromhout">Bridget Kromhout</a> has a useful blog post on <a class="reference external" href="http://sysadvent.blogspot.co.uk/2014/12/day-1-docker-in-production-reality-not.html">running Docker in production</a> at Dramafever.</p></li>
+<li><p>There’s also a best practices <a class="reference external" href="http://developers.lyst.com/devops/2014/12/08/docker/">blog post</a> from Lyst.</p></li>
+<li><p><a class="reference external" href="https://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/">Building a Development Environment With Docker</a></p></li>
+<li><p><a class="reference external" href="https://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container">Discourse in a Docker Container</a></p></li>
+</ul>
+</section>
+<section id="docker-compose">
+<h2>Docker-Compose<a class="headerlink" href="#docker-compose" title="Link to this heading">#</a></h2>
+<p>Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration. To learn more about all the features of Compose, see the <a class="reference external" href="https://docs.docker.com/compose/overview/#features">list of features</a>.</p>
+<p>By using the following command you can start up your application:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">-</span><span class="n">file</span><span class="o">&gt;</span> <span class="n">up</span>
+</pre></div>
+</div>
+<p>You can also run docker-compose in detached mode using -d flag, then you can stop it whenever needed by the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">stop</span>
+</pre></div>
+</div>
+<p>You can bring everything down, removing the containers entirely, with the down command. Pass <code class="docutils literal notranslate"><span class="pre">--volumes</span></code> to also remove the data volume.</p>
+</section>
+<section id="security">
+<h2>Security<a class="headerlink" href="#security" title="Link to this heading">#</a></h2>
+<p>This is where security tips about Docker go. The Docker <a class="reference external" href="https://docs.docker.com/engine/security/security/">security</a> page goes into more detail.</p>
+<p>First things first: Docker runs as root. If you are in the <code class="docutils literal notranslate"><span class="pre">docker</span></code> group, you effectively <a class="reference external" href="https://web.archive.org/web/20161226211755/http://reventlov.com/advisories/using-the-docker-command-to-root-the-host">have root access</a>. If you expose the docker unix socket to a container, you are giving the container <a class="reference external" href="https://www.lvh.io/posts/dont-expose-the-docker-socket-not-even-to-a-container/">root access to the host</a>.</p>
+<p>Docker should not be your only defense. You should secure and harden it.</p>
+<p>For an understanding of what containers leave exposed, you should read <a class="reference external" href="https://www.nccgroup.trust/globalassets/our-research/us/whitepapers/2016/april/ncc_group_understanding_hardening_linux_containers-1-1.pdf">Understanding and Hardening Linux Containers</a> by <a class="reference external" href="https://twitter.com/dyn___">Aaron Grattafiori</a>. This is a complete and comprehensive guide to the issues involved with containers, with a plethora of links and footnotes leading on to yet more useful content. The security tips following are useful if you’ve already hardened containers in the past, but are not a substitute for understanding.</p>
+<section id="security-tips">
+<h3>Security Tips<a class="headerlink" href="#security-tips" title="Link to this heading">#</a></h3>
+<p>For greatest security, you want to run Docker inside a virtual machine. This is straight from the Docker Security Team Lead – <a class="reference external" href="http://www.slideshare.net/jpetazzo/linux-containers-lxc-docker-and-security">slides</a> / <a class="reference external" href="http://www.projectatomic.io/blog/2014/08/is-it-safe-a-look-at-docker-and-security-from-linuxcon/">notes</a>. Then, run with AppArmor / seccomp / SELinux / grsec etc to <a class="reference external" href="http://linux-audit.com/docker-security-best-practices-for-your-vessel-and-containers/">limit the container permissions</a>. See the <a class="reference external" href="https://blog.docker.com/2016/02/docker-engine-1-10-security/">Docker 1.10 security features</a> for more details.</p>
+<p>Docker image ids are <a class="reference external" href="https://medium.com/&#64;quayio/your-docker-image-ids-are-secrets-and-its-time-you-treated-them-that-way-f55e9f14c1a4">sensitive information</a> and should not be exposed to the outside world. Treat them like passwords.</p>
+<p>See the <a class="reference external" href="https://github.com/konstruktoid/Docker/blob/master/Security/CheatSheet.adoc">Docker Security Cheat Sheet</a> by <a class="reference external" href="https://github.com/konstruktoid">Thomas Sjögren</a>: some good stuff about container hardening in there.</p>
+<p>Check out the <a class="reference external" href="https://github.com/docker/docker-bench-security">docker bench security script</a>, download the <a class="reference external" href="https://blog.docker.com/2015/05/understanding-docker-security-and-best-practices/">white papers</a>.</p>
+<p>Snyk’s <a class="reference external" href="https://snyk.io/blog/10-docker-image-security-best-practices/">10 Docker Image Security Best Practices cheat sheet</a></p>
+<p>You should start off by using a kernel with unstable patches for grsecurity / pax compiled in, such as <a class="reference external" href="https://en.wikipedia.org/wiki/Alpine_Linux">Alpine Linux</a>. If you are using grsecurity in production, you should spring for <a class="reference external" href="https://grsecurity.net/business_support.php">commercial support</a> for the <a class="reference external" href="https://grsecurity.net/announce.php">stable patches</a>, same as you would do for RedHat. It’s $200 a month, which is nothing to your devops budget.</p>
+<p>Since docker 1.11 you can easily limit the number of active processes running inside a container to prevent fork bombs. This requires a linux kernel &gt;= 4.3 with CGROUP_PIDS=y to be in the kernel configuration.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">pids</span><span class="o">-</span><span class="n">limit</span><span class="o">=</span><span class="mi">64</span>
+</pre></div>
+</div>
+<p>Also available since docker 1.11 is the ability to prevent processes from gaining new privileges. This feature have been in the linux kernel since version 3.5. You can read more about it in <a class="reference external" href="http://www.projectatomic.io/blog/2016/03/no-new-privs-docker/">this</a> blog post.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">security</span><span class="o">-</span><span class="n">opt</span><span class="o">=</span><span class="n">no</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">privileges</span>
+</pre></div>
+</div>
+<p>From the <a class="reference external" href="http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf">Docker Security Cheat Sheet</a> (it’s in PDF which makes it hard to use, so copying below) by <a class="reference external" href="http://container-solutions.com/is-docker-safe-for-production/">Container Solutions</a>:</p>
+<p>Turn off interprocess communication with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="o">-</span><span class="n">d</span> <span class="o">--</span><span class="n">icc</span><span class="o">=</span><span class="n">false</span> <span class="o">--</span><span class="n">iptables</span>
+</pre></div>
+</div>
+<p>Set the container to be read-only:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">read</span><span class="o">-</span><span class="n">only</span>
+</pre></div>
+</div>
+<p>Verify images with a hashsum:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">debian</span><span class="nd">@sha256</span><span class="p">:</span><span class="n">a25306f3850e1bd44541976aa7b5fd0a29be</span>
+</pre></div>
+</div>
+<p>Set volumes to be read only:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run -v $(pwd)/secrets:/secrets:ro debian
+</pre></div>
+</div>
+<p>Define and run a user in your Dockerfile so you don’t run as root inside the container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RUN</span> <span class="n">groupadd</span> <span class="o">-</span><span class="n">r</span> <span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="n">useradd</span> <span class="o">-</span><span class="n">r</span> <span class="o">-</span><span class="n">g</span> <span class="n">user</span> <span class="n">user</span>
+<span class="n">USER</span> <span class="n">user</span>
+</pre></div>
+</div>
+</section>
+<section id="user-namespaces">
+<h3>User Namespaces<a class="headerlink" href="#user-namespaces" title="Link to this heading">#</a></h3>
+<p>There’s also work on <a class="reference external" href="https://s3hh.wordpress.com/2013/07/19/creating-and-using-containers-without-privilege/">user namespaces</a> – it is in 1.10 but is not enabled by default.</p>
+<p>To enable user namespaces (“remap the userns”) in Ubuntu 15.10, <a class="reference external" href="https://raesene.github.io/blog/2016/02/04/Docker-User-Namespaces/">follow the blog example</a>.</p>
+</section>
+<section id="security-videos">
+<h3>Security Videos<a class="headerlink" href="#security-videos" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://youtu.be/04LOuMgNj9U">Using Docker Safely</a></p></li>
+<li><p><a class="reference external" href="https://youtu.be/KmxOXmPhZbk">Securing your applications using Docker</a></p></li>
+<li><p><a class="reference external" href="https://youtu.be/a9lE9Urr6AQ">Container security: Do containers actually contain?</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=iN6QbszB1R8">Linux Containers: Future or Fantasy?</a></p></li>
+</ul>
+</section>
+<section id="security-roadmap">
+<h3>Security Roadmap<a class="headerlink" href="#security-roadmap" title="Link to this heading">#</a></h3>
+<p>The Docker roadmap talks about <a class="reference external" href="https://github.com/docker/docker/blob/master/ROADMAP.md#11-security">seccomp support</a>.
+There is an AppArmor policy generator called <a class="reference external" href="https://github.com/jfrazelle/bane">bane</a>, and they’re working on <a class="reference external" href="https://github.com/docker/docker/issues/17142">security profiles</a>.</p>
+</section>
+</section>
+<section id="tips">
+<h2>Tips<a class="headerlink" href="#tips" title="Link to this heading">#</a></h2>
+<p>Sources:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://sssslide.com/speakerdeck.com/bmorearty/15-docker-tips-in-5-minutes">15 Docker Tips in 5 minutes</a></p></li>
+<li><p><a class="reference external" href="https://codefresh.io/blog/everyday-hacks-docker/">CodeFresh Everyday Hacks Docker</a></p></li>
+</ul>
+<section id="prune">
+<h3>Prune<a class="headerlink" href="#prune" title="Link to this heading">#</a></h3>
+<p>The new <a class="reference external" href="https://github.com/docker/docker/pull/26108">Data Management Commands</a> have landed as of Docker 1.13:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">system</span> <span class="pre">prune</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">volume</span> <span class="pre">prune</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">network</span> <span class="pre">prune</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">prune</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">image</span> <span class="pre">prune</span></code></p></li>
+</ul>
+</section>
+<section id="df">
+<h3>df<a class="headerlink" href="#df" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">system</span> <span class="pre">df</span></code> presents a summary of the space currently used by different docker objects.</p>
+</section>
+<section id="heredoc-docker-container">
+<h3>Heredoc Docker Container<a class="headerlink" href="#heredoc-docker-container" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">htop</span> <span class="o">-</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span>
+<span class="n">FROM</span> <span class="n">alpine</span>
+<span class="n">RUN</span> <span class="n">apk</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cache</span> <span class="n">add</span> <span class="n">htop</span>
+<span class="n">EOF</span>
+</pre></div>
+</div>
+</section>
+<section id="last-ids">
+<h3>Last Ids<a class="headerlink" href="#last-ids" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>alias dl=&#39;docker ps -l -q&#39;
+docker run ubuntu echo hello world
+docker commit $(dl) helloworld
+</pre></div>
+</div>
+</section>
+<section id="commit-with-command-needs-dockerfile">
+<h3>Commit with command (needs Dockerfile)<a class="headerlink" href="#commit-with-command-needs-dockerfile" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker commit -run=&#39;{&quot;Cmd&quot;:[&quot;postgres&quot;, &quot;-too -many -opts&quot;]}&#39; $(dl) postgres
+</pre></div>
+</div>
+</section>
+<section id="get-ip-address">
+<h3>Get IP address<a class="headerlink" href="#get-ip-address" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker inspect $(dl) | grep -wm1 IPAddress | cut -d &#39;&quot;&#39; -f 4
+</pre></div>
+</div>
+<p>or with <a class="reference external" href="https://stedolan.github.io/jq/">jq</a> installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker inspect $(dl) | jq -r &#39;.[0].NetworkSettings.IPAddress&#39;
+</pre></div>
+</div>
+<p>or using a <a class="reference external" href="https://docs.docker.com/engine/reference/commandline/inspect">go template</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">inspect</span> <span class="o">-</span><span class="n">f</span> <span class="s1">&#39;{{ .NetworkSettings.IPAddress }}&#39;</span> <span class="o">&lt;</span><span class="n">container_name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>or when building an image from Dockerfile, when you want to pass in a build argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DOCKER_HOST_IP=`ifconfig | grep -E &quot;([0-9]{1,3}\.){3}[0-9]{1,3}&quot; | grep -v 127.0.0.1 | awk &#39;{ print $2 }&#39; | cut -f2 -d: | head -n1`
+echo DOCKER_HOST_IP = $DOCKER_HOST_IP
+docker build \
+  --build-arg ARTIFACTORY_ADDRESS=$DOCKER_HOST_IP
+  -t sometag \
+  some-directory/
+</pre></div>
+</div>
+</section>
+<section id="get-port-mapping">
+<h3>Get port mapping<a class="headerlink" href="#get-port-mapping" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">inspect</span> <span class="o">-</span><span class="n">f</span> <span class="s1">&#39;{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -&gt; {{(index $conf 0).HostPort}} {{end}}&#39;</span> <span class="o">&lt;</span><span class="n">containername</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="find-containers-by-regular-expression">
+<h3>Find containers by regular expression<a class="headerlink" href="#find-containers-by-regular-expression" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for i in $(docker ps -a | grep &quot;REGEXP_PATTERN&quot; | cut -f1 -d&quot; &quot;); do echo $i; done
+</pre></div>
+</div>
+</section>
+<section id="get-environment-settings">
+<h3>Get Environment Settings<a class="headerlink" href="#get-environment-settings" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="n">ubuntu</span> <span class="n">env</span>
+</pre></div>
+</div>
+</section>
+<section id="kill-running-containers">
+<h3>Kill running containers<a class="headerlink" href="#kill-running-containers" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker kill $(docker ps -q)
+</pre></div>
+</div>
+</section>
+<section id="delete-all-containers-force-running-or-stopped-containers">
+<h3>Delete all containers (force!! running or stopped containers)<a class="headerlink" href="#delete-all-containers-force-running-or-stopped-containers" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker rm -f $(docker ps -qa)
+</pre></div>
+</div>
+</section>
+<section id="delete-old-containers">
+<h3>Delete old containers<a class="headerlink" href="#delete-old-containers" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">&#39;weeks ago&#39;</span> <span class="o">|</span> <span class="n">awk</span> <span class="s1">&#39;{print $1}&#39;</span> <span class="o">|</span> <span class="n">xargs</span> <span class="n">docker</span> <span class="n">rm</span>
+</pre></div>
+</div>
+</section>
+<section id="delete-stopped-containers">
+<h3>Delete stopped containers<a class="headerlink" href="#delete-stopped-containers" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker rm -v $(docker ps -a -q -f status=exited)
+</pre></div>
+</div>
+</section>
+<section id="delete-containers-after-stopping">
+<h3>Delete containers after stopping<a class="headerlink" href="#delete-containers-after-stopping" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker stop $(docker ps -aq) &amp;&amp; docker rm -v $(docker ps -aq)
+</pre></div>
+</div>
+</section>
+<section id="delete-dangling-images">
+<h3>Delete dangling images<a class="headerlink" href="#delete-dangling-images" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker rmi $(docker images -q -f dangling=true)
+</pre></div>
+</div>
+</section>
+<section id="delete-all-images">
+<h3>Delete all images<a class="headerlink" href="#delete-all-images" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker rmi $(docker images -q)
+</pre></div>
+</div>
+</section>
+<section id="delete-dangling-volumes">
+<h3>Delete dangling volumes<a class="headerlink" href="#delete-dangling-volumes" title="Link to this heading">#</a></h3>
+<p>As of Docker 1.9:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker volume rm $(docker volume ls -q -f dangling=true)
+</pre></div>
+</div>
+<p>In 1.9.0, the filter <code class="docutils literal notranslate"><span class="pre">dangling=false</span></code> does <em>not</em> work - it is ignored and will list all volumes.</p>
+</section>
+<section id="show-image-dependencies">
+<h3>Show image dependencies<a class="headerlink" href="#show-image-dependencies" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">images</span> <span class="o">-</span><span class="n">viz</span> <span class="o">|</span> <span class="n">dot</span> <span class="o">-</span><span class="n">Tpng</span> <span class="o">-</span><span class="n">o</span> <span class="n">docker</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+</section>
+<section id="slimming-down-docker-containers">
+<h3>Slimming down Docker containers<a class="headerlink" href="#slimming-down-docker-containers" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Cleaning APT in a RUN layer</p></li>
+</ul>
+<p>This should be done in the same layer as other apt commands.
+Otherwise, the previous layers still persist the original information and your images will still be fat.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RUN</span> <span class="p">{</span><span class="n">apt</span> <span class="n">commands</span><span class="p">}</span> \
+  <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">clean</span> \
+  <span class="o">&amp;&amp;</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">lists</span><span class="o">/*</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/*</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">tmp</span><span class="o">/*</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Flatten an image</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ID=$(docker run -d image-name /bin/bash)
+docker export $ID | docker import – flat-image-name
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>For backup</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ID=$(docker run -d image-name /bin/bash)
+(docker export $ID | gzip -c &gt; image.tgz)
+gzip -dc image.tgz | docker import - flat-image-name
+</pre></div>
+</div>
+</section>
+<section id="monitor-system-resource-utilization-for-running-containers">
+<h3>Monitor system resource utilization for running containers<a class="headerlink" href="#monitor-system-resource-utilization-for-running-containers" title="Link to this heading">#</a></h3>
+<p>To check the CPU, memory, and network I/O usage of a single container, you can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">stats</span> <span class="o">&lt;</span><span class="n">container</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>For all containers listed by id:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker stats $(docker ps -q)
+</pre></div>
+</div>
+<p>For all containers listed by name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker stats $(docker ps --format &#39;{{.Names}}&#39;)
+</pre></div>
+</div>
+<p>For all containers listed by image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">f</span> <span class="n">ancestor</span><span class="o">=</span><span class="n">ubuntu</span>
+</pre></div>
+</div>
+<p>Remove all untagged images:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker rmi $(docker images | grep “^” | awk &#39;{split($0,a,&quot; &quot;); print a[3]}&#39;)
+</pre></div>
+</div>
+<p>Remove container by a regular expression:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">wildfly</span> <span class="o">|</span> <span class="n">awk</span> <span class="s1">&#39;{print $1}&#39;</span> <span class="o">|</span> <span class="n">xargs</span> <span class="n">docker</span> <span class="n">rm</span> <span class="o">-</span><span class="n">f</span>
+</pre></div>
+</div>
+<p>Remove all exited containers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker rm -f $(docker ps -a | grep Exit | awk &#39;{ print $1 }&#39;)
+</pre></div>
+</div>
+</section>
+<section id="volumes-can-be-files">
+<h3>Volumes can be files<a class="headerlink" href="#volumes-can-be-files" title="Link to this heading">#</a></h3>
+<p>Be aware that you can mount files as volumes. For example you can inject a configuration file like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># copy file from container</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>httpd<span class="w"> </span>cat<span class="w"> </span>/usr/local/apache2/conf/httpd.conf<span class="w"> </span>&gt;<span class="w"> </span>httpd.conf
+
+<span class="c1"># edit file</span>
+vim<span class="w"> </span>httpd.conf
+
+<span class="c1"># start container with modified configuration</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$PWD</span><span class="s2">/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro&quot;</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;80:80&quot;</span><span class="w"> </span>httpd
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../virtualization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">virtualization</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="virtualization_py_environment.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">python virtual environment</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-docker">Why Docker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">Linux</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#macos">MacOS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Linux</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">macOS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-version">Check Version</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containers">Containers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lifecycle">Lifecycle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-and-stopping">Starting and Stopping</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cpu-constraints">CPU Constraints</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-constraints">Memory Constraints</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#capabilities">Capabilities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#info">Info</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-export">Import / Export</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-commands">Executing Commands</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#images">Images</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Lifecycle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Info</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-up">Cleaning up</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-save-image">Load/Save image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-export-container">Import/Export container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-loading-a-saved-image-and-importing-an-exported-container-as-an-image">Difference between loading a saved image and importing an exported container as an image</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#networks">Networks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Lifecycle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Info</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connection">Connection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registry-repository">Registry &amp; Repository</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-local-registry">Run local registry</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">Dockerfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial">Tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layers">Layers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#links">Links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#volumes">Volumes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Lifecycle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Info</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposing-ports">Exposing ports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-compose">Docker-Compose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-tips">Security Tips</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-namespaces">User Namespaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-videos">Security Videos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-roadmap">Security Roadmap</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tips">Tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prune">Prune</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#df">df</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heredoc-docker-container">Heredoc Docker Container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#last-ids">Last Ids</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-with-command-needs-dockerfile">Commit with command (needs Dockerfile)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-ip-address">Get IP address</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-port-mapping">Get port mapping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-containers-by-regular-expression">Find containers by regular expression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-environment-settings">Get Environment Settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kill-running-containers">Kill running containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-all-containers-force-running-or-stopped-containers">Delete all containers (force!! running or stopped containers)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-old-containers">Delete old containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-stopped-containers">Delete stopped containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-containers-after-stopping">Delete containers after stopping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-dangling-images">Delete dangling images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-all-images">Delete all images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-dangling-volumes">Delete dangling volumes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#show-image-dependencies">Show image dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slimming-down-docker-containers">Slimming down Docker containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monitor-system-resource-utilization-for-running-containers">Monitor system resource utilization for running containers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volumes-can-be-files">Volumes can be files</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

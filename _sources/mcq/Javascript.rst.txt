@@ -1,0 +1,16 @@
+Javascript
+==========
+
+
+.. toctree::
+   :maxdepth: 9
+   :caption: Javascript MCQ
+
+   javascript/jsQ50
+   javascript/jsQ100
+   javascript/jsQ150
+
+
+
+
+

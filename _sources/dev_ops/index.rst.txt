@@ -1,0 +1,35 @@
+devops
+=========
+
+
+
+Streamlining Development and Operations
+---------------------------------------
+
+DevOps bridges the gap between development and operations, fostering a culture of collaboration and shared responsibility. By integrating these traditionally siloed functions, DevOps enables faster and more reliable software delivery. This streamlined approach helps teams quickly respond to changing requirements and deliver high-quality software that meets user needs, ultimately driving business success.
+
+Continuous Integration and Continuous Delivery (CI/CD)
+------------------------------------------------------
+
+Implementing CI/CD pipelines is a cornerstone of effective DevOps practices. Continuous Integration ensures that code changes are automatically tested and integrated into the main branch, reducing integration issues and improving code quality. Continuous Delivery automates the deployment process, allowing for frequent and reliable releases. By adopting CI/CD, teams can accelerate development cycles, minimize errors, and enhance the overall software delivery process.
+
+Infrastructure as Code (IaC)
+----------------------------
+
+Infrastructure as Code (IaC) allows teams to manage and provision infrastructure using code, rather than manual processes. Tools like Terraform, Ansible, and AWS CloudFormation enable the automation of infrastructure setup,
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: devops
+
+   
+   git
+   linux
+   daphne
+   gunicorn
+   nginx
+   text_editor
+   virtualization

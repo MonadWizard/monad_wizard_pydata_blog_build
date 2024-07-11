@@ -1,0 +1,1105 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Numpy &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ml/Numpy';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/ml/Numpy.html" />
+    <link rel="icon" href="../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="numpy basic" href="Numpy/numpy_basic.html" />
+    <link rel="prev" title="Machine Learning blog" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning blog</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Numpy</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html">numpy basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_advance.html">numpy Advance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html">100 numpy exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html">100 numpy exercises with hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html">100 numpy exercises with solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html">100 numpy exercises solutions with hints</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Pandas.html">Pandas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Pandas/pandas_series.html">Pandas Series Blog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pandas/pandas_dataFrames.html">Pandas DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pandas/pandas_workWithTextData.html">Pandas Text Data</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Pandas/pandas_multiIndex.html">Pandas multi Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pandas/pandas_GroupBy.html">Pandas GroupBy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pandas/pandas_mergingJoiningConcatenating.html">pandas merging Joining Concatenating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pandas/pandas_datesAndTime.html">pandas datesAndTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pandas/pandas_Panels.html">pandas Panels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Pandas/pandas_InputAnd_Output.html">Pandas Input And Output</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="joblib.html">Joblib</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="joblib/joblib_basic.html">joblib basic</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pickel.html">pickel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="pickel/pickel_basic.html">pickel</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Machine Learning blog</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Numpy</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="numpy">
+<h1>Numpy<a class="headerlink" href="#numpy" title="Link to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numpy Library Doc in Bangla</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Numpy/numpy_basic.html">numpy basic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#d-array">1d array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#id1">2d array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#id2">3d array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#numpy-ndarray-properties">NumPy Ndarray Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#numpy-constants">NumPy Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#martix">Martix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#empty">.empty()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#eye">.eye()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#identity-matrix">identity matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#ones-matrix">ones matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#zeroes-matrix">zeroes matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#full">.full()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#matrix-creation-routines">Matrix creation routines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#tri">.tri()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#tril-and-triu">tril() and triu()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#random-methods">random methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#random-randint">random.randint()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#random-rand">random.rand()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#array-manipulation-routines">Array Manipulation Routines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#arange">.arange()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#reshape">.reshape()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#array">.array()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#flatten">.flatten()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#ravel">.ravel()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#stack">.stack()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#split">.split()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#flip">.flip()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#rot90">rot90()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#roll">.roll()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#bitwise-operators">bitwise operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#median-average-std-mean-variance-histogram">median, average, std, mean, variance, histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#numpy-writing-save-and-reading-files">Numpy writing , save and reading files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#reading-the-data-from-a-csv-file">Reading the data from a CSV file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#set-operations">Set Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#unique">.unique()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#in1d">.in1d()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#intersect1d-setdiff1d-setxor1d-union1d">.intersect1d() , .setdiff1d() , .setxor1d() , .union1d()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#sorting-with-numpy">Sorting with NumPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/numpy_basic.html#count-non-zero-element">Count Non Zero Element</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Numpy/numpy_advance.html">numpy Advance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Numpy/Numpy_100_exercises.html">100 numpy exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#import-the-numpy-package-under-the-name-np">1. Import the numpy package under the name <code class="docutils literal notranslate"><span class="pre">np</span></code> (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#print-the-numpy-version-and-the-configuration">2. Print the numpy version and the configuration (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-null-vector-of-size-10">3. Create a null vector of size 10 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-find-the-memory-size-of-any-array">4. How to find the memory size of any array (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-get-the-documentation-of-the-numpy-add-function-from-the-command-line">5. How to get the documentation of the numpy add function from the command line? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-null-vector-of-size-10-but-the-fifth-value-which-is-1">6. Create a null vector of size 10 but the fifth value which is 1 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-vector-with-values-ranging-from-10-to-49">7. Create a vector with values ranging from 10 to 49 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#reverse-a-vector-first-element-becomes-last">8. Reverse a vector (first element becomes last) (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-3x3-matrix-with-values-ranging-from-0-to-8">9. Create a 3x3 matrix with values ranging from 0 to 8 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#find-indices-of-non-zero-elements-from-1-2-0-0-4-0">10. Find indices of non-zero elements from [1,2,0,0,4,0] (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-3x3-identity-matrix">11. Create a 3x3 identity matrix (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-3x3x3-array-with-random-values">12. Create a 3x3x3 array with random values (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-10x10-array-with-random-values-and-find-the-minimum-and-maximum-values">13. Create a 10x10 array with random values and find the minimum and maximum values (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-random-vector-of-size-30-and-find-the-mean-value">14. Create a random vector of size 30 and find the mean value (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-2d-array-with-1-on-the-border-and-0-inside">15. Create a 2d array with 1 on the border and 0 inside (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-add-a-border-filled-with-0-s-around-an-existing-array">16. How to add a border (filled with 0’s) around an existing array? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#what-is-the-result-of-the-following-expression">17. What is the result of the following expression? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-5x5-matrix-with-values-1-2-3-4-just-below-the-diagonal">18. Create a 5x5 matrix with values 1,2,3,4 just below the diagonal (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-8x8-matrix-and-fill-it-with-a-checkerboard-pattern">19. Create a 8x8 matrix and fill it with a checkerboard pattern (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-a-6-7-8-shape-array-what-is-the-index-x-y-z-of-the-100th-element">20. Consider a (6,7,8) shape array, what is the index (x,y,z) of the 100th element?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-checkerboard-8x8-matrix-using-the-tile-function">21. Create a checkerboard 8x8 matrix using the tile function (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#normalize-a-5x5-random-matrix">22. Normalize a 5x5 random matrix (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-custom-dtype-that-describes-a-color-as-four-unsigned-bytes-rgba">23. Create a custom dtype that describes a color as four unsigned bytes (RGBA) (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#multiply-a-5x3-matrix-by-a-3x2-matrix-real-matrix-product">24. Multiply a 5x3 matrix by a 3x2 matrix (real matrix product) (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#given-a-1d-array-negate-all-elements-which-are-between-3-and-8-in-place">25. Given a 1D array, negate all elements which are between 3 and 8, in place. (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#what-is-the-output-of-the-following-script">26. What is the output of the following script? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-an-integer-vector-z-which-of-these-expressions-are-legal">27. Consider an integer vector Z, which of these expressions are legal? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#what-are-the-result-of-the-following-expressions">28. What are the result of the following expressions?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-round-away-from-zero-a-float-array">29. How to round away from zero a float array ? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-find-common-values-between-two-arrays">30. How to find common values between two arrays? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-ignore-all-numpy-warnings-not-recommended">31. How to ignore all numpy warnings (not recommended)? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#is-the-following-expressions-true">32. Is the following expressions true? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-get-the-dates-of-yesterday-today-and-tomorrow">33. How to get the dates of yesterday, today and tomorrow? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-get-all-the-dates-corresponding-to-the-month-of-july-2016">34. How to get all the dates corresponding to the month of July 2016? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-compute-a-b-a-2-in-place-without-copy">35. How to compute ((A+B)*(-A/2)) in place (without copy)? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#extract-the-integer-part-of-a-random-array-of-positive-numbers-using-4-different-methods">36. Extract the integer part of a random array of positive numbers using 4 different methods (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-5x5-matrix-with-row-values-ranging-from-0-to-4">37. Create a 5x5 matrix with row values ranging from 0 to 4 (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-a-generator-function-that-generates-10-integers-and-use-it-to-build-an-array">38. Consider a generator function that generates 10 integers and use it to build an array (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-vector-of-size-10-with-values-ranging-from-0-to-1-both-excluded">39. Create a vector of size 10 with values ranging from 0 to 1, both excluded (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-random-vector-of-size-10-and-sort-it">40. Create a random vector of size 10 and sort it (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-sum-a-small-array-faster-than-np-sum">41. How to sum a small array faster than np.sum? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-two-random-array-a-and-b-check-if-they-are-equal">42. Consider two random array A and B, check if they are equal (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#make-an-array-immutable-read-only">43. Make an array immutable (read-only) (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-a-random-10x2-matrix-representing-cartesian-coordinates-convert-them-to-polar-coordinates">44. Consider a random 10x2 matrix representing cartesian coordinates, convert them to polar coordinates (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-random-vector-of-size-10-and-replace-the-maximum-value-by-0">45. Create random vector of size 10 and replace the maximum value by 0 (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-structured-array-with-x-and-y-coordinates-covering-the-0-1-x-0-1-area">46. Create a structured array with <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> coordinates covering the [0,1]x[0,1] area (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#given-two-arrays-x-and-y-construct-the-cauchy-matrix-c-cij-1-xi-yj">47. Given two arrays, X and Y, construct the Cauchy matrix C (Cij =1/(xi - yj))</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#print-the-minimum-and-maximum-representable-value-for-each-numpy-scalar-type">48. Print the minimum and maximum representable value for each numpy scalar type (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-print-all-the-values-of-an-array">49. How to print all the values of an array? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-find-the-closest-value-to-a-given-scalar-in-a-vector">50. How to find the closest value (to a given scalar) in a vector? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-structured-array-representing-a-position-x-y-and-a-color-r-g-b">51. Create a structured array representing a position (x,y) and a color (r,g,b) (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-a-random-vector-with-shape-100-2-representing-coordinates-find-point-by-point-distances">52. Consider a random vector with shape (100,2) representing coordinates, find point by point distances (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-convert-a-float-32-bits-array-into-an-integer-32-bits-in-place">53. How to convert a float (32 bits) array into an integer (32 bits) in place?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-read-the-following-file">54. How to read the following file? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#what-is-the-equivalent-of-enumerate-for-numpy-arrays">55. What is the equivalent of enumerate for numpy arrays? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#generate-a-generic-2d-gaussian-like-array">56. Generate a generic 2D Gaussian-like array (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-randomly-place-p-elements-in-a-2d-array">57. How to randomly place p elements in a 2D array? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#subtract-the-mean-of-each-row-of-a-matrix">58. Subtract the mean of each row of a matrix (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-sort-an-array-by-the-nth-column">59. How to sort an array by the nth column? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-tell-if-a-given-2d-array-has-null-columns">60. How to tell if a given 2D array has null columns? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#find-the-nearest-value-from-a-given-value-in-an-array">61. Find the nearest value from a given value in an array (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#considering-two-arrays-with-shape-1-3-and-3-1-how-to-compute-their-sum-using-an-iterator">62. Considering two arrays with shape (1,3) and (3,1), how to compute their sum using an iterator? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-an-array-class-that-has-a-name-attribute">63. Create an array class that has a name attribute (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-a-given-vector-how-to-add-1-to-each-element-indexed-by-a-second-vector-be-careful-with-repeated-indices">64. Consider a given vector, how to add 1 to each element indexed by a second vector (be careful with repeated indices)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-accumulate-elements-of-a-vector-x-to-an-array-f-based-on-an-index-list-i">65. How to accumulate elements of a vector (X) to an array (F) based on an index list (I)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#considering-a-w-h-3-image-of-dtype-ubyte-compute-the-number-of-unique-colors">66. Considering a (w,h,3) image of (dtype=ubyte), compute the number of unique colors (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#considering-a-four-dimensions-array-how-to-get-sum-over-the-last-two-axis-at-once">67. Considering a four dimensions array, how to get sum over the last two axis at once? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#considering-a-one-dimensional-vector-d-how-to-compute-means-of-subsets-of-d-using-a-vector-s-of-same-size-describing-subset-indices">68. Considering a one-dimensional vector D, how to compute means of subsets of D using a vector S of same size describing subset  indices? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-get-the-diagonal-of-a-dot-product">69. How to get the diagonal of a dot product? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-the-vector-1-2-3-4-5-how-to-build-a-new-vector-with-3-consecutive-zeros-interleaved-between-each-value">70. Consider the vector [1, 2, 3, 4, 5], how to build a new vector with 3 consecutive zeros interleaved between each value? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-an-array-of-dimension-5-5-3-how-to-mulitply-it-by-an-array-with-dimensions-5-5">71. Consider an array of dimension (5,5,3), how to mulitply it by an array with dimensions (5,5)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-swap-two-rows-of-an-array">72. How to swap two rows of an array? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-a-set-of-10-triplets-describing-10-triangles-with-shared-vertices-find-the-set-of-unique-line-segments-composing-all-the-triangles">73. Consider a set of 10 triplets describing 10 triangles (with shared vertices), find the set of unique line segments composing all the  triangles (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#given-an-array-c-that-is-a-bincount-how-to-produce-an-array-a-such-that-np-bincount-a-c">74. Given an array C that is a bincount, how to produce an array A such that np.bincount(A) == C? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-compute-averages-using-a-sliding-window-over-an-array">75. How to compute averages using a sliding window over an array? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-a-one-dimensional-array-z-build-a-two-dimensional-array-whose-first-row-is-z-0-z-1-z-2-and-each-subsequent-row-is-shifted-by-1-last-row-should-be-z-3-z-2-z-1">76. Consider a one-dimensional array Z, build a two-dimensional array whose first row is (Z[0],Z[1],Z[2]) and each subsequent row is  shifted by 1 (last row should be (Z[-3],Z[-2],Z[-1]) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-negate-a-boolean-or-to-change-the-sign-of-a-float-inplace">77. How to negate a boolean, or to change the sign of a float inplace? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-2-sets-of-points-p0-p1-describing-lines-2d-and-a-point-p-how-to-compute-distance-from-p-to-each-line-i-p0-i-p1-i">78. Consider 2 sets of points P0,P1 describing lines (2d) and a point p, how to compute distance from p to each line i (P0[i],P1[i])? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-2-sets-of-points-p0-p1-describing-lines-2d-and-a-set-of-points-p-how-to-compute-distance-from-each-point-j-p-j-to-each-line-i-p0-i-p1-i">79. Consider 2 sets of points P0,P1 describing lines (2d) and a set of points P, how to compute distance from each point j (P[j]) to each line i (P0[i],P1[i])? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-an-arbitrary-array-write-a-function-that-extract-a-subpart-with-a-fixed-shape-and-centered-on-a-given-element-pad-with-a-fill-value-when-necessary">80. Consider an arbitrary array, write a function that extract a subpart with a fixed shape and centered on a given element (pad with a <code class="docutils literal notranslate"><span class="pre">fill</span></code> value when necessary) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-an-array-z-1-2-3-4-5-6-7-8-9-10-11-12-13-14-how-to-generate-an-array-r-1-2-3-4-2-3-4-5-3-4-5-6-11-12-13-14">81. Consider an array Z = [1,2,3,4,5,6,7,8,9,10,11,12,13,14], how to generate an array R = [[1,2,3,4], [2,3,4,5], [3,4,5,6], …, [11,12,13,14]]? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#compute-a-matrix-rank">82. Compute a matrix rank (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-find-the-most-frequent-value-in-an-array">83. How to find the most frequent value in an array?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#extract-all-the-contiguous-3x3-blocks-from-a-random-10x10-matrix">84. Extract all the contiguous 3x3 blocks from a random 10x10 matrix (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#create-a-2d-array-subclass-such-that-z-i-j-z-j-i">85. Create a 2D array subclass such that Z[i,j] == Z[j,i] (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-a-set-of-p-matrices-wich-shape-n-n-and-a-set-of-p-vectors-with-shape-n-1-how-to-compute-the-sum-of-of-the-p-matrix-products-at-once-result-has-shape-n-1">86. Consider a set of p matrices wich shape (n,n) and a set of p vectors with shape (n,1). How to compute the sum of of the p matrix products at once? (result has shape (n,1)) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-a-16x16-array-how-to-get-the-block-sum-block-size-is-4x4">87. Consider a 16x16 array, how to get the block-sum (block size is 4x4)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-implement-the-game-of-life-using-numpy-arrays">88. How to implement the Game of Life using numpy arrays? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-get-the-n-largest-values-of-an-array">89. How to get the n largest values of an array (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#given-an-arbitrary-number-of-vectors-build-the-cartesian-product-every-combinations-of-every-item">90. Given an arbitrary number of vectors, build the cartesian product (every combinations of every item) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#how-to-create-a-record-array-from-a-regular-array">91. How to create a record array from a regular array? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-a-large-vector-z-compute-z-to-the-power-of-3-using-3-different-methods">92. Consider a large vector Z, compute Z to the power of 3 using 3 different methods (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#consider-two-arrays-a-and-b-of-shape-8-3-and-2-2-how-to-find-rows-of-a-that-contain-elements-of-each-row-of-b-regardless-of-the-order-of-the-elements-in-b">93. Consider two arrays A and B of shape (8,3) and (2,2). How to find rows of A that contain elements of each row of B regardless of the order of the elements in B? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#considering-a-10x3-matrix-extract-rows-with-unequal-values-e-g-2-2-3">94. Considering a 10x3 matrix, extract rows with unequal values (e.g. [2,2,3]) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#convert-a-vector-of-ints-into-a-matrix-binary-representation">95. Convert a vector of ints into a matrix binary representation (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#given-a-two-dimensional-array-how-to-extract-unique-rows">96. Given a two dimensional array, how to extract unique rows? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#considering-2-vectors-a-b-write-the-einsum-equivalent-of-inner-outer-sum-and-mul-function">97. Considering 2 vectors A &amp; B, write the einsum equivalent of inner, outer, sum, and mul function (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#considering-a-path-described-by-two-vectors-x-y-how-to-sample-it-using-equidistant-samples">98. Considering a path described by two vectors (X,Y), how to sample it using equidistant samples (★★★)?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#given-an-integer-n-and-a-2d-array-x-select-from-x-the-rows-which-can-be-interpreted-as-draws-from-a-multinomial-distribution-with-n-degrees-i-e-the-rows-which-only-contain-integers-and-which-sum-to-n">99. Given an integer n and a 2D array X, select from X the rows which can be interpreted as draws from a multinomial distribution with n degrees, i.e., the rows which only contain integers and which sum to n. (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises.html#compute-bootstrapped-95-confidence-intervals-for-the-mean-of-a-1d-array-x-i-e-resample-the-elements-of-an-array-with-replacement-n-times-compute-the-mean-of-each-sample-and-then-compute-percentiles-over-the-means">100. Compute bootstrapped 95% confidence intervals for the mean of a 1D array X (i.e., resample the elements of an array with replacement N times, compute the mean of each sample, and then compute percentiles over the means). (★★★)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html">100 numpy exercises with hints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#import-the-numpy-package-under-the-name-np">1. Import the numpy package under the name <code class="docutils literal notranslate"><span class="pre">np</span></code> (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#print-the-numpy-version-and-the-configuration">2. Print the numpy version and the configuration (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-null-vector-of-size-10">3. Create a null vector of size 10 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-find-the-memory-size-of-any-array">4. How to find the memory size of any array (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-get-the-documentation-of-the-numpy-add-function-from-the-command-line">5. How to get the documentation of the numpy add function from the command line? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-null-vector-of-size-10-but-the-fifth-value-which-is-1">6. Create a null vector of size 10 but the fifth value which is 1 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-vector-with-values-ranging-from-10-to-49">7. Create a vector with values ranging from 10 to 49 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#reverse-a-vector-first-element-becomes-last">8. Reverse a vector (first element becomes last) (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-3x3-matrix-with-values-ranging-from-0-to-8">9. Create a 3x3 matrix with values ranging from 0 to 8 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#find-indices-of-non-zero-elements-from-1-2-0-0-4-0">10. Find indices of non-zero elements from [1,2,0,0,4,0] (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-3x3-identity-matrix">11. Create a 3x3 identity matrix (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-3x3x3-array-with-random-values">12. Create a 3x3x3 array with random values (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-10x10-array-with-random-values-and-find-the-minimum-and-maximum-values">13. Create a 10x10 array with random values and find the minimum and maximum values (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-random-vector-of-size-30-and-find-the-mean-value">14. Create a random vector of size 30 and find the mean value (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-2d-array-with-1-on-the-border-and-0-inside">15. Create a 2d array with 1 on the border and 0 inside (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-add-a-border-filled-with-0-s-around-an-existing-array">16. How to add a border (filled with 0’s) around an existing array? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#what-is-the-result-of-the-following-expression">17. What is the result of the following expression? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-5x5-matrix-with-values-1-2-3-4-just-below-the-diagonal">18. Create a 5x5 matrix with values 1,2,3,4 just below the diagonal (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-8x8-matrix-and-fill-it-with-a-checkerboard-pattern">19. Create a 8x8 matrix and fill it with a checkerboard pattern (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-a-6-7-8-shape-array-what-is-the-index-x-y-z-of-the-100th-element">20. Consider a (6,7,8) shape array, what is the index (x,y,z) of the 100th element?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-checkerboard-8x8-matrix-using-the-tile-function">21. Create a checkerboard 8x8 matrix using the tile function (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#normalize-a-5x5-random-matrix">22. Normalize a 5x5 random matrix (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-custom-dtype-that-describes-a-color-as-four-unsigned-bytes-rgba">23. Create a custom dtype that describes a color as four unsigned bytes (RGBA) (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#multiply-a-5x3-matrix-by-a-3x2-matrix-real-matrix-product">24. Multiply a 5x3 matrix by a 3x2 matrix (real matrix product) (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#given-a-1d-array-negate-all-elements-which-are-between-3-and-8-in-place">25. Given a 1D array, negate all elements which are between 3 and 8, in place. (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#what-is-the-output-of-the-following-script">26. What is the output of the following script? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-an-integer-vector-z-which-of-these-expressions-are-legal">27. Consider an integer vector Z, which of these expressions are legal? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#what-are-the-result-of-the-following-expressions">28. What are the result of the following expressions?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-round-away-from-zero-a-float-array">29. How to round away from zero a float array ? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-find-common-values-between-two-arrays">30. How to find common values between two arrays? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-ignore-all-numpy-warnings-not-recommended">31. How to ignore all numpy warnings (not recommended)? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#is-the-following-expressions-true">32. Is the following expressions true? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-get-the-dates-of-yesterday-today-and-tomorrow">33. How to get the dates of yesterday, today and tomorrow? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-get-all-the-dates-corresponding-to-the-month-of-july-2016">34. How to get all the dates corresponding to the month of July 2016? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-compute-a-b-a-2-in-place-without-copy">35. How to compute ((A+B)*(-A/2)) in place (without copy)? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#extract-the-integer-part-of-a-random-array-of-positive-numbers-using-4-different-methods">36. Extract the integer part of a random array of positive numbers using 4 different methods (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-5x5-matrix-with-row-values-ranging-from-0-to-4">37. Create a 5x5 matrix with row values ranging from 0 to 4 (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-a-generator-function-that-generates-10-integers-and-use-it-to-build-an-array">38. Consider a generator function that generates 10 integers and use it to build an array (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-vector-of-size-10-with-values-ranging-from-0-to-1-both-excluded">39. Create a vector of size 10 with values ranging from 0 to 1, both excluded (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-random-vector-of-size-10-and-sort-it">40. Create a random vector of size 10 and sort it (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-sum-a-small-array-faster-than-np-sum">41. How to sum a small array faster than np.sum? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-two-random-array-a-and-b-check-if-they-are-equal">42. Consider two random array A and B, check if they are equal (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#make-an-array-immutable-read-only">43. Make an array immutable (read-only) (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-a-random-10x2-matrix-representing-cartesian-coordinates-convert-them-to-polar-coordinates">44. Consider a random 10x2 matrix representing cartesian coordinates, convert them to polar coordinates (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-random-vector-of-size-10-and-replace-the-maximum-value-by-0">45. Create random vector of size 10 and replace the maximum value by 0 (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-structured-array-with-x-and-y-coordinates-covering-the-0-1-x-0-1-area">46. Create a structured array with <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> coordinates covering the [0,1]x[0,1] area (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#given-two-arrays-x-and-y-construct-the-cauchy-matrix-c-cij-1-xi-yj">47. Given two arrays, X and Y, construct the Cauchy matrix C (Cij =1/(xi - yj))</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#print-the-minimum-and-maximum-representable-value-for-each-numpy-scalar-type">48. Print the minimum and maximum representable value for each numpy scalar type (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-print-all-the-values-of-an-array">49. How to print all the values of an array? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-find-the-closest-value-to-a-given-scalar-in-a-vector">50. How to find the closest value (to a given scalar) in a vector? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-structured-array-representing-a-position-x-y-and-a-color-r-g-b">51. Create a structured array representing a position (x,y) and a color (r,g,b) (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-a-random-vector-with-shape-100-2-representing-coordinates-find-point-by-point-distances">52. Consider a random vector with shape (100,2) representing coordinates, find point by point distances (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-convert-a-float-32-bits-array-into-an-integer-32-bits-in-place">53. How to convert a float (32 bits) array into an integer (32 bits) in place?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-read-the-following-file">54. How to read the following file? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#what-is-the-equivalent-of-enumerate-for-numpy-arrays">55. What is the equivalent of enumerate for numpy arrays? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#generate-a-generic-2d-gaussian-like-array">56. Generate a generic 2D Gaussian-like array (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-randomly-place-p-elements-in-a-2d-array">57. How to randomly place p elements in a 2D array? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#subtract-the-mean-of-each-row-of-a-matrix">58. Subtract the mean of each row of a matrix (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-sort-an-array-by-the-nth-column">59. How to sort an array by the nth column? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-tell-if-a-given-2d-array-has-null-columns">60. How to tell if a given 2D array has null columns? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#find-the-nearest-value-from-a-given-value-in-an-array">61. Find the nearest value from a given value in an array (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#considering-two-arrays-with-shape-1-3-and-3-1-how-to-compute-their-sum-using-an-iterator">62. Considering two arrays with shape (1,3) and (3,1), how to compute their sum using an iterator? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-an-array-class-that-has-a-name-attribute">63. Create an array class that has a name attribute (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-a-given-vector-how-to-add-1-to-each-element-indexed-by-a-second-vector-be-careful-with-repeated-indices">64. Consider a given vector, how to add 1 to each element indexed by a second vector (be careful with repeated indices)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-accumulate-elements-of-a-vector-x-to-an-array-f-based-on-an-index-list-i">65. How to accumulate elements of a vector (X) to an array (F) based on an index list (I)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#considering-a-w-h-3-image-of-dtype-ubyte-compute-the-number-of-unique-colors">66. Considering a (w,h,3) image of (dtype=ubyte), compute the number of unique colors (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#considering-a-four-dimensions-array-how-to-get-sum-over-the-last-two-axis-at-once">67. Considering a four dimensions array, how to get sum over the last two axis at once? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#considering-a-one-dimensional-vector-d-how-to-compute-means-of-subsets-of-d-using-a-vector-s-of-same-size-describing-subset-indices">68. Considering a one-dimensional vector D, how to compute means of subsets of D using a vector S of same size describing subset  indices? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-get-the-diagonal-of-a-dot-product">69. How to get the diagonal of a dot product? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-the-vector-1-2-3-4-5-how-to-build-a-new-vector-with-3-consecutive-zeros-interleaved-between-each-value">70. Consider the vector [1, 2, 3, 4, 5], how to build a new vector with 3 consecutive zeros interleaved between each value? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-an-array-of-dimension-5-5-3-how-to-mulitply-it-by-an-array-with-dimensions-5-5">71. Consider an array of dimension (5,5,3), how to mulitply it by an array with dimensions (5,5)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-swap-two-rows-of-an-array">72. How to swap two rows of an array? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-a-set-of-10-triplets-describing-10-triangles-with-shared-vertices-find-the-set-of-unique-line-segments-composing-all-the-triangles">73. Consider a set of 10 triplets describing 10 triangles (with shared vertices), find the set of unique line segments composing all the  triangles (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#given-an-array-c-that-is-a-bincount-how-to-produce-an-array-a-such-that-np-bincount-a-c">74. Given an array C that is a bincount, how to produce an array A such that np.bincount(A) == C? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-compute-averages-using-a-sliding-window-over-an-array">75. How to compute averages using a sliding window over an array? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-a-one-dimensional-array-z-build-a-two-dimensional-array-whose-first-row-is-z-0-z-1-z-2-and-each-subsequent-row-is-shifted-by-1-last-row-should-be-z-3-z-2-z-1">76. Consider a one-dimensional array Z, build a two-dimensional array whose first row is (Z[0],Z[1],Z[2]) and each subsequent row is  shifted by 1 (last row should be (Z[-3],Z[-2],Z[-1]) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-negate-a-boolean-or-to-change-the-sign-of-a-float-inplace">77. How to negate a boolean, or to change the sign of a float inplace? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-2-sets-of-points-p0-p1-describing-lines-2d-and-a-point-p-how-to-compute-distance-from-p-to-each-line-i-p0-i-p1-i">78. Consider 2 sets of points P0,P1 describing lines (2d) and a point p, how to compute distance from p to each line i (P0[i],P1[i])? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-2-sets-of-points-p0-p1-describing-lines-2d-and-a-set-of-points-p-how-to-compute-distance-from-each-point-j-p-j-to-each-line-i-p0-i-p1-i">79. Consider 2 sets of points P0,P1 describing lines (2d) and a set of points P, how to compute distance from each point j (P[j]) to each line i (P0[i],P1[i])? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-an-arbitrary-array-write-a-function-that-extract-a-subpart-with-a-fixed-shape-and-centered-on-a-given-element-pad-with-a-fill-value-when-necessary">80. Consider an arbitrary array, write a function that extract a subpart with a fixed shape and centered on a given element (pad with a <code class="docutils literal notranslate"><span class="pre">fill</span></code> value when necessary) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-an-array-z-1-2-3-4-5-6-7-8-9-10-11-12-13-14-how-to-generate-an-array-r-1-2-3-4-2-3-4-5-3-4-5-6-11-12-13-14">81. Consider an array Z = [1,2,3,4,5,6,7,8,9,10,11,12,13,14], how to generate an array R = [[1,2,3,4], [2,3,4,5], [3,4,5,6], …, [11,12,13,14]]? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#compute-a-matrix-rank">82. Compute a matrix rank (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-find-the-most-frequent-value-in-an-array">83. How to find the most frequent value in an array?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#extract-all-the-contiguous-3x3-blocks-from-a-random-10x10-matrix">84. Extract all the contiguous 3x3 blocks from a random 10x10 matrix (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#create-a-2d-array-subclass-such-that-z-i-j-z-j-i">85. Create a 2D array subclass such that Z[i,j] == Z[j,i] (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-a-set-of-p-matrices-wich-shape-n-n-and-a-set-of-p-vectors-with-shape-n-1-how-to-compute-the-sum-of-of-the-p-matrix-products-at-once-result-has-shape-n-1">86. Consider a set of p matrices wich shape (n,n) and a set of p vectors with shape (n,1). How to compute the sum of of the p matrix products at once? (result has shape (n,1)) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-a-16x16-array-how-to-get-the-block-sum-block-size-is-4x4">87. Consider a 16x16 array, how to get the block-sum (block size is 4x4)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-implement-the-game-of-life-using-numpy-arrays">88. How to implement the Game of Life using numpy arrays? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-get-the-n-largest-values-of-an-array">89. How to get the n largest values of an array (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#given-an-arbitrary-number-of-vectors-build-the-cartesian-product-every-combinations-of-every-item">90. Given an arbitrary number of vectors, build the cartesian product (every combinations of every item) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#how-to-create-a-record-array-from-a-regular-array">91. How to create a record array from a regular array? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-a-large-vector-z-compute-z-to-the-power-of-3-using-3-different-methods">92. Consider a large vector Z, compute Z to the power of 3 using 3 different methods (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#consider-two-arrays-a-and-b-of-shape-8-3-and-2-2-how-to-find-rows-of-a-that-contain-elements-of-each-row-of-b-regardless-of-the-order-of-the-elements-in-b">93. Consider two arrays A and B of shape (8,3) and (2,2). How to find rows of A that contain elements of each row of B regardless of the order of the elements in B? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#considering-a-10x3-matrix-extract-rows-with-unequal-values-e-g-2-2-3">94. Considering a 10x3 matrix, extract rows with unequal values (e.g. [2,2,3]) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#convert-a-vector-of-ints-into-a-matrix-binary-representation">95. Convert a vector of ints into a matrix binary representation (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#given-a-two-dimensional-array-how-to-extract-unique-rows">96. Given a two dimensional array, how to extract unique rows? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#considering-2-vectors-a-b-write-the-einsum-equivalent-of-inner-outer-sum-and-mul-function">97. Considering 2 vectors A &amp; B, write the einsum equivalent of inner, outer, sum, and mul function (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#considering-a-path-described-by-two-vectors-x-y-how-to-sample-it-using-equidistant-samples">98. Considering a path described by two vectors (X,Y), how to sample it using equidistant samples (★★★)?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#given-an-integer-n-and-a-2d-array-x-select-from-x-the-rows-which-can-be-interpreted-as-draws-from-a-multinomial-distribution-with-n-degrees-i-e-the-rows-which-only-contain-integers-and-which-sum-to-n">99. Given an integer n and a 2D array X, select from X the rows which can be interpreted as draws from a multinomial distribution with n degrees, i.e., the rows which only contain integers and which sum to n. (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_hints.html#compute-bootstrapped-95-confidence-intervals-for-the-mean-of-a-1d-array-x-i-e-resample-the-elements-of-an-array-with-replacement-n-times-compute-the-mean-of-each-sample-and-then-compute-percentiles-over-the-means">100. Compute bootstrapped 95% confidence intervals for the mean of a 1D array X (i.e., resample the elements of an array with replacement N times, compute the mean of each sample, and then compute percentiles over the means). (★★★)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html">100 numpy exercises with solutions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#import-the-numpy-package-under-the-name-np">1. Import the numpy package under the name <code class="docutils literal notranslate"><span class="pre">np</span></code> (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#print-the-numpy-version-and-the-configuration">2. Print the numpy version and the configuration (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-null-vector-of-size-10">3. Create a null vector of size 10 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-find-the-memory-size-of-any-array">4. How to find the memory size of any array (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-get-the-documentation-of-the-numpy-add-function-from-the-command-line">5. How to get the documentation of the numpy add function from the command line? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-null-vector-of-size-10-but-the-fifth-value-which-is-1">6. Create a null vector of size 10 but the fifth value which is 1 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-vector-with-values-ranging-from-10-to-49">7. Create a vector with values ranging from 10 to 49 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#reverse-a-vector-first-element-becomes-last">8. Reverse a vector (first element becomes last) (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-3x3-matrix-with-values-ranging-from-0-to-8">9. Create a 3x3 matrix with values ranging from 0 to 8 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#find-indices-of-non-zero-elements-from-1-2-0-0-4-0">10. Find indices of non-zero elements from [1,2,0,0,4,0] (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-3x3-identity-matrix">11. Create a 3x3 identity matrix (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-3x3x3-array-with-random-values">12. Create a 3x3x3 array with random values (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-10x10-array-with-random-values-and-find-the-minimum-and-maximum-values">13. Create a 10x10 array with random values and find the minimum and maximum values (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-random-vector-of-size-30-and-find-the-mean-value">14. Create a random vector of size 30 and find the mean value (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-2d-array-with-1-on-the-border-and-0-inside">15. Create a 2d array with 1 on the border and 0 inside (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-add-a-border-filled-with-0-s-around-an-existing-array">16. How to add a border (filled with 0’s) around an existing array? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#what-is-the-result-of-the-following-expression">17. What is the result of the following expression? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-5x5-matrix-with-values-1-2-3-4-just-below-the-diagonal">18. Create a 5x5 matrix with values 1,2,3,4 just below the diagonal (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-8x8-matrix-and-fill-it-with-a-checkerboard-pattern">19. Create a 8x8 matrix and fill it with a checkerboard pattern (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-a-6-7-8-shape-array-what-is-the-index-x-y-z-of-the-100th-element">20. Consider a (6,7,8) shape array, what is the index (x,y,z) of the 100th element?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-checkerboard-8x8-matrix-using-the-tile-function">21. Create a checkerboard 8x8 matrix using the tile function (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#normalize-a-5x5-random-matrix">22. Normalize a 5x5 random matrix (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-custom-dtype-that-describes-a-color-as-four-unsigned-bytes-rgba">23. Create a custom dtype that describes a color as four unsigned bytes (RGBA) (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#multiply-a-5x3-matrix-by-a-3x2-matrix-real-matrix-product">24. Multiply a 5x3 matrix by a 3x2 matrix (real matrix product) (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#given-a-1d-array-negate-all-elements-which-are-between-3-and-8-in-place">25. Given a 1D array, negate all elements which are between 3 and 8, in place. (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#what-is-the-output-of-the-following-script">26. What is the output of the following script? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-an-integer-vector-z-which-of-these-expressions-are-legal">27. Consider an integer vector Z, which of these expressions are legal? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#what-are-the-result-of-the-following-expressions">28. What are the result of the following expressions?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-round-away-from-zero-a-float-array">29. How to round away from zero a float array ? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-find-common-values-between-two-arrays">30. How to find common values between two arrays? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-ignore-all-numpy-warnings-not-recommended">31. How to ignore all numpy warnings (not recommended)? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#is-the-following-expressions-true">32. Is the following expressions true? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-get-the-dates-of-yesterday-today-and-tomorrow">33. How to get the dates of yesterday, today and tomorrow? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-get-all-the-dates-corresponding-to-the-month-of-july-2016">34. How to get all the dates corresponding to the month of July 2016? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-compute-a-b-a-2-in-place-without-copy">35. How to compute ((A+B)*(-A/2)) in place (without copy)? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#extract-the-integer-part-of-a-random-array-of-positive-numbers-using-4-different-methods">36. Extract the integer part of a random array of positive numbers using 4 different methods (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-5x5-matrix-with-row-values-ranging-from-0-to-4">37. Create a 5x5 matrix with row values ranging from 0 to 4 (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-a-generator-function-that-generates-10-integers-and-use-it-to-build-an-array">38. Consider a generator function that generates 10 integers and use it to build an array (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-vector-of-size-10-with-values-ranging-from-0-to-1-both-excluded">39. Create a vector of size 10 with values ranging from 0 to 1, both excluded (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-random-vector-of-size-10-and-sort-it">40. Create a random vector of size 10 and sort it (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-sum-a-small-array-faster-than-np-sum">41. How to sum a small array faster than np.sum? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-two-random-array-a-and-b-check-if-they-are-equal">42. Consider two random array A and B, check if they are equal (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#make-an-array-immutable-read-only">43. Make an array immutable (read-only) (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-a-random-10x2-matrix-representing-cartesian-coordinates-convert-them-to-polar-coordinates">44. Consider a random 10x2 matrix representing cartesian coordinates, convert them to polar coordinates (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-random-vector-of-size-10-and-replace-the-maximum-value-by-0">45. Create random vector of size 10 and replace the maximum value by 0 (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-structured-array-with-x-and-y-coordinates-covering-the-0-1-x-0-1-area">46. Create a structured array with <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> coordinates covering the [0,1]x[0,1] area (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#given-two-arrays-x-and-y-construct-the-cauchy-matrix-c-cij-1-xi-yj">47. Given two arrays, X and Y, construct the Cauchy matrix C (Cij =1/(xi - yj))</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#print-the-minimum-and-maximum-representable-value-for-each-numpy-scalar-type">48. Print the minimum and maximum representable value for each numpy scalar type (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-print-all-the-values-of-an-array">49. How to print all the values of an array? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-find-the-closest-value-to-a-given-scalar-in-a-vector">50. How to find the closest value (to a given scalar) in a vector? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-structured-array-representing-a-position-x-y-and-a-color-r-g-b">51. Create a structured array representing a position (x,y) and a color (r,g,b) (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-a-random-vector-with-shape-100-2-representing-coordinates-find-point-by-point-distances">52. Consider a random vector with shape (100,2) representing coordinates, find point by point distances (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-convert-a-float-32-bits-array-into-an-integer-32-bits-in-place">53. How to convert a float (32 bits) array into an integer (32 bits) in place?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-read-the-following-file">54. How to read the following file? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#what-is-the-equivalent-of-enumerate-for-numpy-arrays">55. What is the equivalent of enumerate for numpy arrays? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#generate-a-generic-2d-gaussian-like-array">56. Generate a generic 2D Gaussian-like array (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-randomly-place-p-elements-in-a-2d-array">57. How to randomly place p elements in a 2D array? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#subtract-the-mean-of-each-row-of-a-matrix">58. Subtract the mean of each row of a matrix (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-sort-an-array-by-the-nth-column">59. How to sort an array by the nth column? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-tell-if-a-given-2d-array-has-null-columns">60. How to tell if a given 2D array has null columns? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#find-the-nearest-value-from-a-given-value-in-an-array">61. Find the nearest value from a given value in an array (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#considering-two-arrays-with-shape-1-3-and-3-1-how-to-compute-their-sum-using-an-iterator">62. Considering two arrays with shape (1,3) and (3,1), how to compute their sum using an iterator? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-an-array-class-that-has-a-name-attribute">63. Create an array class that has a name attribute (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-a-given-vector-how-to-add-1-to-each-element-indexed-by-a-second-vector-be-careful-with-repeated-indices">64. Consider a given vector, how to add 1 to each element indexed by a second vector (be careful with repeated indices)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-accumulate-elements-of-a-vector-x-to-an-array-f-based-on-an-index-list-i">65. How to accumulate elements of a vector (X) to an array (F) based on an index list (I)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#considering-a-w-h-3-image-of-dtype-ubyte-compute-the-number-of-unique-colors">66. Considering a (w,h,3) image of (dtype=ubyte), compute the number of unique colors (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#considering-a-four-dimensions-array-how-to-get-sum-over-the-last-two-axis-at-once">67. Considering a four dimensions array, how to get sum over the last two axis at once? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#considering-a-one-dimensional-vector-d-how-to-compute-means-of-subsets-of-d-using-a-vector-s-of-same-size-describing-subset-indices">68. Considering a one-dimensional vector D, how to compute means of subsets of D using a vector S of same size describing subset  indices? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-get-the-diagonal-of-a-dot-product">69. How to get the diagonal of a dot product? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-the-vector-1-2-3-4-5-how-to-build-a-new-vector-with-3-consecutive-zeros-interleaved-between-each-value">70. Consider the vector [1, 2, 3, 4, 5], how to build a new vector with 3 consecutive zeros interleaved between each value? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-an-array-of-dimension-5-5-3-how-to-mulitply-it-by-an-array-with-dimensions-5-5">71. Consider an array of dimension (5,5,3), how to mulitply it by an array with dimensions (5,5)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-swap-two-rows-of-an-array">72. How to swap two rows of an array? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-a-set-of-10-triplets-describing-10-triangles-with-shared-vertices-find-the-set-of-unique-line-segments-composing-all-the-triangles">73. Consider a set of 10 triplets describing 10 triangles (with shared vertices), find the set of unique line segments composing all the  triangles (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#given-an-array-c-that-is-a-bincount-how-to-produce-an-array-a-such-that-np-bincount-a-c">74. Given an array C that is a bincount, how to produce an array A such that np.bincount(A) == C? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-compute-averages-using-a-sliding-window-over-an-array">75. How to compute averages using a sliding window over an array? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-a-one-dimensional-array-z-build-a-two-dimensional-array-whose-first-row-is-z-0-z-1-z-2-and-each-subsequent-row-is-shifted-by-1-last-row-should-be-z-3-z-2-z-1">76. Consider a one-dimensional array Z, build a two-dimensional array whose first row is (Z[0],Z[1],Z[2]) and each subsequent row is  shifted by 1 (last row should be (Z[-3],Z[-2],Z[-1]) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-negate-a-boolean-or-to-change-the-sign-of-a-float-inplace">77. How to negate a boolean, or to change the sign of a float inplace? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-2-sets-of-points-p0-p1-describing-lines-2d-and-a-point-p-how-to-compute-distance-from-p-to-each-line-i-p0-i-p1-i">78. Consider 2 sets of points P0,P1 describing lines (2d) and a point p, how to compute distance from p to each line i (P0[i],P1[i])? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-2-sets-of-points-p0-p1-describing-lines-2d-and-a-set-of-points-p-how-to-compute-distance-from-each-point-j-p-j-to-each-line-i-p0-i-p1-i">79. Consider 2 sets of points P0,P1 describing lines (2d) and a set of points P, how to compute distance from each point j (P[j]) to each line i (P0[i],P1[i])? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-an-arbitrary-array-write-a-function-that-extract-a-subpart-with-a-fixed-shape-and-centered-on-a-given-element-pad-with-a-fill-value-when-necessary">80. Consider an arbitrary array, write a function that extract a subpart with a fixed shape and centered on a given element (pad with a <code class="docutils literal notranslate"><span class="pre">fill</span></code> value when necessary) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-an-array-z-1-2-3-4-5-6-7-8-9-10-11-12-13-14-how-to-generate-an-array-r-1-2-3-4-2-3-4-5-3-4-5-6-11-12-13-14">81. Consider an array Z = [1,2,3,4,5,6,7,8,9,10,11,12,13,14], how to generate an array R = [[1,2,3,4], [2,3,4,5], [3,4,5,6], …, [11,12,13,14]]? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#compute-a-matrix-rank">82. Compute a matrix rank (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-find-the-most-frequent-value-in-an-array">83. How to find the most frequent value in an array?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#extract-all-the-contiguous-3x3-blocks-from-a-random-10x10-matrix">84. Extract all the contiguous 3x3 blocks from a random 10x10 matrix (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#create-a-2d-array-subclass-such-that-z-i-j-z-j-i">85. Create a 2D array subclass such that Z[i,j] == Z[j,i] (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-a-set-of-p-matrices-wich-shape-n-n-and-a-set-of-p-vectors-with-shape-n-1-how-to-compute-the-sum-of-of-the-p-matrix-products-at-once-result-has-shape-n-1">86. Consider a set of p matrices wich shape (n,n) and a set of p vectors with shape (n,1). How to compute the sum of of the p matrix products at once? (result has shape (n,1)) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-a-16x16-array-how-to-get-the-block-sum-block-size-is-4x4">87. Consider a 16x16 array, how to get the block-sum (block size is 4x4)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-implement-the-game-of-life-using-numpy-arrays">88. How to implement the Game of Life using numpy arrays? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-get-the-n-largest-values-of-an-array">89. How to get the n largest values of an array (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#given-an-arbitrary-number-of-vectors-build-the-cartesian-product-every-combinations-of-every-item">90. Given an arbitrary number of vectors, build the cartesian product (every combinations of every item) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#how-to-create-a-record-array-from-a-regular-array">91. How to create a record array from a regular array? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-a-large-vector-z-compute-z-to-the-power-of-3-using-3-different-methods">92. Consider a large vector Z, compute Z to the power of 3 using 3 different methods (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#consider-two-arrays-a-and-b-of-shape-8-3-and-2-2-how-to-find-rows-of-a-that-contain-elements-of-each-row-of-b-regardless-of-the-order-of-the-elements-in-b">93. Consider two arrays A and B of shape (8,3) and (2,2). How to find rows of A that contain elements of each row of B regardless of the order of the elements in B? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#considering-a-10x3-matrix-extract-rows-with-unequal-values-e-g-2-2-3">94. Considering a 10x3 matrix, extract rows with unequal values (e.g. [2,2,3]) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#convert-a-vector-of-ints-into-a-matrix-binary-representation">95. Convert a vector of ints into a matrix binary representation (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#given-a-two-dimensional-array-how-to-extract-unique-rows">96. Given a two dimensional array, how to extract unique rows? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#considering-2-vectors-a-b-write-the-einsum-equivalent-of-inner-outer-sum-and-mul-function">97. Considering 2 vectors A &amp; B, write the einsum equivalent of inner, outer, sum, and mul function (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#considering-a-path-described-by-two-vectors-x-y-how-to-sample-it-using-equidistant-samples">98. Considering a path described by two vectors (X,Y), how to sample it using equidistant samples (★★★)?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#given-an-integer-n-and-a-2d-array-x-select-from-x-the-rows-which-can-be-interpreted-as-draws-from-a-multinomial-distribution-with-n-degrees-i-e-the-rows-which-only-contain-integers-and-which-sum-to-n">99. Given an integer n and a 2D array X, select from X the rows which can be interpreted as draws from a multinomial distribution with n degrees, i.e., the rows which only contain integers and which sum to n. (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_with_solutions.html#compute-bootstrapped-95-confidence-intervals-for-the-mean-of-a-1d-array-x-i-e-resample-the-elements-of-an-array-with-replacement-n-times-compute-the-mean-of-each-sample-and-then-compute-percentiles-over-the-means">100. Compute bootstrapped 95% confidence intervals for the mean of a 1D array X (i.e., resample the elements of an array with replacement N times, compute the mean of each sample, and then compute percentiles over the means). (★★★)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html">100 numpy exercises solutions with hints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#import-the-numpy-package-under-the-name-np">1. Import the numpy package under the name <code class="docutils literal notranslate"><span class="pre">np</span></code> (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#print-the-numpy-version-and-the-configuration">2. Print the numpy version and the configuration (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-null-vector-of-size-10">3. Create a null vector of size 10 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-find-the-memory-size-of-any-array">4. How to find the memory size of any array (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-get-the-documentation-of-the-numpy-add-function-from-the-command-line">5. How to get the documentation of the numpy add function from the command line? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-null-vector-of-size-10-but-the-fifth-value-which-is-1">6. Create a null vector of size 10 but the fifth value which is 1 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-vector-with-values-ranging-from-10-to-49">7. Create a vector with values ranging from 10 to 49 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#reverse-a-vector-first-element-becomes-last">8. Reverse a vector (first element becomes last) (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-3x3-matrix-with-values-ranging-from-0-to-8">9. Create a 3x3 matrix with values ranging from 0 to 8 (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#find-indices-of-non-zero-elements-from-1-2-0-0-4-0">10. Find indices of non-zero elements from [1,2,0,0,4,0] (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-3x3-identity-matrix">11. Create a 3x3 identity matrix (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-3x3x3-array-with-random-values">12. Create a 3x3x3 array with random values (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-10x10-array-with-random-values-and-find-the-minimum-and-maximum-values">13. Create a 10x10 array with random values and find the minimum and maximum values (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-random-vector-of-size-30-and-find-the-mean-value">14. Create a random vector of size 30 and find the mean value (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-2d-array-with-1-on-the-border-and-0-inside">15. Create a 2d array with 1 on the border and 0 inside (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-add-a-border-filled-with-0-s-around-an-existing-array">16. How to add a border (filled with 0’s) around an existing array? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#what-is-the-result-of-the-following-expression">17. What is the result of the following expression? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-5x5-matrix-with-values-1-2-3-4-just-below-the-diagonal">18. Create a 5x5 matrix with values 1,2,3,4 just below the diagonal (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-8x8-matrix-and-fill-it-with-a-checkerboard-pattern">19. Create a 8x8 matrix and fill it with a checkerboard pattern (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-a-6-7-8-shape-array-what-is-the-index-x-y-z-of-the-100th-element">20. Consider a (6,7,8) shape array, what is the index (x,y,z) of the 100th element?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-checkerboard-8x8-matrix-using-the-tile-function">21. Create a checkerboard 8x8 matrix using the tile function (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#normalize-a-5x5-random-matrix">22. Normalize a 5x5 random matrix (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-custom-dtype-that-describes-a-color-as-four-unsigned-bytes-rgba">23. Create a custom dtype that describes a color as four unsigned bytes (RGBA) (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#multiply-a-5x3-matrix-by-a-3x2-matrix-real-matrix-product">24. Multiply a 5x3 matrix by a 3x2 matrix (real matrix product) (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#given-a-1d-array-negate-all-elements-which-are-between-3-and-8-in-place">25. Given a 1D array, negate all elements which are between 3 and 8, in place. (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#what-is-the-output-of-the-following-script">26. What is the output of the following script? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-an-integer-vector-z-which-of-these-expressions-are-legal">27. Consider an integer vector Z, which of these expressions are legal? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#what-are-the-result-of-the-following-expressions">28. What are the result of the following expressions?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-round-away-from-zero-a-float-array">29. How to round away from zero a float array ? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-find-common-values-between-two-arrays">30. How to find common values between two arrays? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-ignore-all-numpy-warnings-not-recommended">31. How to ignore all numpy warnings (not recommended)? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#is-the-following-expressions-true">32. Is the following expressions true? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-get-the-dates-of-yesterday-today-and-tomorrow">33. How to get the dates of yesterday, today and tomorrow? (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-get-all-the-dates-corresponding-to-the-month-of-july-2016">34. How to get all the dates corresponding to the month of July 2016? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-compute-a-b-a-2-in-place-without-copy">35. How to compute ((A+B)*(-A/2)) in place (without copy)? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#extract-the-integer-part-of-a-random-array-of-positive-numbers-using-4-different-methods">36. Extract the integer part of a random array of positive numbers using 4 different methods (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-5x5-matrix-with-row-values-ranging-from-0-to-4">37. Create a 5x5 matrix with row values ranging from 0 to 4 (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-a-generator-function-that-generates-10-integers-and-use-it-to-build-an-array">38. Consider a generator function that generates 10 integers and use it to build an array (★☆☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-vector-of-size-10-with-values-ranging-from-0-to-1-both-excluded">39. Create a vector of size 10 with values ranging from 0 to 1, both excluded (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-random-vector-of-size-10-and-sort-it">40. Create a random vector of size 10 and sort it (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-sum-a-small-array-faster-than-np-sum">41. How to sum a small array faster than np.sum? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-two-random-array-a-and-b-check-if-they-are-equal">42. Consider two random array A and B, check if they are equal (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#make-an-array-immutable-read-only">43. Make an array immutable (read-only) (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-a-random-10x2-matrix-representing-cartesian-coordinates-convert-them-to-polar-coordinates">44. Consider a random 10x2 matrix representing cartesian coordinates, convert them to polar coordinates (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-random-vector-of-size-10-and-replace-the-maximum-value-by-0">45. Create random vector of size 10 and replace the maximum value by 0 (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-structured-array-with-x-and-y-coordinates-covering-the-0-1-x-0-1-area">46. Create a structured array with <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> coordinates covering the [0,1]x[0,1] area (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#given-two-arrays-x-and-y-construct-the-cauchy-matrix-c-cij-1-xi-yj">47. Given two arrays, X and Y, construct the Cauchy matrix C (Cij =1/(xi - yj))</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#print-the-minimum-and-maximum-representable-value-for-each-numpy-scalar-type">48. Print the minimum and maximum representable value for each numpy scalar type (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-print-all-the-values-of-an-array">49. How to print all the values of an array? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-find-the-closest-value-to-a-given-scalar-in-a-vector">50. How to find the closest value (to a given scalar) in a vector? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-structured-array-representing-a-position-x-y-and-a-color-r-g-b">51. Create a structured array representing a position (x,y) and a color (r,g,b) (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-a-random-vector-with-shape-100-2-representing-coordinates-find-point-by-point-distances">52. Consider a random vector with shape (100,2) representing coordinates, find point by point distances (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-convert-a-float-32-bits-array-into-an-integer-32-bits-in-place">53. How to convert a float (32 bits) array into an integer (32 bits) in place?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-read-the-following-file">54. How to read the following file? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#what-is-the-equivalent-of-enumerate-for-numpy-arrays">55. What is the equivalent of enumerate for numpy arrays? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#generate-a-generic-2d-gaussian-like-array">56. Generate a generic 2D Gaussian-like array (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-randomly-place-p-elements-in-a-2d-array">57. How to randomly place p elements in a 2D array? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#subtract-the-mean-of-each-row-of-a-matrix">58. Subtract the mean of each row of a matrix (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-sort-an-array-by-the-nth-column">59. How to sort an array by the nth column? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-tell-if-a-given-2d-array-has-null-columns">60. How to tell if a given 2D array has null columns? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#find-the-nearest-value-from-a-given-value-in-an-array">61. Find the nearest value from a given value in an array (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#considering-two-arrays-with-shape-1-3-and-3-1-how-to-compute-their-sum-using-an-iterator">62. Considering two arrays with shape (1,3) and (3,1), how to compute their sum using an iterator? (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-an-array-class-that-has-a-name-attribute">63. Create an array class that has a name attribute (★★☆)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-a-given-vector-how-to-add-1-to-each-element-indexed-by-a-second-vector-be-careful-with-repeated-indices">64. Consider a given vector, how to add 1 to each element indexed by a second vector (be careful with repeated indices)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-accumulate-elements-of-a-vector-x-to-an-array-f-based-on-an-index-list-i">65. How to accumulate elements of a vector (X) to an array (F) based on an index list (I)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#considering-a-w-h-3-image-of-dtype-ubyte-compute-the-number-of-unique-colors">66. Considering a (w,h,3) image of (dtype=ubyte), compute the number of unique colors (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#considering-a-four-dimensions-array-how-to-get-sum-over-the-last-two-axis-at-once">67. Considering a four dimensions array, how to get sum over the last two axis at once? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#considering-a-one-dimensional-vector-d-how-to-compute-means-of-subsets-of-d-using-a-vector-s-of-same-size-describing-subset-indices">68. Considering a one-dimensional vector D, how to compute means of subsets of D using a vector S of same size describing subset  indices? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-get-the-diagonal-of-a-dot-product">69. How to get the diagonal of a dot product? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-the-vector-1-2-3-4-5-how-to-build-a-new-vector-with-3-consecutive-zeros-interleaved-between-each-value">70. Consider the vector [1, 2, 3, 4, 5], how to build a new vector with 3 consecutive zeros interleaved between each value? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-an-array-of-dimension-5-5-3-how-to-mulitply-it-by-an-array-with-dimensions-5-5">71. Consider an array of dimension (5,5,3), how to mulitply it by an array with dimensions (5,5)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-swap-two-rows-of-an-array">72. How to swap two rows of an array? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-a-set-of-10-triplets-describing-10-triangles-with-shared-vertices-find-the-set-of-unique-line-segments-composing-all-the-triangles">73. Consider a set of 10 triplets describing 10 triangles (with shared vertices), find the set of unique line segments composing all the  triangles (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#given-an-array-c-that-is-a-bincount-how-to-produce-an-array-a-such-that-np-bincount-a-c">74. Given an array C that is a bincount, how to produce an array A such that np.bincount(A) == C? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-compute-averages-using-a-sliding-window-over-an-array">75. How to compute averages using a sliding window over an array? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-a-one-dimensional-array-z-build-a-two-dimensional-array-whose-first-row-is-z-0-z-1-z-2-and-each-subsequent-row-is-shifted-by-1-last-row-should-be-z-3-z-2-z-1">76. Consider a one-dimensional array Z, build a two-dimensional array whose first row is (Z[0],Z[1],Z[2]) and each subsequent row is  shifted by 1 (last row should be (Z[-3],Z[-2],Z[-1]) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-negate-a-boolean-or-to-change-the-sign-of-a-float-inplace">77. How to negate a boolean, or to change the sign of a float inplace? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-2-sets-of-points-p0-p1-describing-lines-2d-and-a-point-p-how-to-compute-distance-from-p-to-each-line-i-p0-i-p1-i">78. Consider 2 sets of points P0,P1 describing lines (2d) and a point p, how to compute distance from p to each line i (P0[i],P1[i])? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-2-sets-of-points-p0-p1-describing-lines-2d-and-a-set-of-points-p-how-to-compute-distance-from-each-point-j-p-j-to-each-line-i-p0-i-p1-i">79. Consider 2 sets of points P0,P1 describing lines (2d) and a set of points P, how to compute distance from each point j (P[j]) to each line i (P0[i],P1[i])? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-an-arbitrary-array-write-a-function-that-extract-a-subpart-with-a-fixed-shape-and-centered-on-a-given-element-pad-with-a-fill-value-when-necessary">80. Consider an arbitrary array, write a function that extract a subpart with a fixed shape and centered on a given element (pad with a <code class="docutils literal notranslate"><span class="pre">fill</span></code> value when necessary) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-an-array-z-1-2-3-4-5-6-7-8-9-10-11-12-13-14-how-to-generate-an-array-r-1-2-3-4-2-3-4-5-3-4-5-6-11-12-13-14">81. Consider an array Z = [1,2,3,4,5,6,7,8,9,10,11,12,13,14], how to generate an array R = [[1,2,3,4], [2,3,4,5], [3,4,5,6], …, [11,12,13,14]]? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#compute-a-matrix-rank">82. Compute a matrix rank (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-find-the-most-frequent-value-in-an-array">83. How to find the most frequent value in an array?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#extract-all-the-contiguous-3x3-blocks-from-a-random-10x10-matrix">84. Extract all the contiguous 3x3 blocks from a random 10x10 matrix (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#create-a-2d-array-subclass-such-that-z-i-j-z-j-i">85. Create a 2D array subclass such that Z[i,j] == Z[j,i] (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-a-set-of-p-matrices-wich-shape-n-n-and-a-set-of-p-vectors-with-shape-n-1-how-to-compute-the-sum-of-of-the-p-matrix-products-at-once-result-has-shape-n-1">86. Consider a set of p matrices wich shape (n,n) and a set of p vectors with shape (n,1). How to compute the sum of of the p matrix products at once? (result has shape (n,1)) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-a-16x16-array-how-to-get-the-block-sum-block-size-is-4x4">87. Consider a 16x16 array, how to get the block-sum (block size is 4x4)? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-implement-the-game-of-life-using-numpy-arrays">88. How to implement the Game of Life using numpy arrays? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-get-the-n-largest-values-of-an-array">89. How to get the n largest values of an array (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#given-an-arbitrary-number-of-vectors-build-the-cartesian-product-every-combinations-of-every-item">90. Given an arbitrary number of vectors, build the cartesian product (every combinations of every item) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#how-to-create-a-record-array-from-a-regular-array">91. How to create a record array from a regular array? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-a-large-vector-z-compute-z-to-the-power-of-3-using-3-different-methods">92. Consider a large vector Z, compute Z to the power of 3 using 3 different methods (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#consider-two-arrays-a-and-b-of-shape-8-3-and-2-2-how-to-find-rows-of-a-that-contain-elements-of-each-row-of-b-regardless-of-the-order-of-the-elements-in-b">93. Consider two arrays A and B of shape (8,3) and (2,2). How to find rows of A that contain elements of each row of B regardless of the order of the elements in B? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#considering-a-10x3-matrix-extract-rows-with-unequal-values-e-g-2-2-3">94. Considering a 10x3 matrix, extract rows with unequal values (e.g. [2,2,3]) (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#convert-a-vector-of-ints-into-a-matrix-binary-representation">95. Convert a vector of ints into a matrix binary representation (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#given-a-two-dimensional-array-how-to-extract-unique-rows">96. Given a two dimensional array, how to extract unique rows? (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#considering-2-vectors-a-b-write-the-einsum-equivalent-of-inner-outer-sum-and-mul-function">97. Considering 2 vectors A &amp; B, write the einsum equivalent of inner, outer, sum, and mul function (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#considering-a-path-described-by-two-vectors-x-y-how-to-sample-it-using-equidistant-samples">98. Considering a path described by two vectors (X,Y), how to sample it using equidistant samples (★★★)?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#given-an-integer-n-and-a-2d-array-x-select-from-x-the-rows-which-can-be-interpreted-as-draws-from-a-multinomial-distribution-with-n-degrees-i-e-the-rows-which-only-contain-integers-and-which-sum-to-n">99. Given an integer n and a 2D array X, select from X the rows which can be interpreted as draws from a multinomial distribution with n degrees, i.e., the rows which only contain integers and which sum to n. (★★★)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Numpy/Numpy_100_exercises_solutions_with_hints.html#compute-bootstrapped-95-confidence-intervals-for-the-mean-of-a-1d-array-x-i-e-resample-the-elements-of-an-array-with-replacement-n-times-compute-the-mean-of-each-sample-and-then-compute-percentiles-over-the-means">100. Compute bootstrapped 95% confidence intervals for the mean of a 1D array X (i.e., resample the elements of an array with replacement N times, compute the mean of each sample, and then compute percentiles over the means). (★★★)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Machine Learning blog</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Numpy/numpy_basic.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">numpy basic</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

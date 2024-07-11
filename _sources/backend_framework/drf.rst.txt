@@ -1,0 +1,15 @@
+drf
+======
+
+
+.. toctree::
+   :maxdepth: 9
+   :caption: Django REST framework Blog in Bangla
+
+   drf/drf
+   drf/drf_fbv
+   drf/drf_cbv
+   drf/drf_mixins
+   drf/drf_genericViews
+   drf/drf_viewsets
+

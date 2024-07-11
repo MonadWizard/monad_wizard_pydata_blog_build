@@ -1,0 +1,12 @@
+Python
+==========
+
+.. toctree::
+   :maxdepth: 9
+   :caption: Python MCQ
+
+   python/py100
+   python/pyQuiz
+
+
+

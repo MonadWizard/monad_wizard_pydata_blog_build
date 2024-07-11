@@ -1,0 +1,862 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>mcq &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mcq/index';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/mcq/index.html" />
+    <link rel="icon" href="../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Javascript" href="Javascript.html" />
+    <link rel="prev" title="Vargant virtualization" href="../dev_ops/virtualization/virtualization_Vargant.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="Javascript.html">Javascript</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="javascript/jsQ50.html">JavaScript Questions 1 to 50</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript/jsQ100.html">JavaScript Questions 51 to 100</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript/jsQ150.html">JavaScript Questions 101 to 150</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Python.html">Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="python/py100.html">Python Questions 1 to 100</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python/pyQuiz.html">comming soon</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">mcq</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="mcq">
+<h1>mcq<a class="headerlink" href="#mcq" title="Link to this heading">#</a></h1>
+<p>Solving multiple-choice questions (MCQs) is a valuable method to reinforce understanding of key concepts and prepare effectively for exams or interviews. These questions are designed to test your knowledge, problem-solving abilities, and critical thinking skills in a structured format.</p>
+<section id="steps-to-effective-mcq-solving">
+<h2>Steps to Effective MCQ Solving<a class="headerlink" href="#steps-to-effective-mcq-solving" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Approach each question positively</strong>: Treat each attempt as an opportunity to learn and improve. Embrace mistakes as steps toward mastery, and with perseverance, you’ll see significant progress.</p></li>
+<li><p><strong>Read each question carefully</strong>: Pay attention to details and the wording to grasp its essence before considering the options. Break down complex questions into smaller parts for better understanding.</p></li>
+<li><p><strong>Eliminate obviously incorrect answers first</strong>: Narrow down choices strategically to increase the likelihood of selecting the correct answer.</p></li>
+<li><p><strong>Practice time management</strong>: Allocate time wisely during exams or practice sessions to attempt all questions. Prioritize answering all questions and return to challenging ones later if time allows.</p></li>
+<li><p><strong>Review your answers</strong>: Double-check responses for accuracy and understanding, reinforcing your learning and confidence.</p></li>
+</ol>
+<p>Consistent practice and a positive mindset are key to success with MCQs. Challenge yourself regularly, and you’ll continue to grow and excel.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Javascript.html">Javascript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="javascript/jsQ50.html">JavaScript Questions 1 to 50</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#what-s-the-output">1. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id1">2. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id2">3. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id3">4. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#which-one-is-true">5. Which one is true?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id4">6. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id5">7. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id6">8. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id7">9. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#what-happens-when-we-do-this">10. What happens when we do this?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id8">11. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id9">12. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#what-are-the-three-phases-of-event-propagation">13. What are the three phases of event propagation?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#all-object-have-prototypes">14. All object have prototypes.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id10">15. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id11">16. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id12">17. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id13">18. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id14">19. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id15">20. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#what-s-the-value-of-sum">21. What’s the value of <code class="docutils literal notranslate"><span class="pre">sum</span></code>?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#how-long-is-cool-secret-accessible">22. How long is cool_secret accessible?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id16">23. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id17">24. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id18">25. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#the-javascript-global-execution-context-creates-two-things-for-you-the-global-object-and-the-this-keyword">26. The JavaScript global execution context creates two things for you: the global object, and the “this” keyword.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id19">27. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id20">28. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id21">29. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id22">30. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#what-is-the-event-target-when-clicking-the-button">31. What is the event.target when clicking the button?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#when-you-click-the-paragraph-what-s-the-logged-output">32. When you click the paragraph, what’s the logged output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id23">33. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id24">34. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#which-of-these-values-are-falsy">35. Which of these values are falsy?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id25">36. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id26">37. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id27">38. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#everything-in-javascript-is-either-a">39. Everything in JavaScript is either a…</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id28">40. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id29">41. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#what-does-the-setinterval-method-return-in-the-browser">42. What does the <code class="docutils literal notranslate"><span class="pre">setInterval</span></code> method return in the browser?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#what-does-this-return">43. What does this return?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id30">44. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id31">45. What does this return?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id32">46. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id33">47. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id34">48. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#what-s-the-value-of-num">49. What’s the value of <code class="docutils literal notranslate"><span class="pre">num</span></code>?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ50.html#id35">50. What’s the output?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="javascript/jsQ100.html">JavaScript Questions 51 to 100</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#what-s-the-output">51. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id1">52. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id2">53. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id3">54. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id4">55. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id5">56. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id6">57. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id7">58. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id8">59. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id9">60. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id10">61. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id11">62. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id12">63. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id13">64. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id14">65. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#with-which-constructor-can-we-successfully-extend-the-dog-class">66. With which constructor can we successfully extend the <code class="docutils literal notranslate"><span class="pre">Dog</span></code> class?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id15">67. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id16">68. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id17">69. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id18">70. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#how-can-we-log-the-values-that-are-commented-out-after-the-console-log-statement">71. How can we log the values that are commented out after the console.log statement?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id19">72. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id20">73. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id21">74. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id22">75. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id23">76. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#is-this-a-pure-function">77. Is this a pure function?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#what-is-the-output">78. What is the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id24">79. What is the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id25">80. What is the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id26">81. What is the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id27">82. What is the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id28">83. What is the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id29">84. What is the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#what-kind-of-information-would-get-logged">85. What kind of information would get logged?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#which-option-is-a-way-to-set-hasname-equal-to-true-provided-you-cannot-pass-true-as-an-argument">86. Which option is a way to set <code class="docutils literal notranslate"><span class="pre">hasName</span></code> equal to <code class="docutils literal notranslate"><span class="pre">true</span></code>, provided you cannot pass <code class="docutils literal notranslate"><span class="pre">true</span></code> as an argument?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id30">87. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id31">88. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id32">89. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id33">90. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id34">91. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id35">92. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id36">93. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id37">94. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id38">95. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id39">96. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id40">97. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id41">98. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#id42">99. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ100.html#what-s-the-value-of-output">100. What’s the value of output?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="javascript/jsQ150.html">JavaScript Questions 101 to 150</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#what-s-the-value-of-output">101. What’s the value of output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id1">102. What’s the value of output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id2">103. What’s the value of output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#what-s-its-value">104. What’s its value?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id3">105. What’s its value?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id4">106. What’s its value?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id5">107. What’s its value?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#which-of-these-methods-modifies-the-original-array">108. Which of these methods modifies the original array?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#what-s-the-output">109. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#what-does-this-method-do">110. What does this method do?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id6">111. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id7">112. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id8">113. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#what-will-happen">114. What will happen?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#which-method-s-will-return-the-value-hello-world">115. Which method(s) will return the value <code class="docutils literal notranslate"><span class="pre">'Hello</span> <span class="pre">world!'</span></code>?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id9">116. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#which-of-the-following-options-will-return-6">117. Which of the following options will return <code class="docutils literal notranslate"><span class="pre">6</span></code>?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id10">118. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id11">119. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id12">120. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id13">121. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id14">122. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id15">123. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id16">124. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id17">125. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id18">126. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id19">127. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id20">128. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id21">129. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id22">130. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id23">131. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id24">132. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id25">133. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#how-can-we-invoke-sum-in-index-js-from-sum-js">134. How can we invoke <code class="docutils literal notranslate"><span class="pre">sum</span></code> in <code class="docutils literal notranslate"><span class="pre">index.js</span></code> from <code class="docutils literal notranslate"><span class="pre">sum.js?</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id26">135. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#which-of-the-following-will-modify-the-person-object">136. Which of the following will modify the <code class="docutils literal notranslate"><span class="pre">person</span></code> object?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id27">137. Which of the following will modify the <code class="docutils literal notranslate"><span class="pre">person</span></code> object?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id28">138. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id29">139. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#what-s-missing">140. What’s missing?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id30">141. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id31">142. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#which-of-the-options-result-s-in-an-error">143. Which of the options result(s) in an error?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#what-do-we-need-to-add-to-the-person-object-to-get-lydia-hallie-21-as-the-output-of-person">144. What do we need to add to the <code class="docutils literal notranslate"><span class="pre">person</span></code> object to get <code class="docutils literal notranslate"><span class="pre">[&quot;Lydia</span> <span class="pre">Hallie&quot;,</span> <span class="pre">21]</span></code> as the output of <code class="docutils literal notranslate"><span class="pre">[...person]</span></code>?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id32">145. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id33">146. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id34">147. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id35">148. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id36">149. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id37">150. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id38">151. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id39">152. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#what-should-the-value-of-method-be-to-log-name-lydia-age-22">153. What should the value of <code class="docutils literal notranslate"><span class="pre">method</span></code> be to log <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">name:</span> <span class="pre">&quot;Lydia&quot;,</span> <span class="pre">age:</span> <span class="pre">22</span> <span class="pre">}</span></code>?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id40">154. What’s the output?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="javascript/jsQ150.html#id41">155. What’s the output?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Python.html">Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="python/py100.html">Python Questions 1 to 100</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#example-problems">Example Problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="python/py100.html#problem-1-example-beginner-problem">Problem 1: Example Beginner Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-1-level-1">Question 1 Level 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-2-level-1">Question 2 Level 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-3-level-1">Question 3 Level 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-4-level-1">Question 4 Level 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-5-level-1">Question 5 Level 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-6-level-2">Question 6 Level 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-7-level-2">Question 7 Level 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-8-level-2">Question 8 Level 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-9-level-2">Question 9 Level 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-10-level-2">Question 10 Level 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-11-level-2">Question 11 Level 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-12-level-2">Question 12 Level 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-13-level-2">Question 13 Level 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-14-level-2">Question 14 Level 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-15-level-2">Question 15 Level 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-16-level-2">Question 16 Level 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-17-level-2">Question 17 Level 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-18-level-3">Question 18 Level 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-19-level-3">Question 19 Level 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-20-level-3">Question 20 Level 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-21-level-3">Question 21 Level 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-22-level-3">Question 22 Level 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-23-level-1">Question 23 level 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-24-level-1">Question 24 Level 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="python/py100.html#question-25-level-1">Question 25 Level 1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="python/pyQuiz.html">comming soon</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../dev_ops/virtualization/virtualization_Vargant.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Vargant virtualization</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Javascript.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Javascript</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-effective-mcq-solving">Steps to Effective MCQ Solving</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

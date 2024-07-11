@@ -1,0 +1,1939 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>JavaScript Questions 1 to 50 &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mcq/javascript/jsQ50';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/mcq/javascript/jsQ50.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="JavaScript Questions 51 to 100" href="jsQ100.html" />
+    <link rel="prev" title="Javascript" href="../Javascript.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Javascript.html">Javascript</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">JavaScript Questions 1 to 50</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jsQ100.html">JavaScript Questions 51 to 100</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jsQ150.html">JavaScript Questions 101 to 150</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Python.html">Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python/py100.html">Python Questions 1 to 100</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/pyQuiz.html">comming soon</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">mcq</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../Javascript.html" class="nav-link">Javascript</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">JavaScript...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="javascript-questions-1-to-50">
+<h1>JavaScript Questions 1 to 50<a class="headerlink" href="#javascript-questions-1-to-50" title="Link to this heading">#</a></h1>
+<p>Feel free to use them in a project! 😃  I would <em>really</em> appreciate a reference to this repo, I create the questions and explanations (yes I’m sad lol) and the community helps me so much to maintain and improve it! 💪🏼 Thank you and have fun!</p>
+<hr class="docutils" />
+<section id="what-s-the-output">
+<h2>1. What’s the output?<a class="headerlink" href="#what-s-the-output" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">sayHi</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Lydia&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">21</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">sayHi</span><span class="p">();</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">Lydia</span></code> and <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">Lydia</span></code> and <code class="docutils literal notranslate"><span class="pre">ReferenceError</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">ReferenceError</span></code> and <code class="docutils literal notranslate"><span class="pre">21</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">undefined</span></code> and <code class="docutils literal notranslate"><span class="pre">ReferenceError</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: D</p>
+<p>Within the function, we first declare the <code class="docutils literal notranslate"><span class="pre">name</span></code> variable with the <code class="docutils literal notranslate"><span class="pre">var</span></code> keyword. This means that the variable gets hoisted (memory space is set up during the creation phase) with the default value of <code class="docutils literal notranslate"><span class="pre">undefined</span></code>, until we actually get to the line where we define the variable. We haven’t defined the variable yet on the line where we try to log the <code class="docutils literal notranslate"><span class="pre">name</span></code> variable, so it still holds the value of <code class="docutils literal notranslate"><span class="pre">undefined</span></code>.</p>
+<p>Variables with the <code class="docutils literal notranslate"><span class="pre">let</span></code> keyword (and <code class="docutils literal notranslate"><span class="pre">const</span></code>) are hoisted, but unlike <code class="docutils literal notranslate"><span class="pre">var</span></code>, don’t get <i>initialized</i>. They are not accessible before the line we declare (initialize) them. This is called the “temporal dead zone”. When we try to access the variables before they are declared, JavaScript throws a <code class="docutils literal notranslate"><span class="pre">ReferenceError</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h2>2. What’s the output?<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">),</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">),</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">2</span></code> and <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">2</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">2</span></code> and <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">3</span> <span class="pre">3</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">3</span> <span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">2</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>Because of the event queue in JavaScript, the <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> callback function is called <em>after</em> the loop has been executed. Since the variable <code class="docutils literal notranslate"><span class="pre">i</span></code> in the first loop was declared using the <code class="docutils literal notranslate"><span class="pre">var</span></code> keyword, this value was global. During the loop, we incremented the value of <code class="docutils literal notranslate"><span class="pre">i</span></code> by <code class="docutils literal notranslate"><span class="pre">1</span></code> each time, using the unary operator <code class="docutils literal notranslate"><span class="pre">++</span></code>. By the time the <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> callback function was invoked, <code class="docutils literal notranslate"><span class="pre">i</span></code> was equal to <code class="docutils literal notranslate"><span class="pre">3</span></code> in the first example.</p>
+<p>In the second loop, the variable <code class="docutils literal notranslate"><span class="pre">i</span></code> was declared using the <code class="docutils literal notranslate"><span class="pre">let</span></code> keyword: variables declared with the <code class="docutils literal notranslate"><span class="pre">let</span></code> (and <code class="docutils literal notranslate"><span class="pre">const</span></code>) keyword are block-scoped (a block is anything between <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code>). During each iteration, <code class="docutils literal notranslate"><span class="pre">i</span></code> will have a new value, and each value is scoped inside the loop.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>3. What’s the output?<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">radius</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">diameter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">perimeter</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">shape</span><span class="p">.</span><span class="nx">diameter</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">shape</span><span class="p">.</span><span class="nx">perimeter</span><span class="p">());</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">20</span></code> and <code class="docutils literal notranslate"><span class="pre">62.83185307179586</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">20</span></code> and <code class="docutils literal notranslate"><span class="pre">NaN</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">20</span></code> and <code class="docutils literal notranslate"><span class="pre">63</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">NaN</span></code> and <code class="docutils literal notranslate"><span class="pre">63</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p>Note that the value of <code class="docutils literal notranslate"><span class="pre">diameter</span></code> is a regular function, whereas the value of <code class="docutils literal notranslate"><span class="pre">perimeter</span></code> is an arrow function.</p>
+<p>With arrow functions, the <code class="docutils literal notranslate"><span class="pre">this</span></code> keyword refers to its current surrounding scope, unlike regular functions! This means that when we call <code class="docutils literal notranslate"><span class="pre">perimeter</span></code>, it doesn’t refer to the shape object, but to its surrounding scope (window for example).</p>
+<p>There is no value <code class="docutils literal notranslate"><span class="pre">radius</span></code> on that object, which returns <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id3">
+<h2>4. What’s the output?<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="kc">true</span><span class="p">;</span>
+<span class="o">!</span><span class="s1">&#39;Lydia&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">false</span></code> and <code class="docutils literal notranslate"><span class="pre">NaN</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">false</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>The unary plus tries to convert an operand to a number. <code class="docutils literal notranslate"><span class="pre">true</span></code> is <code class="docutils literal notranslate"><span class="pre">1</span></code>, and <code class="docutils literal notranslate"><span class="pre">false</span></code> is <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>The string <code class="docutils literal notranslate"><span class="pre">'Lydia'</span></code> is a truthy value. What we’re actually asking, is “is this truthy value falsy?”. This returns <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="which-one-is-true">
+<h2>5. Which one is true?<a class="headerlink" href="#which-one-is-true" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">bird</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">size</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;small&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">mouse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Mickey&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">small</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">mouse.bird.size</span></code> is not valid</p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">mouse[bird.size]</span></code> is not valid</p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">mouse[bird[&quot;size&quot;]]</span></code> is not valid</p></li>
+<li><p>D: All of them are valid</p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>In JavaScript, all object keys are strings (unless it’s a Symbol). Even though we might not <em>type</em> them as strings, they are always converted into strings under the hood.</p>
+<p>JavaScript interprets (or unboxes) statements. When we use bracket notation, it sees the first opening bracket <code class="docutils literal notranslate"><span class="pre">[</span></code> and keeps going until it finds the closing bracket <code class="docutils literal notranslate"><span class="pre">]</span></code>. Only then, it will evaluate the statement.</p>
+<p><code class="docutils literal notranslate"><span class="pre">mouse[bird.size]</span></code>: First it evaluates <code class="docutils literal notranslate"><span class="pre">bird.size</span></code>, which is <code class="docutils literal notranslate"><span class="pre">&quot;small&quot;</span></code>. <code class="docutils literal notranslate"><span class="pre">mouse[&quot;small&quot;]</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+<p>However, with dot notation, this doesn’t happen. <code class="docutils literal notranslate"><span class="pre">mouse</span></code> does not have a key called <code class="docutils literal notranslate"><span class="pre">bird</span></code>, which means that <code class="docutils literal notranslate"><span class="pre">mouse.bird</span></code> is <code class="docutils literal notranslate"><span class="pre">undefined</span></code>. Then, we ask for the <code class="docutils literal notranslate"><span class="pre">size</span></code> using dot notation: <code class="docutils literal notranslate"><span class="pre">mouse.bird.size</span></code>. Since <code class="docutils literal notranslate"><span class="pre">mouse.bird</span></code> is <code class="docutils literal notranslate"><span class="pre">undefined</span></code>, we’re actually asking <code class="docutils literal notranslate"><span class="pre">undefined.size</span></code>. This isn’t valid, and will throw an error similar to <code class="docutils literal notranslate"><span class="pre">Cannot</span> <span class="pre">read</span> <span class="pre">property</span> <span class="pre">&quot;size&quot;</span> <span class="pre">of</span> <span class="pre">undefined</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id4">
+<h2>6. What’s the output?<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">greeting</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Hey!&#39;</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">d</span><span class="p">;</span>
+
+<span class="nx">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">c</span><span class="p">;</span>
+<span class="nx">c</span><span class="p">.</span><span class="nx">greeting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hello&#39;</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">greeting</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">Hello</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">Hey!</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">ReferenceError</span></code></p></li>
+<li><p>E: <code class="docutils literal notranslate"><span class="pre">TypeError</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>In JavaScript, all objects interact by <em>reference</em> when setting them equal to each other.</p>
+<p>First, variable <code class="docutils literal notranslate"><span class="pre">c</span></code> holds a value to an object. Later, we assign <code class="docutils literal notranslate"><span class="pre">d</span></code> with the same reference that <code class="docutils literal notranslate"><span class="pre">c</span></code> has to the object.</p>
+<img src="https://i.imgur.com/ko5k0fs.png" width="200">
+<p>When you change one object, you change all of them.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id5">
+<h2>7. What’s the output?<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="mf">3</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">b</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">b</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">c</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p><code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Number()</span></code> is a built-in function constructor. Although it looks like a number, it’s not really a number: it has a bunch of extra features and is an object.</p>
+<p>When we use the <code class="docutils literal notranslate"><span class="pre">==</span></code> operator, it only checks whether it has the same <em>value</em>. They both have the value of <code class="docutils literal notranslate"><span class="pre">3</span></code>, so it returns <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p>However, when we use the <code class="docutils literal notranslate"><span class="pre">===</span></code> operator, both value <em>and</em> type should be the same. It’s not: <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Number()</span></code> is not a number, it’s an <strong>object</strong>. Both return <code class="docutils literal notranslate"><span class="pre">false.</span></code></p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id6">
+<h2>8. What’s the output?<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">Chameleon</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="nx">colorChange</span><span class="p">(</span><span class="nx">newColor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">newColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">newColor</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">newColor</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">({</span><span class="w"> </span><span class="nx">newColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">newColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">newColor</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">freddie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Chameleon</span><span class="p">({</span><span class="w"> </span><span class="nx">newColor</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;purple&#39;</span><span class="w"> </span><span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">freddie</span><span class="p">.</span><span class="nx">colorChange</span><span class="p">(</span><span class="s1">&#39;orange&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">orange</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">purple</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">green</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">TypeError</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: D</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">colorChange</span></code> function is static. Static methods are designed to live only on the constructor in which they are created, and cannot be passed down to any children. Since <code class="docutils literal notranslate"><span class="pre">freddie</span></code> is a child, the function is not passed down, and not available on the <code class="docutils literal notranslate"><span class="pre">freddie</span></code> instance: a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> is thrown.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id7">
+<h2>9. What’s the output?<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">greeting</span><span class="p">;</span>
+<span class="nx">greetign</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span><span class="w"> </span><span class="c1">// Typo!</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greetign</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">{}</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">ReferenceError:</span> <span class="pre">greetign</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>It logs the object, because we just created an empty object on the global object! When we mistyped <code class="docutils literal notranslate"><span class="pre">greeting</span></code> as <code class="docutils literal notranslate"><span class="pre">greetign</span></code>, the JS interpreter actually saw this as <code class="docutils literal notranslate"><span class="pre">global.greetign</span> <span class="pre">=</span> <span class="pre">{}</span></code> (or <code class="docutils literal notranslate"><span class="pre">window.greetign</span> <span class="pre">=</span> <span class="pre">{}</span></code> in a browser).</p>
+<p>In order to avoid this, we can use <code class="docutils literal notranslate"><span class="pre">&quot;use</span> <span class="pre">strict&quot;</span></code>. This makes sure that you have declared a variable before setting it equal to anything.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="what-happens-when-we-do-this">
+<h2>10. What happens when we do this?<a class="headerlink" href="#what-happens-when-we-do-this" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">bark</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Woof!&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">bark</span><span class="p">.</span><span class="nx">animal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;dog&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: Nothing, this is totally fine!</p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>. You cannot add properties to a function this way.</p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">&quot;Woof&quot;</span></code> gets logged.</p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">ReferenceError</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>This is possible in JavaScript, because functions are objects! (Everything besides primitive types are objects)</p>
+<p>A function is a special type of object. The code you write yourself isn’t the actual function. The function is an object with properties. This property is invocable.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id8">
+<h2>11. What’s the output?<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span><span class="w"> </span><span class="nx">lastName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstName</span><span class="p">;</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lastName</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">member</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lydia&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hallie&#39;</span><span class="p">);</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">getFullName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">member</span><span class="p">.</span><span class="nx">getFullName</span><span class="p">());</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">TypeError</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">Lydia</span> <span class="pre">Hallie</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">undefined</span></code> <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>In JavaScript, functions are objects, and therefore, the method <code class="docutils literal notranslate"><span class="pre">getFullName</span></code> gets added to the constructor function object itself. For that reason, we can call <code class="docutils literal notranslate"><span class="pre">Person.getFullName()</span></code>, but <code class="docutils literal notranslate"><span class="pre">member.getFullName</span></code> throws a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p>
+<p>If you want a method to be available to all object instances, you have to add it to the prototype property:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getFullName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id9">
+<h2>12. What’s the output?<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span><span class="w"> </span><span class="nx">lastName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">firstName</span><span class="p">;</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lastName</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">lydia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Lydia&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hallie&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">sarah</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Sarah&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lydia</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sarah</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">Person</span> <span class="pre">{firstName:</span> <span class="pre">&quot;Lydia&quot;,</span> <span class="pre">lastName:</span> <span class="pre">&quot;Hallie&quot;}</span></code> and <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">Person</span> <span class="pre">{firstName:</span> <span class="pre">&quot;Lydia&quot;,</span> <span class="pre">lastName:</span> <span class="pre">&quot;Hallie&quot;}</span></code> and <code class="docutils literal notranslate"><span class="pre">Person</span> <span class="pre">{firstName:</span> <span class="pre">&quot;Sarah&quot;,</span> <span class="pre">lastName:</span> <span class="pre">&quot;Smith&quot;}</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">Person</span> <span class="pre">{firstName:</span> <span class="pre">&quot;Lydia&quot;,</span> <span class="pre">lastName:</span> <span class="pre">&quot;Hallie&quot;}</span></code> and <code class="docutils literal notranslate"><span class="pre">{}</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">Person</span> <span class="pre">{firstName:</span> <span class="pre">&quot;Lydia&quot;,</span> <span class="pre">lastName:</span> <span class="pre">&quot;Hallie&quot;}</span></code> and <code class="docutils literal notranslate"><span class="pre">ReferenceError</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">sarah</span></code>, we didn’t use the <code class="docutils literal notranslate"><span class="pre">new</span></code> keyword. When using <code class="docutils literal notranslate"><span class="pre">new</span></code>, <code class="docutils literal notranslate"><span class="pre">this</span></code> refers to the new empty object we create. However, if you don’t add <code class="docutils literal notranslate"><span class="pre">new</span></code>, <code class="docutils literal notranslate"><span class="pre">this</span></code> refers to the <strong>global object</strong>!</p>
+<p>We said that <code class="docutils literal notranslate"><span class="pre">this.firstName</span></code> equals <code class="docutils literal notranslate"><span class="pre">&quot;Sarah&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">this.lastName</span></code> equals <code class="docutils literal notranslate"><span class="pre">&quot;Smith&quot;</span></code>. What we actually did, is defining <code class="docutils literal notranslate"><span class="pre">global.firstName</span> <span class="pre">=</span> <span class="pre">'Sarah'</span></code> and <code class="docutils literal notranslate"><span class="pre">global.lastName</span> <span class="pre">=</span> <span class="pre">'Smith'</span></code>. <code class="docutils literal notranslate"><span class="pre">sarah</span></code> itself is left <code class="docutils literal notranslate"><span class="pre">undefined</span></code>, since we don’t return a value from the <code class="docutils literal notranslate"><span class="pre">Person</span></code> function.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="what-are-the-three-phases-of-event-propagation">
+<h2>13. What are the three phases of event propagation?<a class="headerlink" href="#what-are-the-three-phases-of-event-propagation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A: Target &gt; Capturing &gt; Bubbling</p></li>
+<li><p>B: Bubbling &gt; Target &gt; Capturing</p></li>
+<li><p>C: Target &gt; Bubbling &gt; Capturing</p></li>
+<li><p>D: Capturing &gt; Target &gt; Bubbling</p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: D</p>
+<p>During the <strong>capturing</strong> phase, the event goes through the ancestor elements down to the target element. It then reaches the <strong>target</strong> element, and <strong>bubbling</strong> begins.</p>
+<img src="https://i.imgur.com/N18oRgd.png" width="200">
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="all-object-have-prototypes">
+<h2>14. All object have prototypes.<a class="headerlink" href="#all-object-have-prototypes" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A: true</p></li>
+<li><p>B: false</p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p>All objects have prototypes, except for the <strong>base object</strong>. The base object is the object created by the user, or an object that is created using the <code class="docutils literal notranslate"><span class="pre">new</span></code> keyword. The base object has access to some methods and properties, such as <code class="docutils literal notranslate"><span class="pre">.toString</span></code>. This is the reason why you can use built-in JavaScript methods! All of such methods are available on the prototype. Although JavaScript can’t find it directly on your object, it goes down the prototype chain and finds it there, which makes it accessible for you.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id10">
+<h2>15. What’s the output?<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">sum</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">sum</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">NaN</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">TypeError</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">&quot;12&quot;</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>JavaScript is a <strong>dynamically typed language</strong>: we don’t specify what types certain variables are. Values can automatically be converted into another type without you knowing, which is called <em>implicit type coercion</em>. <strong>Coercion</strong> is converting from one type into another.</p>
+<p>In this example, JavaScript converts the number <code class="docutils literal notranslate"><span class="pre">1</span></code> into a string, in order for the function to make sense and return a value. During the addition of a numeric type (<code class="docutils literal notranslate"><span class="pre">1</span></code>) and a string type (<code class="docutils literal notranslate"><span class="pre">'2'</span></code>), the number is treated as a string. We can concatenate strings like <code class="docutils literal notranslate"><span class="pre">&quot;Hello&quot;</span> <span class="pre">+</span> <span class="pre">&quot;World&quot;</span></code>, so what’s happening here is <code class="docutils literal notranslate"><span class="pre">&quot;1&quot;</span> <span class="pre">+</span> <span class="pre">&quot;2&quot;</span></code> which returns <code class="docutils literal notranslate"><span class="pre">&quot;12&quot;</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id11">
+<h2>16. What’s the output?<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">number</span><span class="o">++</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">++</span><span class="nx">number</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">number</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">2</span></code> <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">0</span></code> <code class="docutils literal notranslate"><span class="pre">2</span></code> <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">0</span></code> <code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>The <strong>postfix</strong> unary operator <code class="docutils literal notranslate"><span class="pre">++</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Returns the value (this returns <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p>Increments the value (number is now <code class="docutils literal notranslate"><span class="pre">1</span></code>)</p></li>
+</ol>
+<p>The <strong>prefix</strong> unary operator <code class="docutils literal notranslate"><span class="pre">++</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Increments the value (number is now <code class="docutils literal notranslate"><span class="pre">2</span></code>)</p></li>
+<li><p>Returns the value (this returns <code class="docutils literal notranslate"><span class="pre">2</span></code>)</p></li>
+</ol>
+<p>This returns <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">2</span> <span class="pre">2</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id12">
+<h2>17. What’s the output?<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">getPersonInfo</span><span class="p">(</span><span class="nx">one</span><span class="p">,</span><span class="w"> </span><span class="nx">two</span><span class="p">,</span><span class="w"> </span><span class="nx">three</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">one</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">two</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">three</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Lydia&#39;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">21</span><span class="p">;</span>
+
+<span class="nx">getPersonInfo</span><span class="sb">`</span><span class="si">${</span><span class="nx">person</span><span class="si">}</span><span class="sb"> is </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb"> years old`</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">&quot;Lydia&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">21</span></code> <code class="docutils literal notranslate"><span class="pre">[&quot;&quot;,</span> <span class="pre">&quot;</span> <span class="pre">is</span> <span class="pre">&quot;,</span> <span class="pre">&quot;</span> <span class="pre">years</span> <span class="pre">old&quot;]</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">[&quot;&quot;,</span> <span class="pre">&quot;</span> <span class="pre">is</span> <span class="pre">&quot;,</span> <span class="pre">&quot;</span> <span class="pre">years</span> <span class="pre">old&quot;]</span></code> <code class="docutils literal notranslate"><span class="pre">&quot;Lydia&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">21</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">&quot;Lydia&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">[&quot;&quot;,</span> <span class="pre">&quot;</span> <span class="pre">is</span> <span class="pre">&quot;,</span> <span class="pre">&quot;</span> <span class="pre">years</span> <span class="pre">old&quot;]</span></code> <code class="docutils literal notranslate"><span class="pre">21</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p>If you use tagged template literals, the value of the first argument is always an array of the string values. The remaining arguments get the values of the passed expressions!</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id13">
+<h2>18. What’s the output?<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">checkAge</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">18</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;You are an adult!&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">18</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;You are still an adult.&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hmm.. You don&#39;t have an age I guess`</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">checkAge</span><span class="p">({</span><span class="w"> </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">18</span><span class="w"> </span><span class="p">});</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">You</span> <span class="pre">are</span> <span class="pre">an</span> <span class="pre">adult!</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">You</span> <span class="pre">are</span> <span class="pre">still</span> <span class="pre">an</span> <span class="pre">adult.</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">Hmm..</span> <span class="pre">You</span> <span class="pre">don't</span> <span class="pre">have</span> <span class="pre">an</span> <span class="pre">age</span> <span class="pre">I</span> <span class="pre">guess</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>When testing equality, primitives are compared by their <em>value</em>, while objects are compared by their <em>reference</em>. JavaScript checks if the objects have a reference to the same location in memory.</p>
+<p>The two objects that we are comparing don’t have that: the object we passed as a parameter refers to a different location in memory than the object we used in order to check equality.</p>
+<p>This is why both <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">age:</span> <span class="pre">18</span> <span class="pre">}</span> <span class="pre">===</span> <span class="pre">{</span> <span class="pre">age:</span> <span class="pre">18</span> <span class="pre">}</span></code> and <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">age:</span> <span class="pre">18</span> <span class="pre">}</span> <span class="pre">==</span> <span class="pre">{</span> <span class="pre">age:</span> <span class="pre">18</span> <span class="pre">}</span></code> return <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id14">
+<h2>19. What’s the output?<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">getAge</span><span class="p">(...</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">args</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">getAge</span><span class="p">(</span><span class="mf">21</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">&quot;number&quot;</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">&quot;array&quot;</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">&quot;object&quot;</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">&quot;NaN&quot;</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>The rest parameter (<code class="docutils literal notranslate"><span class="pre">...args</span></code>) lets us “collect” all remaining arguments into an array. An array is an object, so <code class="docutils literal notranslate"><span class="pre">typeof</span> <span class="pre">args</span></code> returns <code class="docutils literal notranslate"><span class="pre">&quot;object&quot;</span></code></p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id15">
+<h2>20. What’s the output?<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">getAge</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">21</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">getAge</span><span class="p">();</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">21</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">ReferenceError</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">TypeError</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">&quot;use</span> <span class="pre">strict&quot;</span></code>, you can make sure that you don’t accidentally declare global variables. We never declared the variable <code class="docutils literal notranslate"><span class="pre">age</span></code>, and since we use <code class="docutils literal notranslate"><span class="pre">&quot;use</span> <span class="pre">strict&quot;</span></code>, it will throw a reference error. If we didn’t use <code class="docutils literal notranslate"><span class="pre">&quot;use</span> <span class="pre">strict&quot;</span></code>, it would have worked, since the property <code class="docutils literal notranslate"><span class="pre">age</span></code> would have gotten added to the global object.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="what-s-the-value-of-sum">
+<h2>21. What’s the value of <code class="docutils literal notranslate"><span class="pre">sum</span></code>?<a class="headerlink" href="#what-s-the-value-of-sum" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;10*10+5&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">105</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">&quot;105&quot;</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">TypeError</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">&quot;10*10+5&quot;</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p><code class="docutils literal notranslate"><span class="pre">eval</span></code> evaluates codes that’s passed as a string. If it’s an expression, like in this case, it evaluates the expression. The expression is <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">*</span> <span class="pre">10</span> <span class="pre">+</span> <span class="pre">5</span></code>. This returns the number <code class="docutils literal notranslate"><span class="pre">105</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="how-long-is-cool-secret-accessible">
+<h2>22. How long is cool_secret accessible?<a class="headerlink" href="#how-long-is-cool-secret-accessible" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">sessionStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;cool_secret&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">123</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: Forever, the data doesn’t get lost.</p></li>
+<li><p>B: When the user closes the tab.</p></li>
+<li><p>C: When the user closes the entire browser, not only the tab.</p></li>
+<li><p>D: When the user shuts off their computer.</p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p>The data stored in <code class="docutils literal notranslate"><span class="pre">sessionStorage</span></code> is removed after closing the <em>tab</em>.</p>
+<p>If you used <code class="docutils literal notranslate"><span class="pre">localStorage</span></code>, the data would’ve been there forever, unless for example <code class="docutils literal notranslate"><span class="pre">localStorage.clear()</span></code> is invoked.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id16">
+<h2>23. What’s the output?<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8</span><span class="p">;</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">num</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">8</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">10</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">ReferenceError</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p>With the <code class="docutils literal notranslate"><span class="pre">var</span></code> keyword, you can declare multiple variables with the same name. The variable will then hold the latest value.</p>
+<p>You cannot do this with <code class="docutils literal notranslate"><span class="pre">let</span></code> or <code class="docutils literal notranslate"><span class="pre">const</span></code> since they’re block-scoped.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id17">
+<h2>24. What’s the output?<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">1</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">]);</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">);</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="nx">set</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">);</span>
+<span class="nx">set</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>All object keys (excluding Symbols) are strings under the hood, even if you don’t type it yourself as a string. This is why <code class="docutils literal notranslate"><span class="pre">obj.hasOwnProperty('1')</span></code> also returns true.</p>
+<p>It doesn’t work that way for a set. There is no <code class="docutils literal notranslate"><span class="pre">'1'</span></code> in our set: <code class="docutils literal notranslate"><span class="pre">set.has('1')</span></code> returns <code class="docutils literal notranslate"><span class="pre">false</span></code>. It has the numeric type <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">set.has(1)</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id18">
+<h2>25. What’s the output?<a class="headerlink" href="#id18" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;three&#39;</span><span class="w"> </span><span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">a:</span> <span class="pre">&quot;one&quot;,</span> <span class="pre">b:</span> <span class="pre">&quot;two&quot;</span> <span class="pre">}</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">b:</span> <span class="pre">&quot;two&quot;,</span> <span class="pre">a:</span> <span class="pre">&quot;three&quot;</span> <span class="pre">}</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">a:</span> <span class="pre">&quot;three&quot;,</span> <span class="pre">b:</span> <span class="pre">&quot;two&quot;</span> <span class="pre">}</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>If you have two keys with the same name, the key will be replaced. It will still be in its first position, but with the last specified value.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="the-javascript-global-execution-context-creates-two-things-for-you-the-global-object-and-the-this-keyword">
+<h2>26. The JavaScript global execution context creates two things for you: the global object, and the “this” keyword.<a class="headerlink" href="#the-javascript-global-execution-context-creates-two-things-for-you-the-global-object-and-the-this-keyword" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A: true</p></li>
+<li><p>B: false</p></li>
+<li><p>C: it depends</p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>The base execution context is the global execution context: it’s what’s accessible everywhere in your code.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id19">
+<h2>27. What’s the output?<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">i</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">2</span></code> <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">2</span></code> <code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">3</span></code> <code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">continue</span></code> statement skips an iteration if a certain condition returns <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id20">
+<h2>28. What’s the output?<a class="headerlink" href="#id20" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">String</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">giveLydiaPizza</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;Just give Lydia pizza already!&#39;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Lydia&#39;</span><span class="p">;</span>
+
+<span class="nx">name</span><span class="p">.</span><span class="nx">giveLydiaPizza</span><span class="p">();</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">&quot;Just</span> <span class="pre">give</span> <span class="pre">Lydia</span> <span class="pre">pizza</span> <span class="pre">already!&quot;</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">not</span> <span class="pre">a</span> <span class="pre">function</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p><code class="docutils literal notranslate"><span class="pre">String</span></code> is a built-in constructor, which we can add properties to. I just added a method to its prototype. Primitive strings are automatically converted into a string object, generated by the string prototype function. So, all strings (string objects) have access to that method!</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id21">
+<h2>29. What’s the output?<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="w"> </span><span class="p">};</span>
+
+<span class="nx">a</span><span class="p">[</span><span class="nx">b</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">123</span><span class="p">;</span>
+<span class="nx">a</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">456</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">b</span><span class="p">]);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">123</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">456</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">ReferenceError</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p>Object keys are automatically converted into strings. We are trying to set an object as a key to object <code class="docutils literal notranslate"><span class="pre">a</span></code>, with the value of <code class="docutils literal notranslate"><span class="pre">123</span></code>.</p>
+<p>However, when we stringify an object, it becomes <code class="docutils literal notranslate"><span class="pre">&quot;[object</span> <span class="pre">Object]&quot;</span></code>. So what we are saying here, is that <code class="docutils literal notranslate"><span class="pre">a[&quot;[object</span> <span class="pre">Object]&quot;]</span> <span class="pre">=</span> <span class="pre">123</span></code>. Then, we can try to do the same again. <code class="docutils literal notranslate"><span class="pre">c</span></code> is another object that we are implicitly stringifying. So then, <code class="docutils literal notranslate"><span class="pre">a[&quot;[object</span> <span class="pre">Object]&quot;]</span> <span class="pre">=</span> <span class="pre">456</span></code>.</p>
+<p>Then, we log <code class="docutils literal notranslate"><span class="pre">a[b]</span></code>, which is actually <code class="docutils literal notranslate"><span class="pre">a[&quot;[object</span> <span class="pre">Object]&quot;]</span></code>. We just set that to <code class="docutils literal notranslate"><span class="pre">456</span></code>, so it returns <code class="docutils literal notranslate"><span class="pre">456</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id22">
+<h2>30. What’s the output?<a class="headerlink" href="#id22" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;First&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Second&#39;</span><span class="p">));</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">baz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Third&#39;</span><span class="p">);</span>
+
+<span class="nx">bar</span><span class="p">();</span>
+<span class="nx">foo</span><span class="p">();</span>
+<span class="nx">baz</span><span class="p">();</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">First</span></code> <code class="docutils literal notranslate"><span class="pre">Second</span></code> <code class="docutils literal notranslate"><span class="pre">Third</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">First</span></code> <code class="docutils literal notranslate"><span class="pre">Third</span></code> <code class="docutils literal notranslate"><span class="pre">Second</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">Second</span></code> <code class="docutils literal notranslate"><span class="pre">First</span></code> <code class="docutils literal notranslate"><span class="pre">Third</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">Second</span></code> <code class="docutils literal notranslate"><span class="pre">Third</span></code> <code class="docutils literal notranslate"><span class="pre">First</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p>We have a <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> function and invoked it first. Yet, it was logged last.</p>
+<p>This is because in browsers, we don’t just have the runtime engine, we also have something called a <code class="docutils literal notranslate"><span class="pre">WebAPI</span></code>. The <code class="docutils literal notranslate"><span class="pre">WebAPI</span></code> gives us the <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> function to start with, and for example the DOM.</p>
+<p>After the <em>callback</em> is pushed to the WebAPI, the <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> function itself (but not the callback!) is popped off the stack.</p>
+<img src="https://i.imgur.com/X5wsHOg.png" width="200">
+<p>Now, <code class="docutils literal notranslate"><span class="pre">foo</span></code> gets invoked, and <code class="docutils literal notranslate"><span class="pre">&quot;First&quot;</span></code> is being logged.</p>
+<img src="https://i.imgur.com/Pvc0dGq.png" width="200">
+<p><code class="docutils literal notranslate"><span class="pre">foo</span></code> is popped off the stack, and <code class="docutils literal notranslate"><span class="pre">baz</span></code> gets invoked. <code class="docutils literal notranslate"><span class="pre">&quot;Third&quot;</span></code> gets logged.</p>
+<img src="https://i.imgur.com/WhA2bCP.png" width="200">
+<p>The WebAPI can’t just add stuff to the stack whenever it’s ready. Instead, it pushes the callback function to something called the <em>queue</em>.</p>
+<img src="https://i.imgur.com/NSnDZmU.png" width="200">
+<p>This is where an event loop starts to work. An <strong>event loop</strong> looks at the stack and task queue. If the stack is empty, it takes the first thing on the queue and pushes it onto the stack.</p>
+<img src="https://i.imgur.com/uyiScAI.png" width="200">
+<p><code class="docutils literal notranslate"><span class="pre">bar</span></code> gets invoked, <code class="docutils literal notranslate"><span class="pre">&quot;Second&quot;</span></code> gets logged, and it’s popped off the stack.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="what-is-the-event-target-when-clicking-the-button">
+<h2>31. What is the event.target when clicking the button?<a class="headerlink" href="#what-is-the-event-target-when-clicking-the-button" title="Link to this heading">#</a></h2>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;console.log(&#39;first div&#39;)&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;console.log(&#39;second div&#39;)&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;console.log(&#39;button&#39;)&quot;</span><span class="p">&gt;</span>
+      Click!
+    <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: Outer <code class="docutils literal notranslate"><span class="pre">div</span></code></p></li>
+<li><p>B: Inner <code class="docutils literal notranslate"><span class="pre">div</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">button</span></code></p></li>
+<li><p>D: An array of all nested elements.</p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>The deepest nested element that caused the event is the target of the event. You can stop bubbling by <code class="docutils literal notranslate"><span class="pre">event.stopPropagation</span></code></p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="when-you-click-the-paragraph-what-s-the-logged-output">
+<h2>32. When you click the paragraph, what’s the logged output?<a class="headerlink" href="#when-you-click-the-paragraph-what-s-the-logged-output" title="Link to this heading">#</a></h2>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;console.log(&#39;div&#39;)&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;console.log(&#39;p&#39;)&quot;</span><span class="p">&gt;</span>
+    Click here!
+  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">p</span></code> <code class="docutils literal notranslate"><span class="pre">div</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">div</span></code> <code class="docutils literal notranslate"><span class="pre">p</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">p</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">div</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>If we click <code class="docutils literal notranslate"><span class="pre">p</span></code>, we see two logs: <code class="docutils literal notranslate"><span class="pre">p</span></code> and <code class="docutils literal notranslate"><span class="pre">div</span></code>. During event propagation, there are 3 phases: capturing, target, and bubbling. By default, event handlers are executed in the bubbling phase (unless you set <code class="docutils literal notranslate"><span class="pre">useCapture</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>). It goes from the deepest nested element outwards.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id23">
+<h2>33. What’s the output?<a class="headerlink" href="#id23" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lydia&#39;</span><span class="w"> </span><span class="p">};</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">sayHi</span><span class="p">(</span><span class="nx">age</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb"> is </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sayHi</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span><span class="w"> </span><span class="mf">21</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sayHi</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span><span class="w"> </span><span class="mf">21</span><span class="p">));</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">undefined</span> <span class="pre">is</span> <span class="pre">21</span></code> <code class="docutils literal notranslate"><span class="pre">Lydia</span> <span class="pre">is</span> <span class="pre">21</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">function</span></code> <code class="docutils literal notranslate"><span class="pre">function</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">Lydia</span> <span class="pre">is</span> <span class="pre">21</span></code> <code class="docutils literal notranslate"><span class="pre">Lydia</span> <span class="pre">is</span> <span class="pre">21</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">Lydia</span> <span class="pre">is</span> <span class="pre">21</span></code> <code class="docutils literal notranslate"><span class="pre">function</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: D</p>
+<p>With both, we can pass the object to which we want the <code class="docutils literal notranslate"><span class="pre">this</span></code> keyword to refer to. However, <code class="docutils literal notranslate"><span class="pre">.call</span></code> is also <em>executed immediately</em>!</p>
+<p><code class="docutils literal notranslate"><span class="pre">.bind.</span></code> returns a <em>copy</em> of the function, but with a bound context! It is not executed immediately.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id24">
+<h2>34. What’s the output?<a class="headerlink" href="#id24" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">sayHi</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)();</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">sayHi</span><span class="p">());</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">&quot;object&quot;</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">&quot;number&quot;</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">&quot;function&quot;</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">&quot;undefined&quot;</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">sayHi</span></code> function returns the returned value of the immediately invoked function expression (IIFE). This function returned <code class="docutils literal notranslate"><span class="pre">0</span></code>, which is type <code class="docutils literal notranslate"><span class="pre">&quot;number&quot;</span></code>.</p>
+<p>FYI: there are only 7 built-in types: <code class="docutils literal notranslate"><span class="pre">null</span></code>, <code class="docutils literal notranslate"><span class="pre">undefined</span></code>, <code class="docutils literal notranslate"><span class="pre">boolean</span></code>, <code class="docutils literal notranslate"><span class="pre">number</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">object</span></code>, and <code class="docutils literal notranslate"><span class="pre">symbol</span></code>. <code class="docutils literal notranslate"><span class="pre">&quot;function&quot;</span></code> is not a type, since functions are objects, it’s of type <code class="docutils literal notranslate"><span class="pre">&quot;object&quot;</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="which-of-these-values-are-falsy">
+<h2>35. Which of these values are falsy?<a class="headerlink" href="#which-of-these-values-are-falsy" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="mf">0</span><span class="p">;</span>
+<span class="ow">new</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
+<span class="ow">new</span><span class="w"> </span><span class="nb">Boolean</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="kc">undefined</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">''</span></code>, <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Number(0)</span></code>, <code class="docutils literal notranslate"><span class="pre">''</span></code>, <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Boolean(false)</span></code>, <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">''</span></code>, <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Boolean(false)</span></code>, <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+<li><p>D: All of them are falsy</p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>There are 8 falsy values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">null</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">''</span></code> (empty string)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0n</span></code> (BigInt(0))</p></li>
+</ul>
+<p>Function constructors, like <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Number</span></code> and <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Boolean</span></code> are truthy.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id25">
+<h2>36. What’s the output?<a class="headerlink" href="#id25" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="ow">typeof</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">&quot;number&quot;</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">&quot;string&quot;</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">&quot;object&quot;</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">&quot;undefined&quot;</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p><code class="docutils literal notranslate"><span class="pre">typeof</span> <span class="pre">1</span></code> returns <code class="docutils literal notranslate"><span class="pre">&quot;number&quot;</span></code>.
+<code class="docutils literal notranslate"><span class="pre">typeof</span> <span class="pre">&quot;number&quot;</span></code> returns <code class="docutils literal notranslate"><span class="pre">&quot;string&quot;</span></code></p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id26">
+<h2>37. What’s the output?<a class="headerlink" href="#id26" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">];</span>
+<span class="nx">numbers</span><span class="p">[</span><span class="mf">10</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">11</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numbers</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">7</span> <span class="pre">x</span> <span class="pre">null,</span> <span class="pre">11]</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">11]</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">7</span> <span class="pre">x</span> <span class="pre">empty,</span> <span class="pre">11]</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>When you set a value to an element in an array that exceeds the length of the array, JavaScript creates something called “empty slots”. These actually have the value of <code class="docutils literal notranslate"><span class="pre">undefined</span></code>, but you will see something like:</p>
+<p><code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">7</span> <span class="pre">x</span> <span class="pre">empty,</span> <span class="pre">11]</span></code></p>
+<p>depending on where you run it (it’s different for every browser, node, etc.)</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id27">
+<h2>38. What’s the output?<a class="headerlink" href="#id27" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
+<span class="p">})();</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">undefined</span></code> <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">undefined</span></code> <code class="docutils literal notranslate"><span class="pre">undefined</span></code> <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">1</span></code> <code class="docutils literal notranslate"><span class="pre">undefined</span></code> <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">catch</span></code> block receives the argument <code class="docutils literal notranslate"><span class="pre">x</span></code>. This is not the same <code class="docutils literal notranslate"><span class="pre">x</span></code> as the variable when we pass arguments. This variable <code class="docutils literal notranslate"><span class="pre">x</span></code> is block-scoped.</p>
+<p>Later, we set this block-scoped variable equal to <code class="docutils literal notranslate"><span class="pre">1</span></code>, and set the value of the variable <code class="docutils literal notranslate"><span class="pre">y</span></code>. Now, we log the block-scoped variable <code class="docutils literal notranslate"><span class="pre">x</span></code>, which is equal to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<p>Outside of the <code class="docutils literal notranslate"><span class="pre">catch</span></code> block, <code class="docutils literal notranslate"><span class="pre">x</span></code> is still <code class="docutils literal notranslate"><span class="pre">undefined</span></code>, and <code class="docutils literal notranslate"><span class="pre">y</span></code> is <code class="docutils literal notranslate"><span class="pre">2</span></code>. When we want to <code class="docutils literal notranslate"><span class="pre">console.log(x)</span></code> outside of the <code class="docutils literal notranslate"><span class="pre">catch</span></code> block, it returns <code class="docutils literal notranslate"><span class="pre">undefined</span></code>, and <code class="docutils literal notranslate"><span class="pre">y</span></code> returns <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="everything-in-javascript-is-either-a">
+<h2>39. Everything in JavaScript is either a…<a class="headerlink" href="#everything-in-javascript-is-either-a" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A: primitive or object</p></li>
+<li><p>B: function or object</p></li>
+<li><p>C: trick question! only objects</p></li>
+<li><p>D: number or object</p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>JavaScript only has primitive types and objects.</p>
+<p>Primitive types are <code class="docutils literal notranslate"><span class="pre">boolean</span></code>, <code class="docutils literal notranslate"><span class="pre">null</span></code>, <code class="docutils literal notranslate"><span class="pre">undefined</span></code>, <code class="docutils literal notranslate"><span class="pre">bigint</span></code>, <code class="docutils literal notranslate"><span class="pre">number</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, and <code class="docutils literal notranslate"><span class="pre">symbol</span></code>.</p>
+<p>What differentiates a primitive from an object is that primitives do not have any properties or methods; however, you’ll note that <code class="docutils literal notranslate"><span class="pre">'foo'.toUpperCase()</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">'FOO'</span></code> and does not result in a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>. This is because when you try to access a property or method on a primitive like a string, JavaScript will implicitly wrap the primitive type using one of the wrapper classes, i.e. <code class="docutils literal notranslate"><span class="pre">String</span></code>, and then immediately discard the wrapper after the expression evaluates. All primitives except for <code class="docutils literal notranslate"><span class="pre">null</span></code> and <code class="docutils literal notranslate"><span class="pre">undefined</span></code> exhibit this behaviour.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id28">
+<h2>40. What’s the output?<a class="headerlink" href="#id28" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]].</span><span class="nx">reduce</span><span class="p">(</span>
+<span class="w">  </span><span class="p">(</span><span class="nx">acc</span><span class="p">,</span><span class="w"> </span><span class="nx">cur</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">acc</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">cur</span><span class="p">);</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">],</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">1,</span> <span class="pre">2]</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">[6,</span> <span class="pre">1,</span> <span class="pre">2]</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">6]</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p><code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2]</span></code> is our initial value. This is the value we start with, and the value of the very first <code class="docutils literal notranslate"><span class="pre">acc</span></code>. During the first round, <code class="docutils literal notranslate"><span class="pre">acc</span></code> is <code class="docutils literal notranslate"><span class="pre">[1,2]</span></code>, and <code class="docutils literal notranslate"><span class="pre">cur</span></code> is <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>. We concatenate them, which results in <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">0,</span> <span class="pre">1]</span></code>.</p>
+<p>Then, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">0,</span> <span class="pre">1]</span></code> is <code class="docutils literal notranslate"><span class="pre">acc</span></code> and <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">3]</span></code> is <code class="docutils literal notranslate"><span class="pre">cur</span></code>. We concatenate them, and get <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code></p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id29">
+<h2>41. What’s the output?<a class="headerlink" href="#id29" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">!!</span><span class="kc">null</span><span class="p">;</span>
+<span class="o">!!</span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="o">!!</span><span class="mf">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">false</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">true</span></code> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p><code class="docutils literal notranslate"><span class="pre">null</span></code> is falsy. <code class="docutils literal notranslate"><span class="pre">!null</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code>. <code class="docutils literal notranslate"><span class="pre">!true</span></code> returns <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> is falsy. <code class="docutils literal notranslate"><span class="pre">!&quot;&quot;</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code>. <code class="docutils literal notranslate"><span class="pre">!true</span></code> returns <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">1</span></code> is truthy. <code class="docutils literal notranslate"><span class="pre">!1</span></code> returns <code class="docutils literal notranslate"><span class="pre">false</span></code>. <code class="docutils literal notranslate"><span class="pre">!false</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="what-does-the-setinterval-method-return-in-the-browser">
+<h2>42. What does the <code class="docutils literal notranslate"><span class="pre">setInterval</span></code> method return in the browser?<a class="headerlink" href="#what-does-the-setinterval-method-return-in-the-browser" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Hi&#39;</span><span class="p">),</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: a unique id</p></li>
+<li><p>B: the amount of milliseconds specified</p></li>
+<li><p>C: the passed function</p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">undefined</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>It returns a unique id. This id can be used to clear that interval with the <code class="docutils literal notranslate"><span class="pre">clearInterval()</span></code> function.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="what-does-this-return">
+<h2>43. What does this return?<a class="headerlink" href="#what-does-this-return" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[...</span><span class="s1">&#39;Lydia&#39;</span><span class="p">];</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">[&quot;L&quot;,</span> <span class="pre">&quot;y&quot;,</span> <span class="pre">&quot;d&quot;,</span> <span class="pre">&quot;i&quot;,</span> <span class="pre">&quot;a&quot;]</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">[&quot;Lydia&quot;]</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">[[],</span> <span class="pre">&quot;Lydia&quot;]</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">[[&quot;L&quot;,</span> <span class="pre">&quot;y&quot;,</span> <span class="pre">&quot;d&quot;,</span> <span class="pre">&quot;i&quot;,</span> <span class="pre">&quot;a&quot;]]</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: A</p>
+<p>A string is an iterable. The spread operator maps every character of an iterable to one element.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id30">
+<h2>44. What’s the output?<a class="headerlink" href="#id30" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="o">*</span><span class="w"> </span><span class="nx">generator</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">yield</span><span class="w"> </span><span class="nx">i</span><span class="p">;</span>
+<span class="w">  </span><span class="k">yield</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">gen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">generator</span><span class="p">(</span><span class="mf">10</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">gen</span><span class="p">.</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">gen</span><span class="p">.</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">10],</span> <span class="pre">[10,</span> <span class="pre">20]</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">20,</span> <span class="pre">20</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">10,</span> <span class="pre">20</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">10</span> <span class="pre">and</span> <span class="pre">10,</span> <span class="pre">20</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>Regular functions cannot be stopped mid-way after invocation. However, a generator function can be “stopped” midway, and later continue from where it stopped. Every time a generator function encounters a <code class="docutils literal notranslate"><span class="pre">yield</span></code> keyword, the function yields the value specified after it. Note that the generator function in that case doesn’t <em>return</em> the value, it <em>yields</em> the value.</p>
+<p>First, we initialize the generator function with <code class="docutils literal notranslate"><span class="pre">i</span></code> equal to <code class="docutils literal notranslate"><span class="pre">10</span></code>. We invoke the generator function using the <code class="docutils literal notranslate"><span class="pre">next()</span></code> method. The first time we invoke the generator function, <code class="docutils literal notranslate"><span class="pre">i</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">10</span></code>. It encounters the first <code class="docutils literal notranslate"><span class="pre">yield</span></code> keyword: it yields the value of <code class="docutils literal notranslate"><span class="pre">i</span></code>. The generator is now “paused”, and <code class="docutils literal notranslate"><span class="pre">10</span></code> gets logged.</p>
+<p>Then, we invoke the function again with the <code class="docutils literal notranslate"><span class="pre">next()</span></code> method. It starts to continue where it stopped previously, still with <code class="docutils literal notranslate"><span class="pre">i</span></code> equal to <code class="docutils literal notranslate"><span class="pre">10</span></code>. Now, it encounters the next <code class="docutils literal notranslate"><span class="pre">yield</span></code> keyword, and yields <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">*</span> <span class="pre">2</span></code>. <code class="docutils literal notranslate"><span class="pre">i</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">10</span></code>, so it returns <code class="docutils literal notranslate"><span class="pre">10</span> <span class="pre">*</span> <span class="pre">2</span></code>, which is <code class="docutils literal notranslate"><span class="pre">20</span></code>. This results in <code class="docutils literal notranslate"><span class="pre">10,</span> <span class="pre">20</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id31">
+<h2>45. What does this return?<a class="headerlink" href="#id31" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">firstPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">rej</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="mf">500</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;one&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">secondPromise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">rej</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;two&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nb">Promise</span><span class="p">.</span><span class="nx">race</span><span class="p">([</span><span class="nx">firstPromise</span><span class="p">,</span><span class="w"> </span><span class="nx">secondPromise</span><span class="p">]).</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">));</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">&quot;one&quot;</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">&quot;two&quot;</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">&quot;two&quot;</span> <span class="pre">&quot;one&quot;</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">&quot;one&quot;</span> <span class="pre">&quot;two&quot;</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p>When we pass multiple promises to the <code class="docutils literal notranslate"><span class="pre">Promise.race</span></code> method, it resolves/rejects the <em>first</em> promise that resolves/rejects. To the <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> method, we pass a timer: 500ms for the first promise (<code class="docutils literal notranslate"><span class="pre">firstPromise</span></code>), and 100ms for the second promise (<code class="docutils literal notranslate"><span class="pre">secondPromise</span></code>). This means that the <code class="docutils literal notranslate"><span class="pre">secondPromise</span></code> resolves first with the value of <code class="docutils literal notranslate"><span class="pre">'two'</span></code>. <code class="docutils literal notranslate"><span class="pre">res</span></code> now holds the value of <code class="docutils literal notranslate"><span class="pre">'two'</span></code>, which gets logged.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id32">
+<h2>46. What’s the output?<a class="headerlink" href="#id32" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lydia&#39;</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">person</span><span class="p">];</span>
+<span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">members</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">null</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">[null]</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">[{}]</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">[{</span> <span class="pre">name:</span> <span class="pre">&quot;Lydia&quot;</span> <span class="pre">}]</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: D</p>
+<p>First, we declare a variable <code class="docutils literal notranslate"><span class="pre">person</span></code> with the value of an object that has a <code class="docutils literal notranslate"><span class="pre">name</span></code> property.</p>
+<img src="https://i.imgur.com/TML1MbS.png" width="200">
+<p>Then, we declare a variable called <code class="docutils literal notranslate"><span class="pre">members</span></code>. We set the first element of that array equal to the value of the <code class="docutils literal notranslate"><span class="pre">person</span></code> variable. Objects interact by <em>reference</em> when setting them equal to each other. When you assign a reference from one variable to another, you make a <em>copy</em> of that reference. (note that they don’t have the <em>same</em> reference!)</p>
+<img src="https://i.imgur.com/FSG5K3F.png" width="300">
+<p>Then, we set the variable <code class="docutils literal notranslate"><span class="pre">person</span></code> equal to <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
+<img src="https://i.imgur.com/sYjcsMT.png" width="300">
+<p>We are only modifying the value of the <code class="docutils literal notranslate"><span class="pre">person</span></code> variable, and not the first element in the array, since that element has a different (copied) reference to the object. The first element in <code class="docutils literal notranslate"><span class="pre">members</span></code> still holds its reference to the original object. When we log the <code class="docutils literal notranslate"><span class="pre">members</span></code> array, the first element still holds the value of the object, which gets logged.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id33">
+<h2>47. What’s the output?<a class="headerlink" href="#id33" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Lydia&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">21</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">person</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">name:</span> <span class="pre">&quot;Lydia&quot;</span> <span class="pre">},</span> <span class="pre">{</span> <span class="pre">age:</span> <span class="pre">21</span> <span class="pre">}</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;,</span> <span class="pre">&quot;age&quot;</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">&quot;Lydia&quot;,</span> <span class="pre">21</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">[&quot;name&quot;,</span> <span class="pre">&quot;Lydia&quot;],</span> <span class="pre">[&quot;age&quot;,</span> <span class="pre">21]</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p>With a <code class="docutils literal notranslate"><span class="pre">for-in</span></code> loop, we can iterate through object keys, in this case <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">age</span></code>. Under the hood, object keys are strings (if they’re not a Symbol). On every loop, we set the value of <code class="docutils literal notranslate"><span class="pre">item</span></code> equal to the current key it’s iterating over. First, <code class="docutils literal notranslate"><span class="pre">item</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">name</span></code>, and gets logged. Then, <code class="docutils literal notranslate"><span class="pre">item</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">age</span></code>, which gets logged.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id34">
+<h2>48. What’s the output?<a class="headerlink" href="#id34" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;5&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">&quot;345&quot;</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">&quot;75&quot;</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">12</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">&quot;12&quot;</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: B</p>
+<p>Operator associativity is the order in which the compiler evaluates the expressions, either left-to-right or right-to-left. This only happens if all operators have the <em>same</em> precedence. We only have one type of operator: <code class="docutils literal notranslate"><span class="pre">+</span></code>. For addition, the associativity is left-to-right.</p>
+<p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">+</span> <span class="pre">4</span></code> gets evaluated first. This results in the number <code class="docutils literal notranslate"><span class="pre">7</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">7</span> <span class="pre">+</span> <span class="pre">'5'</span></code> results in <code class="docutils literal notranslate"><span class="pre">&quot;75&quot;</span></code> because of coercion. JavaScript converts the number <code class="docutils literal notranslate"><span class="pre">7</span></code> into a string, see question 15. We can concatenate two strings using the <code class="docutils literal notranslate"><span class="pre">+</span></code>operator. <code class="docutils literal notranslate"><span class="pre">&quot;7&quot;</span> <span class="pre">+</span> <span class="pre">&quot;5&quot;</span></code> results in <code class="docutils literal notranslate"><span class="pre">&quot;75&quot;</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="what-s-the-value-of-num">
+<h2>49. What’s the value of <code class="docutils literal notranslate"><span class="pre">num</span></code>?<a class="headerlink" href="#what-s-the-value-of-num" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;7*6&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">42</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">&quot;42&quot;</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">7</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">NaN</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>Only the first numbers in the string is returned. Based on the <em>radix</em> (the second argument in order to specify what type of number we want to parse it to: base 10, hexadecimal, octal, binary, etc.), the <code class="docutils literal notranslate"><span class="pre">parseInt</span></code> checks whether the characters in the string are valid. Once it encounters a character that isn’t a valid number in the radix, it stops parsing and ignores the following characters.</p>
+<p><code class="docutils literal notranslate"><span class="pre">*</span></code> is not a valid number. It only parses <code class="docutils literal notranslate"><span class="pre">&quot;7&quot;</span></code> into the decimal <code class="docutils literal notranslate"><span class="pre">7</span></code>. <code class="docutils literal notranslate"><span class="pre">num</span></code> now holds the value of <code class="docutils literal notranslate"><span class="pre">7</span></code>.</p>
+</p>
+</details>
+</section>
+<hr class="docutils" />
+<section id="id35">
+<h2>50. What’s the output?<a class="headerlink" href="#id35" title="Link to this heading">#</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;number&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A: <code class="docutils literal notranslate"><span class="pre">[]</span></code></p></li>
+<li><p>B: <code class="docutils literal notranslate"><span class="pre">[null,</span> <span class="pre">null,</span> <span class="pre">null]</span></code></p></li>
+<li><p>C: <code class="docutils literal notranslate"><span class="pre">[undefined,</span> <span class="pre">undefined,</span> <span class="pre">undefined]</span></code></p></li>
+<li><p>D: <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">3</span> <span class="pre">x</span> <span class="pre">empty</span> <span class="pre">]</span></code></p></li>
+</ul>
+<details><summary><b>Answer</b></summary>
+<p>
+<p>Answer: C</p>
+<p>When mapping over the array, the value of <code class="docutils literal notranslate"><span class="pre">num</span></code> is equal to the element it’s currently looping over. In this case, the elements are numbers, so the condition of the if statement <code class="docutils literal notranslate"><span class="pre">typeof</span> <span class="pre">num</span> <span class="pre">===</span> <span class="pre">&quot;number&quot;</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code>. The map function creates a new array and inserts the values returned from the function.</p>
+<p>However, we don’t return a value. When we don’t return a value from the function, the function returns <code class="docutils literal notranslate"><span class="pre">undefined</span></code>. For every element in the array, the function block gets called, so for each element we return <code class="docutils literal notranslate"><span class="pre">undefined</span></code>.</p>
+</p>
+</details>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Javascript.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Javascript</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="jsQ100.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">JavaScript Questions 51 to 100</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-output">1. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-one-is-true">5. Which one is true?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">7. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">8. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">9. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-when-we-do-this">10. What happens when we do this?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">11. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">12. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-three-phases-of-event-propagation">13. What are the three phases of event propagation?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#all-object-have-prototypes">14. All object have prototypes.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">15. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">16. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">17. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">18. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">19. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">20. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-value-of-sum">21. What’s the value of <code class="docutils literal notranslate"><span class="pre">sum</span></code>?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-long-is-cool-secret-accessible">22. How long is cool_secret accessible?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">23. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">24. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">25. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-javascript-global-execution-context-creates-two-things-for-you-the-global-object-and-the-this-keyword">26. The JavaScript global execution context creates two things for you: the global object, and the “this” keyword.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">27. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">28. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">29. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">30. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-event-target-when-clicking-the-button">31. What is the event.target when clicking the button?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-you-click-the-paragraph-what-s-the-logged-output">32. When you click the paragraph, what’s the logged output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">33. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">34. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-of-these-values-are-falsy">35. Which of these values are falsy?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">36. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">37. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">38. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#everything-in-javascript-is-either-a">39. Everything in JavaScript is either a…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">40. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">41. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-the-setinterval-method-return-in-the-browser">42. What does the <code class="docutils literal notranslate"><span class="pre">setInterval</span></code> method return in the browser?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-return">43. What does this return?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">44. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">45. What does this return?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">46. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">47. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">48. What’s the output?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-value-of-num">49. What’s the value of <code class="docutils literal notranslate"><span class="pre">num</span></code>?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">50. What’s the output?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

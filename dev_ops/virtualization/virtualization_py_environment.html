@@ -1,0 +1,906 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>python virtual environment &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_ops/virtualization/virtualization_py_environment';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/dev_ops/virtualization/virtualization_py_environment.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Vargant virtualization" href="virtualization_Vargant.html" />
+    <link rel="prev" title="dockers" href="virtualization_docker.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">devops</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../git.html">git</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../git/git_cheetsheet.html">cheet sheet github and git</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../git/git_discribe.html">গিট এর সব essential topicগুলো cover করা হয়েছে।</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../linux.html">daphne</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/pacman.html">Package Manager (pacman)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../daphne.html">daphne</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../daphne/daphne_django.html">daphne django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gunicorn.html">gunicorn</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gunicorn/gunicorn_django.html">Gunicorn Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nginx.html">nginx</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nginx/nginx_django.html">Nginx Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../text_editor.html">text editor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/vim_cheatsheet.html">Simple Vim workflow example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/ESLint_workspace-setup-VSCODE.html">SLint, Prettier snippets VSCODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/emojisence.html">Emoji snippet VSCODE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../virtualization.html">virtualization</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="virtualization_docker.html">dockers</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">python virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualization_Vargant.html">Vargant virtualization</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">devops</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../virtualization.html" class="nav-link">virtualization</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">python...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="python-virtual-environment">
+<h1>python virtual environment<a class="headerlink" href="#python-virtual-environment" title="Link to this heading">#</a></h1>
+<h1 style='color:pink'> linux user দের  জন্য  </h1> 
+<section id="create-python3-virtual-environment">
+<h2>create python3 virtual environment<a class="headerlink" href="#create-python3-virtual-environment" title="Link to this heading">#</a></h2>
+<p>project directory তে python এর virtual environment তৈরি করে সেই virtual environment এ python library install দিয়ে প্রয়োজনীয় project complete করা যায়।</p>
+<p>1st python3-venv install দিতে হবে , যেন venv ব্যবহার করে যেকোনো directory তে যে কোন নাম এর ভার্চুয়াল environment তৈরি করা যায়। open terminal &amp; type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="c1"># setup py3 env</span>
+
+    <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span>
+
+</pre></div>
+</div>
+<p>2nd যে directory তে প্রোজেক্ট বা py file নিয়ে কাজ করব বা যে directory তে virtual environment তৈরি করতে চাই সেই directory তে গিয়ে terminal এ টাইপ করতে হবে <a style='color:green'> python3 -m venv environmentName </a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    
+    <span class="c1"># create venv     </span>
+    
+    <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">env</span>
+
+
+</pre></div>
+</div>
+<p>3rd তৈরিকৃত venv ফাইল যে directory তে আছে সেই directory তে গিয়ে environment টা কে active করতে হবে।</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="c1"># activate venv</span>
+
+    <span class="n">source</span> <span class="n">env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+
+
+</pre></div>
+</div>
+<p>এখন আমরা terminal এ পরিবর্তন দেখতে পাব। বুঝতে পারব আমরা new environment এ আছি।</p>
+<section id="install-library-under-virtual-environment">
+<h3>install library under virtual environment<a class="headerlink" href="#install-library-under-virtual-environment" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://pypi.org/">pypi</a> থেকে যে কোন লাইব্রেরি এর যে কোন ভার্সন install দিতে পারা যায়। লাইব্রেরি এর নাম লিখে search দিয়ে specific library ইন্সটল দাওয়ার script পাওয়া যায়।</p>
+<p>বা google এ pip install libraryName লিখে search দিলে pypi এর যে link সার্চ এ আসবে সেই link এ গিয়ে ইন্সটল script নিতে পারা যায়।</p>
+</section>
+<section id="use-requirment-txt-file">
+<h3>use requirment.txt file<a class="headerlink" href="#use-requirment-txt-file" title="Link to this heading">#</a></h3>
+<p>1st create requirment.txt file বা যে কোন নাম এর txt ফাইল যার ভিতরে যে সব লাইব্রেরি install দিতে হবে তার সব library এর নাম এবং version উল্লেখ করতে হবে। example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="c1">#type under requirment.txt</span>
+
+<span class="n">django</span><span class="o">==</span><span class="mf">3.0.4</span>
+<span class="n">djangorestframework</span><span class="o">==</span><span class="mf">3.11.0</span>
+
+
+</pre></div>
+</div>
+<p>requirment.txt file এ যে সব library এর নাম লিখা হয়েছে তার সব লাইব্রেরি গুলো এক সঙ্ঘে install দিতে type on terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+
+</pre></div>
+</div>
+<p>virtual environment টার under এ কি কি library ইন্সটল দাওয়া আছে টা দেখতে type on terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="n">pip</span> <span class="n">freeze</span>
+
+</pre></div>
+</div>
+</section>
+<section id="include-ipython-kernel-to-virtual-environment">
+<h3>include ipython kernel to virtual environment<a class="headerlink" href="#include-ipython-kernel-to-virtual-environment" title="Link to this heading">#</a></h3>
+<p>make sure যে IPython kernel কে virtual environment এ install দাওয়া আছে।
+virtual environment এ manually kernel কে বিভিন্ন version এর python এ add করা যায়,
+<a style='color:green'> pip install ipykernel </a> দ্বারা।</p>
+<p>১ম virtual environment কে activate করতে হবে</p>
+<p>তারপর <a style='color:green'> python -m ipykernel install –user –name=envName
+</a> –name=virtualEnv এর নাম দিতে হবে।</p>
+<p>এখন jupyter notebook এ গিয়ে New button এ ক্লিক করলে নিউ environment টি দেখতে পারা যাবে এবং প্রয়োজন মত ব্যবহার করা যাবে।</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># install ipython consol in virtual environment</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">ipykernel</span>
+
+<span class="c1"># now add python and ipykernel to jupyter notebook</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">ipykernel</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">env</span>
+
+
+</pre></div>
+</div>
+<p>পূর্বের ব্যবহার করা virtual environment কে jupyter notebook এ ব্যবহার করতে চাইলে এই প্রক্রিয়া টি ব্যবহার করতে পারেন।</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># create venv     </span>
+    <span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">env</span>
+
+    <span class="c1"># activate venv</span>
+    <span class="n">source</span> <span class="n">env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+
+    <span class="c1"># install ipython consol in virtual environment</span>
+    <span class="n">pip</span> <span class="n">install</span> <span class="n">ipykernel</span>
+
+    <span class="c1"># now add python and ipykernel to jupyter notebook</span>
+    <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">ipykernel</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">env</span>
+
+    <span class="c1"># open jupyterNotebook if Installed</span>
+    <span class="n">jupyter</span> <span class="n">notebook</span>
+
+</pre></div>
+</div>
+<p>এখন jupyter notebook এ নতুন env টি দেখতে এবং ব্যবহার করতে পারা যাবে।</p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1t40yKloEg57jiog7KqUqfg_iyEKdSvrO" /></p>
+</section>
+</section>
+<section id="create-virtual-environment-with-virtualenv">
+<h2>create virtual environment with virtualenv<a class="headerlink" href="#create-virtual-environment-with-virtualenv" title="Link to this heading">#</a></h2>
+<p>১ম virtualenv কে OS এ ইন্সটল দিতে হবে যেন যে কোন directory তে virtualenv ব্যবহার করে environment তৈরি করতে পারি। open terminal and type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="c1">#install virtualenv:</span>
+	
+    <span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span>
+
+</pre></div>
+</div>
+<p>২য় যে কোন directory তে  virtual environment  create করা যায় by type on terminal</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="c1">#create virtual environment:</span>
+	
+    <span class="n">virtualenv</span> <span class="n">envName</span>
+
+</pre></div>
+</div>
+<p>৩য় virtual environment activate করতে type on terminal :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="c1">#activate virtualenv:</span>
+	
+    <span class="n">cd</span> <span class="n">envName</span>
+	<span class="n">cd</span> <span class="n">Scripts</span>
+	<span class="n">activate</span>
+
+
+</pre></div>
+</div>
+<p><mark> library install এবং ব্যবহার সব টাইপ এর environment এ প্রায় same </mark></p>
+</section>
+<section id="create-virtual-environment-with-anaconda">
+<h2>create virtual environment with anaconda<a class="headerlink" href="#create-virtual-environment-with-anaconda" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://docs.anaconda.com/anaconda/install/linux/">follow official instruction</a></p>
+<section id="create-environment">
+<h3>create environment<a class="headerlink" href="#create-environment" title="Link to this heading">#</a></h3>
+<p>python এর যে কোন version এবং যে কোন নাম এর virtual environment তৈরি করার জন্য anaconda বিশেষভাবে popular.</p>
+<p>virtual environment তৈরি করার জন্য terminal এ গিয়ে type করতে হবে,
+<a style='color:green'> conda create –name envName python=3.XX </a> envName = environmentName , python=3.6 python’s specific version</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">envName</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.6</span>
+
+
+<span class="ow">or</span>
+
+<span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">envName</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.5</span> <span class="n">anaconda</span>
+
+
+</pre></div>
+</div>
+<p><mark> library install এবং ব্যবহার সব টাইপ এর environment এ প্রায় same </mark></p>
+<p>pipline ব্যবহার করে বা pip install এর দ্বারা সব library activated environment এ install দাওয়া যায়।</p>
+</section>
+<section id="activate-anaconda-environment">
+<h3>activate anaconda environment<a class="headerlink" href="#activate-anaconda-environment" title="Link to this heading">#</a></h3>
+<p>anaconda environment activate করার জন্য <a style='color:green'> conda activate environmentName </a> ব্যবহার করা হয়।</p>
+<p>environment list দেখার জন্য <a style='color:green'> conda env list </a> ব্যবহার করা হয়।</p>
+<p>activated environment এ installed libraries এর list দেখার জন্য <a style='color:green'> conda list </a> ব্যবহার করা হয়।</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># to activated environment </span>
+
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">environmentName</span>
+
+
+<span class="c1"># to deactivated environment</span>
+
+<span class="n">conda</span> <span class="n">deactivate</span>
+
+
+<span class="c1"># to see environment list </span>
+
+<span class="n">conda</span> <span class="n">env</span> <span class="nb">list</span>
+
+
+<span class="c1"># to see installed library </span>
+
+<span class="n">conda</span> <span class="nb">list</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="save-installed-package-to-be-reinstalled-formate">
+<h3>Save installed package to be reinstalled formate<a class="headerlink" href="#save-installed-package-to-be-reinstalled-formate" title="Link to this heading">#</a></h3>
+<p>installed packages গুলো requirements.txt বা environment.yml file এ save করতে নিম্নের command ব্যবহার করা যায়।</p>
+<p>For conda, I would first export the environment list as environment.yml and omit the package build numbers, which is often what makes it hard to reproduce the environment on another OS.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">export</span> <span class="o">&gt;</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">builds</span>
+
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span><span class="p">:</span> <span class="n">myenv</span>
+<span class="n">channels</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">defaults</span>
+  <span class="o">-</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+<span class="n">dependencies</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">blas</span><span class="o">=</span><span class="mf">1.0</span>
+  <span class="o">-</span> <span class="n">ca</span><span class="o">-</span><span class="n">certificates</span><span class="o">=</span><span class="mf">2020.10.14</span>
+  <span class="o">-</span> <span class="n">certifi</span><span class="o">=</span><span class="mf">2020.6.20</span>
+<span class="o">...</span>
+
+</pre></div>
+</div>
+<p>For pip, what you describe above is apparently a well-known issue in more recent versions of pip. The workaround to get a “clean” requirements.txt file, is to export as such:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="nb">list</span> <span class="o">--</span><span class="nb">format</span><span class="o">=</span><span class="n">freeze</span> <span class="o">&gt;</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">certifi</span><span class="o">==</span><span class="mf">2020.6.20</span>
+<span class="n">cycler</span><span class="o">==</span><span class="mf">0.10.0</span>
+<span class="n">kiwisolver</span><span class="o">==</span><span class="mf">1.2.0</span>
+<span class="n">matplotlib</span><span class="o">==</span><span class="mf">3.3.2</span>
+<span class="n">mkl</span><span class="o">-</span><span class="n">fft</span><span class="o">==</span><span class="mf">1.2.0</span>
+<span class="o">...</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="virtualization_docker.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">dockers</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="virtualization_Vargant.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Vargant virtualization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-python3-virtual-environment">create python3 virtual environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-library-under-virtual-environment">install library under virtual environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-requirment-txt-file">use requirment.txt file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#include-ipython-kernel-to-virtual-environment">include ipython kernel to virtual environment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-virtual-environment-with-virtualenv">create virtual environment with virtualenv</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-virtual-environment-with-anaconda">create virtual environment with anaconda</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-environment">create environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activate-anaconda-environment">activate anaconda environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-installed-package-to-be-reinstalled-formate">Save installed package to be reinstalled formate</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

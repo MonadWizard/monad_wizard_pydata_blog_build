@@ -1,0 +1,2612 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pandas DataFrames &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ml/Pandas/pandas_dataFrames';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/ml/Pandas/pandas_dataFrames.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Pandas Text Data" href="pandas_workWithTextData.html" />
+    <link rel="prev" title="Pandas Series Blog" href="pandas_series.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning blog</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Numpy.html">Numpy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/numpy_basic.html">numpy basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/numpy_advance.html">numpy Advance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises.html">100 numpy exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises_with_hints.html">100 numpy exercises with hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises_with_solutions.html">100 numpy exercises with solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises_solutions_with_hints.html">100 numpy exercises solutions with hints</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Pandas.html">Pandas</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas_series.html">Pandas Series Blog</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pandas DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_workWithTextData.html">Pandas Text Data</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="pandas_multiIndex.html">Pandas multi Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_GroupBy.html">Pandas GroupBy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_mergingJoiningConcatenating.html">pandas merging Joining Concatenating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_datesAndTime.html">pandas datesAndTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_Panels.html">pandas Panels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_InputAnd_Output.html">Pandas Input And Output</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../joblib.html">Joblib</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../joblib/joblib_basic.html">joblib basic</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pickel.html">pickel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pickel/pickel_basic.html">pickel</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Machine Learning blog</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../Pandas.html" class="nav-link">Pandas</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Pandas DataFrames</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pandas-dataframes">
+<h1>Pandas DataFrames<a class="headerlink" href="#pandas-dataframes" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://github.com/dust-nk-org/pandasDataSet/archive/master.zip">প্রয়োজনীয় data-set যা এই post এ ব্যবহার করা হয়েছে DOWNLOAD </a></p>
+<p>DataFrame একটি table বা 2D-array জাতীয় কাঠামো, যাতে প্রতিটি কলামে একটি variable এর মান থাকে এবং বেশ কিছু row তে প্রতিটি column থেকে মানগুলির একটি set থাকে।</p>
+<p>Data হল তথ্যের স্বতন্ত্র টুকরো যা সাধারণত একটি বিশেষ উপায়ে format করা হয়। সমস্ত software দুটি সাধারণ বিভাগে বিভক্ত: ডেটা এবং প্রোগ্রাম। প্রোগ্রামগুলি ডেটা ম্যানিপুলেট করার জন্য নির্দেশাবলীর সংগ্রাহক।</p>
+<p>আমার মতে, তথ্যটি কাঠামোগত উপায়ে, কাঠামোগত উপাত্তের তুলনায় উপলব্ধ থাকলে data বোঝা সহজ। এখন, data-frame সারি এবং কলামগুলির সাথে একটি কাঠামোগত ডেটা সরবরাহ করে। সুতরাং, আমরা সারি এবং কলামের উপর ভিত্তি করে data সহজেই বের করতে পারি এবং কাঠামোগত ডেটা বোঝাও খুব সহজ। এজন্য ডেটা data-frame এ রূপান্তর করা খুব জরুরি।</p>
+<p>একটি data-frame Hard-Disk এর পরিবর্তে RAM ব্যবহার করে যার অর্থ এটি দ্রুত অস্থায়ী স্টোরেজ ব্যবহার করে যা কম্পিউটার বন্ধ হয়ে যাওয়ার পরে অদৃশ্য হয়ে যায়।</p>
+<p>এখন চলুন <font color="green"> implement part </font> এ যাই।</p>
+<p>আমরা <font color="green"> Churn_Modelling.csv </font> data-set ব্যবহার করব।
+আমরা data-frame এর columns এবং row এর details pandas এর দ্বারা দেখতে পারি। যা আমাদের prediction এ অনেক কাজ এ লাগতে পারে। big-data এর visualization অনেক সময় সাপেক্ষ আবার অনেক সময় সম্ভব হয় না। তাই আমরা Pandas এর কিছু function ব্যবহার করে সমস্ত data-frame এর সম্পর্কে জানতে পারি। এখন এই সব Shared Method এবং attributes এর সম্পর্কে দেখি।</p>
+<section id="shared-methods-and-attributes">
+<h2>Shared Methods and Attributes<a class="headerlink" href="#shared-methods-and-attributes" title="Link to this heading">#</a></h2>
+<p><font color="green"> dataframe.columns </font> ব্যবহার করে আমরা সকল columns এর নাম দেখতে পারি।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;display all columns:</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cm</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>display all columns:     Index([&#39;RowNumber&#39;, &#39;CustomerId&#39;, &#39;Surname&#39;, &#39;CreditScore&#39;, &#39;Geography&#39;,&#39;Gender&#39;, &#39;Age&#39;, &#39;Tenure&#39;, &#39;Balance&#39;, &#39;NumOfProducts&#39;, &#39;HasCrCard&#39;, &#39;IsActiveMember&#39;, &#39;EstimatedSalary&#39;, &#39;Exited&#39;],dtype=&#39;object&#39;) 
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><font color="green"> dataframe.index </font> ব্যবহার করে আমরা সকল index দেখতে পারি। numaric data এর ক্ষেত্রে Range function এর parameter দ্বারা total index দেখতে পারি। আর categorical data এর ক্ষেত্রে row গুলোর নাম display দিবে।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;display all index:</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cm</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>display all index:       RangeIndex(start=0, stop=10000, step=1) 
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>আমরা python এর default <font color="green"> len </font> function ব্যবহার করে total  index বা colunms এর পরিমাণ integer value তে দেখতে পারি।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;total index length:</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">index</span><span class="p">),</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;total columns length:</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>total index length:      10000 
+total columns length:    14 
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>আমরা <font color="green"> dataframe.shape </font> ব্যবহার করে data-frame এর total rows এবং columns দেখতে পারি।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rows, Columns:</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cm</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Rows, Columns:   (10000, 14)
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>আমরা <font color="green"> dataframe.dtypes </font> ব্যবহার করে data-frame এর প্রত্যেক column এর data type দেখতে পারি।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DataType:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cm</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<p>DataType:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RowNumber</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-odd"><td><p>CustomerId</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-even"><td><p>Surname</p></td>
+<td><p>object</p></td>
+</tr>
+<tr class="row-odd"><td><p>CreditScore</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-even"><td><p>Geography</p></td>
+<td><p>object</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gender</p></td>
+<td><p>object</p></td>
+</tr>
+<tr class="row-even"><td><p>Age</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tenure</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-even"><td><p>Balance</p></td>
+<td><p>float64</p></td>
+</tr>
+<tr class="row-odd"><td><p>NumOfProducts</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-even"><td><p>HasCrCard</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsActiveMember</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-even"><td><p>EstimatedSalary</p></td>
+<td><p>float64</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exited</p></td>
+<td><p>int64</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: object</p>
+<hr class="docutils" />
+<p>আমরা <font color="green"> dataframe.axes </font> ব্যবহার করে ও data-frame এর প্রত্যেক row এবং column  এর নাম দেখতে পারি।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rows, Columns:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cm</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>   <span class="c1"># RangeIndex is  row , Index([colunms]) is Columns</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Rows, Columns:
+[RangeIndex(start=0, stop=10000, step=1), Index([&#39;RowNumber&#39;, &#39;CustomerId&#39;, &#39;Surname&#39;, &#39;CreditScore&#39;, &#39;Geography&#39;, &#39;Gender&#39;, &#39;Age&#39;, &#39;Tenure&#39;, &#39;Balance&#39;, &#39;NumOfProducts&#39;, &#39;HasCrCard&#39;, &#39;IsActiveMember&#39;, &#39;EstimatedSalary&#39;, &#39;Exited&#39;],
+dtype=&#39;object&#39;)]
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>এইবার আমরা খুব useful <font color="green"> dataframe.info() </font> ব্যবহার করব। <font color="green"> .info() </font> ব্যবহার করে data-frame এর total information দেখতে পারি। যেমন: column position, column-name, total-data with null status , data-type, length of data-type, memory-usage, summery.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Summery:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cm</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>  <span class="c1"># most usefull......</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<p>DataType:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Column</p></th>
+<th class="head"><p>Non-Null Count</p></th>
+<th class="head"><p>Dtype</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>RowNumber</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>CustomerId</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Surname</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>object</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>CreditScore</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Geography</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>object</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>Gender</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>object</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Age</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>Tenure</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>Balance</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>float64</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>NumOfProducts</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>HasCrCard</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>IsActiveMember</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>int64</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>EstimatedSalary</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>float64</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>Exited</p></td>
+<td><p>10000 non-null</p></td>
+<td><p>int64</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: float64(2), int64(9), object(3)</p>
+<p>memory usage: 1.1+ MB</p>
+<p>Summery:</p>
+<p>None</p>
+<hr class="docutils" />
+<p><font color="green"> dataframe.sum() </font> ব্যবহার করে আমরা rows বা columns এর সমস্ত মান এক সঙ্ঘে যোগ করতে পারি।</p>
+<p><font color="green"> dataframe.sum(o) </font> দ্বারা সমস্ত <font color="red"> rows  </font> এর মানগুলোর যোগফল আলাদা আলাদা ভাবে দেখতে পাই।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># only work with dataFrame not for serires</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># 0 means row</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RowNumber</p></td>
+<td><p>50005000</p></td>
+</tr>
+<tr class="row-odd"><td><p>CustomerId</p></td>
+<td><p>156909405694</p></td>
+</tr>
+<tr class="row-even"><td><p>Surname</p></td>
+<td><p>HargraveHill…</p></td>
+</tr>
+<tr class="row-odd"><td><p>CreditScore</p></td>
+<td><p>6505288</p></td>
+</tr>
+<tr class="row-even"><td><p>Geography</p></td>
+<td><p>FranceSpainF…</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gender</p></td>
+<td><p>FemaleFemale…</p></td>
+</tr>
+<tr class="row-even"><td><p>Age</p></td>
+<td><p>389218</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tenure</p></td>
+<td><p>50128</p></td>
+</tr>
+<tr class="row-even"><td><p>Balance</p></td>
+<td><p>7.64859e+08</p></td>
+</tr>
+<tr class="row-odd"><td><p>NumOfProducts</p></td>
+<td><p>15302</p></td>
+</tr>
+<tr class="row-even"><td><p>HasCrCard</p></td>
+<td><p>7055</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsActiveMember</p></td>
+<td><p>5151</p></td>
+</tr>
+<tr class="row-even"><td><p>EstimatedSalary</p></td>
+<td><p>1.0009e+09</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exited</p></td>
+<td><p>2037</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: object</p>
+<hr class="docutils" />
+<p><font color="green"> dataframe.sum(o) </font> দ্বারা সমস্ত <font color="red"> Columns  </font> এর মানগুলোর যোগফল আলাদা আলাদা ভাবে দেখতে পাই।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># only work with dataFrame not for serires</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># 1 means column</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>15736618.88</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>15844315.44</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>15893456.37</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>15795925.63</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>15943385.92</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>…</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>9997</p></td>
+<td><p>15637370.58</p></td>
+</tr>
+<tr class="row-odd"><td><p>9998</p></td>
+<td><p>15861138.83</p></td>
+</tr>
+<tr class="row-even"><td><p>9999</p></td>
+<td><p>15807478.57</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: object</p>
+<hr class="docutils" />
+<p>যদি কখনো dataframe এর কোন একটা column কে series বানানোর প্রয়োজন হয় বা dataframe এর একটা column আলাদা করতে হয় তবে আমরা <font color="green"> dataframe.column_name </font> ব্যবহার করে তা করতে পারি। অথবা আমরা list এর দ্বারা define করতে পারি। <font color="green"> dataframe[column_name] </font> .</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">Balance</span><span class="p">)</span> <span class="c1"># convert to a series</span>
+<span class="c1"># or </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="s2">&quot;Balance&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0.00</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>83807.86</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>159660.80</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>0.00</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>125510.82</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>…</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>9997</p></td>
+<td><p>0.00</p></td>
+</tr>
+<tr class="row-odd"><td><p>9998</p></td>
+<td><p>75075.31</p></td>
+</tr>
+<tr class="row-even"><td><p>9999</p></td>
+<td><p>130142.79</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Name: Balance, Length: 10000, dtype: float64</p>
+<hr class="docutils" />
+<p>Dataframe থেকে একটা column select করার মাধ্যমে আমরা series বানায়ে থাকি। তাই আমাদের আলাদা columns এর data-type : “Series”</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="s2">&quot;Balance&quot;</span><span class="p">]))</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    &lt;class &#39;pandas.core.series.Series&#39;&gt;
+
+</pre></div>
+</div>
+<p>এই বার আমরা ২ বার তার অধিক columns আলাদা করা জানবো।
+যদি আমরা multi-dimention data থেকে multiple row বা columns আলাদা করতে চাই তা হইলে আমাদের double parentisis ব্যবহার করতে হয়। <font color="green"> dataframe[[column_name]] </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">[[</span><span class="s2">&quot;Surname&quot;</span><span class="p">,</span><span class="s2">&quot;Balance&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">cm</span><span class="p">[[</span><span class="s2">&quot;Surname&quot;</span><span class="p">,</span><span class="s2">&quot;Balance&quot;</span><span class="p">]]))</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Surname</p></th>
+<th class="head"><p>Balance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Hargrave</p></td>
+<td><p>0.00</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Hill</p></td>
+<td><p>83807.86</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Onio</p></td>
+<td><p>159660.80</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Boni</p></td>
+<td><p>0.00</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Mitchell</p></td>
+<td><p>125510.82</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&lt;class ‘pandas.core.frame.DataFrame’&gt;</p>
+<hr class="docutils" />
+<p>আমরা তো data-set থেকে অনেক columns আলাদা করলাম। এখন তরয় করি dataFrame এ কি করে new column যোগ করা যায়।
+খুব easy একটা ব্যপার। আমাদের just column এর নাম এবং data-List add করে দিতে হবে। <font color="green"> dataframe[column_name] = ‘data’ </font> . আমরা new_column এর location ও define করে দিতে পারি। এর জন্য <font color="green"> dataFrame.insert(position, column = “NAME”, value = “Value”) </font> .</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">cm</span><span class="p">[</span><span class="s2">&quot;new_row&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;New value&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
+
+<span class="n">cm</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span> <span class="o">=</span> <span class="s2">&quot;NewC&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;NewC Value&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>RowNumber</p></th>
+<th class="head"><p>CustomerId</p></th>
+<th class="head"><p>…</p></th>
+<th class="head"><p>Exited</p></th>
+<th class="head"><p>new_row</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>15634602</p></td>
+<td><p>…</p></td>
+<td><p>1</p></td>
+<td><p>New value</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>15647311</p></td>
+<td><p>…</p></td>
+<td><p>0</p></td>
+<td><p>New value</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>15619304</p></td>
+<td><p>…</p></td>
+<td><p>1</p></td>
+<td><p>New value</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>4</p></td>
+<td><p>15701354</p></td>
+<td><p>…</p></td>
+<td><p>0</p></td>
+<td><p>New value</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>5</p></td>
+<td><p>15737888</p></td>
+<td><p>…</p></td>
+<td><p>0</p></td>
+<td><p>New value</p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&lt;class ‘pandas.core.frame.DataFrame’&gt;</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>RowNumber</p></th>
+<th class="head"><p>NewC</p></th>
+<th class="head"><p>CustomerId</p></th>
+<th class="head"><p>…</p></th>
+<th class="head"><p>Exited</p></th>
+<th class="head"><p>new_row</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>NewC Value</p></td>
+<td><p>15634602</p></td>
+<td><p>…</p></td>
+<td><p>1</p></td>
+<td><p>New value</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>NewC Value</p></td>
+<td><p>15647311</p></td>
+<td><p>…</p></td>
+<td><p>0</p></td>
+<td><p>New value</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>NewC Value</p></td>
+<td><p>15619304</p></td>
+<td><p>…</p></td>
+<td><p>1</p></td>
+<td><p>New value</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>4</p></td>
+<td><p>NewC Value</p></td>
+<td><p>15701354</p></td>
+<td><p>…</p></td>
+<td><p>0</p></td>
+<td><p>New value</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>5</p></td>
+<td><p>NewC Value</p></td>
+<td><p>15737888</p></td>
+<td><p>…</p></td>
+<td><p>0</p></td>
+<td><p>New value</p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&lt;class ‘pandas.core.frame.DataFrame’&gt;</p>
+</section>
+<hr class="docutils" />
+<section id="broadcasting-operations">
+<h2>Broadcasting Operations :<a class="headerlink" href="#broadcasting-operations" title="Link to this heading">#</a></h2>
+<p>Data-preprocessing এ অনেক সময় column এর সমস্ত value একটি specific মান দ্বারা “operation(+-<em>/)” calculation করতে হয়। তাই কোন column এর সব value update করতে আমরা List ব্যবহার করতে পারি। <font color="green"> dataframe[column_name].operation(value
+) </font> অথবা  <font color="green"> dataframe[column_name]+-</em>/ value  </font> ব্যবহার করতে পারি।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="s2">&quot;CustomerId&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="c1"># or</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="s2">&quot;CustomerId&quot;</span><span class="p">]</span><span class="o">+</span> <span class="mi">10</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="s2">&quot;CustomerId&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="c1"># or</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="s2">&quot;CustomerId&quot;</span><span class="p">]</span><span class="o">-</span> <span class="mi">10</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="s2">&quot;CustomerId&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="c1"># or</span>
+<span class="n">cm</span><span class="p">[</span><span class="s2">&quot;CustomerId_New&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cm</span><span class="p">[</span><span class="s2">&quot;CustomerId&quot;</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="s2">&quot;CustomerId_New&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+
+<span class="n">cm</span><span class="p">[</span><span class="s2">&quot;CustomerId_New&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cm</span><span class="p">[</span><span class="s2">&quot;CustomerId&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<p>for add 10 :</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>15634612</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>15647321</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>15619314</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>15701364</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>15737898</p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Name: CustomerId, dtype: int64</p>
+<p>একটা <code class="docutils literal notranslate"><span class="pre">output</span></code> দেখানো হল। বাকি গুলো try করলেই দেখতে এবং বুঝতে পারবেন।</p>
+</section>
+<hr class="docutils" />
+<section id="value-counts">
+<h2>.value_counts()<a class="headerlink" href="#value-counts" title="Link to this heading">#</a></h2>
+<p>একটি column এ কত রকমের এবং কতগুলো value আছে তা <font color="green"> dataframe[column_name].value_counts() </font> এর দ্বারা জানতে পারা যায়।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Churn_Modelling.csv&quot;</span><span class="p">,</span><span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="s2">&quot;Gender&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">Male</span>      <span class="mi">5457</span>
+    <span class="n">Female</span>    <span class="mi">4543</span>
+    <span class="n">Name</span><span class="p">:</span> <span class="n">Gender</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+
+</pre></div>
+</div>
+<p>Name: CustomerId, dtype: int64</p>
+<p>একটা <code class="docutils literal notranslate"><span class="pre">output</span></code> দেখানো হল। বাকি গুলো try করলেই দেখতে এবং বুঝতে পারবেন।</p>
+</section>
+<hr class="docutils" />
+<section id="dropna">
+<h2>.dropna()<a class="headerlink" href="#dropna" title="Link to this heading">#</a></h2>
+<section id="drop-rows-with-null-values">
+<h3>Drop Rows with Null Values<a class="headerlink" href="#drop-rows-with-null-values" title="Link to this heading">#</a></h3>
+<p>Null value সাধারণত data analysis বা prediction এর accuracy কমায়ে দেয়, তাই কোন column থেকে null value remove করতে হইলে আমরা বেশ কিছু উপায় follow করতে পারি।</p>
+<p>খুব সহজে  <font color="green"> dataFrame.dropna() </font> ব্যবহার করে যে সব rows এর মান Nan বা null ঐ সব row বা index সম্পূর্ণ remove করা যায়।</p>
+<p>এ ছাড়া অনেক সময় data-set এ অনেক index বা row থাকে যে সব row বা index এর সব value ই null. data-set এর columns এর নাম এর পর বা total data-set এর last এ কিছু extra index থাকে যার সব value ই null থাকে । এই সব null value data-set এ noise বাড়ায়ে থাকে।</p>
+<p><font color="green"> dataFrame.dropna(how = “all”) </font>  এর দ্বারা যে সব index এর সব columns ই null সেই সব index বাদ দিতে পারি।</p>
+<p>তা ছাড়া আমরা specific column থেকে null value থাকা index গুলো বাদ দিতে পারি। <font color="green"> dataFrame.dropna(subset = [“columnsName”]) </font></p>
+<p><font color="green"> dataFrame.dropna(axis = 1) </font> দ্বারা যদি কোন column এ একটা ও null value থাকে তা হইলে পুরো column বাদ দাওয়া যায়।</p>
+<p>আমরা জানি axis = 0 = row , আর axis = 1 = column</p>
+<p>by default  dataset.dropna(axis = 0) থাকে ।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">salary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="o">.</span><span class="n">dropna</span><span class="p">())</span> <span class="c1"># remove full rows if any null values happend</span>
+
+<span class="c1"># remove those row whoes all value are null</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">))</span>
+
+<span class="c1"># remove those row whoes all value are null and replace permanently</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">))</span>
+
+<span class="c1">#check specific column , if any null in specific column then drop thoes row care by specific column</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">]))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">))</span> <span class="c1"># remove full Column if any null values happend</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    নিজে try করতে পারেন। 
+
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="fillna">
+<h2>.fillna()<a class="headerlink" href="#fillna" title="Link to this heading">#</a></h2>
+<section id="fill-null-values-with-the-fillna-method">
+<h3>Fill Null Values with the .fillna() method<a class="headerlink" href="#fill-null-values-with-the-fillna-method" title="Link to this heading">#</a></h3>
+<p><font color="green"> dataFrame.fillna(value) </font> আমরা null value গুলো replace করে যে কোন value দিয়ে fill করতে পারি।</p>
+<p><font color="green"> dataFrame[“column”].fillna(value = “value_as_string”, inplace = True) </font> দ্বারা total dataFrame এ যে কোন column এর value গুলোতে কোন null value আছে কি না তা compare করে null value replace করে specific value দিয়ে fill করতে পারি।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="n">salary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># replace all Null value with specific value</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># replace specific column&#39;s all Null value with specific value</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;Here we found null value&quot;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">))</span>
+
+
+
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="astype-method">
+<h2>.astype() method<a class="headerlink" href="#astype-method" title="Link to this heading">#</a></h2>
+<p>আমরা যদি data-set এর কোন column এর data এর data-type পরিবর্তন করতে চাই তা হইলে <font color="green"> dataFrame[“columnName”].astype(“int”) </font> দ্বারা data type পরিবর্তন করতে পারি। বি:দ্র: column টার data অবশ্যয় numerical data হইতে হবে।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="n">salary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">)</span>
+
+<span class="n">salary</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span><span class="o">=</span> <span class="mf">0.00</span>  <span class="c1"># can&#39;t make null value so can&#39;t be drop</span>
+<span class="n">salary</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">salary</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="numique-method">
+<h2>.numique() method<a class="headerlink" href="#numique-method" title="Link to this heading">#</a></h2>
+<p><font color="green"> dataFrame[“column”].nunique() </font>
+দ্বারা কোন data-set এর specific column এ total কতরকম এর data আছে টা জানা যায়।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="n">salary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># use to find total different type of value</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="p">[</span><span class="s2">&quot;Purchased&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="mi">2</span>
+
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="reduse-memory-space-by-change-astype">
+<h2>reduse memory space by change .astype()<a class="headerlink" href="#reduse-memory-space-by-change-astype" title="Link to this heading">#</a></h2>
+<p>আমরা .astype() এর সঙ্ঘে আগেই পরিচিত হইছি। .astype() ব্যবহার করে memory space কমানো যায়। .info() এর সঙ্ঘে আমরা অনেক আগে থেকে পরিচিত। এখন দেখব .astype() ব্যবহার করে data type পরিবর্তন করাতে .info() তে memory space অনেকটা কমেছে ।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="n">salary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; before : &quot;</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">salary</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="n">salary</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">))</span> <span class="c1"># remove full rows if any null values happend</span>
+
+<span class="n">salary</span><span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">salary</span><span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; after : &quot;</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+
+
+
+<span class="c1"># another example to reduse memory size</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="p">[</span><span class="s2">&quot;Country&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="p">[</span><span class="s2">&quot;Country&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">before</span> <span class="p">:</span> 
+
+    <span class="n">dtypes</span><span class="p">:</span> <span class="n">float64</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="nb">object</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mf">448.0</span><span class="o">+</span> <span class="nb">bytes</span>
+    <span class="kc">None</span>
+
+
+    <span class="n">after</span> <span class="p">:</span> 
+
+    <span class="n">dtypes</span><span class="p">:</span> <span class="n">float64</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">int64</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="nb">object</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">memory</span> <span class="n">usage</span><span class="p">:</span> <span class="mf">384.0</span><span class="o">+</span> <span class="nb">bytes</span>
+    <span class="kc">None</span>
+
+
+
+
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="sort-value-method">
+<h2>.sort_value()  method<a class="headerlink" href="#sort-value-method" title="Link to this heading">#</a></h2>
+<p>আমরা যদি কোন columns এর referance এ সম্পূর্ণ data-frame কে sort করতে চাই বা যদি নির্দিষ্ট কোন columns এর data sort করে use করতে চাই তা হলে <font color="green"> data-frame.sort_values(“columnName”) </font> ব্যবহার করা যায়। defaultly <font color="pink">ascending = True</font>থাকে। real data-frame এর কোন পরিবর্তন হয় না টাই এই method টাই inplace parameter ব্যবহার করতে হয়।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="n">salary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Country&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">False</span><span class="p">))</span>
+
+<span class="c1"># sort with Null value na_position = &quot;last&quot;, seen null value top </span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">salary</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span> <span class="n">na_position</span> <span class="o">=</span> <span class="s2">&quot;first&quot;</span><span class="p">))</span>  <span class="c1"># or na_position = &quot;last&quot;</span>
+
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="to-datetime-method">
+<h2>.to_dateTime method:<a class="headerlink" href="#to-datetime-method" title="Link to this heading">#</a></h2>
+<p>pandas library দ্বারা dataframe কে date-time অনুসারে formating করা যায়। আমরা চাইলে যে কোন columns এর data এর সঙ্গে date-time formate করতে পারি। code a comment দ্বারা script এর workflow দাওয়া হয়েছে।
+আমরা pandas এর default paramenter <font color="green"> parse_dates </font> ব্যবহার করে ও same কাজ করতে পারি।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">emply</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">emply</span><span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">emply</span><span class="p">[</span><span class="s2">&quot;Last Login Time&quot;</span><span class="p">]))</span>  <span class="c1"># added date columns to Last Login Time</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">emply</span><span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">]))</span>  <span class="c1"># added date-time columns value to salary columns</span>
+
+<span class="c1"># or</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Login Time&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="reduse-memory-using-astype">
+<h2>reduse memory using .astype()<a class="headerlink" href="#reduse-memory-using-astype" title="Link to this heading">#</a></h2>
+<p>আমরা <font color="green"> .astype() </font> method ব্যবহার করে memory size কমায়তে পারি। আমরা data-frame/ series যে কোন columns এর memory size reduse করতে astype() ব্যবহার করতে পারি । আমরা column define করে <font color="green"> .astype(similar_pandas_dtype) </font> ব্যবহার করব। pandas নিজে থেকেই memory reduse করে দিবা।</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pandas dtype</p></th>
+<th class="head"><p>Python type</p></th>
+<th class="head"><p>NumPy type</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>object</p></td>
+<td><p>str or mixed</p></td>
+<td><p>string_, unicode_, mixed types</p></td>
+<td><p>Text or mixed numeric and non-numeric values</p></td>
+</tr>
+<tr class="row-odd"><td><p>int64</p></td>
+<td><p>int</p></td>
+<td><p>int_, int8, int16, int32, int64, uint8, uint16, uint32, uint64</p></td>
+<td><p>Integer numbers</p></td>
+</tr>
+<tr class="row-even"><td><p>float64</p></td>
+<td><p>float</p></td>
+<td><p>loat_, float16, float32, float64</p></td>
+<td><p>Floating point numbers</p></td>
+</tr>
+<tr class="row-odd"><td><p>bool</p></td>
+<td><p>bool</p></td>
+<td><p>bool_</p></td>
+<td><p>True/False values</p></td>
+</tr>
+<tr class="row-even"><td><p>datetime64</p></td>
+<td><p>NA</p></td>
+<td><p>datetime64[ns]</p></td>
+<td><p>Date and time values</p></td>
+</tr>
+<tr class="row-odd"><td><p>timedelta[ns]</p></td>
+<td><p>NA</p></td>
+<td><p>NA</p></td>
+<td><p>Differences between two datetimes</p></td>
+</tr>
+<tr class="row-even"><td><p>category</p></td>
+<td><p>NA</p></td>
+<td><p>NA</p></td>
+<td><p>Finite list of text values</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Login Time&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Start Date&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>    <span class="c1"># see memory usage: 54.8+ KB</span>
+
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Senior Management&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Senior Management&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;bool&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>    <span class="c1"># now memory usage: 41.2+ KB</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="filter-a-dataframe-based-on-a-condition">
+<h2>filter A DataFrame Based On a Condition<a class="headerlink" href="#filter-a-dataframe-based-on-a-condition" title="Link to this heading">#</a></h2>
+<p>pandas এ dataframe[‘columns’] =condition= value  দ্বারা condition check করা যায়।</p>
+<p>আর pandas এ dataframe[dataframe[‘columns’] =condition= value ] দ্বারা specific condition যুক্ত data সম্পূর্ণ নতুন data-frame পাওয়া যায়।</p>
+<p>এই condition check করে আবার তা data-frame এ define করে dataframe কে filter করা যায়।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Login Time&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Start Date&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Gender&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Male&quot;</span><span class="p">]</span>
+
+<span class="c1"># work as details</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Finance&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span> <span class="c1"># print all without Finance in Team column</span>
+
+<span class="c1"># or example same as</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Login Time&quot;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">110000</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="s2">&quot;1985-01-01&quot;</span><span class="p">])</span>
+
+
+<span class="n">mask1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Senior Management&quot;</span><span class="p">]</span>
+<span class="n">mask2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="s2">&quot;1985-01-01&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">mask1</span> <span class="o">|</span> <span class="n">mask2</span><span class="p">])</span>
+
+<span class="c1">#or filter on more than one condition .... ;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Gender&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Male&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Senior Management&quot;</span><span class="p">])])</span>
+
+
+
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="isin-method">
+<h2>.isin()  Method:<a class="headerlink" href="#isin-method" title="Link to this heading">#</a></h2>
+<p>single condition এ multiple value compare এ <font color="green"> .isin() </font> method ব্যবহার করা হয়। যদি আমার একাধিক ভালু একটা same condition এ chack করতে বা check করে new data-frame বানাতে চাই তা হইলে <font color="green"> data-frame[“columnName].isin(“[value1”, “value2”, “value3”]) </font> দ্বারা data-frame এর specific-column এ [value] গুলো আছে কি না তা boolean type দ্বারা জানা যায় আর চাইলে new data-frame এ convert করা যায়।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Login Time&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Start Date&quot;</span><span class="p">)</span>
+
+<span class="n">m1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Legal&quot;</span>
+<span class="n">m2</span><span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Sales&quot;</span>
+<span class="n">m3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Product&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">m1</span> <span class="o">|</span> <span class="n">m2</span> <span class="o">|</span> <span class="n">m3</span><span class="p">])</span>
+
+<span class="c1"># or using method</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Legal&quot;</span><span class="p">,</span> <span class="s2">&quot;Sales&quot;</span><span class="p">,</span> <span class="s2">&quot;Product&quot;</span><span class="p">])</span>
+
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Legal&quot;</span><span class="p">,</span> <span class="s2">&quot;Sales&quot;</span><span class="p">,</span> <span class="s2">&quot;Product&quot;</span><span class="p">])]</span>
+
+<span class="c1">#or make new data-frame with specific data</span>
+
+<span class="n">teamm</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Legal&quot;</span><span class="p">,</span> <span class="s2">&quot;Sales&quot;</span><span class="p">,</span> <span class="s2">&quot;Product&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">teamm</span><span class="p">])</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="isnull-and-notnull-methods">
+<h2>.isnull()  and   .notnull()  methods :<a class="headerlink" href="#isnull-and-notnull-methods" title="Link to this heading">#</a></h2>
+<p>isnull এবং notnull ব্যবহার করা হয় nullবা Nan value filter ও pre-process এর জন্য।</p>
+<p><font color="green">dataFrame[“column”].isnull()  </font> এর দ্বারা উল্লেখিত column এর boolen series পাওয়া যায় । dataFrame[“column”] এ যদি কোন null value থাকে তা হইলে  null value এর row টা True না হইলে False value এর series পাওয়া যাবে।</p>
+<p>.isnull() ব্যবহার করে বিশেষ column এর null value বিশিষ্ট row এর data-frame পাওয়া যায়।</p>
+<p>এর .notnull() ব্যবহার করে বিশেষ column এর null value ছাড়া অন্য value বিশিষ্ট row এর data-frame পাওয়া যায়।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Login Time&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Start Date&quot;</span><span class="p">)</span>
+
+<span class="c1"># see boolen series of &quot;Team&quot; column, if null then True else False</span>
+<span class="n">is_null</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">is_null</span><span class="p">)</span>
+
+<span class="c1"># see &quot;Team&quot; column&#39;s null value rows with full data-frame</span>
+<span class="n">ndf</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">is_null</span><span class="p">]</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">ndf</span><span class="p">)</span>
+
+<span class="c1"># see boolen series of &quot;Team&quot; column, if null then True else False</span>
+<span class="n">not_null</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">not_null</span><span class="p">)</span>
+
+<span class="c1"># see &quot;Team&quot; column&#39;s without null value rows with full data-frame</span>
+<span class="n">nndf</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">not_null</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nndf</span><span class="p">)</span>
+
+<span class="c1"># we can call in single line as</span>
+<span class="n">not_null_dfram</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">not_null_dfram</span><span class="p">)</span>
+
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="between-method">
+<h2>.between() method :<a class="headerlink" href="#between-method" title="Link to this heading">#</a></h2>
+<p>আমরা যদি নির্দিষ্ট কোন column এর নিদিষ্ট range এর মধ্যকার data নিয়ে কোন data-frame বানাইতে চাই টা হইলে .between() method ব্যবহার করা যায়। .between() method এর ২ টা parameter আছে। start আর end .between function এ (start,end) value define করে দিতে হয়। <font color="green"> dataframe[“columnName”].between(start,end) </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Login Time&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Start Date&quot;</span><span class="p">)</span>
+
+<span class="c1"># make series with boolen value , if value in between range then True else False</span>
+<span class="n">betWeen</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">60000</span><span class="p">,</span> <span class="mi">70000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">betWeen</span><span class="p">)</span>
+
+<span class="c1"># make a data-frame with specific column&#39;s True Values </span>
+<span class="n">df_sal</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">betWeen</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_sal</span><span class="p">)</span> 
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="sort-values-method">
+<h2>.sort_values() method :<a class="headerlink" href="#sort-values-method" title="Link to this heading">#</a></h2>
+<p>আমরা data-frame এর যে কোন column এর value ascending order বা descending order এ sort করতে পারি।</p>
+<p>আমরা আগে থেকেই জানি, যে সব method এ inplace parameter আছে তা inplace = True ব্যবহার করে পরিবর্তনকে data-frame এ update করা হয়।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Login Time&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Start Date&quot;</span><span class="p">)</span>
+
+<span class="c1"># sort data-frame as ascending order and update dataframe </span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;First Name&quot;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="duplicated-method">
+<h2>.duplicated() method:<a class="headerlink" href="#duplicated-method" title="Link to this heading">#</a></h2>
+<p>data-set এ অনেক column এ diplicate value থাকে। যদি আমরা duplicate value নিয়ে কাজ করতে চাই বা unique value বাহির করতে চাই। তা হইলে .duplicated() method ব্যবহার করা যায়।</p>
+<p>.duplicated() method এ keep parameter টা unique value define করে। keep = “last” মানে duplicate value এর last value টা unique হিসেবে গণ্য হবে।</p>
+<p>keep = “first” মানে duplicate value এর first value টা unique হিসেবে গণ্য হবে।</p>
+<p>আর keep = False মানে data-frame বা series এ যতগুলো  duplicate value আছে শুধু ঐ সব value গণ্য হবে।</p>
+<p>আমরা ~ চিহ্ন ব্যবহার করে series এর সব boolen value গুলোর মান reverse করতে পারি। যা ব্যবহার করে unique মান গুলো বাহির করা যায়।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Login Time&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Start Date&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># those are True which are duplicated value , unique value take False</span>
+<span class="n">unique_last</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">)</span>
+
+<span class="c1"># create dataframe with only duplicated value </span>
+<span class="n">df</span><span class="p">[</span><span class="n">unique_last</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># or take first value as unique and make dataframe with all duplicate value</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span> <span class="o">=</span> <span class="s2">&quot;first&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+
+<span class="c1"># false take all value which have any duplicate value </span>
+<span class="n">dupli</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># make True as False so we pick all unique value as True</span>
+<span class="n">uniq</span> <span class="o">=</span> <span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>  <span class="c1"># ~ make reverse boolen data on series</span>
+
+<span class="c1"># just print unique values who has no duplicate value</span>
+<span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)]</span>      <span class="c1"># ~ make reverse boolen data </span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="drop-duplicates-method">
+<h2>.drop_duplicates() method :<a class="headerlink" href="#drop-duplicates-method" title="Link to this heading">#</a></h2>
+<p>সাধারণত যদি একাধিক row এর সব value duplicate হয় তবে dataFrame.drop_duplicates() ব্যবহার করে Duplicate row টা বাদ দাওয়া যায়।</p>
+<p>এ ছাড়া <font color="green"> dataframe.drop_duplicates() </font>  method এর parameter <code class="docutils literal notranslate"><span class="pre">subset</span></code> ব্যবহার করে specific columns compare করা এবং ঐ সব columns এর duplicate value বাদ দাওয়া যায়। যদি আমরা একাধিক column <code class="docutils literal notranslate"><span class="pre">subset</span></code> parameter এ define করি তা হলে define করা সব column এ যে value duplicate হবে just সেই row বাদ যাবে।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Login Time&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Start Date&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">())</span> <span class="c1"># just drop if all column&#39;s are same on more than one rows</span>
+
+<span class="c1"># keep first value from duplicate elements on &quot;First Row&quot; columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">],</span> <span class="n">keep</span> <span class="o">=</span> <span class="s2">&quot;first&quot;</span><span class="p">)</span>  
+
+<span class="c1"># keep last value from duplicate elements on &quot;First Row&quot; columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">],</span> <span class="n">keep</span> <span class="o">=</span> <span class="s2">&quot;last&quot;</span><span class="p">)</span>    
+
+
+
+<span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">],</span> <span class="n">keep</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>  <span class="c1"># print just unique value</span>
+
+<span class="c1"># remove if duplicate happend on both of columns</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Team&quot;</span><span class="p">],</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">))</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="unique-and-nunique-method">
+<h2>.unique() and nunique() method :<a class="headerlink" href="#unique-and-nunique-method" title="Link to this heading">#</a></h2>
+<p>আমরা যদি data-frame এর কোন column এ কতগুলো unique value আছে তা জানতে চাই তা হইলে <font color="green"> dataframe[“column”].unique() </font> ব্যবহার করে দেখতে পাই।</p>
+<p>dataframe এ যদি কোন Nan বা null value থাকে .unique() method তা হইলে null value কে ও unique value হিসেবে count করবে।</p>
+<p>.unique() আর .nunique() একই কাজ করে। কিন্তু .nunique() কোন null বা Nan value কে unique value হিসেবে count করে না।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Login Time&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Start Date&quot;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>  <span class="c1"># total type of unique value</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>   <span class="c1"># total number of unique items</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>  <span class="c1"># defaultly count unique value without nan</span>
+
+<span class="c1">#nunique drop nan value defaultly but if we want to count nan we need to pass false</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Team&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(</span><span class="n">dropna</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="set-index-and-reset-index-methods">
+<h2>.set_index() and .reset_index() methods<a class="headerlink" href="#set-index-and-reset-index-methods" title="Link to this heading">#</a></h2>
+<p>আমরা index_col= ‘col_name’ এর সঙ্ঘে আগে থেকেই পরিচিত। index_col parameter data-set read এর সময়ই ব্যবহার করা হয় এবং এই parameter দ্বারা আমরা data-set read এর সময় index-column select করে দিতে পারি।</p>
+<p>আমরা যদি চাই যে আমরা index reset করে main data-set এর index এ convert হয়ে যাব তা হইলে আমরা  .set_index() ব্যবহার করতে পারি। .set_index আর index_col এর কাজ same.
+<code class="docutils literal notranslate"><span class="pre">syntex</span></code> : <font color="green"> dataframe.set_index(“columnName”, inplace = True) </font></p>
+<p>.reset_index() method এর drop parameter দ্বারা define করা হয় .set_index() এর দ্বারা create করা index টা data-frame এর একটা column হিসেবে থাকবে না কি remove করা হবে। drop=True ব্যবহার করা হইলে current index টা data-frame থেকে remove হয়ে যাবে আর drop=False ব্যবহার করলে current index টা একটা column হিসেবে add হইবে।
+<code class="docutils literal notranslate"><span class="pre">syntex</span></code> : <font color="green"> dataframe.reset_index(drop = True, inplace = True) </font>  bydefaultly: drop=False. তাই আমরা drop না ডিফাইন করলে তা False থাকে। মানে current index টা একটা column এ convert হয়ে থাকে।</p>
+<p>তাই index change করতে হইলে আগে reset index(drop=False) use করতে হবে না হইলে current index data-frame থেকে remove হয়ে যাবে।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">)</span>
+
+<span class="n">bond</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Film&quot;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># create index but other column are empty</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">bond</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+
+<span class="n">bond</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">bond</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">first need to reset_index then make set_index unless set_index remove current index and replace by new</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">bond</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="loc-iloc-methods">
+<h2>.loc[] &amp;  .iloc[] methods:<a class="headerlink" href="#loc-iloc-methods" title="Link to this heading">#</a></h2>
+<p><em>.loc[] function label নিয়ে কাজ করে এবং .iloc[] কাজ করে index নিয়ে ।  এছাড়া ২ function একই কাজ করে।</em></p>
+<p>pandas এ Data-Frame sort করা উচিত। কারণ pandas যদি unstructured data পায় তা হইলে একটার পর একটা data check করে কিন্তু sorted বা structured data এর ক্ষেত্রে pandas data check এর ক্ষেত্রে jump করে specific data খোঁজে। তাই time &amp; execution complexity কমে।</p>
+<p>.loc[] &amp; .iloc[] method এ () এর পরিবর্তে [] ব্যবহার করা হয়। Pandas এ extraction process এর জন্য [] ব্যবহার করা হয়। আমরা data-frame থেকে specific data বা columns extract এর জন্য [] করে থাকি। আমার মনে হয় pandas সেই একই process row extraction এ ও ব্যবহার করছে।</p>
+<p>আমরা .loc[“index_value”] ব্যবহার করে data-frame এ যদি index_value বলে কিছু থাকে তা হইলে ঐ value টার Series পাব।</p>
+<p>আমরা [] এর মধ্যে range define করতে পারি  :  ব্যবহার করে।
+অথবা multiple value ডিফাইন করতে পারি। <font color="green"> dataframe.loc[“value_1” : “value_9”] </font>
+.loc[] alphabetically data check এবং execute করে। তাই range(:) এর condition এ বাপার তা লক্ষ রাখতে হবে।</p>
+<p><font color="green"> dataframe.loc[“value_1”, “value_3”,”value_9”] </font> এখন যে সব index এর মান value_1 বা value_3 বা value_9 টার সবকয়টা value নিয়ে একটা new data-frame পাওয়া যাবে। যদি কোন define করা value data-frame এ না থাকে তা হইলে new data-frame এ ঐ ভালু index এবং বাকি সব value Nan সহ একটা new row পাওয়া যাবে।</p>
+<p>.loc[] দ্বারা index এবং .iloc[] সাধারণত index location কে represent করে থাকে।</p>
+<p>.loc[] এর ক্ষেত্রে আমাদের index_value Declare করতে হয়। কিন্তু .iloc[] এ index যদি string ও হয় তা হইলে ও আমরা index এর position declare করতে পারি বা String index এর ক্ষেত্রেও index position integer এ range define করতে পারি। যা .loc[] এ possible na।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># sort index alphabetically</span>
+
+<span class="c1"># .loc[]  work with label and .iloc[] work with index . otherwise both are same</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">14</span><span class="p">])</span>
+
+<span class="c1"># if index is string then use .iloc[] as numeric range if necessary </span>
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># sort index alphabetically</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Casino Royale&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Casino Royale&quot;</span> <span class="p">:</span> <span class="s2">&quot;Dr. No&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Dr. No&quot;</span> <span class="p">:</span> <span class="s2">&quot;Casino Royale&quot;</span><span class="p">])</span> <span class="c1"># always check condition alphabetically</span>
+
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>   <span class="c1"># can be use on String index</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">run</span> <span class="n">every</span> <span class="nb">print</span> <span class="n">function</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span> 
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="ix-method">
+<h2>.ix[] Method<a class="headerlink" href="#ix-method" title="Link to this heading">#</a></h2>
+<p><em>.ix[] মূলত .loc[] &amp; .iloc[] এর combination এ তৈরি।</em></p>
+<p>আমরা .loc[] বা ,iloc[] এর যে কোন method এর বদল এ কোন রকম syntex পরিবর্তন না করেই .ix[] ব্যবহার করতে পারি।</p>
+<p>অমি personally .ix[] method টা prefer করি। আপনে যদি .loc[] এ lebel এবং .iloc[] এ index এই সব ব্যবহার নিয়ে ঝামেলা মনে করেন টা হইলে .ix[] ব্যবহার করে .loc[] বা .iloc[] ২ structure এই data-frame থেকে value নিতে পারেন।</p>
+<p><em>NOTE: ‘ix’ pandas 1.0.0 থেকে remove করে দেওয়া হয়েছে , পূর্বের version গুলোতে কাজ করে। install previous version যদি .ix[] use করতে হয়। conda install pandas=0.25.1</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># sort index alphabetically</span>
+
+<span class="c1"># .ix[] work same as .loc[] or .iloc[]</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s2">&quot;GoldenEye&quot;</span><span class="p">]</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s2">&quot;A View to a Kill&quot;</span> <span class="p">:</span> <span class="s2">&quot;The World Is Not Enough&quot;</span><span class="p">]</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span>
+
+<span class="c1">#if give single unknown value then face error</span>
+<span class="c1">#bond.ix[&quot;Sacred Bond&quot;]  # cause Sacred Bond  not exist on data-frame</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">ix</span><span class="p">[[</span><span class="s2">&quot;Sacred Bond&quot;</span><span class="p">,</span> <span class="s2">&quot;Spectre&quot;</span> <span class="p">]]</span>   <span class="c1"># make Nan row with index Sacred Bond</span>
+
+
+<span class="c1"># return boolen value, if exist then Yes else No</span>
+<span class="s2">&quot;Spectre&quot;</span> <span class="ow">in</span> <span class="n">bond</span><span class="o">.</span><span class="n">index</span>
+<span class="s2">&quot;Sacred Bond&quot;</span> <span class="ow">in</span> <span class="n">bond</span><span class="o">.</span><span class="n">index</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="second-argument-to-loc-iloc-and-ix-methods">
+<h2>Second Argument to .loc[], .iloc[], and .ix[] Methods<a class="headerlink" href="#second-argument-to-loc-iloc-and-ix-methods" title="Link to this heading">#</a></h2>
+<p>যদি উপরের .loc[] এবং .iloc[] এবং .ix[] method বুঝে থাকেন টা হইলে example দেখেই বুজতে পারবেন । আমরা উপরের single কাজ গুলো একত্রে করেছি ।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># sort index alphabetically</span>
+
+
+<span class="c1"># .loc[row,column]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Moonraker&quot;</span><span class="p">])</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Moonraker&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor&quot;</span><span class="p">]</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Moonraker&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor&quot;</span> <span class="p">:</span> <span class="s2">&quot;Budget&quot;</span><span class="p">]</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Moonraker&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Actor&quot;</span> <span class="p">,</span><span class="s2">&quot;Budget&quot;</span><span class="p">]]</span>
+
+
+<span class="n">bond</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span> <span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">use</span> <span class="nb">print</span> <span class="n">method</span> <span class="n">to</span> <span class="n">see</span> <span class="n">every</span> <span class="n">execution</span> 
+
+    <span class="n">please</span> <span class="n">run</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span>
+
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="set-new-values-for-a-specific-cell-or-row">
+<h2>Set New Values for a Specific Cell or Row<a class="headerlink" href="#set-new-values-for-a-specific-cell-or-row" title="Link to this heading">#</a></h2>
+<p>আমরা যদি Data-Frame এর specific কোন কোন data change করতে চাই, তা হইলে just python list এর basic consept আর pandas এর .loc[] বা .iloc[] কিংবা .ix[] ব্যবহার করলে ই হবে।</p>
+<p>আমরা .loc[] বা .iloc[] কিংবা .ix[] ব্যবহার করে specific data pick করব  যে data টা change করার দরকার। then just assign operator(=) ব্যবহার করে new data add করব।</p>
+<p><font color="green"> define dataframe.loc[series, index] = new_Value </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># using .ix[] function</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s2">&quot;Dr. No&quot;</span><span class="p">])</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s2">&quot;Dr. No&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Sir Sean Connery&quot;</span>
+
+<span class="c1"># using .loc[] function </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Dr. No&quot;</span><span class="p">])</span>
+
+<span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Dr. No&quot;</span><span class="p">,</span> <span class="s2">&quot;Actor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Sir Sean Connery&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Dr. No&quot;</span><span class="p">])</span>
+
+
+<span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Dr. No&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Box Office&quot;</span><span class="p">,</span> <span class="s2">&quot;Budget&quot;</span><span class="p">,</span> <span class="s2">&quot;Bond Actor Salary&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">448800000</span><span class="p">,</span> <span class="mi">7000000</span><span class="p">,</span> <span class="mi">600000</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Dr. No&quot;</span><span class="p">])</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">please</span> <span class="n">run</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span>
+
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="set-multiple-values-in-dataframe">
+<h2>Set Multiple Values in DataFrame<a class="headerlink" href="#set-multiple-values-in-dataframe" title="Link to this heading">#</a></h2>
+<p>আমরা data-frame থেকে multiple ভালু এর Series বা new_dataframe pick করে তাতে specific value change করতে পারি। এর ফলে একটা change এর দ্বারা অনেক row তে change আনা যায়।</p>
+<p><font color="green"> define dataframe.loc[new_dataframe_with_specific_value, index] = new_Value </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>  <span class="c1"># make &quot;Film&quot; as index</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>   <span class="c1"># sort alphabetically </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">mask</span> <span class="o">=</span> <span class="n">bond</span><span class="p">[</span><span class="s2">&quot;Actor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Sean Connery&quot;</span>  <span class="c1"># make a nwe_dataframe with actor as &quot;Sean Connery&quot;</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">bond</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>   
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+
+<span class="n">df2</span><span class="p">[</span><span class="s2">&quot;Actor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Sir Sean Connery&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+
+<span class="c1"># or  </span>
+<span class="n">bond</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span><span class="s2">&quot;Actor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Sir Sean Connery&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="p">)</span>
+
+<span class="n">bond</span><span class="p">[</span><span class="n">bond</span><span class="p">[</span><span class="s2">&quot;Actor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Roger Moore&quot;</span><span class="p">]</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">please</span> <span class="n">run</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span>
+
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="rename-index-labels-or-columns-in-a-dataframe">
+<h2>Rename Index Labels or Columns in a DataFrame<a class="headerlink" href="#rename-index-labels-or-columns-in-a-dataframe" title="Link to this heading">#</a></h2>
+<p>আমরা <font color="green">  data-frame.rename(columns= {“old_name” : “new_name “}) </font> ব্যবহার করে column অথবা <font color="green">  data-frame.rename(index= {“old_name” : “new_name “}) </font> ব্যবহার করে dataframe এর যে কোন row বা index এর নাম change করতে পারি।</p>
+<p>আমরা dictionary আকারে value inseart করে data update করতে পারি।</p>
+<p><em>.rename() এ inplace paramiter আছে ।</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># rename column</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Year&quot;</span><span class="p">:</span> <span class="s2">&quot;Release Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Box Office&quot;</span><span class="p">:</span> <span class="s2">&quot;Revenue&quot;</span><span class="p">},</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># rename index</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Dr. No&quot;</span><span class="p">:</span> <span class="s2">&quot;Doctor No&quot;</span><span class="p">,</span> 
+                     <span class="s2">&quot;GoldenEye&quot;</span><span class="p">:</span> <span class="s2">&quot;Golden Eye&quot;</span><span class="p">,</span>
+                     <span class="s2">&quot;The World Is Not Enough&quot;</span><span class="p">:</span> <span class="s2">&quot;Best Bond Movie&quot;</span><span class="p">},</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s2">&quot;Best Bond Movie&quot;</span><span class="p">]</span>
+
+<span class="c1"># or we can change columns name by</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="s2">&quot;Hero&quot;</span><span class="p">,</span> <span class="s2">&quot;Director&quot;</span><span class="p">,</span> <span class="s2">&quot;Gross&quot;</span><span class="p">,</span> <span class="s2">&quot;cost&quot;</span><span class="p">,</span> <span class="s2">&quot;salary&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">please</span> <span class="n">run</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span>
+
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="delete-rows-or-columns-in-a-dataframe">
+<h2>Delete Rows or Columns in a DataFrame<a class="headerlink" href="#delete-rows-or-columns-in-a-dataframe" title="Link to this heading">#</a></h2>
+<p>আমরা <font color="green"> data-frame.drop(index = “Row_name”,inplace = True) </font> ব্যবহার করে row এবং <font color="green">  data-frame.drop(labels = “column_name”,inplace = True) </font> ব্যবহার করে column কে Data-frame থেকে remove করতে পারি।</p>
+<p>আমরা যদি কোন column এর Data cut করে new কোন Data inseart করতে চাই তা হইলে <font color="green"> data-frame.pop(“name”) </font> ব্যবহার করে specific column name এর Series পাইতে পারি।</p>
+<p>তা ছাড়া আমরা <font color="green"> del dataframe[“column_name”] </font>  ব্যবহার করে data-frame থেকে column remove করতে পারি।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># drop rows</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="s2">&quot;Casino Royale&quot;</span><span class="p">,</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># drop columns</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">bond</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="s2">&quot;Director&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span> <span class="s2">&quot;columns&quot;</span><span class="p">,</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+
+<span class="c1"># cut columns and insert to another variable</span>
+<span class="n">hero</span> <span class="o">=</span> <span class="n">bond</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;Actor&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hero</span><span class="p">)</span>
+
+<span class="c1"># delete column permanentlly by del keyword</span>
+<span class="k">del</span> <span class="n">bond</span><span class="p">[</span><span class="s2">&quot;Director&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">please</span> <span class="n">run</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span>
+
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="create-random-sample">
+<h2>Create Random Sample<a class="headerlink" href="#create-random-sample" title="Link to this heading">#</a></h2>
+<p>বেশির ভাগ সময় data-set এ বিপুল পরিমাণ sample data থাকে বা প্রয়োজন এর অতিরিক্ত label থাকে ।</p>
+<p>আমরা <font color="green"> data-frame.sample() </font> ব্যবহার করে সমস্ত data-frame এর নির্দিষ্ট কিছু data sample নিয়ে train বা test করতে পারি। আমরা .sample(n) এ n = (যে কোন numerical value) ব্যবহার করে সমস্ত data-frame থেকে randomly n সংখ্যক index এর data নিতে পারি।</p>
+<p>এ ছাড়া .sample(frac ) এ আমরা specific % data এর floating value define করে দিতে পারি। যার ফলে সমস্ত data থেকে ঐ নির্দিষ্ট শতাংশ data নিয়ে test বা train করতে পারি।</p>
+<p>আমরা .sample(n , axis = “columns”) ব্যবহার করে column থেকে sampling করতে পারি।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="p">)</span>
+
+<span class="n">bond</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># give 6 random rows from bond</span>
+
+<span class="n">bond</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span> <span class="o">=</span> <span class="mf">.25</span><span class="p">)</span> <span class="c1"># give 25% of number from bond </span>
+
+<span class="n">bond</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="s2">&quot;columns&quot;</span><span class="p">)</span> <span class="c1"># give 3 random columns from bond</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">please</span> <span class="n">run</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span>
+
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+    
+    <span class="ow">or</span> <span class="n">comment</span> <span class="k">for</span> <span class="n">discussion</span> <span class="o">.......</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="the-nsmallest-and-nlargest-methods">
+<h2>The .nsmallest() and .nlargest() methods<a class="headerlink" href="#the-nsmallest-and-nlargest-methods" title="Link to this heading">#</a></h2>
+<p>আমরা data-frame থেকে index অনুযায়ী যে কোন পরিমাণ এর সবথেকে বড় data  <font color="green"> data-frame.nlargest() </font>  এবং সবথেকে ছোট data <font color="green"> data-frame.nsmallest() </font> function ব্যবহার করে নিতে পারি।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="p">)</span>
+
+<span class="c1"># we can sort by</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># or using .nlargest()</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># we can sort by</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># or using .nlargest()</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="c1">#or</span>
+<span class="n">bond</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">please</span> <span class="n">run</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span>
+
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+    
+    <span class="ow">or</span> <span class="n">comment</span> <span class="k">for</span> <span class="n">discussion</span> <span class="o">.......</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="filtering-with-the-where-method">
+<h2>Filtering with the where Method<a class="headerlink" href="#filtering-with-the-where-method" title="Link to this heading">#</a></h2>
+<p>data-frame থেকে data filter এর জন্য যদি নির্দিষ্ট কোন condition অনুযায়ী data pick করতে হইলে <font color="green"> data-frame.where(data-frame[“column-name”] ~condition~ n ) </font> ব্যবহার করা যায়।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">mask</span> <span class="o">=</span> <span class="n">bond</span><span class="p">[</span><span class="s2">&quot;Actor&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Sean Connery&quot;</span>
+<span class="n">bond</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">bond</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+
+<span class="c1"># same as</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="n">bond</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">bond</span><span class="p">[</span><span class="s2">&quot;Box Office&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">800</span><span class="p">)</span>
+
+<span class="n">b3</span> <span class="o">=</span> <span class="n">bond</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">bond</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2000</span><span class="p">)</span>
+
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">please</span> <span class="n">run</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span>
+
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+    
+    <span class="ow">or</span> <span class="n">comment</span> <span class="k">for</span> <span class="n">discussion</span> <span class="o">.......</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="the-query-method">
+<h2>The .query() method<a class="headerlink" href="#the-query-method" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>.query() method only string argument এর জন্য কাজ করে।</p></li>
+<li><p>data-frame এর column এর নাম এ যদি কোন spece না থাকে তা হইলে .query() method কাজ করে।</p></li>
+</ul>
+<p>আমরা .query() method এ single বা multiple condition ব্যবহার করতে পারি।</p>
+<p>.query() অনেকটা search operation এর মত কিন্তু সাধারণ operation এর থেকে প্রায় ১০ গুন বেশি faster.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># using list comprehention to replace data for reduse spaces </span>
+<span class="n">bond</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">column_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">column_name</span> <span class="ow">in</span> <span class="n">bond</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># using .query()</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Actor == &#39;Sean Connery&#39;&quot;</span><span class="p">)</span>
+
+<span class="n">ad</span> <span class="o">=</span> <span class="n">bond</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Actor == &#39;Sean Connery&#39; or Director == &#39;John Glen&#39;&quot;</span><span class="p">)</span>
+
+<span class="n">add</span> <span class="o">=</span> <span class="n">bond</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Actor not in [&#39;Sean Connery&#39;, &#39;Roger Moore&#39;]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">add</span><span class="p">)</span>
+
+
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">please</span> <span class="n">run</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span>
+
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+    
+    <span class="ow">or</span> <span class="n">comment</span> <span class="k">for</span> <span class="n">discussion</span> <span class="o">.......</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="apply-method-on-single-columns">
+<h2>.apply() Method on Single Columns<a class="headerlink" href="#apply-method-on-single-columns" title="Link to this heading">#</a></h2>
+<p>data-frame এর কোন single column নিয়ে কাজ করা মানে data-frame থেকে একটা Series নিয়ে কাজ করা।</p>
+<p>.apply() method ব্যবহার করা হয় condition বা operation এর পর, যার দ্বারা change টা সমস্ত data তে execute হয়।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">convert_to_String_and_add_millions</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;MILLIONS&quot;</span>
+
+<span class="n">bond</span><span class="p">[</span><span class="s2">&quot;Box Office&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bond</span><span class="p">[</span><span class="s2">&quot;Box Office&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">convert_to_String_and_add_millions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="p">[</span><span class="s2">&quot;Box Office&quot;</span><span class="p">])</span>
+
+<span class="c1"># convert multiple rows with specific value by</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Budget&quot;</span><span class="p">,</span><span class="s2">&quot;Bond Actor Salary&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+    <span class="n">bond</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">bond</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">convert_to_String_and_add_millions</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+
+
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">please</span> <span class="n">run</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span>
+
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+    
+    <span class="ow">or</span> <span class="n">comment</span> <span class="k">for</span> <span class="n">discussion</span> <span class="o">.......</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="apply-method-with-row-values">
+<h2>.apply() Method with Row Values<a class="headerlink" href="#apply-method-with-row-values" title="Link to this heading">#</a></h2>
+<p>আমরা যদি data-frame থেকে classification বাহির করতে চাই। বা specific row দ্বারা আলাদা data-frame বাহির করতে চাই, তা হইলে ও <font color="green"> data-frame.apply(operation, axis) </font> ব্যবহার করা হয়।</p>
+<p>আমরা একটি example এ actor আর budget এর উপর ভিত্তি করে movies category বানাব।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">good_movie</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    
+    <span class="n">actor</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">budget</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">actor</span> <span class="o">==</span> <span class="s2">&quot;Pierce Brosnan&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;The Best&quot;</span>
+    <span class="k">elif</span> <span class="n">actor</span> <span class="o">==</span> <span class="s2">&quot;Roger Moore&quot;</span> <span class="ow">and</span> <span class="n">budget</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Enjoyable&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;I have no clue&quot;</span>
+
+<span class="n">bond</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">good_movie</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="s2">&quot;columns&quot;</span><span class="p">)</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+    
+    <span class="ow">or</span> <span class="n">comment</span> <span class="k">for</span> <span class="n">discussion</span> <span class="o">.......</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="copy-method">
+<h2>.copy() Method<a class="headerlink" href="#copy-method" title="Link to this heading">#</a></h2>
+<p>আমরা data-frame নিয়ে অনেক operation করে থাকি। আবার data-frame এ ও অনেক পরিবর্তন করে থাকি। যদি কখনও আমরা data-frame এর কোন পরিবর্তন আনি কিন্তু তা যেন main data-frame এ কোন পরিবর্তন না করে এমন কিছু করতে চাই, তা হইলে আমরা <font color="green"> .copy()  </font> method ব্যবহার করে data-frame এর যে কোন part অন্য variable এ copy করে নিয়ে তা ব্যবহার করতে পারি।</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="n">bond</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;jamesbond.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span><span class="s2">&quot;Film&quot;</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">directors</span> <span class="o">=</span> <span class="n">bond</span><span class="p">[</span><span class="s2">&quot;Director&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">directors</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> output </font></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+
+    <span class="k">try</span> <span class="n">by</span> <span class="bp">self</span><span class="o">...</span> <span class="p">;)</span>
+    
+    <span class="ow">or</span> <span class="n">comment</span> <span class="k">for</span> <span class="n">discussion</span> <span class="o">.......</span>
+
+
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pandas_series.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pandas Series Blog</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pandas_workWithTextData.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Pandas Text Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-methods-and-attributes">Shared Methods and Attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting-operations">Broadcasting Operations :</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#value-counts">.value_counts()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dropna">.dropna()</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-rows-with-null-values">Drop Rows with Null Values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fillna">.fillna()</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fill-null-values-with-the-fillna-method">Fill Null Values with the .fillna() method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#astype-method">.astype() method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numique-method">.numique() method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduse-memory-space-by-change-astype">reduse memory space by change .astype()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-value-method">.sort_value()  method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-datetime-method">.to_dateTime method:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduse-memory-using-astype">reduse memory using .astype()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-a-dataframe-based-on-a-condition">filter A DataFrame Based On a Condition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isin-method">.isin()  Method:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isnull-and-notnull-methods">.isnull()  and   .notnull()  methods :</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#between-method">.between() method :</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-values-method">.sort_values() method :</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicated-method">.duplicated() method:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-duplicates-method">.drop_duplicates() method :</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unique-and-nunique-method">.unique() and nunique() method :</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-index-and-reset-index-methods">.set_index() and .reset_index() methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loc-iloc-methods">.loc[] &amp;  .iloc[] methods:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ix-method">.ix[] Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-argument-to-loc-iloc-and-ix-methods">Second Argument to .loc[], .iloc[], and .ix[] Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-new-values-for-a-specific-cell-or-row">Set New Values for a Specific Cell or Row</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-multiple-values-in-dataframe">Set Multiple Values in DataFrame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rename-index-labels-or-columns-in-a-dataframe">Rename Index Labels or Columns in a DataFrame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-rows-or-columns-in-a-dataframe">Delete Rows or Columns in a DataFrame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-random-sample">Create Random Sample</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-nsmallest-and-nlargest-methods">The .nsmallest() and .nlargest() methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-with-the-where-method">Filtering with the where Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-query-method">The .query() method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-method-on-single-columns">.apply() Method on Single Columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-method-with-row-values">.apply() Method with Row Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copy-method">.copy() Method</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

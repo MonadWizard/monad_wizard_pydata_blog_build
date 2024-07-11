@@ -1,0 +1,1196 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>গিট এর সব essential topicগুলো cover করা হয়েছে। &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_ops/git/git_discribe';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/dev_ops/git/git_discribe.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="daphne" href="../linux.html" />
+    <link rel="prev" title="cheet sheet github and git" href="git_cheetsheet.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">devops</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../git.html">git</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="git_cheetsheet.html">cheet sheet github and git</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">গিট এর সব essential topicগুলো cover করা হয়েছে।</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../linux.html">daphne</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/pacman.html">Package Manager (pacman)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../daphne.html">daphne</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../daphne/daphne_django.html">daphne django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gunicorn.html">gunicorn</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gunicorn/gunicorn_django.html">Gunicorn Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nginx.html">nginx</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nginx/nginx_django.html">Nginx Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../text_editor.html">text editor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/vim_cheatsheet.html">Simple Vim workflow example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/ESLint_workspace-setup-VSCODE.html">SLint, Prettier snippets VSCODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/emojisence.html">Emoji snippet VSCODE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../virtualization.html">virtualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_docker.html">dockers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_py_environment.html">python virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_Vargant.html">Vargant virtualization</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">devops</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../git.html" class="nav-link">git</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">গিট এর সব...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="essential-topic-cover">
+<h1>গিট এর সব essential topicগুলো cover করা হয়েছে।<a class="headerlink" href="#essential-topic-cover" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>গিট : ইন্সটল ও কনফিগার করা<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>গিট নিয়ে কাজ শুরু করার জন্য আপনার কম্পিউটারকে গিট ব্যবহার উপযোগী করে নিতে হবে। সেজন্য আপনার কম্পিউটারে গিট ইন্সটল(install) করতে হবে। চলুন দেখে নেয়া যাক, কিভাবে গিট ইন্সটল এবং কনফিগার(configure) করে নিতে হয়।</p>
+<section id="windows">
+<h3>Windows:<a class="headerlink" href="#windows" title="Link to this heading">#</a></h3>
+<p>১. গিট প্যাকেজটি ডাউনলোড করার জন্য এখানে <a class="reference external" href="http://git-scm.com/download/win">ক্লিক</a> করুন।<br />
+২. ডাউনলোড করা ফাইলটি ক্লিক করে ইন্সটল করে নিন।</p>
+</section>
+<section id="linux">
+<h3>Linux:<a class="headerlink" href="#linux" title="Link to this heading">#</a></h3>
+<p>Linux এর বিভিন্ন ডিস্ট্রো এর জন্য গিট ইন্সটল পদ্ধতি বিভিন্ন রকম। কিন্তু খুবই সহজ। ডিস্ট্রো অনুযায়ী terminal-এ নিচের কমান্ডগুলো লিখুন।</p>
+<ul>
+<li><p>Debian/Ubuntu</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># apt-get install git  </span>
+</pre></div>
+</div>
+</li>
+<li><p>Fedora</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># yum install git  </span>
+</pre></div>
+</div>
+</li>
+<li><p>Gentoo</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># emerge --ask --verbose dev-vcs/git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Arch Linux</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># pacman -S git</span>
+</pre></div>
+</div>
+</li>
+<li><p>FreeBSD</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /usr/ports/devel/git
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$make install
+</pre></div>
+</div>
+</li>
+<li><p>Solaris 11 Express</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pkg install developer/versioning/git
+</pre></div>
+</div>
+</li>
+<li><p>OpenBSD</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pkg_add git
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id2">
+<h3>গিট কনফিগার<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>গিট কনফিগার করার মূল উদ্দেশ্য হচ্ছে, আপনি যখন গিট এর মাধ্যমে কমিট(commit) করবেন তখন কমিটের সাথে সে আপনার তথ্য সংরক্ষণ করে রাখবে। কনফিগারেশনের সময় আপনাকে শুধু আপনার user name এবং email address বলে দিতে হবে। Windows ব্যবহারকারীরা
+গিট ইন্সটল করার পর কম্পিউটার ডেক্সটপে gitBash নামে একটি শর্টকাট ফাইল তৈরি হবে। সেটি খুলে তাতে নিচের কমান্ডগুলো লিখুন। Linux ব্যবহারকারীরা terminal-এ কমান্ডগুলো লিখতে পারবেন।</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git config --global user.name &quot;Your Name Here&quot;
+</pre></div>
+</div>
+<p>Your Name Here এর জায়গায় আপনার নাম লিখুন।</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git config --global user.email &quot;your_email@youremail.com&quot;
+</pre></div>
+</div>
+<p>এখানে যে email address দিবেন তা অবশ্যই আপনার সার্ভার অ্যাকাউন্টের email address এর সাথে মিল থাকতে হবে। এখন আপনার কম্পিউটারটি গিট ব্যবহার উপযোগি হয়েছে। এখন থেকে আপনি আপনার কম্পিউটারে গিটের কমান্ডগুলো কাজে লাগাতে পারবেন। আমরা আমাদের সকল কমান্ড gitBash অথবা terminal-এ লিখবো।</p>
+<p><code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> ফাইল এ আপনার গ্লোবাল(global) কনফিগারেশন লেখা থাকে। আপনি যখন কোন একটি রিপোজিটরিতে <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> কমান্ড দিবেন তখন <code class="docutils literal notranslate"><span class="pre">.git</span></code> নামের একটি ফোল্ডার তৈরি হবে। এই <code class="docutils literal notranslate"><span class="pre">.git</span></code> ফোল্ডারের ভিতরেই গিট সব তথ্য সংরক্ষিত রাখে।</p>
+<p>আপনি কোন একটি রিপজিটরির জন্য গিটের গ্লোবাল কনফিগারেশনকে পরিবর্তন অথবা ওভাররাইট করতে পারেন। আপনি যদি কোন একটি রিপজিটরির জন্য <code class="docutils literal notranslate"><span class="pre">name</span></code> এবং <code class="docutils literal notranslate"><span class="pre">email</span></code> পরিবর্তন করতে চান তাহলে terminal দিয়ে রিপজিটরিতে গিয়ে নিচের কমান্ডগুলো দেন।</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">local</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;Your Name Here&quot;</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">local</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="s2">&quot;your_email@youremail.com&quot;</span>
+</pre></div>
+</div>
+<p>এখানে আপনি যে <code class="docutils literal notranslate"><span class="pre">নাম</span></code> এবং <code class="docutils literal notranslate"><span class="pre">ইমেইল</span></code> দিবেন তা শধুমাত্র এই রিপোজিটরির জন্য কনফিগার হবে। আপনার লোকাল কনফিগার <code class="docutils literal notranslate"><span class="pre">.git/config</span></code> ফাইল এ সংরক্ষিত হয়।  Linux/Mac ব্যবহারকারীরা terminal-এ নিচের কমান্ড দিয়ে লোকাল কনফিগারেশন এর ফাইলটি দেখতে পারেন।</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">.</span><span class="n">git</span><span class="o">/</span><span class="n">config</span>
+</pre></div>
+</div>
+<p>ফাইল এর শেষে যদি নিচের লাইনগুলো যোগ হয় তাহলে আপনার লোকাল কনফিগার সঠিকভাবে overwrite হয়েছে।</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">user</span><span class="p">]</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">your</span><span class="o">-</span><span class="n">email</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>আপনি নিচের কমান্ড দিয়ে আপনার গিট কনফিগারেশন একসাথে দেখতে পারবেন।</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="nb">list</span>
+</pre></div>
+</div>
+<br>
+</section>
+</section>
+<section id="id3">
+<h2>গিট : নতুন অফলাইন রিপোজিটরি নিয়ে কাজ করা<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>অফলাইনে গিট রিপোজিটরি ব্যবহার করার জন্য নিচের ধাপগুলো অনুসরন করুন</p>
+<ol class="arabic simple">
+<li><p>ধরুন, আপনি যদি একটি routine management system তৈরি করতে চান এবং আপনার রিপোজিটরি ফোল্ডারের নাম যদি rms দিতে চান , প্রথমে</p></li>
+</ol>
+<p>‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍<code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">rms</span></code></p>
+<p>কমান্ড টি লিখুন। এখন cd ব্যবহার করে আপনার রিপোজিটরিতে প্রবেশ করতে লিখুন</p>
+<p>‍<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">rms</span></code></p>
+<ol class="arabic" start="2">
+<li><p>এখন</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code></p>
+<p>কমান্ড লিখুন। এতে করে আপনার রিপোজিটরিটি গিট ব্যবহারের উপযোগি হবে এবং .git নামে একটি লুকানো ফোল্ডার তৈরি হবে। আপনার রিপোজিটরিতে .git ফোল্ডারটি তৈরি না থাকলে আপনি গিটের কমান্ডগুলো কাজে লাগাতে পারবেন না।</p>
+</li>
+<li><p>আপনার রিপোজিটরিটি এখন কাজের উপযুক্ত হয়েছে। আপনি এখন এতে যে কোন ধরনে ফাইল, ফোল্ডার তৈরি, সম্পাদনা ও মুছে ফেলতে পারবেন।</p></li>
+<li><p>আপনার রিপোজিটরি প্রত্যেকবার স্থিতিশীল(stable) অবস্থায় পৌছলে সেগুলো Staging Area তে পাঠাতে হবে। Staging area তে পাঠানোর মানে হচ্ছে আপনি যে যে ফাইলগুলোকে নিশ্চিতভাবে রিপোজিটরিতে অন্তর্ভুক্ত করবেন তার   তালিকা তৈরি করা। সে জন্য আপনাকে  <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> কমান্ড ব্যবহার করতে হবে। যদি আপনি বর্তমান সবগুলো ফাইলকে Staging area তে সংযুক্ত করতে চান তবে আপনাকে</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">--all</span></code></p>
+<p>কমান্ড ব্যবহার করতে হবে। যদি একটি ফাইকে সংযুক্ত করতে চান তবে <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> কমান্ডের পর ফাইলের নাম লিখতে হবে। ধরুন আপনি test.txt নামে একটি ফাইল তৈরি করেছেন যা আপনি Staging area তে পাঠাতে চান। তখন আপনার কমান্ড হবে</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">test.txt</span></code></p>
+</li>
+<li><p>সর্বশেষ আপনাকে যে কাজটি করতে হবে তা হচ্ছে, আপনার staging area তে সংযুক্ত করা ফাইলগুলোকে মূল রিপোজিটরির সাথে নিশ্চতভাবে সংযুক্ত করা। সে জন্য আপনাকে  <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> কমান্ডটি ব্যবহার করতে হবে। আপনাকে প্রত্যেক commit এর সাথে একটি বার্তা সংযুক্ত করে দিতে হবে। তখন আপনার সম্পূর্ণ কমান্ডটি হবে-</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span> <span class="pre">-m</span> <span class="pre">&quot;Your</span> <span class="pre">Message&quot;</span></code></p>
+</li>
+</ol>
+<p>এখানে “Your Message” এর জায়গায় আপনি আপনার ইচ্ছেমত যেকোন টেক্সট দিতে পারেন।</p>
+<br>
+</section>
+<section id="id4">
+<h2>গিট : বিদ্যমান রিমোট রিপোজিটরি নিয়ে কাজ করা<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>অনলাইনে গিট রিপোজিটরি সংরক্ষণ করে রাখার জন্য কিছু সার্ভার রয়েছে। যাদের মধ্যে <a class="reference external" href="https://github.com/">GitHub</a>, <a class="reference external" href="https://bitbucket.com">BitBucket</a>, <a class="reference external" href="https://about.gitlab.com/gitlab-com/">GitLab</a> অন্যতম। এই সব সার্ভারে সংরক্ষিত রিপোজিটরিগুলোকে রিমোট রিপোজিটরি বলা হয়। আপনি সাইটগুলোতে প্রবেশ করে আপনার নিজস্ব রিপোজিটরি তৈরি করতে পারবেন। একটি রিমোট রিপোজিটরি তৈরি করার পর আপনাকে সাধারণত আপনার লোকাল কম্পিউটার থেকেই সেগুলোকে সম্পাদনা করতে হবে। সম্পাদনা শেষে আবার রিমোট রিপোজিটরিতে আপলোড করে দিতে হবে। চলুন দেখা যাক, গিট ব্যবহার করে কিভাবে আমরা একটি রিমোট রিপোজিটরিকে সম্পাদনা করতে পারি।</p>
+<p>(আমরা এখানে bitbucket ও ওয়েব ডেভেলপমেন্ট এর রিপোজিটরি নিয়ে আলোচনা করবো)</p>
+<ol class="arabic simple">
+<li><p>প্রথমেই আপনার রিমোট রিপোজিটরিটিকে আপনার নিজস্ব কম্পিউটারে নিয়ে আসতে হবে। এজন্য আপনাকে cd কমান্ড ব্যবহার করে আপনার কম্পিউটারের localhost এ যেতে হবে। localhost এর জন্য আপনাকে htdocs অথবা www ফোল্ডারে প্রবেশ করতে হবে।</p></li>
+<li><p>ব্রাউজারের মাধ্যমে আপনার রিমোট রিপোজিটরিতে প্রবেশ করুন। সেখানে clone বাটনে ক্লিক করার পর সেখানে একটি কমান্ড দেখতে পাবেন। clone কমান্ডের দুইটি অপশন থাকে। একটি হচ্ছে https এবং অন্যটি ssh। ssh কমান্ড নির্বাচন করলে আপনার কম্পিউটারে একটি ssh key তৈরি করতে হবে। পরে সেটি আপনার সার্ভারে সংরক্ষন করতে হবে। কিন্তু https নির্বাচন করলে কোন key তৈরি করতে হবে না। চলুন দেখে নেয়া যাক, কিভাবে ssh key তৈরি করতে হয়-</p></li>
+</ol>
+<ul class="simple">
+<li><p>terminal এ <code class="docutils literal notranslate"><span class="pre">ssh-keygen</span></code> কমান্ডটি লিখুন। এতে করে আপনার কম্পিউটারের home ফোল্ডারে লুকানো একটি <em>.ssh</em> ফোল্ডার তৈরি হবে এবং একটি <em>id_rsa.pub</em> ফাইল তৈরি হবে। <em>id_rsa.pub</em> ফাইলটি খুলুন এবং এর ভিতরের লেখাগুলো copy করুন।</p></li>
+<li><p>আপনার সার্ভার account এ প্রবেশ করুন। সেখান থেকে manage account লিংকে(link) প্রবেশ করুন। এরপর সেখান থেকে ssh key লিংকে প্রবেশ করে আপনার key টি paste করুন। এরপর সংরক্ষন করে বের হয়ে আসুন।</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>সার্ভার একাউন্ট(account) থেকে clone কমান্ডটি copy করে terminal এ paste করুন।</p></li>
+<li><p>আপনার clone কমান্ডটি যদি https এর হয় তাহলে আপনার কাছে আপনার একাউন্ট এর user name এবং password চাইবে। সঠিক তথ্য দিলে আপনার সার্ভারের রিপোজিটরিটি আপনার নিজস্ব কম্পিউটারে ক্লোন(clone) হয়ে যাবে। আপনার localhost এ প্রবেশ করলে সার্ভারের রিপোজিটরির নামে একটি ফোল্ডার দেখবেন। এটাই আপনার নিজস্ব কম্পিউটারে রিমোট রিপোজিটরির ক্লোন।</p></li>
+<li><p>এখন অফলাইনে থেকেই আপনার রিপোজিটরিতে কাজ করুন। এরপর আপনি যখনি আপনার রিমোট রিপোজিটরিতে আপনার কোড(code) সংযুক্ত করতে চাইবেন তখন আপনাকে কিছু কমান্ড ব্যবহার করতে হবে। সেগুলো নিচে দেয়া হলো।</p></li>
+</ol>
+<ul class="simple">
+<li><p>আপনার রিপোজিটরি প্রত্যেকবার স্থিতিশীল(stable) অবস্থায় পৌছলে সেগুলো Staging Area তে পাঠাতে হবে। Staging area তে পাঠানোর মানে হচ্ছে আপনি যে যে ফাইলগুলোকে নিশ্চিতভাবে রিপোজিটরিতে অন্তর্ভুক্ত করবেন তার তালিকা তৈরি করা। সে জন্য আপনাকে git add কমান্ড ব্যবহার করতে হবে। যদি আপনি বর্তমান সবগুলো ফাইলকে Staging area তে সংযুক্ত করতে চান তবে আপনাকে</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">*</span></code></p>
+<p>কমান্ড ব্যবহার করতে হবে। যদি একটি ফাইকে সংযুক্ত করতে চান তবে git add কমান্ডের পর ফাইলের নাম লিখতে হবে। ধরুন আপনি test.txt নামে একটি ফাইল তৈরি করেছেন যা আপনি Staging area তে পাঠাতে চান। তখন আপনার কমান্ড হবে</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">test.txt</span></code></p>
+<ul class="simple">
+<li><p>আপনার staging area তে সংযুক্ত করা ফাইলগুলোকে মূল রিপোজিটরির সাথে নিশ্চতভাবে সংযুক্ত করা। সে জন্য আপনাকে git commit কমান্ডটি ব্যবহার করতে হবে। আপনাকে প্রত্যেক commit এর সাথে একটি বার্তা সংযুক্ত করে দিতে হবে। তখন আপনার সম্পূর্ণ কমান্ডটি হবে-</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">“Your</span> <span class="pre">Message”</span></code></p>
+<ul class="simple">
+<li><p>এখন কমিট(commit) করা ফাইলগুলোকে রিমোট রিপোজিটরিতে সংযুক্ত করতে আপনাকে git push কমান্ডটি ব্যবহার করতে হবে। আপনি কোন ব্রাঞ্চ(branch (branch সম্পর্কে অন্য টিউটরিয়ালে আলোচনা করা হবে))-এ ফাইল সংযুক্ত তাও বলে দিতে হবে। আমরা আমাদের ফাইল <code class="docutils literal notranslate"><span class="pre">master</span></code> branch এ সংযুক্ত করবো। সম্পূর্ণ কমান্ডটি নিচে দেয়া হলো।</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">master</span></code></p>
+<p>এখানে origin হচ্ছে রিমোট রিপোজিটরির নাম। যে রিমোট রিপোজিটরি থেকে ফাইল ক্লোন করা হয় তার নাম সাধারণত origin দেয়া থাকে।</p>
+<br>
+</section>
+<section id="id5">
+<h2>গিট : একই রিপোজিটরিতে একাধিক ডেভেলপার<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>সাধারণত আমরা যখন কোন প্রজেক্ট বা রিপোজিটরি নিয়ে একটি টিমে(team) কাজ করি তখন প্রজেক্ট ব্যবস্থাপনাটা একটু জটিল হয়ে যায়। বিশেষ করে একই ফাইলে একাধিক ডেভেলপার কাজ করা। এই সমস্যার সমাধানের জন্য গিট যে পদ্ধতি ব্যবহার করেছে তা এক কথায় অসাধারণ। কোন কাজ অথবা কোড না হারিয়েই একই ফাইলে কাজ করতে পারবেন অসংখ্য ডেভেলপার। একটি রিপোজিটরি নিয়ে অসংখ্য ডেভেলপার বিচ্ছিন্নভাবে কাজ করলেও সবাই সংযুক্ত থাকতে পারবেন গিট এর মাধ্যমে। কথাটা শুনতে খাপছাড়া মনে হলেও এটাই সত্যি। তাহলে দেরি না করে চলুন দেখা যাক কিভাবে একই রিপোজিটরিতে অসংখ্য ডেভেলপার কাজ করতে পারবেন। আমরা এখানে যে পদ্ধতি নিয়ে আলোচনা করবো তা অধিকাংশ ওপেনসোর্স(opensource) রিপোজিটরিতে ব্যবহার করা হয়।</p>
+<ul class="simple">
+<li><p>প্রথমেই আমাদেরকে এমন একটি রিমোট রিপোজিটরি তৈরি করতে হবে যা কেন্দ্রীয় রিপোজিটরি হিসেবে ব্যবহার করা হবে। আপনি যদি বিনামূল্যে github(একটি গিট রিপোজিটরি সার্ভার) ব্যবহার করেন তাহলে যে কেউ আপনার রিপোজিটরিতে read access পাবে। কিন্তু bitbucket ব্যবহার করলে আপনি যদি রিপোজিটরি public না করে দেন তাহলে কেউ দেখতে পাবে না। চাইলে আপনি private রিপোজিটরিতেও আপনার পছন্দনীয় ব্যক্তিকে read, write অথবা admin access দিতে পারবেন। তাই আপনি যে সকল ডেভেলপারকে আপনার রিপোজিটরিতে সংযুক্ত করবেন তাদেরকে read access দিন।</p></li>
+<li><p>ফোর্ক(fork): admin ব্যতিত যে সকল ডেভেলপার একই রিপোজিটরিতে কাজ করবেন তাদেরকে কেন্দ্রীয় বা মূল রিপোজিটরিতে Fork করতে হবে। ফোর্ক মানে হচ্ছে ডেভেলপারের সার্ভার একাউন্টে(account) মূল রিপোজিটরির মত একটি স্বতন্ত্র রিপোজিটরি তৈরি করা। ফোর্ক করার পর ডেভেলপার যে রিপোজিটরি তৈরি করবেন তা একান্তই তার নিজস্ব। এতে মূল রিপোজিটরির সাথে দৃশ্যত কোন সম্পর্ক থাকবে না। পরবর্তীতে আমরা চাইলে মূল রিপোজিটরির সাথে সংযোগ দিতে পারবো। একটি রিপোজিটরি ফোর্ক করা খুবই সহজ-</p>
+<ul>
+<li><p>কেন্দ্রীয় রিপোজিটরিতে প্রবেশ করুন – Fork বাটনে(button) ক্লিক করুন – প্রয়োজনীয় তথ্য পূরণ করে submit করুন ডেভেলপার এখন একটি নিজস্ব রিপোজিটরির মালিক। :)</p></li>
+<li><p>এখন ডেভেলপার তার নিজস্ব রিপোজিটরিতে নতুন যে কোন feature নিয়ে কাজ করতে পারবেন। করতে পারবেন যে কোন ধরনের সম্পাদনা। কাজতো হলো কিন্তু এবার এত পরিশ্রমের কাজ কিভাবে মূল রিপোজিটরির সাথে সংযুক্ত করবো? খুবই সহজ–</p></li>
+<li><p>Compare: কোন কোন রিমোট রিপোজিটরি সার্ভারে আপনার করা কাজকে compare করার সুযোগ রাখা হয়েছে। চাইলে আপনি দেখে নিতে পারেন মূল রিপোজিটরির সাথে আপনি কি সংযোজন-বিয়োজন করেছেন। compare করার জন্য ডেভেলপার তার রিপোজিটরি পাতায় compare বাটনে ক্লিক করুন। দেখে নিন আপনার কাজের বর্ণনা।</p></li>
+<li><p>Pull Request: আপনার কাজগুলো মূল রিপোজিটরিতে অন্তর্ভুক্ত করার জন্য মূল রিপোজিটরিতে একটি Pull Request পাঠাতে হবে। এতে করে মূল রিপোজিটরিতে ডেভেলপারের কাজ সংযুক্ত করার জন্য একটি বার্তা প্রেরণ করা হবে। admin চাইলে ডেভেলপারের কাজ গ্রহন অথবা বাতিল করতে পারবেন। ডেভেলপার শুধু তার কাজ গ্রহন করা হয়েছে কি বাতিল করা হয়েছে এই মর্মে একটি বার্তা পাবেন। Pull Request পাঠানোর জন্য ডেভেলপার তার রিপোজিটরি পাতায় pull request বাটনে ক্লিক করুন।</p></li>
+</ul>
+</li>
+<li><p>এখন এডমিন তার মূল রিপোজিটরিতে একটি নতুন Pull Request পাবেন। কাজ পর্যবেক্ষণের পর তা গ্রহন করার মত হলে মূল রিপোজিটরির সাথে Merge করে নেবেন। উপরের যে ধাপগুলো বর্ণনা করা হয়েছে সেগুলো সম্পূর্ণ সার্ভারভিত্তিক। আপনি চাইলে সার্ভারের ওয়েব সাইটে প্রবেশ না করে গিট কমান্ড এর মাধ্যমে সরাসরি আপনার নিজস্ব কম্পিউটার থেকে ডেভেলপারদের কাজ পর্যবেক্ষণ করতে পারবেন। সেজন্য আপনাকে জানতে হবে কিভাবে আপনি একাধিক রিমোট রিপোজিটরির সাথে সংযুক্ত হবেন। আমরা আগামী টিউটরিয়ালে এ বিষয়ে আলোচনা করবো, ইনশাআল্লাহ।</p></li>
+</ul>
+<br>
+</section>
+<section id="id6">
+<h2>গিট : একাধিক রিমোট রিপোজিটরির সাথে সংযোগ<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>একই রিপোজিটরিতে একাধিক ডেভেলপার কাজ করলে একজন ডেভেলপার অন্য একজন ডেভেলপারের কাজ pull করার প্রয়োজন হতে পারে। এছাড়াও admin যখন কোন ডেভেলপারের কাজ পর্যবেক্ষণ করবেন তখন ঐ ডেভেলপারের রিপোজিটরির সাথে admin এর রিপোজিটরির সংযোগ দিতে হবে। চলুন দেখে নেয়া যাক কিভাবে রিমোট রিপোজিটরির সাথে সংযোগ দেয়া যায়। রিমোট রিপোজিটরির সাথে সংযোগ দেয়ার জন্য আমাদেরকে git remote কমান্ডটি ব্যবহার করতে হবে। সম্পূর্ণ কমান্ডটি নিচে দেয়া হলো-</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git remote add &lt;name&gt; &lt;remote-repo-url&gt;
+</pre></div>
+</div>
+<p>এখানে name এর জায়গায় আপনি রিমোট রিপোজিটরিটিকে যে নামে ডাকতে চান সে নাম হবে। remote-repo-url এর জায়গায় রিমোট রিপোজিটরিটির HTTPS/SSH clone address দিতে হবে। ধরুন আমরা একটি কেন্দ্রীয় রিপোজিটরি তৈরি করলাম যার নাম হচ্ছে rms এবং রিপোজিটরিটির HTTPS clone address হচ্ছে https://bitbucket.org/precursortechnology/rms.git । এখন এতে যতজন ডেভেলপার কাজ করবে সবাই এই রিপোজিটরিটি fork করতে হবে। এখন ডেভেলপাররা যদি তাদের রিপোজিটরিকে কেন্দ্রীয় রিপোজিটরির (https://bitbucket.org/precursortechnology/rms.git) সাথে সংযোগ দিতে চান তাহলে তাদেরকে লিখতে হবে</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git remote add upstream https://bitbucket.org/precursortechnology/rms.git
+</pre></div>
+</div>
+<p>এখানে আমরা কেন্দ্রীয় রিপোজিটরিকে চেনার জন্য <em>upstream</em> নাম ব্যবহার করেছি। আপনি চাইলে অন্য যে কোন নাম ব্যবহার করতে পারেন।
+এখন নিশ্চিত হওয়ার জন্য <em>upstream</em> এর মান দেখতে পারেন।</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git remote show upstream
+</pre></div>
+</div>
+<p>একটি রিপোজিটরি চাইলে একাধিক রিমোট রিপোজিটরির সাথে সংযুক্ত হতে পারবে। সবগুলো remote এর মান একসাথে দেখার কমান্ড -</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git remote -v
+</pre></div>
+</div>
+<p>এখন কোন ডেভেলপার যদি কেন্দ্রীয় রিপোজিটরির (<code class="docutils literal notranslate"><span class="pre">upstream</span></code>) তথ্য pull করতে চান তাহলে তাকে লিখতে হবে -</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git pull upstream master
+</pre></div>
+</div>
+<p>pull করা মানে হচ্ছে ঐ রিপোজিটরির সর্বশেষ তথ্যগুলো আপনার রিপোজিটরির সাথে একীভূত করে নেয়া। pull কমান্ড দিয়ে মূলত দুটি কাজ করা হয়। প্রথমে রিমোট রিপোজিটরিটির তথ্যগুলো fetch করে নেয়া হয় এবং পরে সেগুলো লোকাল রিপোজিটরির সাথে merge করা হয়। উপরের কমান্ড দিয়ে আমরা upstream নামক রিমোট রিপোজিটরির <code class="docutils literal notranslate"><span class="pre">master</span></code> branch এর সব তথ্যগুলো/commits লোকাল repository এর বর্তমান ব্রাঞ্চ এ merge করে নিলাম।</p>
+<p>এখন আপনার নিজের রিপোজিটরি (<em>origin</em>) তে <em>upstream</em> এর সব তথ্যগুলো পাঠাতে হলে লিখতে হবে -</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>HEAD<span class="w">    </span><span class="c1"># এখানে HEAD = বর্তমান লোকাল ব্রাঞ্চ এর নাম।</span>
+</pre></div>
+</div>
+<p>যেকোন রিমোট remove করার কমান্ড <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">rm</span> <span class="pre">&lt;remote-name&gt;</span></code> . সুতরাং, <code class="docutils literal notranslate"><span class="pre">upstream</span></code> রিমোট remove করতে হলে কমান্ড হবে -</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git remote rm upstream
+</pre></div>
+</div>
+<p>কোন রিমোট rename করার কমান্ড <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">rename</span> <span class="pre">&lt;present-name&gt;</span> <span class="pre">&lt;new-name&gt;</span></code> . সুতরাং, <code class="docutils literal notranslate"><span class="pre">upstream</span></code> রিমোট কে <code class="docutils literal notranslate"><span class="pre">origin2</span></code> করতে হলে কমান্ড হবে -</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git remote rename upstream origin2
+</pre></div>
+</div>
+<br>
+</section>
+<section id="id7">
+<h2>গিট-ফ্লও ইন্সটলেশন এবং  কনফিগারেশন<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>**গিট-ফ্লও ইন্সটলেশন **</p>
+<ul>
+<li><p>ডেবিয়ান নির্ভরশীল লিনাক্স সিস্টেমে গিট-ফ্লও  (<code class="docutils literal notranslate"><span class="pre">git-flow</span></code>) ইন্সটল করার জন্য নিছের কমান্ডটি রান করুন</p>
+<p><code>$ sudo apt-get install git-flow</code></p>
+</li>
+<li><p>ফেডরা নির্ভরশীল লিনাক্স সিস্টেমে গিট-ফ্লও (<code class="docutils literal notranslate"><span class="pre">git-flow</span></code>) ইন্সটল করার জন্য নিছের কমান্ডটি রান করুন</p>
+<p><code>$ yum install gitflow</code></p>
+</li>
+<li><p>অ্যাপল নির্ভরশীল ম্যাক সিস্টেমে গিট-ফ্লও ইন্সটল করার  জন্য নিছের কমান্ড রান করুন</p>
+<p><code>$ brew install git-flow</code></p>
+</li>
+<li><p>উইন্ডোজ সিস্টেমে গিট-ফ্লও ইন্সটল করার জন্য সবার আগে <a class="reference external" href="http://www.cygwin.com/">cygwin</a> ইন্সটল করুন। এটা একটা উইন্ডোজ সিস্টেমে, লিনাক্স এনভায়রোমেন্ট তৈরি করে। এরপর নিছের কমান্ডগুলো রান করুনঃ</p>
+<p><code>$ wget -q -O - –no-check-certificate https://github.com/nvie/gitflow/raw/develop/contrib/gitflow-installer.sh | bash</code></p>
+</li>
+<li><p>যদি এরপর <code class="docutils literal notranslate"><span class="pre">git-flow</span> <span class="pre">init</span></code> রান করার পর কেউ <code class="docutils literal notranslate"><span class="pre">&quot;flags:</span> <span class="pre">FATAL</span> <span class="pre">unable</span> <span class="pre">to</span> <span class="pre">determine</span> <span class="pre">getopt</span> <span class="pre">version&quot;</span></code> এই error দেকতে পায়, তাহলে <code class="docutils literal notranslate"><span class="pre">util-linux</span> <span class="pre">package</span></code> ইন্সটল করতে হবে <code class="docutils literal notranslate"><span class="pre">Cygwin</span></code> দিয়ে।</p></li>
+</ul>
+<p>আর বিস্তারিত জানতে উক্ত লিঙ্কে ক্লিক করুনঃ
+<a class="reference external" href="https://github.com/nvie/gitflow/wiki/Windows">উইন্ডোজ সিস্টেমে ইন্সটল গিট-ফ্লও </a></p>
+<p><strong>গিট-ফ্লও কনফিগার</strong></p>
+<p>গিট-ফ্লও কনফিগারেশন করার জন্য সবার আগে একটা গিট রিপোজিটরি থাকতে হবে। আমরা যখন কোন একটা প্রোজেক্টে git init করি, তখন সমস্ত কাজ গুলো একটা ডিফল্ট শাখা <code class="docutils literal notranslate"><span class="pre">&quot;মাস্টার(master)&quot;</span></code> এ জমা হতে থাকে।</p>
+<p>বিরক্ত লাগছে… চলুন আমরা এবার নিজে করিঃ</p>
+<p>১। আগে আমরা একটা ফোল্ডার বানাবঃ</p>
+<p><code>mkdir git-flow-test</code></p>
+<p>২। এবার আমি একটা ফাইল বানাব git-flow-test ফোল্ডারে ডুকে।</p>
+<p><code>cd git-flow-test</code></p>
+<p><code>touch helloworld.txt</code></p>
+<p>৩। এবার আমরা সবার আগে এখানে গিট <code class="docutils literal notranslate"><span class="pre">(git)</span></code> রেপোজিটোরি বানাব। এজন্য আমরা এখানে নিছের কমান্ড চালবঃ</p>
+<p><code>git init</code></p>
+<p>৪। এখন আমরা আমাদের চেঞ্জগুলো গিটে যোগ করে একটা কমিট করব। তার জন্য নিছের কমান্ডগুলো চালাবঃ</p>
+<p><code>git add . </code>
+<code>git commit -m “initali commit with first file”</code></p>
+<p>৫। এখন আমাদের সবগুলো পরিবর্তন গিটের প্রাথমিক ব্রাঞ্চ <code class="docutils literal notranslate"><span class="pre">master</span></code> এ আছে। এখন আমাদের গিট  রিপোজিটিরি <code class="docutils literal notranslate"><span class="pre">git-flow</span></code>বানানোর জন্য তৈরি। গিট-ফ্লও বানানোর জন্য এখন আমরা নিছের কমান্ডগুলো রান করবঃ</p>
+<br>
+</section>
+<section id="id8">
+<h2>গিট-ফ্লও ফিচার<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>গিট-ফ্লও ফিচার শুরু করার আগে আমরা কিছু জিনিস বানাব। যেমন আমরা কোন প্রোজেক্ট করার আগে কোন একটা প্রোজেক্ট ম্যানেজমেন্ট সিস্টেমে, প্রোজেক্ট রিলেটেড সব ফিচার (feature), বাগ (bug) ইত্যাদি আমরা বিস্তারিত লেখে রাখি। এরপর আমরা বিভিন্ন ডেভেলপারকে আমরা তা assign করে দেই।</p>
+<p>ধরি আমাদের প্রোজেক্টের নামে হেলো <code class="docutils literal notranslate"><span class="pre">&quot;গিট-ফ্লও</span> <span class="pre">(Hello</span> <span class="pre">Git-Flow)&quot;</span></code> আমাদের কাছে নিন্মলিখিত ফিচারগুলো আছেঃ</p>
+<ul class="simple">
+<li><p>HGT-01: Bootstrap Hello Git-Flow project</p></li>
+<li><p>HGT-02: Create login with Username and Password</p></li>
+<li><p>HGT-03: Create user signup</p></li>
+<li><p>HGT-04: Create forget Password</p></li>
+<li><p>HGT-05: Homepage with login and Signup option</p></li>
+</ul>
+<p>এখন, আমরা একটা একটা করে ফিচারে কাজ শুরু করব,<code class="docutils literal notranslate"><span class="pre">গিট-ফ্লও</span> <span class="pre">(git-flow)</span> <span class="pre">ফিচার</span></code> ব্যবহার করে।</p>
+<p><code class="docutils literal notranslate"><span class="pre">ধাপ-০১</span></code></p>
+<p>সবার আগে আমরা <code class="docutils literal notranslate"><span class="pre">HGT-01</span></code> ফিচার নিয়ে কাজ শুরু করব। এজন্য আমরা কমান্ড লিখব</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git-flow feature start HGT-01
+</pre></div>
+</div>
+<p>এরপর আমরা নিছের ছবির মত একটা মেসেজ দেখতে পাব,</p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1h0cf-xJaQMUV_ELq3OGDaCY4rYmAKqa6" /></p>
+<p>এখানে আমরা যেটা দেখতে পারছি, তা হোল, সবার আগে <code class="docutils literal notranslate"><span class="pre">develop</span></code> নামে যে ব্রাঞ্চ (branch) আছে, তার উপর নির্ভর করে একটা নতুন ব্রাঞ্চ (branch) <code class="docutils literal notranslate"><span class="pre">feature/HGT-01</span></code> তৈরি হয়েছে। এরপর স্বয়ংক্রিয় ভাবে,ওই ব্রাঞ্চে (branch) পয়েন্ট করে ফেলেছে।</p>
+<p><code class="docutils literal notranslate"><span class="pre">ধাপ-০২</span></code></p>
+<p>এখন আমরা ফিচার ডেভেলপমেন্টের কাজ করব এবং ক্রমান্বয়ে কমিট করব, যেভাবে আমরা গিটে (git) কমিট করতাম। আমরা যত পরিবর্তন করব, সবই আমাদের বর্তমান <code class="docutils literal notranslate"><span class="pre">ফিচার</span> <span class="pre">(featuere)</span></code> ব্রাঞ্চ এ যোগ হতে থাকবে। ধরি,</p>
+<p>একটা নতুন ফাইল বানাব কারেন্ট ফিচারের জন্য</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>touch project-config.php
+</pre></div>
+</div>
+<p>এবার এই ফাইলে কিছু পরিবর্তন করব, মানে কিছু লেখা যোগ করব</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>nano project-config.php
+</pre></div>
+</div>
+<p>এবার আমরা ফাইলটা গিটে যোগ করব এবং গিটে কমিট করব</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git add project-config.php
+git commit -m &quot;project configuration file is added&quot;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ধাপ-০৩</span></code></p>
+<p>এবার ধরে নিলাম আমাদের ফিচার  <code class="docutils literal notranslate"><span class="pre">feature</span></code> ডেভেলপমেন্টের কাজ শেষ। এখন আমরা গিট-ফ্লও দিয়ে আমাদের ফিচার কমপ্লিট করব।</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git-flow feature finish HGT-01
+</pre></div>
+</div>
+<p>এই কমান্ড চালানোর পর আমরা নিছের ছবির মত একটা মেসেজ দেখতে পারব</p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1EwzGzbMsFilqiXBYISvjEWCISBpX0Tdg" /></p>
+<p><strong>গিট-ফ্লও ফিচার পাবলিশ</strong></p>
+<p>আমরা যদি মনে করি, কোন একটা ফিচার ব্রাঞ্চে অন্য কেউ কাজ করবে, তাহলে আমারা চাইলে গিটে আপ করে দিতে পারি।এজন্য আমরা নিচের কমান্ডটা রান করবঃ</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  git-flow feature publish HGT-01
+</pre></div>
+</div>
+<p>এই কমান্ড চালানোর পর নিচের মত একটা স্ক্রীন দেখা যাবে।</p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1U0Qzq81zIQR0AuBx_KuoG5-xtmaMdnUt" /></p>
+<br>
+</section>
+<section id="id9">
+<h2>গিট-ফ্লও রিলিস<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>গিট-ফ্লও এর আরেকটি প্রয়োজনীয় কমান্ড হোল গিট-ফ্লও রিলিস। এটা দিয়ে আমরা মূলত একটা development branch থেকে production সার্ভারে দেয়ার মত একটা রিলিস তৈরি করি। এটা দিয়ে আমরা খুব সহজে, একটা রিলিস এর নাম্বার দিতে পারি, যেন খুব সহজে আমরা আবার পরবর্তী কোন রিলিএসে ব্যাক করতে পারি।</p>
+<p>আমরা যদি গিট-ফ্লও রিলিসের সিনট্যাক্স জানতে চাই, তাহলে আমরা কমান্ড লাইনে গিয়ে নিচের কমান্ড টাইপ করলে হবেঃ</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Git-flow release (press enter)
+</pre></div>
+</div>
+<p>এবার আমরা নিচের মত একটা স্ক্রীন দেখতে পাব।</p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1x0_suVSxxIglVTZQvUpQYlzE65Vpt-gh" /></p>
+<p>এখানে তিনটা টার্ম আছে, যা জানতে হবেঃ</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. &lt;name&gt; : রিলিসের নাম। যেমনঃ rel-v1.0
+2. [&lt;base&gt;]: এটা একটা ব্রাঞ্চের নাম। মানে আমরা যদি development branch থেকে ব্রাঞ্চ তৈরি না করে, অন্য কোনব্রাঞ্চ থেকে রিলিস তৈরি করতে চাই, তখন ওই ব্রাঞ্চ এর নাম দিব।
+</pre></div>
+</div>
+<p>এবার আমরা একটা রিলিস তৈরি করব। আমরা ধরে নিচ্ছি, আমাদের ব্রাঞ্চ development। তাহলে আর দেরি না করে নিচের কমান্ডটা রান করিঃ</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git-flow release start rel-v1.0
+</pre></div>
+</div>
+<p>এখন আমরা নিচের মত একটা স্ক্রীন দেখতে পাবোঃ</p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1yK5mzUjz7Ga7HaRIY6mLubo3nMjyJBcQ" /></p>
+<p>আমরা এখন দেখতে পেলাম একটা নতুন ব্রাঞ্চ rel-v1.0 নামের একটা নুতুন ব্রাঞ্চ তৈরি হয়েছে।</p>
+<p>আমরা এখন যেটা করতে পারি, এই ব্রাঞ্চটাকে একটা টেস্টিং সার্ভারে দিয়ে দেতে পারি। একদল QA দলকে বলতে পারি, টেস্টিং করতে। যখন, টেস্টিং শেষ হবে, আমরা রিলিসটাকে finish করে দিতে পারি।</p>
+<p>এখন জানতে হবে, রিলিস শেষ(finish) করলে কি হয়ঃ
+আমরা যখনই কোন রিলিস শেষ করব, গিট-ফ্লও স্বয়ংক্রিয়ভাবে রিলিস ব্রাঞ্চের সকল কোড development branch এবং production branch (master এখানে production branch) এ merge করে দেয়।</p>
+<p>এখন আর কথা না বাড়িয়ে, কমান্ডটা রান করে দেখিঃ</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git-flow release finish rel-v1.0
+</pre></div>
+</div>
+<p>এখন আমরা নিচের মত একটা স্ক্রীন দেখতে পাবোঃ</p>
+<p><strong>গিট মারজ মেসেজ</strong></p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1DCKbORqFne3-4JKsbLqmbfAZJQwQl81h" /></p>
+<p><strong>গিট ট্যাগ মেসেজ</strong></p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1ZoYh2x3XwRMTyqrSxHei2EdGwzSUnZP8" /></p>
+<p><strong>গিট ফিনিশ শেষ</strong></p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1ntySOLZHDOCL1vFC9-pwUp8ZfOUZYpUJ" /></p>
+<p>এখন আমরা একটু খেয়াল করে <strong>summary of Actions</strong> এর দিকে খেয়াল করে দেখি। এখানে আসলে গিট-ফ্লও কি কি কাজ করেছে, তার একটা সারাংশ তুলে ধরেছে। এবং সব শেষে মাস্টার ব্রাঞ্চ এ শিফট করছে। মানে, rel-v1.0 এর সকল কোড এখন (master) মাস্টার ব্রাঞ্চেও  আছে এবং development ব্রাঞ্চে ও আছে।</p>
+<br>
+</section>
+<section id="git-flow-introduction">
+<h2>গিট-ফ্লো পরিচিতি(Git-flow introduction)<a class="headerlink" href="#git-flow-introduction" title="Link to this heading">#</a></h2>
+<p>গিট-ফ্লো আসলে একটা শাখা(branching) মডেল, যেটা Vincent Driessen নামের একজন লোক সর্বপ্রথম বানিয়েছেন।  এটা মলুত গিটের উপর নির্ভর করে বানানো হয়েছে। এর সবচেয়ে বড় সুবিধা হল একাধিক ডেভেলপার একসাথে একটা বড় প্রোজেক্ট নির্ভেজাল ভাবে কাজ করতে পারে।</p>
+<p>কিন্তু, গিট-ফ্লো নিয়ে কাজ করতে হলে আগে, গিটের উপর ভাল দখল থাকতে হবে। গিটের শাখা (branching) কিভাবে কাজ করে সেটা ভাল করে জানতে হবে। আর এই ক্ষেত্রে, কমান্ড লাইনে (command line) এ কাজ করা সবার আগে আবশ্যক।</p>
+<br>
+</section>
+<section id="id10">
+<h2>গিট ব্রাঞ্চ<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>১টা ছোট্ট গল্প দিয়ে শুরু করি। কোন প্রোজেক্ট করতে গিয়ে কিছু কোড লিখে রান দিলাম, কোড কাজ করে। তখন ১টা ব্যাকআপ রাখার জন্য প্রজেক্ট ফোল্ডার জিপ করে আবার আমরা  কোড লেখা শুরু করি। কিন্তু এবার কোড রান দিলে error দেখায়। কথায় ভুল হইসে অনেক সময় ঠিক করা যায় না, তখন প্রোজেক্ট ফোল্ডার ডিলিট করে ব্যাকআপ জিপ-কে আন-জিপ করে আবার কাজ করি।
+এই যে গল্প বললাম, এটাই গিট ব্রাঞ্চ এর কাজ। এবার আসি কিভাবে ব্রাঞ্চ কাজ করে।</p>
+<p>প্রথমেই ১টা প্রোজেক্ট দরকার। ধরি git-branch-demo আমাদের প্রজেক্ট। Terminal খুলে টাইপ করুন ঃ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">git</span><span class="o">-</span><span class="n">branch</span><span class="o">-</span><span class="n">demo</span>
+<span class="n">cd</span> <span class="n">git</span><span class="o">-</span><span class="n">branch</span><span class="o">-</span><span class="n">demo</span>  
+<span class="n">git</span> <span class="n">init</span>    <span class="c1"># initiate empty local repo</span>
+<span class="n">echo</span> <span class="s2">&quot; # inside master branch &quot;</span> <span class="o">&gt;&gt;</span> <span class="n">main</span><span class="o">.</span><span class="n">cpp</span>
+</pre></div>
+</div>
+<p>By default এটা আমাদের মুল ব্রাঞ্চ, এর নাম master. আমরা নতুন ব্রাঞ্চ তোইরই করব এভাবেঃ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">develop</span>
+</pre></div>
+</div>
+<p>আমরা ব্রাঞ্চ চেক করতে পারি</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span>
+</pre></div>
+</div>
+<p>আউটপুট</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">develop</span>
+ <span class="n">master</span>
+</pre></div>
+</div>
+<p>যে ব্রাঞ্চের সামনে * , আমরা সেই ব্রাঞ্চে অবস্থিত। ১ ব্রাঞ্চ থেকে অন্য়টায় যেতে হয় ঃ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">&lt;</span><span class="n">brunch</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+<span class="c1"># such as</span>
+
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span> <span class="c1"># to switch to master</span>
+
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">develop</span> <span class="c1"># to switch to develop</span>
+</pre></div>
+</div>
+<p>আমরা ডেভেলপ ব্রাঞ্চ এ যাই । ১টা নতুন ফাইল বানাই ঃ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="n">branch1</span><span class="o">.</span><span class="n">cpp</span>
+
+</pre></div>
+</div>
+<p>এবার সেখানে নতুন কিছু কোড লিখি। যেমন ঃ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="o">**</span>
+<span class="o">*</span>   <span class="n">inside</span> <span class="n">develop</span> <span class="n">branch</span><span class="p">:</span>   <span class="n">branch1</span><span class="o">.</span><span class="n">cpp</span> 
+<span class="o">*</span>\ 
+<span class="c1">#include &lt;stdio.h&gt;</span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hello Branch 1 on develop</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>এই ব্রাঞ্চ এর কাজ শেষ হলে কমিট করি ঃ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+<span class="n">git</span> <span class="n">status</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;FC dev 2018-09-15 1&quot;</span>
+</pre></div>
+</div>
+<p>আমাদের আপাতত এই ব্রাঞ্চ এর কাজ শেষ। কাজেই মাস্টের ব্রাঞ্চ এ ফিরে যাই ঃ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+</pre></div>
+</div>
+<p>এবার আপনার ফোল্ডারটি ১বার দেখুন। branch1.cpp নাই! ভয়ের কিছু নাই, develop ব্রাঞ্চ এ ফিরে গেলেই আবার চলে আসবে! নিজে চেষ্টা করে দেখুন!</p>
+<p>যাহোক, এবার মাস্টার ব্রাঞ্চ এ কিছু কোড লিখি। তবে খেয়াল রাখতে হবে, অন্য ব্রাঞ্চ এ যে ফাইল এ কোড লিখা হইসে ( এক্ষেত্রে branch1.cpp ), সেই নামের ফাইলে কিছু লিখবেন না, অন্যথায় পরবর্তীরে সমস্যা হবে (merge conflict) । এই টিউটোরিয়াল সহজ রাখতে merge conflict আপাতত বাদ।
+ফিরে আসি কোডে।
+master ব্রাঞ্চের main.cpp ফাইলে কিছু কোড লিখি ঃ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;stdio.h&gt;</span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hello master branch</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>এবার আগের মতো কমিট করি ঃ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+<span class="n">git</span> <span class="n">status</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;FC master 2018-09-15 1&quot;</span>
+</pre></div>
+</div>
+<p>এবার আমরা merge করব, অর্থাৎ ২টো ব্রাঞ্চকে মিলিয়ে দিব ।  এজন্য কমান্ড ঃ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">merge</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>যে ব্রাঞ্চে merge করব, সেই ব্রাঞ্চ এ যাবো (এক্ষেত্রে  master ) এবং যে ব্রাঞ্চকে মারজ করবো তার নাম কমান্ড এ দিবো ( এক্ষেত্রে  ) । সুতরাং আমরা master এ গিয়ে টার্মিনালে লিখব ঃ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">merge</span> <span class="n">develop</span>
+</pre></div>
+</div>
+<p>তাহলে master ব্রাঞ্চে দিন শেষে আমাদের সম্পূর্ণ প্রোজেক্ট তৈরি হয়ে গেলো, যাতে main.cpp, branch1.cpp এবং তাদের কোড সবকিছু আছে। এরকম একাধিক ব্রাঞ্চ থাকলে সবাইকে মারজ করা যাবে।
+আমরা github ইতাদি-তেও আমাদের ব্রাঞ্চ রাখতে পারি। ৪ নং অধ্যায় এ রিমোট রিপো বানানোর নিয়ম আছে। সেগুলার পর
+এই কমান্ড ব্যবহার করুন ঃ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span>   <span class="c1"># to push master branch</span>
+
+<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">develop</span>  <span class="c1"># to push develop branch</span>
+</pre></div>
+</div>
+<p>আশা করি ব্রাঞ্চের ব্যপারটা পরিষ্কার হয়ে গেছে!</p>
+<br>
+</section>
+<section id="id11">
+<h2>গিট লগ<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>গিট লগ কমান্ডের সাহায্যে গিট রিপোজিটরিতে রাখা সবগুলো কমিটের একটা বিস্তারিত তালিকা দেখা যায়।</p>
+<section id="id12">
+<h3>সংক্ষিপ্ত বিবরণ সহ কমিটের তালিকা দেখা<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>শুধুমাত্র <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> কমান্ড দিলে আমরা রিপোজিটরির সবগুলো কমিটের একটি বিস্তারিত তালিকা দেখতে পারবো। এখানে আমাদের কমিট হ্যাশ নাম্বার, ব্র্যাঞ্চ, কমিটটির রচয়িতা, তার ইমেইল অ্যাড্রেস, কমিট দেওয়ার তারিখ ও সময় এবং কমিট মেসেজ দেখা যাবে:</p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1oFnY6y3yxoLv5FbBW37SAGRWA2z-6Zxd" /></p>
+<p>লিনাক্স-ভিত্তিক অপারেটিং সিস্টেম বা ম্যাকওএসে এই লগ ডিফল্টভাবে Vim টেক্সট এডিটরে ওপেন হবে। এখানে আমরা মাউস ব্যবহার করে অথবা কীবোর্ডের J ও K কী দুটি ব্যবহার করে উপরে-নিচে স্ক্রোল করতে পারি। এখান থেকে বের হতে চাইলে Q প্রেস করবো।</p>
+<p>আমরা যদি এগুলোর পাশাপাশি কোন কমিটে কত লাইনের পরিবর্তন হয়েছে দেখতে চাই, তাহলে নিচের কমান্ডটি দেবো।</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log<span class="w"> </span>--stat
+</pre></div>
+</div>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1MlX0SwHB4t94WrUHspgnAK6vaQTBiZ1D" /></p>
+<p>এখানে সংখ্যাটি মোট কত লাইনের পরিবর্তন হয়েছে তা নির্দেশ করে। <code class="docutils literal notranslate"><span class="pre">+</span></code> ও <code class="docutils literal notranslate"><span class="pre">-</span></code> চিহ্ন দিয়ে কী পরিমাণ লাইনের সংযোজন-বিয়োজন হয়েছে তার একটা আনুপাতিক ধারণা পাওয়া যায়।</p>
+</section>
+<section id="id13">
+<h3>কমিটের বিস্তারিত বর্ণনা দেখা<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>আমরা যদি প্রতিটি কমিটের বিস্তারিত বর্ণনা দেখতে চাই, অর্থাৎ কোন কমিটে কী কী ফাইলে কী কী পরিবর্তন হয়েছে দেখতে চাই, তাহলে আমরা <code class="docutils literal notranslate"><span class="pre">--patch</span></code> ফ্ল্যাগটি যোগ করে দেবো। তাহলে কমান্ডটি দাঁড়াচ্ছে,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log<span class="w"> </span>--patch
+</pre></div>
+</div>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1jeaHDw98GdMQewkHPKRNt3nJwU74IeOS" /></p>
+<p>এখানেও <code class="docutils literal notranslate"><span class="pre">+</span></code> ও <code class="docutils literal notranslate"><span class="pre">-</span></code> চিহ্ন দিয়ে লাইনের সংযোজন-বিয়োজন বোঝানো হয়েছে। এখানে দেখা যাচ্ছে, প্রথম কমিটটিতে লাল লাইনগুলো মুছে ফেলে সেখানে সবুজ লাইনগুলো লেখা হয়েছে। এখানেও <code class="docutils literal notranslate"><span class="pre">J</span></code> ও <code class="docutils literal notranslate"><span class="pre">K</span></code> কী-দুটো ব্যবহার করে উপরে-নিচে স্ক্রোল করা যায় এবং <code class="docutils literal notranslate"><span class="pre">Q</span></code> কী প্রেস করে বেরিয়ে আসা যায়।</p>
+<p>কমান্ডটি সংক্ষেপে দেওয়া যেতে পারে এভাবে:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log<span class="w"> </span>-p
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h3>শুধু কমিটের মেসেজগুলো দেখা<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<p>আমাদের গিট রিপোজিটরিতে প্রতিটি কমিটেরই একটি মেসেজ থাকে, যেটা দিয়ে আমরা সেই কমিটে কী কাজ করেছি তার একটা ধারণা পাওয়া যায়। আমরা যদি কমিটের বিস্তারিত বর্ণনা না দেখে শুধুমাত্র কমিট মেসেজগুলো এক লাইনে দেখতে চাই, তাহলে নিচের কমান্ডটি ব্যবহার করবো।</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log<span class="w"> </span>--oneline
+</pre></div>
+</div>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1Jyykn9XY7Mhj9tJ13cEAXF3iD19M-A5O" /></p>
+<p>এখানে কমিটগুলোর হ্যাশের সংক্ষিপ্ত রূপ ও কমিট মেসেজের প্রথম লাইনটা দেখা যাচ্ছে। কমিট মেসেজে একাধিক লাইন থাকলে শুধু প্রথম লাইনটাই দেখাবে।</p>
+</section>
+<section id="id15">
+<h3>একটি নির্দিষ্ট কমিটের বিস্তারিত বিবরণ দেখা<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>আমরা যদি শুধু একটা নির্দিষ্ট কমিটের বিস্তারিত বিবরণ দেখতে চাই, তাহলে <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">show</span> <span class="pre">(commit</span> <span class="pre">hash)</span></code> কমান্ড দিয়ে সেটা দেখতে পারি।</p>
+<p>ধরা যাক, উপরের উদাহরণে যে কমিটটিতে <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">unit</span> <span class="pre">test</span> <span class="pre">for</span> <span class="pre">Schools</span> <span class="pre">Controller</span></code> মেসেজ দেওয়া আছে, সেই কমিটের আওতায় কী কী কাজ করা হয়েছিলো, সেটা আমরা দেখতে চাচ্ছি। দেখা যাচ্ছে, ওই কমিটটির হ্যাশ নাম্বার <code class="docutils literal notranslate"><span class="pre">6bab78a</span></code>। তাহলে আমরা কমান্ড লিখতে পারি,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>show<span class="w"> </span>6bab78a
+</pre></div>
+</div>
+<p>তাহলে আমরা নিচের মত করে ওই কমিটের যাবতীয বিবরণ দেখতে পারবো।</p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1Kfb_jiDUw-CUz2aQVcEMbGWFhbG1Q_pC" /></p>
+<p>খেয়াল করে দেখবেন, কমিটটির পুরো হ্যাশ নাম্বার হচ্ছে <code class="docutils literal notranslate"><span class="pre">6bab78a3060e9abe30631a03b75fac043927b8a4</span></code>। কিন্তু এখানে কমান্ড দেওয়ার সময় পুরো হ্যাশ নাম্বারটা দেওয়ার প্রয়োজন হয় নি। গিট নিয়ে কাজ করার সময় যে কোন ক্ষেত্রে যদি আপনাকে কোন কমিট নির্দিষ্ট করে বলে দিতে হয়, তাহলে আপনি শুধু সেই কমিট হ্যাশ নাম্বারের প্রথম কয়েকটি ডিজিট বা অক্ষর লিখে দিলেই চলবে, যদি না সেই অক্ষরগুলো অন্য কোন কমিটের হ্যাশ নাম্বারের শুরুতে থাকে।</p>
+<br>
+</section>
+</section>
+<section id="id16">
+<h2>গিট চেরি-পিক<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<p>কোন গিট রিপোজিটরিতে একাধিক ব্রাঞ্চ থাকলে এক ব্রাঞ্চের কাজ সহজেই অন্য ব্রাঞ্চে নেওয়া যায় <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">cherry-pick</span></code> কমান্ড ব্যবহার করে।</p>
+<p>ধরা যাক, আমাদের রিপোজিটরিতে <code class="docutils literal notranslate"><span class="pre">master</span></code> ব্রাঞ্চ ছাড়াও আরও দুটো ব্রাঞ্চ আছে: <code class="docutils literal notranslate"><span class="pre">feature</span></code> ও <code class="docutils literal notranslate"><span class="pre">hotfix</span></code>। তিনটি ব্রাঞ্চে আলাদা আলাদাভাবে লগ খুললে এরকম দেখা যাচ্ছে:</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">master</span></code> ব্রাঞ্চ:</strong></p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1bxyT6Loz9BxefxceAVYXc8h99Urk-TfL" /></p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">feature</span></code> ব্রাঞ্চ:</strong></p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1Q213QxpeETs9zd38hZYz0kBa6h2d7jMf" /></p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">hotfix</span></code> ব্রাঞ্চ:</strong></p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1GqzEj9dKVci2PoNBVF9A96kdLgm2a27C" /></p>
+<p>দেখা যাচ্ছে, <code class="docutils literal notranslate"><span class="pre">master</span></code> ব্রাঞ্চে প্রথম কমিটটি দেওয়ার পরই দুটি আলাদা ব্রাঞ্চ খোলা হয়েছে এবং ব্রাঞ্চ দুটিতে পরস্পর থেকে স্বাধীনভাবে কাজ চলছে।</p>
+<p>এখন ধরা যাক, আমরা <code class="docutils literal notranslate"><span class="pre">feature</span></code> ব্রাঞ্চে কাজ করছি, আর অন্য কেউ <code class="docutils literal notranslate"><span class="pre">hotfix</span></code> ব্রাঞ্চে কাজ করছেন। <code class="docutils literal notranslate"><span class="pre">hotfix</span></code> ব্রাঞ্চের <code class="docutils literal notranslate"><span class="pre">Solution</span> <span class="pre">to</span> <span class="pre">a</span> <span class="pre">very</span> <span class="pre">specific</span> <span class="pre">problem</span></code> কমিটে যে কাজটা করা হয়েছে, সেই কাজটি আমাদের বর্তমান ব্রাঞ্চে যোগ করা প্রয়োজন। এর আগের কমিটটি না হলেও চলবে। তাহলে কীভাবে আমরা সেই কমিটটি পেতে পারি?</p>
+<p>এটি পাওয়ার উপায় হলো <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">cherry-pick</span></code>। উক্ত কমিটের হ্যাশ নাম্বার হচ্ছে <code class="docutils literal notranslate"><span class="pre">ffe3e1f1e516fe73c913796213cfa0a31c60809a</span></code>। তাহলে আমরা আমাদের <code class="docutils literal notranslate"><span class="pre">feature</span></code> ব্রাঞ্চে থাকা অবস্থায় নিচের কমান্ডটি দিতে পারি:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>cherry-pick<span class="w"> </span>ffe3e1f
+</pre></div>
+</div>
+<p>তাহলেই <code class="docutils literal notranslate"><span class="pre">hotfix</span></code> ব্রাঞ্চ থেকে ওই একটি কমিট আমাদের <code class="docutils literal notranslate"><span class="pre">feature</span></code> ব্রাঞ্চে চলে আসবে। এখন যদি আমরা <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> কমান্ড দেই, তাহলে দেখতে পাবো,</p>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=15MqFF8OcrKCvaZLLeh_6RurKnPRcjmce" /></p>
+<p>দেখা যাচ্ছে, <code class="docutils literal notranslate"><span class="pre">hotfix</span></code> ব্রাঞ্চ থেকে শুধুমাত্র ওই একটি কমিট <code class="docutils literal notranslate"><span class="pre">feature</span></code> ব্রাঞ্চে যোগ হয়েছে এবং <code class="docutils literal notranslate"><span class="pre">feature</span></code> ব্রাঞ্চে করা আগের কমিটগুলো আগের মতই রয়ে গেছে।</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="git_cheetsheet.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">cheet sheet github and git</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../linux.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">daphne</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">গিট : ইন্সটল ও কনফিগার করা</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">Windows:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">Linux:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">গিট কনফিগার</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">গিট : নতুন অফলাইন রিপোজিটরি নিয়ে কাজ করা</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">গিট : বিদ্যমান রিমোট রিপোজিটরি নিয়ে কাজ করা</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">গিট : একই রিপোজিটরিতে একাধিক ডেভেলপার</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">গিট : একাধিক রিমোট রিপোজিটরির সাথে সংযোগ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">গিট-ফ্লও ইন্সটলেশন এবং  কনফিগারেশন</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">গিট-ফ্লও ফিচার</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">গিট-ফ্লও রিলিস</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-flow-introduction">গিট-ফ্লো পরিচিতি(Git-flow introduction)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">গিট ব্রাঞ্চ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">গিট লগ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">সংক্ষিপ্ত বিবরণ সহ কমিটের তালিকা দেখা</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">কমিটের বিস্তারিত বর্ণনা দেখা</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">শুধু কমিটের মেসেজগুলো দেখা</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">একটি নির্দিষ্ট কমিটের বিস্তারিত বিবরণ দেখা</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">গিট চেরি-পিক</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

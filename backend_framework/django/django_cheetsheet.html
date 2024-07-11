@@ -1,0 +1,1068 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Django cheet sheet &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'backend_framework/django/django_cheetsheet';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/backend_framework/django/django_cheetsheet.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="drf" href="../drf.html" />
+    <link rel="prev" title="Django" href="../django.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Backend Framework blog</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../django.html">Django</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Django cheet sheet</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../drf.html">drf</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../drf/drf.html">Django REST framework example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drf/drf_fbv.html">Function base views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drf/drf_cbv.html">CLass base views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drf/drf_mixins.html">Mixins CLass base views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drf/drf_genericViews.html">Django REST framework Generics views example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drf/drf_viewsets.html">viewsets CLass base views</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Backend Framework</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../django.html" class="nav-link">Django</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Django cheet sheet</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="django-cheet-sheet">
+<h1>Django cheet sheet<a class="headerlink" href="#django-cheet-sheet" title="Link to this heading">#</a></h1>
+<p>প্রতিটি framework এর কিছু default step থাকে, যা ব্যবহার করে frame-work তার structure তৈরি করা হয়। এর এই structure এর ভিতর সব operation implement করা হয়।</p>
+<p>django এর 2 version এর official doc এর link এইখানে  <a class="reference external" href="https://docs.djangoproject.com/en/2.0/">the official documentation</a> । আমরা django2.XX version এর কিছু shortcut এইখানে দেখব।</p>
+<section id="initializing-pipenv-optional">
+<h2>Initializing pipenv (optional)<a class="headerlink" href="#initializing-pipenv-optional" title="Link to this heading">#</a></h2>
+<p>আমরা conda বা venv বা pipenv যে কোন উপায় এ django এর virtual environment বানাইতে পারি।</p>
+<p>অমি traditional পুরনো কিন্তু এখনও বহুল প্রচলিত pipenv বানানো দেখাইতেছি । আমরা পুরো কাজটা sell ব্যবহার করে করব।</p>
+<ul>
+<li><p>প্রথমে একটা folder বানায়ে ফেলি shell ব্যবহার করে</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">mkdir</span> <span class="pre">&lt;folder_Name&gt;</span></code><br />
+এখন ঐ folder এ প্রবেশ করি<br />
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">cd</span> <span class="pre">&lt;folder_Name&gt;</span></code></p>
+</li>
+<li><p>এখন pipenv কে Initialize করব</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pipenv</span> <span class="pre">install</span></code></p>
+</li>
+<li><p>এখন pipenv shell এ প্রবেশ করব</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pipenv</span> <span class="pre">shell</span></code></p>
+</li>
+<li><p>এখন django install করব</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">django</span></code></p>
+<p>(django এর latest stable version install হইবে)</p>
+</li>
+<li><p>অন্যান্য package গুলোও একই ভাবে install করতে পারি</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">pipenv</span> <span class="pre">install</span> <span class="pre">&lt;packageName&gt;</span></code></p>
+</li>
+</ul>
+</section>
+<section id="creating-a-project">
+<h2>Creating a project<a class="headerlink" href="#creating-a-project" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>shell ব্যবহার করে আমরা যে folder এ django project বানাইতে চাই ঐ folder এ যাব</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">cd</span> <span class="pre">&lt;folder_name&gt;</span></code></p>
+</li>
+<li><p>এখন project তৈরি করব</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">django-admin</span> <span class="pre">startproject</span> <span class="pre">&lt;project_name&gt;</span></code></p>
+</li>
+</ul>
+<p>project তৈরি এর পর কিছু sub-directory পাব :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">project</span><span class="o">/</span>
+    <span class="n">manage</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">&gt;</span><span class="n">project</span><span class="o">/</span>
+        <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">settings</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">urls</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">wsgi</span><span class="o">.</span><span class="n">py</span>
+
+</pre></div>
+</div>
+<ul>
+<li><p>আমরা development server run করতে</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">runserver</span></code></p>
+<p>shell এ লিখব ।  shell টা অবশ্যয় manage.py ফাইল এর directory তে থাকতে হবে এবং তৈরি django installed environment এ থাকতে হবে।</p>
+</li>
+<li><p>যদি  <code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code> ব্যবহার করতে চাই , যা Django project কে আরও secure করবে তা হইলে,</p></li>
+<li><p>project এর  <code class="docutils literal notranslate"><span class="pre">settings.py</span></code> এর মধ্যে <code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code> line টা change করতে হবে:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SECRET_KEY&#39;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>আমরা python এর secrets লাইব্রেরি ব্যবহার করে খুব সহজে SECRET_KEY generate করতে পারি :</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">secrets</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_hex</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<ul>
+<li><p>shell ব্যবহার করে environment variable এ SECRET_KEY set করা যায় ।</p>
+<p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">SECRET_KEY=&lt;secret_key&gt;</span></code></p>
+</li>
+</ul>
+</section>
+<section id="creating-an-app">
+<h2>Creating an app<a class="headerlink" href="#creating-an-app" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>1st project folder এ যাব shell ব্যবহার করে</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">cd</span> <span class="pre">&lt;outer_project_folder&gt;</span></code></p>
+</li>
+<li><p>এখন shell এ এই command ব্যবহার করে new app create করব</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">startapp</span> <span class="pre">&lt;app_name&gt;</span></code></p>
+</li>
+<li><p>new created app এর directory <code class="docutils literal notranslate"><span class="pre">app</span></code>  folder এ গিয়ে new এর একটা py ফাইল create করব  <code class="docutils literal notranslate"><span class="pre">urls.py</span></code></p></li>
+</ul>
+<p>এখন project directory দেখতে এই রকম হবে :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="o">&gt;</span><span class="n">project</span><span class="o">/</span>
+    <span class="n">manage</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">sqlite3</span>
+    <span class="o">&gt;</span><span class="n">project</span><span class="o">/</span>
+        <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">settings</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">urls</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">wsgi</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">&gt;</span><span class="n">app</span><span class="o">/</span>
+        <span class="o">&gt;</span><span class="n">migrations</span><span class="o">/</span>
+            <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+        <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">admin</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">apps</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">models</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">tests</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">urls</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">views</span><span class="o">.</span><span class="n">py</span>
+
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>new created app  টা project এ add করতে <code class="docutils literal notranslate"><span class="pre">settings.py</span></code> এর  <code class="docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code> list এ গিয়ে app টার নাম add করতে হবে :</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+	<span class="c1"># ...</span>
+    <span class="s1">&#39;app&#39;</span><span class="p">,</span>
+	
+<span class="p">]</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>পরিবর্তনটি migrate করতে activated pipenv এর shell এ লিখব:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+</pre></div>
+</div>
+</section>
+<section id="creating-a-view">
+<h2>Creating a view<a class="headerlink" href="#creating-a-view" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>new created app এর app directory এর <code class="docutils literal notranslate"><span class="pre">views.py</span></code> file a নিচের line গুলো এর দ্বারা একটা basic view পাইতে পারি :</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>app directory এর <code class="docutils literal notranslate"><span class="pre">urls.py</span></code> এ নিচের line গুলো এর দ্বারা একটা basic view এর url পাইতে পারি</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">views</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>এখন project এর <code class="docutils literal notranslate"><span class="pre">urls.py</span></code> এ app এর urls.py define করলেই আমাদের view complete.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">path</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;app/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;app.urls&#39;</span><span class="p">)),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;admin/&#39;</span><span class="p">,</span> <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">),</span>
+<span class="p">]</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Remember: আমরা এইখানে ২টা <code class="docutils literal notranslate"><span class="pre">urls.py</span></code> ফাইল নিয়ে কাজ করছি</p></li>
+<li><p>app এর  <code class="docutils literal notranslate"><span class="pre">urls.py</span></code> file এ views.py এর method define করছি আর project এর  <code class="docutils literal notranslate"><span class="pre">urls.py</span></code> এ app এর urls.py file টা define করছি।</p></li>
+</ul>
+</section>
+<section id="creating-a-template">
+<h2>Creating a template<a class="headerlink" href="#creating-a-template" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>app directory তে নিচের structure এ HTML , CSS, JS বা Front-end file গুলো থাকে। media file এর বাপার টা একটু আলাদা। আমরা পরে media file নিয়ে আলোচনা করব।</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="o">&gt;</span><span class="n">app</span><span class="o">/</span>
+   <span class="o">&gt;</span><span class="n">templates</span><span class="o">/</span>
+      <span class="n">index</span><span class="o">.</span><span class="n">html</span>
+   <span class="o">&gt;</span><span class="n">static</span><span class="o">/</span>
+      <span class="n">style</span><span class="o">.</span><span class="n">css</span>
+      <span class="n">script</span><span class="o">.</span><span class="n">js</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>template view file এ ব্যবহার করা হয়,  <code class="docutils literal notranslate"><span class="pre">views.py</span></code> file এ নিচের line গুলো add করে আমরা django project এ একটা customized html ফাইল view এবং execute করতে পারি  :</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>আমরা যে কোন context বা variable কে html এ add korte পারি বা এক কথায় templating করতে পারি।:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;context_variable&quot;</span><span class="p">:</span> <span class="n">context_variable</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="s1">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>এখন <code class="docutils literal notranslate"><span class="pre">settings.py</span></code> file এ নিচের script add করা হয়েছে। :</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+	<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;/static/&#39;</span>
+
+	<span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">[</span>
+		<span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&quot;static&quot;</span><span class="p">)</span>
+	<span class="p">]</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>base html structure আমরা অন্য hyml file এ তৈরি করে তা যে কোন HTML file এ main structure হিসেবে ব্যবহার করতে <code class="docutils literal notranslate"><span class="pre">extends</span></code> ব্যবহার করা হয়।
+Demo হিসেবে নিচের code follow করতে পারি। :</p></li>
+</ul>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1B-5JTeER_4Ak_sYV8mhhbrotryIf-uIP" /></p>
+<ul class="simple">
+<li><p>এখন <code class="docutils literal notranslate"><span class="pre">base.html</span></code> এ block content টা specific part এ add করতে হবে :</p></li>
+</ul>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1sJq8-Ez9HJE9jTqhJGWM5wQQljDIvF3c" /></p>
+</section>
+<section id="creating-a-model">
+<h2>Creating a model<a class="headerlink" href="#creating-a-model" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>একটি সাধারণ <code class="docutils literal notranslate"><span class="pre">models.py</span></code> file এর Demo নিচে দেখানো হয়েছে। :</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+	<span class="n">first_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+	<span class="n">last_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p><em>Note:  Django তে  primary key তৈরি করতে হয় না , Django automatically একটি IntegerField add করে।</em></p>
+<ul class="simple">
+<li><p>model এর structure এ কোন  change করলে migration করে model টাকে update করতে হয়।  নিচের code SHELL এ execute করে model টার migration করতে হয়। :</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+$ python manage.py makemigrations &lt;app_name&gt;
+$ python manage.py migrate
+
+
+</pre></div>
+</div>
+<p><em>Note: including &lt;app_name&gt; is optional.</em></p>
+<ul class="simple">
+<li><p>একটি one-to-many relationship <code class="docutils literal notranslate"><span class="pre">ForeignKey</span></code> এর দ্বারা তৈরি হয়। :</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">Musician</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">first_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">last_name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">instrument</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Album</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">artist</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Musician</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">release_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">()</span>
+    <span class="n">num_stars</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>In this example, Musician একটি foreignKey যা Album এ ব্যবহার করা হয়েছে। :</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Musician</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">album_set</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>একটি many-to-many relationship <code class="docutils literal notranslate"><span class="pre">ManyToManyField</span></code> ব্যবহার করে তৈরি করা হয়। :</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="k">class</span> <span class="nc">Topping</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+<p><em>Note :  <code class="docutils literal notranslate"><span class="pre">ManyToManyField</span></code>   <strong>শুধু মাত্র একটা model এই Define করা হয়</strong> ।</em></p>
+<ul class="simple">
+<li><p>এ ছাড়া Django <code class="docutils literal notranslate"><span class="pre">OneToOneField</span></code> relation provide করে , একটি one-to-one relationship <code class="docutils literal notranslate"><span class="pre">unique</span> <span class="pre">=</span> <span class="pre">True</span></code> দ্বারাও define করা যায় যা model টির <code class="docutils literal notranslate"><span class="pre">ForeignKey</span></code> :</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">ForeignKey</span><span class="p">(</span><span class="n">SomeModel</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>আরও জানার জন্য <a class="reference external" href="https://docs.djangoproject.com/en/3.1/topics/db/models/">official documentation for database models</a> এ গিয়ে দেখুন।</p></li>
+</ul>
+</section>
+<section id="creating-model-objects-and-queries">
+<h2>Creating model objects and queries<a class="headerlink" href="#creating-model-objects-and-queries" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>উদাহরণ স্বরূপ   <code class="docutils literal notranslate"><span class="pre">models.py</span></code> file:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">class</span> <span class="nc">Blog</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">tagline</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+<span class="k">class</span> <span class="nc">Author</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">EmailField</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+<span class="k">class</span> <span class="nc">Entry</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">blog</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Blog</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+    <span class="n">headline</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">body_text</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+    <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">()</span>
+    <span class="n">authors</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Author</span><span class="p">)</span>
+    <span class="n">rating</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">headline</span>
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>shell ব্যবহার করে একটি object তৈরি করতে :</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+$ python manage.py shell
+
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">blog.models</span> <span class="kn">import</span> <span class="n">Blog</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">Blog</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Beatles Blog&#39;</span><span class="p">,</span> <span class="n">tagline</span><span class="o">=</span><span class="s1">&#39;All the latest news.&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>object টার change save করতে :</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;The Beatles Blog&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>objects retrieve করতে :</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">all_entries</span> <span class="o">=</span> <span class="n">Entry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">indexed_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">find_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Beatles Blog&#39;</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="using-the-admin-page">
+<h2>Using the Admin page<a class="headerlink" href="#using-the-admin-page" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">superuser</span></code> তৈরি করতে :</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>একটি model কে Admin page এ add করতে <code class="docutils literal notranslate"><span class="pre">admin.py</span></code> এ Demo দেখানো হয়েছে।</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Authors</span><span class="p">,</span> <span class="n">Books</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Authors</span><span class="p">)</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Books</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../django.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Django</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../drf.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">drf</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-pipenv-optional">Initializing pipenv (optional)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-project">Creating a project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-app">Creating an app</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-view">Creating a view</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-template">Creating a template</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-model">Creating a model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-model-objects-and-queries">Creating model objects and queries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-admin-page">Using the Admin page</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

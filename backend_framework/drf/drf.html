@@ -1,0 +1,1222 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Django REST framework example &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'backend_framework/drf/drf';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/backend_framework/drf/drf.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Function base views" href="drf_fbv.html" />
+    <link rel="prev" title="drf" href="../drf.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Backend Framework blog</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../django.html">Django</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../django/django_cheetsheet.html">Django cheet sheet</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../drf.html">drf</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Django REST framework example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drf_fbv.html">Function base views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drf_cbv.html">CLass base views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drf_mixins.html">Mixins CLass base views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drf_genericViews.html">Django REST framework Generics views example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drf_viewsets.html">viewsets CLass base views</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Backend Framework</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../drf.html" class="nav-link">drf</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Django REST...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="django-rest-framework-example">
+<h1>Django REST framework example<a class="headerlink" href="#django-rest-framework-example" title="Link to this heading">#</a></h1>
+<p>django REST framework এর function-base বা class-base, সব ধরনের view নিয়ে একটা গিট repo তৈরি করছি।</p>
+<p>এই post এ django-rest-framework নিয়ে আলোচনা করা হবে, তবে আপনারা চাইলে github থেকে code-structure টির help নিতে পারেন।</p>
+<br>
+<p><a class="reference external" href="https://github.com/MonadWizard/Django_rest-framework_Views_DEMO">github link</a></p>
+<br>
+<section id="drf-cheat-sheet">
+<h2>drf-cheat-sheet<a class="headerlink" href="#drf-cheat-sheet" title="Link to this heading">#</a></h2>
+<p>A collection of anything from basics to advanced recommended methods and usages with Django REST Framework for creating browsable and awesome web API’s. This could also serve as a quick reference guide.</p>
+<p>Here is DRF’s <a class="reference external" href="http://www.django-rest-framework.org/">official documentation</a> in case you need everything in detail.</p>
+</section>
+<section id="why-django-rest-framework">
+<h2>Why Django REST Framework?<a class="headerlink" href="#why-django-rest-framework" title="Link to this heading">#</a></h2>
+<p>Summarized from the official docs:</p>
+<ul class="simple">
+<li><p>Web browsable API</p></li>
+<li><p>Serialization that supports ORM and non-ORM data sources.</p></li>
+<li><p>Authentication is easily implemented.</p></li>
+<li><p>Highly customizable in every sense of the word.</p></li>
+</ul>
+</section>
+<section id="base-example-model">
+<h2>Base Example Model<a class="headerlink" href="#base-example-model" title="Link to this heading">#</a></h2>
+<p>Throughout this cheat-sheet, the examples used will be based on this Post and Comment model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+    <span class="n">created</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Comment</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Post</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;comments&#39;</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>Install the package via <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">djangorestframework</span>
+</pre></div>
+</div>
+<p>Then, add <code class="docutils literal notranslate"><span class="pre">'rest_framework'</span></code> to <code class="docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code> in your <code class="docutils literal notranslate"><span class="pre">settings.py</span></code> file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># Rest of your installed apps ...</span>
+    <span class="s1">&#39;rest_framework&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<br>
+</section>
+<section id="serialization">
+<h2>Serialization<a class="headerlink" href="#serialization" title="Link to this heading">#</a></h2>
+<p>Serializers allow complex data like querysets and model instances to be converted to native Python datatypes that can then be easily rendered into JSON, XML, and other formats.</p>
+<section id="using-modelserializer-class">
+<h3>Using ModelSerializer class<a class="headerlink" href="#using-modelserializer-class" title="Link to this heading">#</a></h3>
+<p>Suppose we wanted to create a PostSerializer for our example <a class="reference internal" href="#base-example-model"><span class="xref myst">Post</span></a> model and CommentSerializer for our <a class="reference internal" href="#base-example-model"><span class="xref myst">Comment</span></a> model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PostSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">CommentSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Comment</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or also you could use <code class="docutils literal notranslate"><span class="pre">exclude</span></code> to exclude certain fields from being seialized. ModelSerializer has default implementations for the <code class="docutils literal notranslate"><span class="pre">create()</span></code> and <code class="docutils literal notranslate"><span class="pre">update()</span></code> methods.</p>
+</section>
+<section id="nested-serialization">
+<h3>Nested Serialization<a class="headerlink" href="#nested-serialization" title="Link to this heading">#</a></h3>
+<p>By default, instances are serialized with primary keys to represent relationships. To get nested serialization we could use, <em>General</em> or <em>Explicit</em> methods.</p>
+</section>
+<section id="general">
+<h3>General<a class="headerlink" href="#general" title="Link to this heading">#</a></h3>
+<p>Using <code class="docutils literal notranslate"><span class="pre">depth</span></code> parameter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CommentSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Comment</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="s1">&#39;__all__&#39;</span>
+        <span class="n">depth</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</section>
+<section id="explicit">
+<h3>Explicit<a class="headerlink" href="#explicit" title="Link to this heading">#</a></h3>
+<p>You can also define and nest serializers within eachother…</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CommentSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="n">PostSerializer</span><span class="p">()</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Comment</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="s1">&#39;__all__&#39;</span>
+</pre></div>
+</div>
+<p>So here, the comment’s <code class="docutils literal notranslate"><span class="pre">post</span></code> field (how we named it in models.py) will serialize however we defined it in <code class="docutils literal notranslate"><span class="pre">PostSerializer</span></code>.</p>
+</section>
+<section id="hyperlinkedmodelserializer">
+<h3>HyperlinkedModelSerializer<a class="headerlink" href="#hyperlinkedmodelserializer" title="Link to this heading">#</a></h3>
+<p>This makes your web API a lot more easy to use (in browser) and would be a nice feature to add.</p>
+<p>Lets say we wanted to see the comments that every post has in each of the <a class="reference internal" href="#base-example-model"><span class="xref myst">Post</span></a> instances of our API. With <code class="docutils literal notranslate"><span class="pre">HyperlinkedModelSerializer</span></code>, instead of having nested primary keys or nested fields, we get a link to each individual <a class="reference internal" href="#base-example-model"><span class="xref myst">Comment</span></a> (url).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PostSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedModelSerializer</span><span class="p">):</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;comments&#39;</span><span class="p">)</span>
+        <span class="n">read_only_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;comments&#39;</span><span class="p">,)</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> without the <code class="docutils literal notranslate"><span class="pre">read_only_fields</span></code>, the <code class="docutils literal notranslate"><span class="pre">create</span></code> form for Posts would always require a <code class="docutils literal notranslate"><span class="pre">comments</span></code> input, which doesn’t make sense (comments on a post are normally made AFTER the post is created).</p>
+<p>Another way of hyperlinking is just adding a <code class="docutils literal notranslate"><span class="pre">HyperlinkedRelatedField</span></code> definition to a normal serializer.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PostSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="n">serializers</span><span class="o">.</span><span class="n">HyperlinkedRelatedField</span><span class="p">(</span><span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">view_name</span><span class="o">=</span><span class="s1">&#39;comment-detail&#39;</span><span class="p">,</span> <span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;comments&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="dynamically-modifying-fields-in-serializer">
+<h3>Dynamically modifying fields in serializer<a class="headerlink" href="#dynamically-modifying-fields-in-serializer" title="Link to this heading">#</a></h3>
+<p>This makes your web API a lot more easy for extract limited number of parameter in response. Let’s say you want to set which fields should be used by a serializer at the point of initialization.</p>
+<p>Just copy below code and past it in your serliazer file</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DynamicFieldsModelSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># Don&#39;t pass the &#39;fields&#39; arg up to the superclass</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;fields&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="c1"># Instantiate the superclass normally</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DynamicFieldsModelSerializer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">fields</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Drop any fields that are not specified in the `fields` argument.</span>
+            <span class="n">allowed</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+            <span class="n">existing</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">field_name</span> <span class="ow">in</span> <span class="n">existing</span> <span class="o">-</span> <span class="n">allowed</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Extend <code class="docutils literal notranslate"><span class="pre">DynamicFieldsModelSerializer</span></code> from your serializer class</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserSerializer</span><span class="p">(</span><span class="n">DynamicFieldsModelSerializer</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Mention the fields name inside <code class="docutils literal notranslate"><span class="pre">fields</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">UserSerializer</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Here, you will get only <code class="docutils literal notranslate"><span class="pre">id</span></code>and <code class="docutils literal notranslate"><span class="pre">email</span></code> from serializer instead of all.</p>
+<br>
+</section>
+</section>
+<section id="views">
+<h2>Views<a class="headerlink" href="#views" title="Link to this heading">#</a></h2>
+<p>There are many options for creating views for your web API, it really depends on what you want and personal preference.</p>
+<p>We’ll write a <code class="docutils literal notranslate"><span class="pre">post_list</span></code> view with <code class="docutils literal notranslate"><span class="pre">GET</span></code> and <code class="docutils literal notranslate"><span class="pre">POST</span></code> methods for reading and creating new <a class="reference internal" href="#base-example-model"><span class="xref myst">Post</span></a> instances.</p>
+<section id="using-function-based-views">
+<h3>Using Function-based views<a class="headerlink" href="#using-function-based-views" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework.decorators</span> <span class="kn">import</span> <span class="n">api_view</span>
+<span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span> <span class="nn">rest_framework.parsers</span> <span class="kn">import</span> <span class="n">JSONParser</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">status</span>
+<span class="kn">from</span> <span class="nn">posts.models</span> <span class="kn">import</span> <span class="n">Post</span>
+<span class="kn">from</span> <span class="nn">posts.serializers</span> <span class="kn">import</span> <span class="n">PostSerializer</span>
+
+<span class="nd">@api_view</span><span class="p">([</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">post_list</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="n">posts</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">PostSerializer</span><span class="p">(</span><span class="n">posts</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">JSONParser</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">PostSerializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_201_CREATED</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">errors</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-class-based-views">
+<h3>Using Class-based views<a class="headerlink" href="#using-class-based-views" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework.response</span> <span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">status</span>
+<span class="kn">from</span> <span class="nn">rest_framework.views</span> <span class="kn">import</span> <span class="n">APIView</span>
+<span class="kn">from</span> <span class="nn">posts.models</span> <span class="kn">import</span> <span class="n">Post</span>
+<span class="kn">from</span> <span class="nn">posts.serializers</span> <span class="kn">import</span> <span class="n">PostSerializer</span>
+
+
+<span class="k">class</span> <span class="nc">PostList</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">snippets</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">PostSerializer</span><span class="p">(</span><span class="n">snippets</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">PostSerializer</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">serializer</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">serializer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_201_CREATED</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">errors</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-generic-class-based-views">
+<h3>Using Generic Class-based views<a class="headerlink" href="#using-generic-class-based-views" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">generics</span>
+<span class="kn">from</span> <span class="nn">posts.models</span> <span class="kn">import</span> <span class="n">Post</span>
+<span class="kn">from</span> <span class="nn">posts.serializers</span> <span class="kn">import</span> <span class="n">PostSerializer</span>
+
+
+<span class="k">class</span> <span class="nc">PostList</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListCreateAPIView</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PostSerializer</span>
+</pre></div>
+</div>
+</section>
+<section id="using-mixins">
+<h3>Using Mixins<a class="headerlink" href="#using-mixins" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">generics</span><span class="p">,</span> <span class="n">mixins</span>
+<span class="kn">from</span> <span class="nn">posts.models</span> <span class="kn">import</span> <span class="n">Post</span>
+<span class="kn">from</span> <span class="nn">posts.serializers</span> <span class="kn">import</span> <span class="n">PostSerializer</span>
+
+
+<span class="k">class</span> <span class="nc">PostList</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">GenericAPIView</span><span class="p">,</span>
+               <span class="n">mixins</span><span class="o">.</span><span class="n">ListModelMixin</span><span class="p">,</span>
+               <span class="n">mixins</span><span class="o">.</span><span class="n">CreateModelMixin</span>
+               <span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PostSerializer</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-viewsets">
+<h3>Using ViewSets<a class="headerlink" href="#using-viewsets" title="Link to this heading">#</a></h3>
+<p>With <code class="docutils literal notranslate"><span class="pre">ModelViewSet</span></code> (in this case), you don’t have to create separate views for getting list of objects and detail of one object. ViewSet will handle it for you in a consistent way for both methods.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">viewsets</span>
+<span class="kn">from</span> <span class="nn">posts.models</span> <span class="kn">import</span> <span class="n">Post</span>
+<span class="kn">from</span> <span class="nn">posts.serializers</span> <span class="kn">import</span> <span class="n">PostSerializer</span>
+
+
+<span class="k">class</span> <span class="nc">PostViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A viewset for viewing and editing post instances.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PostSerializer</span>
+</pre></div>
+</div>
+<p>So basically, this would not only generate the <code class="docutils literal notranslate"><span class="pre">list</span></code> view, but also the <code class="docutils literal notranslate"><span class="pre">detail</span></code> view for every <a class="reference internal" href="#base-example-model"><span class="xref myst">Post</span></a> instance.</p>
+<section id="routers">
+<h4>Routers<a class="headerlink" href="#routers" title="Link to this heading">#</a></h4>
+<p>Routers in ViewSets allow the URL configuration for your API to be automatically generated using naming standards.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework.routers</span> <span class="kn">import</span> <span class="n">DefaultRouter</span>
+<span class="kn">from</span> <span class="nn">posts.views</span> <span class="kn">import</span> <span class="n">PostViewSet</span>
+
+<span class="n">router</span> <span class="o">=</span> <span class="n">DefaultRouter</span><span class="p">()</span>
+<span class="n">router</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="n">UserViewSet</span><span class="p">)</span>
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">router</span><span class="o">.</span><span class="n">urls</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-actions-in-viewsets">
+<h4>Custom Actions in ViewSets<a class="headerlink" href="#custom-actions-in-viewsets" title="Link to this heading">#</a></h4>
+<p>DRF provides helpers to add custom actions for <em>ad-hoc</em> behaviours with the <code class="docutils literal notranslate"><span class="pre">&#64;action</span></code> decorator. The router will configure its url accordingly.
+For example, we can add a <code class="docutils literal notranslate"><span class="pre">comments</span></code> action in the our <code class="docutils literal notranslate"><span class="pre">PostViewSet</span></code> to retrieve all the comments of a specific post as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">viewsets</span>
+<span class="kn">from</span> <span class="nn">rest_framework.decorators</span> <span class="kn">import</span> <span class="n">action</span>
+<span class="kn">from</span> <span class="nn">posts.models</span> <span class="kn">import</span> <span class="n">Post</span>
+<span class="kn">from</span> <span class="nn">posts.serializers</span> <span class="kn">import</span> <span class="n">PostSerializer</span><span class="p">,</span> <span class="n">CommentSerializer</span>
+
+
+<span class="k">class</span> <span class="nc">PostViewSet</span><span class="p">(</span><span class="n">viewsets</span><span class="o">.</span><span class="n">ModelViewSet</span><span class="p">):</span>
+   <span class="o">...</span>
+
+   <span class="nd">@action</span><span class="p">(</span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">],</span> <span class="n">detail</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+   <span class="k">def</span> <span class="nf">comments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+       <span class="k">try</span><span class="p">:</span>
+           <span class="n">post</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
+       <span class="k">except</span> <span class="n">Post</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+           <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Post not found.&quot;</span><span class="p">},</span>
+                           <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span>
+       <span class="n">comments</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">comments</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+       <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">CommentSerializer</span><span class="p">(</span><span class="n">comments</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Upon registering the view as <code class="docutils literal notranslate"><span class="pre">router.register(r'posts',</span> <span class="pre">PostViewSet)</span></code>, this action will then be available at the url <code class="docutils literal notranslate"><span class="pre">posts/{pk}/comments/</span></code>.</p>
+<br>
+</section>
+</section>
+</section>
+<section id="pagination">
+<h2>Pagination<a class="headerlink" href="#pagination" title="Link to this heading">#</a></h2>
+<p>This can usually be performed automatically with <code class="docutils literal notranslate"><span class="pre">generic</span> <span class="pre">class-based</span> <span class="pre">views</span></code> and <code class="docutils literal notranslate"><span class="pre">viewsets</span></code>. If you’re using <code class="docutils literal notranslate"><span class="pre">APIView</span></code>, it must be explicitly applied.</p>
+<section id="with-generic-class-based-views-or-viewsets">
+<h3>With Generic Class-based views or Viewsets<a class="headerlink" href="#with-generic-class-based-views-or-viewsets" title="Link to this heading">#</a></h3>
+<p>For these views to use pagination, all we have to do is override <code class="docutils literal notranslate"><span class="pre">DEFAULT_PAGINATION_CLASS</span></code> and <code class="docutils literal notranslate"><span class="pre">PAGE_SIZE</span></code> in our DRF settings in <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">REST_FRAMEWORK</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;DEFAULT_PAGINATION_CLASS&#39;</span><span class="p">:</span> <span class="s1">&#39;rest_framework.pagination.LimitOffsetPagination&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PAGE_SIZE&#39;</span><span class="p">:</span> <span class="mi">20</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="with-apiview-or-other-non-generic-view">
+<h3>With APIView or other Non-Generic View<a class="headerlink" href="#with-apiview-or-other-non-generic-view" title="Link to this heading">#</a></h3>
+<p>First we must define the default behaviour for our pagination, which is done in <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">REST_FRAMEWORK</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;DEFAULT_PAGINATION_CLASS&#39;</span><span class="p">:</span> <span class="s1">&#39;rest_framework.pagination.LimitOffsetPagination&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PAGE_SIZE&#39;</span><span class="p">:</span> <span class="mi">20</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now we need to handle our pagination through our view (APIView in this case).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework.settings</span> <span class="kn">import</span> <span class="n">api_settings</span>
+<span class="kn">from</span> <span class="nn">rest_framework.views</span> <span class="kn">import</span> <span class="n">APIView</span>
+
+<span class="k">class</span> <span class="nc">PostView</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+    <span class="c1"># ... queryset, serializer_class, etc</span>
+    <span class="n">pagination_class</span> <span class="o">=</span> <span class="n">api_settings</span><span class="o">.</span><span class="n">DEFAULT_PAGINATION_CLASS</span>
+
+    <span class="c1"># We need to override the get method to achieve pagination</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># ...</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paginate_queryset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">queryset</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">page</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">serializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serializer_class</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_paginated_response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="c1"># ...</span>
+
+    <span class="c1"># Now add the pagination handlers taken from</span>
+    <span class="c1"># django-rest-framework/rest_framework/generics.py</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">paginator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The paginator instance associated with the view, or `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+     <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_paginator&#39;</span><span class="p">):</span>
+         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pagination_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">_paginator</span> <span class="o">=</span> <span class="kc">None</span>
+         <span class="k">else</span><span class="p">:</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">_paginator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pagination_class</span><span class="p">()</span>
+     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_paginator</span>
+
+     <span class="k">def</span> <span class="nf">paginate_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+<span class="w">         </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">         Return a single page of results, or `None` if pagination is disabled.</span>
+<span class="sd">         &quot;&quot;&quot;</span>
+         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">paginator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+             <span class="k">return</span> <span class="kc">None</span>
+         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">paginator</span><span class="o">.</span><span class="n">paginate_queryset</span><span class="p">(</span><span class="n">queryset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+
+     <span class="k">def</span> <span class="nf">get_paginated_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">         </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">         Return a paginated style `Response` object for the given output data.</span>
+<span class="sd">         &quot;&quot;&quot;</span>
+         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">paginator</span><span class="o">.</span><span class="n">get_paginated_response</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="modify-pagination-class">
+<h3>Modify Pagination Class<a class="headerlink" href="#modify-pagination-class" title="Link to this heading">#</a></h3>
+<p>We can define our own pagination class and override default attributes. Using this new class, you can make one, multiple or all views use this instead of <code class="docutils literal notranslate"><span class="pre">LimitOffsetPagination</span></code> or other ones provided by DRF.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CustomPagination</span><span class="p">(</span><span class="n">PageNumberPagination</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Client controls the response page size (with query param), limited to a maximum of `max_page_size` and default of `page_size`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">page_size</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">page_size_query_param</span> <span class="o">=</span> <span class="s1">&#39;page_size&#39;</span>
+    <span class="n">max_page_size</span> <span class="o">=</span> <span class="mi">10000</span>
+</pre></div>
+</div>
+<br>
+</section>
+</section>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Link to this heading">#</a></h2>
+<p>DRF has ready-to-use and integrated authentication schemes, but if you need something more specific, you can customize <a class="reference external" href="http://www.django-rest-framework.org/api-guide/authentication/#custom-authentication">your own scheme</a>.</p>
+<section id="sessionauthentication">
+<h3>SessionAuthentication<a class="headerlink" href="#sessionauthentication" title="Link to this heading">#</a></h3>
+<p>SessionAuthentication uses the default session backend for authentication provided by Django, which is more practical for us devs. Once a user has been successfully authenticated, a User instance is stored in <code class="docutils literal notranslate"><span class="pre">request.user</span></code>.</p>
+</section>
+<section id="tokenauthentication">
+<h3>TokenAuthentication<a class="headerlink" href="#tokenauthentication" title="Link to this heading">#</a></h3>
+<p>The recommended use for the<code class="docutils literal notranslate"><span class="pre">TokenAuthentication</span></code> class is when client-server setups like native apps.</p>
+<p>First, add <code class="docutils literal notranslate"><span class="pre">'rest_framework.authtoken'</span></code> to your <code class="docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># Rest of your installed apps ...</span>
+    <span class="s1">&#39;rest_framework&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;rest_framework.authtoken&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<section id="generate-tokens-for-users">
+<h4>Generate Tokens for users<a class="headerlink" href="#generate-tokens-for-users" title="Link to this heading">#</a></h4>
+<p>Using signals (in <code class="docutils literal notranslate"><span class="pre">models.py</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">django.db.models.signals</span> <span class="kn">import</span> <span class="n">post_save</span>
+<span class="kn">from</span> <span class="nn">django.dispatch</span> <span class="kn">import</span> <span class="n">receiver</span>
+<span class="kn">from</span> <span class="nn">rest_framework.authtoken.models</span> <span class="kn">import</span> <span class="n">Token</span>
+
+<span class="c1"># For existing users</span>
+<span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+    <span class="n">Token</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_or_create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+<span class="c1"># For newly created users</span>
+<span class="nd">@receiver</span><span class="p">(</span><span class="n">post_save</span><span class="p">,</span> <span class="n">sender</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">AUTH_USER_MODEL</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">create_auth_token</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">created</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">created</span><span class="p">:</span>
+        <span class="n">Token</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">instance</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="obtaining-tokens">
+<h4>Obtaining Tokens<a class="headerlink" href="#obtaining-tokens" title="Link to this heading">#</a></h4>
+<p>DRF provides a built in view to obtain tokens given username and password.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rest_framework.authtoken</span> <span class="kn">import</span> <span class="n">views</span>
+<span class="n">urlpatterns</span> <span class="o">+=</span> <span class="p">[</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^api-token-auth/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">obtain_auth_token</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="oauth2">
+<h3>OAuth2<a class="headerlink" href="#oauth2" title="Link to this heading">#</a></h3>
+<p>OAuth and OAuth2 were previously integrated in DRF, but the corresponding modules were moved and is now supported as a third-party package. There are also other very cool and handy packages that can be easily implemented.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://jpadilla.github.io/django-rest-framework-oauth/">Django Rest Framework OAuth</a></p></li>
+<li><p><a class="reference external" href="https://github.com/evonove/django-oauth-toolkit">Django OAuth Toolkit</a> recommended for OAuth2</p></li>
+</ul>
+<p>If that isn’t enough, there’s a few more <a class="reference external" href="http://www.django-rest-framework.org/topics/third-party-packages/#authentication">here</a> .</p>
+<br>
+</section>
+<section id="web-browsable-api">
+<h3>Web Browsable API<a class="headerlink" href="#web-browsable-api" title="Link to this heading">#</a></h3>
+<p>The default look DRF gives you for the browsable API is pretty cool on its own, but in case you don’t like it, there are provided ways of customization.</p>
+</section>
+<section id="overriding-the-default-theme">
+<h3>Overriding the Default theme<a class="headerlink" href="#overriding-the-default-theme" title="Link to this heading">#</a></h3>
+<p>Those are the common ones, here’s <a class="reference external" href="http://www.django-rest-framework.org/topics/browsable-api/#blocks">all of ‘em</a>.</p>
+<p>This is how you would modify any other block.</p>
+</section>
+</section>
+<section id="full-customization">
+<h2>Full Customization<a class="headerlink" href="#full-customization" title="Link to this heading">#</a></h2>
+<p>If you don’t dig the Bootstrap look, you can just drop the whole default look and fully customize it on your own. There is a context provided that you could work with.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">api_settings</span></code> - API settings</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">content</span></code> - The content of the API response</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">request</span></code> - The request object</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">response</span></code> - The response object</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">view</span></code> - The view handling the request</p></li>
+</ul>
+<p>Full list of context variables <a class="reference external" href="http://www.django-rest-framework.org/topics/browsable-api/#context">here</a>.</p>
+<p>Take a look at the actual <a class="reference external" href="https://github.com/encode/django-rest-framework/blob/73ad88eaae2f49bfd09508f2dcd6446677800a26/rest_framework/templates/rest_framework/base.html">base HTML</a> source code for the API in DRF to get an idea of how it’s actually made.</p>
+<br>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h2>
+<p>It’s important to test your API to make sure it works, of course.</p>
+<section id="apirequestfactory">
+<h3>APIRequestFactory<a class="headerlink" href="#apirequestfactory" title="Link to this heading">#</a></h3>
+<p>It has a similar name to Django’s <a class="reference external" href="https://docs.djangoproject.com/en/1.11/topics/testing/advanced/#the-request-factory">RequestFactory</a> class, because it extends it. You can use the different class methods to send test requests to your API.</p>
+<p>Lets say we want to write test requests for our example <a class="reference internal" href="#base-example-model"><span class="xref myst">Post</span></a> model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">rest_framework.test</span> <span class="kn">import</span> <span class="n">APIRequestFactory</span>
+<span class="kn">from</span> <span class="nn">posts.models</span> <span class="kn">import</span> <span class="n">Post</span>
+<span class="kn">from</span> <span class="nn">posts.views</span> <span class="kn">import</span> <span class="n">PostList</span>
+
+
+<span class="k">class</span> <span class="nc">PostTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>  <span class="c1"># Post object, not HTTP method POST.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;We&#39;ll be testing with the PostList view (class-based view).&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factory</span> <span class="o">=</span> <span class="n">APIRequestFactory</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Post example&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Lorem Ipsum&#39;</span><span class="p">)</span>
+
+    <span class="c1"># For HTTP method GET</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">view</span> <span class="o">=</span> <span class="n">PostList</span><span class="o">.</span><span class="n">as_view</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/posts/&#39;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">view</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>  <span class="c1"># 200 = OK</span>
+
+    <span class="c1"># For HTTP method POST</span>
+    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">view</span> <span class="o">=</span> <span class="n">PostList</span><span class="o">.</span><span class="n">as_view</span><span class="p">()</span>
+
+        <span class="c1"># Generating the request</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/posts/&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Post example&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;Lorem Ipsum&#39;</span><span class="p">})</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">view</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="o">.</span><span class="n">text</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>  <span class="c1"># 201 = created</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../drf.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">drf</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="drf_fbv.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Function base views</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drf-cheat-sheet">drf-cheat-sheet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-django-rest-framework">Why Django REST Framework?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base-example-model">Base Example Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization">Serialization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-modelserializer-class">Using ModelSerializer class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-serialization">Nested Serialization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general">General</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explicit">Explicit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperlinkedmodelserializer">HyperlinkedModelSerializer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamically-modifying-fields-in-serializer">Dynamically modifying fields in serializer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#views">Views</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-function-based-views">Using Function-based views</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-class-based-views">Using Class-based views</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-generic-class-based-views">Using Generic Class-based views</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-mixins">Using Mixins</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-viewsets">Using ViewSets</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#routers">Routers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-actions-in-viewsets">Custom Actions in ViewSets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pagination">Pagination</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#with-generic-class-based-views-or-viewsets">With Generic Class-based views or Viewsets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#with-apiview-or-other-non-generic-view">With APIView or other Non-Generic View</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-pagination-class">Modify Pagination Class</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication">Authentication</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sessionauthentication">SessionAuthentication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenauthentication">TokenAuthentication</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-tokens-for-users">Generate Tokens for users</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-tokens">Obtaining Tokens</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#oauth2">OAuth2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-browsable-api">Web Browsable API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overriding-the-default-theme">Overriding the Default theme</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-customization">Full Customization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apirequestfactory">APIRequestFactory</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

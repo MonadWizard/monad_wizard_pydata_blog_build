@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pgcron doc &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/pg_cron';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/python/pg_cron.html" />
+    <link rel="icon" href="../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RegEx" href="regex.html" />
+    <link rel="prev" title="python_blog" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">python_blog</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">pgcron doc</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="regex.html">RegEx</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">python_blog</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">pgcron doc</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pgcron-doc">
+<h1>pgcron doc<a class="headerlink" href="#pgcron-doc" title="Link to this heading">#</a></h1>
+<p>Pg_cron একটি cron-based job scheduler যা PostgreSQL(9.5 or higher) এর ভেতর একটি Database extension হিসেবে run করে। Pg_cron ব্যবহার করে specific সময় পর পর নির্দিষ্ট sql query কে postgresql এ execute করা যায়।</p>
+<p>for an example application এর people suggation portion থেকে user1 যদি user13 কে unmatch করে, তবে user1 তার suggestion portion এবং search people portion এ user13 কে দেখতে পাবে না এবং user13 ও তার suggestion portion এবং search people portion এ user1 কে দেখতে পাবে না।</p>
+<p>According to business case, unmatched করা users গুলো 40 days এর বেশি unmatched থাকবে না। তারা আবার suggestion টেবিল এবং search people portion এ seen হবে।<br />
+যে সব user এর unmatched date ৪০ দিন হয়েছে তাদেরকে unmatch table থেকে remove করে দেয়ার opperation টি postgreSQL এর under এ সম্পূর্ণ হয়। প্রতিদিন রাত ৩ টার সময় user_unmatches table এ PostgreSQL একটি query অপারেশান execute করবে এবং current date-time এর থেকে 40 days পূর্বে create হওয়া row/user information গুলো remove করে দিবে।</p>
+<p>উপরোক্ত operation টি একটি scheduler operation যা postgreSQL এর under এ pg_cron এর দ্বারা execute হয়। PostgreSQL এ Pg_cron configure করার জন্য নিচের instruction follow করতে হবে ।</p>
+<p>Installing Pg_cron:
+Red Hat, CentOS, Fedora, and Amazon Linux এর সংঘে PostgreSQL 12 এ pg_cron extension install :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo yum install -y pg_cron_12
+</pre></div>
+</div>
+<p>install on Debian, and Ubuntu with PostgreSQL 12 using apt.postgresql.org:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt-get -y install postgresql-12-cron
+</pre></div>
+</div>
+<p>Setting up pg_cron:
+Pg_cron এর জন্য postgreSQL এর background worker enable করার জন্য shared_preload_libraries তে pg_cron কে উল্লেখ করতে হবে । server যদি hot standby mode এ থাকে তবে pg_Cron run হবে না। কিন্তু যখন server start হবে pg_cron automatically start হবে।</p>
+</section>
+<section id="add-to-postgresql-conf">
+<h1>add to postgresql.conf<a class="headerlink" href="#add-to-postgresql-conf" title="Link to this heading">#</a></h1>
+</section>
+<section id="required-to-load-pg-cron-background-worker-on-start-up">
+<h1>required to load pg_cron background worker on start-up<a class="headerlink" href="#required-to-load-pg-cron-background-worker-on-start-up" title="Link to this heading">#</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>shared_preload_libraries = &#39;pg_cron&#39;
+</pre></div>
+</div>
+<p>By default, pg_cron এর background worker তার metadata tables গুলো “Postgres” database এ তৈরি করে।
+তাই যে database এর table এ scheduler operation টি execute হবে সেই database name টি postgresql.conf file এর cron.database_name configuration parameter এ উল্লেখ করতে হবে।</p>
+</section>
+<section id="id1">
+<h1>add to postgresql.conf<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+</section>
+<section id="optionally-specify-the-database-in-which-the-pg-cron-background-worker-should-run-defaults-to-postgres">
+<h1>optionally, specify the database in which the pg_cron background worker should run (defaults to postgres)<a class="headerlink" href="#optionally-specify-the-database-in-which-the-pg-cron-background-worker-should-run-defaults-to-postgres" title="Link to this heading">#</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cron.database_name = &#39;database_name’
+</pre></div>
+</div>
+<p>Configuration part শেষ হয়েছে। এখন postgreSQL restart করার পর ‘CREATE EXTENSION pg_cron’ ব্যবহার করে pg_cron function এবং metadata table তৈরি করতে পারা যায়।</p>
+<p>– run as superuser:
+CREATE EXTENSION pg_cron;</p>
+<p>– optionally, grant usage to regular users:
+GRANT USAGE ON SCHEMA cron TO postgre_user_name;</p>
+<p>Important: by default pg_Cron, libpq ব্যবহার করে একটি নতুন connection কে local database এ তৈরি করে। যা pg_hba.conf থেকে allowed থাকতে হয়। database এর user authentication এ trust enable থাকতে হবে যেন localhost এ cron job running থাকে । এই জন্য postgreuser এর password টি .pgpass file এ রাখতে হবে, যা libpq ব্যবহার করে connection open করবে।</p>
+<p>.pgpass এই file এ postgresql এর credential নিম্ন রূপে থাকে,</p>
+</section>
+<section id="hostname-port-database-username-password">
+<h1>hostname:port:database:username:password<a class="headerlink" href="#hostname-port-database-username-password" title="Link to this heading">#</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>localhost:5432:demo_db:postgres:postgres
+</pre></div>
+</div>
+<p>pg_cron এর background workers এর number of concurrent job এর limit কে max_worker_processes ব্যবহার করে setting করতে হবে।</p>
+</section>
+<section id="schedule-jobs-via-background-workers-instead-of-localhost-connections">
+<h1>Schedule jobs via background workers instead of localhost connections<a class="headerlink" href="#schedule-jobs-via-background-workers-instead-of-localhost-connections" title="Link to this heading">#</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cron.use_background_workers = on
+</pre></div>
+</div>
+</section>
+<section id="increase-the-number-of-available-background-workers-from-the-default-of-8">
+<h1>Increase the number of available background workers from the default of 8<a class="headerlink" href="#increase-the-number-of-available-background-workers-from-the-default-of-8" title="Link to this heading">#</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>max_worker_processes = 20
+</pre></div>
+</div>
+<p>এছাড়া Unix domain socket directory থেকে hostname কে trust permission দিয়ে pg_cron এর libpq এর connection established করা যায়।</p>
+<p>Pg_cron কে operational করার জন্য নিচের step গুলো follow করতে হবে।</p>
+<p>Step 1: demo_db এই database এ pg_cron extension নিয়ে কাজ করার জন্য at first postgreSQL এ CLI terminal থেকে connect হতে হবে।</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>psql -h localhost -U postgres demo_db;
+</pre></div>
+</div>
+<p>Step 2: step 1 এ connect থাকা অবস্থাতে demo_db database এ Pg_cron এর plug-in create করতে হবে।</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>CREATE EXTENSION pg_cron;
+GRANT USAGE ON SCHEMA cron TO postgre_user_name;
+</pre></div>
+</div>
+<p>Step 1 এ connect থাকা অবস্থাতে demo_db থেকে create করা extension remove করার জন্য নিচের command run করতে হবে।<br />
+DROP EXTENSION pg_cron;</p>
+<p>Step 1 এ connect থাকা অবস্থাতে pg_cron থেকে schedule করা সকল queryগুলো নিচের query দ্বারা দেখা যায়।</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">select</span> <span class="o">*</span> <span class="kn">from</span> <span class="nn">cron.job</span><span class="p">;</span>
+
+    <span class="n">jobid</span> <span class="o">|</span>  <span class="n">schedule</span>   <span class="o">|</span>   <span class="n">command</span>                       <span class="o">|</span> <span class="n">nodename</span>  <span class="o">|</span> <span class="n">nodeport</span> <span class="o">|</span>  <span class="n">database</span>   <span class="o">|</span> <span class="n">username</span> <span class="o">|</span> <span class="n">active</span> <span class="o">|</span> <span class="n">jobname</span>
+    <span class="o">-------+----------------+----------------------------------+---------------+-------------+----------------+--------------+--------+---------</span>
+
+</pre></div>
+</div>
+<p>Step 3: Step 1 এ connect থাকা অবস্থাতে pg_cron এ postgreSQL এর query টি shedule করার জন্য নিচের query execute করতে হবে।
+SELECT cron.schedule(‘0 3 * * *’, $$DELETE FROM public.auth_user_app_user_unmatch WHERE user_unmatch_created_at &lt; now() - interval ‘40 days’$$);</p>
+<p>Schedule query টির structure SELECT cron.schedule(’* * * * *’, $$<PostgreSQL query>$$);</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    ┌───────────── min (0 - 59)
+    │ ┌────────────── hour (0 - 23)
+    │ │ ┌─────────────── day of month (1 - 31)
+    │ │ │ ┌──────────────── month (1 - 12)
+    │ │ │ │ ┌───────────────── day of week (0 - 6) (0 to 6 are Sunday to
+    │ │ │ │ │ Saturday, or use names; 7 is also Sunday)
+    │ │ │ │ │
+    │ │ │ │ │
+
+    * * * * *
+</pre></div>
+</div>
+<p>Pg_cron এর কোন schedule কে unschedule করতে হলে নিচের command টি Step 1 এ connect থাকা অবস্থাতে run করতে হবে।<br />
+SELECT cron.unschedule(jobid);
+Or
+SELECT cron.unschedule(jobid) FROM cron.job;</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>SELECT \* FROM cron.job; থেকে Jobid নিয়ে সেই jobid user করে unschedule করতে হবে।
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">jobid</span> <span class="o">|</span> <span class="n">schedule</span> <span class="o">|</span> <span class="n">command</span> <span class="o">|</span> <span class="n">nodename</span> <span class="o">|</span> <span class="n">nodeport</span> <span class="o">|</span> <span class="n">database</span> <span class="o">|</span> <span class="n">username</span> <span class="o">|</span> <span class="n">active</span> <span class="o">|</span> <span class="n">jobname</span>
+    <span class="o">-------+-------------+-----------------------+-----------+----------+-------------+----------+--------+---------</span>
+    <span class="mi">3</span> <span class="o">|</span> <span class="mi">0</span> <span class="mi">3</span> \<span class="o">*</span> \<span class="o">*</span> \<span class="o">*</span> <span class="o">|</span> <span class="n">DELETE</span> <span class="n">FROM</span> <span class="n">public</span><span class="o">.</span><span class="n">auth_user_app_user_unmatch</span> <span class="n">WHERE</span> <span class="n">user_unmatch_created_at</span> <span class="o">&lt;</span> <span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">interval</span> <span class="s1">&#39;2 MINUTE&#39;</span> <span class="o">|</span> <span class="n">localhost</span> <span class="o">|</span> <span class="mi">5432</span> <span class="o">|</span> <span class="n">demo_db</span> <span class="o">|</span> <span class="n">postgres</span> <span class="o">|</span> <span class="n">t</span> <span class="o">|</span>
+    <span class="p">(</span><span class="mi">1</span> <span class="n">rows</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>উদাহর সরূপ
+SELECT cron.unschedule(3); ব্যবহার করে schedule টি unschedule করা যায়।</p>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">python_blog</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="regex.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">RegEx</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">pgcron doc</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#add-to-postgresql-conf">add to postgresql.conf</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#required-to-load-pg-cron-background-worker-on-start-up">required to load pg_cron background worker on start-up</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">add to postgresql.conf</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optionally-specify-the-database-in-which-the-pg-cron-background-worker-should-run-defaults-to-postgres">optionally, specify the database in which the pg_cron background worker should run (defaults to postgres)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hostname-port-database-username-password">hostname:port:database:username:password</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule-jobs-via-background-workers-instead-of-localhost-connections">Schedule jobs via background workers instead of localhost connections</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#increase-the-number-of-available-background-workers-from-the-default-of-8">Increase the number of available background workers from the default of 8</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

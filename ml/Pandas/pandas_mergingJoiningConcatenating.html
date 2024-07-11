@@ -1,0 +1,1589 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pandas merging Joining Concatenating &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ml/Pandas/pandas_mergingJoiningConcatenating';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/ml/Pandas/pandas_mergingJoiningConcatenating.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pandas datesAndTime" href="pandas_datesAndTime.html" />
+    <link rel="prev" title="Pandas GroupBy" href="pandas_GroupBy.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning blog</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Numpy.html">Numpy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/numpy_basic.html">numpy basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/numpy_advance.html">numpy Advance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises.html">100 numpy exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises_with_hints.html">100 numpy exercises with hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises_with_solutions.html">100 numpy exercises with solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises_solutions_with_hints.html">100 numpy exercises solutions with hints</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Pandas.html">Pandas</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas_series.html">Pandas Series Blog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_dataFrames.html">Pandas DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_workWithTextData.html">Pandas Text Data</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="pandas_multiIndex.html">Pandas multi Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_GroupBy.html">Pandas GroupBy</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">pandas merging Joining Concatenating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_datesAndTime.html">pandas datesAndTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_Panels.html">pandas Panels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_InputAnd_Output.html">Pandas Input And Output</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../joblib.html">Joblib</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../joblib/joblib_basic.html">joblib basic</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pickel.html">pickel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pickel/pickel_basic.html">pickel</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Machine Learning blog</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../Pandas.html" class="nav-link">Pandas</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">pandas...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pandas-merging-joining-concatenating">
+<h1>pandas merging Joining Concatenating<a class="headerlink" href="#pandas-merging-joining-concatenating" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://github.com/dust-nk-org/pandasDataSet/archive/master.zip">প্রয়োজনীয় data-set যা এই post এ ব্যবহার করা হয়েছে DOWNLOAD </a></p>
+<p>এবং <a class="reference external" href="https://pandas.pydata.org/">Official Doc</a></p>
+<section id="concat-method">
+<h2>.concat() method<a class="headerlink" href="#concat-method" title="Link to this heading">#</a></h2>
+<p>.concat() method ব্যবহার করে আমরা same length এর একাধিক data-frame কে একটি data-frame এ রূপান্তর করতে পারি বা একাধিক data কে এক সঙ্ঘে concatination করতে পারি।</p>
+<p>সাধারণত obj signature নিয়ে কাজ করা যায়।
+কিন্তু প্রয়োজন এর তাগিদে আমাদের আর ও কিছু signature ব্যবহার করতে হতে পারে। যেমন
+<font color="pink"> ignore_index </font> ব্যবহার করলে একটি continous indexing পাওয়া যায়। তা না হইলে আমাদের 1st data-frame এর index 2nd data-frame এর index মিলে problem হতে পারে।
+<font color="pink"> keys </font> ব্যবহার করে আমরা external Index তৈরি করতে পারি।
+<font color="pink"> names </font> ব্যবহার করে আমরা multi-Index গুলোর specific নাম দিতে পারি।</p>
+<p><font color="green"> pandas.concat(objs, keys, names, ignore_index) </font></p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">week1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 1 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">week2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 2 Sales.csv&quot;</span><span class="p">)</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">week1</span><span class="p">)</span>    <span class="c1"># same length</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">week2</span><span class="p">)</span>
+
+<span class="n">wek1and2_index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">week1</span><span class="p">,</span> <span class="n">week2</span><span class="p">])</span>
+<span class="n">wek1and2_index</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+
+<span class="c1">#  create continous numaric index</span>
+<span class="n">wek1and2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">week1</span><span class="p">,</span> <span class="n">week2</span><span class="p">],</span> <span class="n">ignore_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># create external index with key1 for obj1 and key2 for obj2</span>
+<span class="n">sales</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">objs</span><span class="o">=</span> <span class="p">[</span><span class="n">week1</span><span class="p">,</span> <span class="n">week2</span><span class="p">],</span> <span class="n">keys</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;week1&quot;</span><span class="p">,</span> <span class="s2">&quot;week2&quot;</span><span class="p">])</span>
+
+<span class="c1"># extract only week1 external row</span>
+<span class="n">sales</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;week1&quot;</span><span class="p">]</span>
+
+<span class="c1"># extract whoes CustomerID 240 and external index week2</span>
+<span class="n">sales</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">&quot;week2&quot;</span><span class="p">,</span> <span class="mi">240</span><span class="p">)]</span>
+
+<span class="c1"># extract thoes all other datas whoes CustomerID 240 and external index week2</span>
+<span class="n">sales</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">&quot;week2&quot;</span><span class="p">,</span> <span class="mi">240</span><span class="p">),</span> <span class="s2">&quot;Customer ID&quot;</span><span class="p">]</span>
+
+<span class="c1"># we can change index label name </span>
+<span class="n">sales</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">objs</span><span class="o">=</span><span class="p">[</span><span class="n">week1</span><span class="p">,</span> <span class="n">week2</span><span class="p">],</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;week1&quot;</span><span class="p">,</span> <span class="s2">&quot;week2&quot;</span><span class="p">],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;data frames&#39;</span><span class="p">,</span> <span class="s1">&#39;indexs&#39;</span><span class="p">])</span>
+
+<span class="n">sales</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> OUTPUT: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Customer ID</th>
+      <th>Food ID</th>
+    </tr>
+    <tr>
+      <th>data frames</th>
+      <th>indexs</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">week1</th>
+      <th>0</th>
+      <td>537</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>97</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>658</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>202</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>155</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="append-method">
+<h2>.append() method<a class="headerlink" href="#append-method" title="Link to this heading">#</a></h2>
+<p>.append() method অনেকটাই .concat() method এর মত। .concat() সরাসরি pandas কে call করে, আর .append() দ্বারা specific data-frame কে call করতে হয়।</p>
+<p><font color="green"> dataFrame1.append(dataFrame2, ignore_index=True) </font></p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">week1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 1 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">week2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 2 Sales.csv&quot;</span><span class="p">)</span>
+
+<span class="n">week1_2</span> <span class="o">=</span> <span class="n">week2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">week1</span><span class="p">,</span> <span class="n">ignore_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>  <span class="c1"># work same as concat method</span>
+<span class="n">week1_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> OUTPUT: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Customer ID</th>
+      <th>Food ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>688</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>813</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>495</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>189</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>267</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="merge-method">
+<h2>.merge() Method<a class="headerlink" href="#merge-method" title="Link to this heading">#</a></h2>
+</section>
+<section id="left-on-and-right-on-parameters">
+<h2>left_on and right_on parameters<a class="headerlink" href="#left-on-and-right-on-parameters" title="Link to this heading">#</a></h2>
+<p>২টি data-set কে একত্রে আনার প্রক্রিয়াই marging.</p>
+<p><font color="green"> pandas.merge(leftDataFrame, rightDataFrame, how, left_on, right_on) </font></p>
+<p>pandas কে merge method দ্বারা call করে signuture গুলোতে সঠিক data পাঠিয়ে marge করতে পারি। how parameter এ define করতে হবে merge টাই left dataFrame এ নাকি right dataFrame প্রথমে থাকবে । left_on এ left dataFrame এর specific label এবং right_on এ right dataFrame এর specific label থাকবে।</p>
+<p>same type এর যে কোন label দ্বারা index define করে merge data কে compare করা যায়।</p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">week1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 1 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">customers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Customers.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;ID&quot;</span><span class="p">)</span>  <span class="c1"># define index column cause data frame have extra number column serial</span>
+
+<span class="n">mergeData</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">week1</span><span class="p">,</span> <span class="n">customers</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s2">&quot;Customer ID&quot;</span><span class="p">,</span> <span class="n">right_on</span> <span class="o">=</span> <span class="s2">&quot;ID&quot;</span><span class="p">)</span>
+<span class="n">mergeData</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><font color="Salmon"> OUTPUT: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Customer ID</th>
+      <th>Food ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Gender</th>
+      <th>Company</th>
+      <th>Occupation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>537</td>
+      <td>9</td>
+      <td>Cheryl</td>
+      <td>Carroll</td>
+      <td>Female</td>
+      <td>Zoombeat</td>
+      <td>Registered Nurse</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>97</td>
+      <td>4</td>
+      <td>Amanda</td>
+      <td>Watkins</td>
+      <td>Female</td>
+      <td>Ozu</td>
+      <td>Account Coordinator</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>658</td>
+      <td>1</td>
+      <td>Patrick</td>
+      <td>Webb</td>
+      <td>Male</td>
+      <td>Browsebug</td>
+      <td>Community Outreach Specialist</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>202</td>
+      <td>2</td>
+      <td>Louis</td>
+      <td>Campbell</td>
+      <td>Male</td>
+      <td>Rhynoodle</td>
+      <td>Account Representative III</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>155</td>
+      <td>9</td>
+      <td>Carolyn</td>
+      <td>Diaz</td>
+      <td>Female</td>
+      <td>Gigazoom</td>
+      <td>Database Administrator III</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="merging-by-indexes-left-index-right-index-parameters">
+<h2>Merging by Indexes ( left_index &amp; right_index) Parameters<a class="headerlink" href="#merging-by-indexes-left-index-right-index-parameters" title="Link to this heading">#</a></h2>
+<p>by-Default left_index এবং right_index এর মান False থাকে, merge করার সময় left Data-Frame বা right Data-Frame এর index কে main index হিসেবে ব্যবহার করার জন্য specific index এর মান True দিতে হবে।</p>
+<p><font color="green"> leftDataFrame.merge(rightDataFrame, how, left_on, right_on, left_index, right_index, suffixes=[“lastNameForLeft”, “LastNameForRight”]) </font></p>
+<ul class="simple">
+<li><p>how তে left merge না কি right merge টা দিতে হবে,</p></li>
+<li><p>left DataFrame এর index হিসেবে যদি label ব্যবহার করা হয় তবে টা left_on এ দিতে হবে। unless দিতে হবে না।</p></li>
+<li><p>right DataFrame এর index হিসেবে যদি label ব্যবহার করা হয় তবে টা right_on এ দিতে হবে।  unless দিতে হবে না।</p></li>
+<li><p>left DataFrame এর index হিসেবে যদি left DataFrame এর index ব্যবহার করা হয় তবে left_index = True দিতে হবে। unless দিতে হবে না।</p></li>
+<li><p>right DataFrame এর index হিসেবে যদি right DataFrame এর index ব্যবহার করা হয় তবে right_index = True দিতে হবে।  unless দিতে হবে না।</p></li>
+<li><p>merge data চেনার জন্য যদি specific data-frame এর সকল label এর সঙ্ঘে specific কোন word add করতে চাই তা হইলে suffixes parameter ব্যবহার করতে হবে।</p></li>
+</ul>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">week1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 1 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">week2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 2 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">customers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Customers.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;ID&quot;</span><span class="p">)</span>  <span class="c1"># define index column cause data frame have extra number column serial</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Foods.csv&quot;</span><span class="p">,</span>  <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Food ID&quot;</span><span class="p">)</span>
+<span class="n">food</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">use for marge with index value or marge with index and column</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">sales</span> <span class="o">=</span> <span class="n">week1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">customers</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s2">&quot;Customer ID&quot;</span><span class="p">,</span> <span class="n">right_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># now marge with foods data set to add food details with sales </span>
+
+<span class="n">sales</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">food</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s2">&quot;Food ID&quot;</span><span class="p">,</span> <span class="n">right_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">sales</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+
+<span class="c1"># merge by Index In both datasets and include suffixes name on label</span>
+<span class="n">week1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">week2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">left_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">suffixes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-week1&quot;</span><span class="p">,</span> <span class="s2">&quot;-week2&quot;</span><span class="p">])</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> OUTPUT: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Customer ID-week1</th>
+      <th>Food ID-week1</th>
+      <th>Customer ID-week2</th>
+      <th>Food ID-week2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>537</td>
+      <td>9</td>
+      <td>688</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>97</td>
+      <td>4</td>
+      <td>813</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>658</td>
+      <td>1</td>
+      <td>495</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>202</td>
+      <td>2</td>
+      <td>189</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>155</td>
+      <td>9</td>
+      <td>267</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>245</th>
+      <td>413</td>
+      <td>9</td>
+      <td>783</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>246</th>
+      <td>926</td>
+      <td>6</td>
+      <td>556</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>247</th>
+      <td>134</td>
+      <td>3</td>
+      <td>547</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>248</th>
+      <td>396</td>
+      <td>6</td>
+      <td>252</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>249</th>
+      <td>535</td>
+      <td>10</td>
+      <td>249</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+<p>250 rows × 4 columns</p>
+</div>
+</section>
+<section id="join-method">
+<h2>.join() Method<a class="headerlink" href="#join-method" title="Link to this heading">#</a></h2>
+<p>.merge() method এর মত .join() method ব্যবহার করে আমরা ২টি data-frame কে একটি data-frame এ রূপান্তর করতে পারি।
+সাধারণত <font color="Salmon"> leftDataFrame.join(rightDataFrame) </font> ব্যবহার করে পাশাপাশি 2 টি DataFrame কে join করা যায়।</p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">week1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 1 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">satisfaction</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 1 Satisfaction.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># use for join 2 dataSet with out extra parameter</span>
+<span class="n">week1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">satisfaction</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> OUTPUT: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Customer ID</th>
+      <th>Food ID</th>
+      <th>Satisfaction Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>537</td>
+      <td>9</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>97</td>
+      <td>4</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>658</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>202</td>
+      <td>2</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>155</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><img alt="image" src="https://drive.google.com/uc?export=view&amp;id=1TIhNLVA2FFsz_FsaNoLnuT_xwgWumUlk" /></p>
+</section>
+<section id="inner-joins-inner-marge">
+<h2>inner Joins (inner marge)<a class="headerlink" href="#inner-joins-inner-marge" title="Link to this heading">#</a></h2>
+<p>২ টা data-frame এর মদ্ধে common value গুলো মিলে new data-frame তৈরি করলে inner-join করা হয়।
+join করার সময় notice করতে হবে যেন ২ টা data-frame এ same Name এবং same size এর common label থাকে, যে label টার উপর deppend করে আমাদের inner join complete হবে।</p>
+<p><mark>সকল প্রকার join করতে .marge() method এর how parameter এর পরিবর্তন ঘটাতে হয়। </mark></p>
+<p><font color="green"> leftDataFrame.merge(rightDataFrame, how=”inner”, left_on, right_on, left_index, right_index, suffixes=[“lastNameForLeft”, “LastNameForRight”]) </font></p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">week1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 1 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">week2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 2 Sales.csv&quot;</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot; try to find which customer are came on week1 and week2 both &quot;&quot;&quot;</span>
+
+<span class="c1"># both dataset have same name of column &quot;Customer ID&quot; so it defaultly create &quot;Customer ID_x&quot;&quot;Customer ID_y&quot; for reduse duplicate column name</span>
+<span class="n">week1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">week2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s2">&quot;Customer ID&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># now give some specific name to &quot;Customer ID&quot;</span>
+<span class="n">week1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">week2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s2">&quot;Customer ID&quot;</span><span class="p">,</span><span class="n">suffixes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot; - week 1&quot;</span><span class="p">,</span><span class="s2">&quot; - week 2&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot; try to find which customer are came on both week1 and week2 both and ordered exjact same product to both week1 &amp; week2&quot;&quot;&quot;</span>
+<span class="n">week1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">week2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;inner&quot;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Customer ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Food ID&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> OUTPUT: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Customer ID</th>
+      <th>Food ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>304</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>540</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>937</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>233</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="outer-joins-outer-marge">
+<h2>outer Joins (outer marge)<a class="headerlink" href="#outer-joins-outer-marge" title="Link to this heading">#</a></h2>
+<p>উপরের picture এ সকল join এ কি ঘটে তা দাওয়া হয়েছে। আপনারা যদি উপরের topic গুলো ভাল মত বুঝতে পারেন এবং SQL এর join topic জেনে থাকেন তা হইলে code এর flow অনুসরণ করুন এবং line by line code run করুন। আশা করি বুঝতে পারবেন।</p>
+<p>inner join এর similar. just how=”outer”</p>
+<p><font color="green"> leftDataFrame.merge(rightDataFrame, how=”outer”, left_on, right_on, left_index, right_index, suffixes=[“lastNameForLeft”, “LastNameForRight”]) </font></p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">week1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 1 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">week2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 2 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">customers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Customers.csv&quot;</span><span class="p">)</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Foods.csv&quot;</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot; try to find which customer are not came on week1 and week2 both &quot;&quot;&quot;</span>
+
+<span class="c1"># both dataset have same name of column &quot;Customer ID&quot; so it defaultly create &quot;Customer ID_x&quot;&quot;Customer ID_y&quot; for reduse duplicate column name</span>
+<span class="n">week1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">week2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;outer&quot;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s2">&quot;Customer ID&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># NaN found when those costomer is not found in column</span>
+<span class="c1"># now give some specific name to &quot;Customer ID&quot;.  indicator parameter define where the value is</span>
+<span class="n">marged</span> <span class="o">=</span> <span class="n">week1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">week2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;outer&quot;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s2">&quot;Customer ID&quot;</span><span class="p">,</span>
+                     <span class="n">suffixes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot; - week 1&quot;</span><span class="p">,</span><span class="s2">&quot; - week 2&quot;</span><span class="p">],</span> <span class="n">indicator</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">marged</span><span class="p">)</span>  <span class="c1"># 454 rows have not similar value </span>
+
+
+<span class="sd">&quot;&quot;&quot; try to find which customer are not came on both week1 and week2 both and ordered exjact same product to both week1 &amp; week2&quot;&quot;&quot;</span>
+<span class="n">week1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">week2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;outer&quot;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Customer ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Food ID&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+
+<span class="c1"># total discription</span>
+<span class="n">marged</span><span class="p">[</span><span class="s2">&quot;_merge&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> OUTPUT: </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>right_only    197
+left_only     195
+both           62
+Name: _merge, dtype: int64
+</pre></div>
+</div>
+</section>
+<section id="left-joins-left-marge">
+<h2>left Joins (left marge)<a class="headerlink" href="#left-joins-left-marge" title="Link to this heading">#</a></h2>
+<p>.merge() method এ যে example দেখেছেন তা left join এর উদাহরণ।</p>
+<p>how = “left” ব্যবহার করে বাকি সব same.</p>
+<p>just আপনাদের join বাপার টার visual flow মনে রাখতে হবে এবং কেন কোন merge ব্যবহার করবেন টা নিশ্চিত করতে হবে।</p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">week1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 1 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">week2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 2 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">customers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Customers.csv&quot;</span><span class="p">)</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Foods.csv&quot;</span><span class="p">)</span>
+
+
+<span class="sd">&quot;&quot;&quot; try to find which food item buy customer on week1 &quot;&quot;&quot;</span> <span class="c1"># so food ID is our matching column</span>
+<span class="n">buy</span> <span class="o">=</span> <span class="n">week1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">food</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s2">&quot;Food ID&quot;</span><span class="p">,</span> <span class="n">sort</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># it&#39;s sort with matching column</span>
+<span class="n">buy</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> OUTPUT: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Customer ID</th>
+      <th>Food ID</th>
+      <th>Food Item</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>658</td>
+      <td>1</td>
+      <td>Sushi</td>
+      <td>3.99</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>600</td>
+      <td>1</td>
+      <td>Sushi</td>
+      <td>3.99</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>155</td>
+      <td>1</td>
+      <td>Sushi</td>
+      <td>3.99</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>341</td>
+      <td>1</td>
+      <td>Sushi</td>
+      <td>3.99</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+      <td>1</td>
+      <td>Sushi</td>
+      <td>3.99</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="right-joins-right-marge">
+<h2>right Joins (right marge)<a class="headerlink" href="#right-joins-right-marge" title="Link to this heading">#</a></h2>
+<p>how = “right” ব্যবহার করে বাকি সব same.</p>
+<p>just আপনাদের join বাপার টার visual flow মনে রাখতে হবে এবং কেন কোন merge ব্যবহার করবেন টা নিশ্চিত করতে হবে।</p>
+<p><font color="Salmon"> Example: </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">week1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 1 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">week2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 2 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">customers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Customers.csv&quot;</span><span class="p">)</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Foods.csv&quot;</span><span class="p">)</span>
+
+
+<span class="sd">&quot;&quot;&quot; try to find which food item buy customer on week1 &quot;&quot;&quot;</span> <span class="c1"># so food ID is our matching column</span>
+<span class="n">buy</span> <span class="o">=</span> <span class="n">food</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">week1</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s2">&quot;Food ID&quot;</span><span class="p">,</span> <span class="n">sort</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># it&#39;s sort with matching column</span>
+<span class="n">buy</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> OUTPUT: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Food ID</th>
+      <th>Food Item</th>
+      <th>Price</th>
+      <th>Customer ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Sushi</td>
+      <td>3.99</td>
+      <td>658</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Sushi</td>
+      <td>3.99</td>
+      <td>600</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>Sushi</td>
+      <td>3.99</td>
+      <td>155</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>Sushi</td>
+      <td>3.99</td>
+      <td>341</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>Sushi</td>
+      <td>3.99</td>
+      <td>20</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="drop-label">
+<h2>Drop label<a class="headerlink" href="#drop-label" title="Link to this heading">#</a></h2>
+<p>যদি merged data-frame এ অপ্রয়োজনীয় label এবং data থাকে তা হইলে .drop() method ব্যবহার করব।</p>
+<p><font color="Salmon"> Example: </font></p>
+<mark> 
+When marged column have not same name then we cann't work with previous marge or join system.
+matching or comparing columns always need same name. If that's not happend then we need extra 2 parameter left_on & right_on
+</mark>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">week1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 1 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">week2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Week 2 Sales.csv&quot;</span><span class="p">)</span>
+<span class="n">customers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Customers.csv&quot;</span><span class="p">)</span>
+<span class="n">food</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Restaurant - Foods.csv&quot;</span><span class="p">)</span>
+
+<span class="n">week2</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">customers</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s2">&quot;Customer ID&quot;</span><span class="p">,</span> <span class="n">right_on</span> <span class="o">=</span> <span class="s2">&quot;ID&quot;</span><span class="p">)</span> <span class="c1"># &quot;Customer ID&quot; &amp; &quot;ID&quot; same so we don&#39;t need duplicate column</span>
+ 
+<span class="n">week2CustomerDemo</span> <span class="o">=</span> <span class="n">week2</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">customers</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s2">&quot;Customer ID&quot;</span><span class="p">,</span> 
+                                <span class="n">right_on</span> <span class="o">=</span> <span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="n">sort</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span> <span class="s2">&quot;columns&quot;</span><span class="p">)</span>  <span class="c1"># now ID column is drop</span>
+<span class="n">week2CustomerDemo</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> OUTPUT: </font></p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Customer ID</th>
+      <th>Food ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Gender</th>
+      <th>Company</th>
+      <th>Occupation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>8</td>
+      <td>6</td>
+      <td>Frances</td>
+      <td>Adams</td>
+      <td>Female</td>
+      <td>Dabshots</td>
+      <td>Developer III</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>13</td>
+      <td>2</td>
+      <td>Ruth</td>
+      <td>Alvarez</td>
+      <td>Female</td>
+      <td>Twitterlist</td>
+      <td>Mechanical Systems Engineer</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>21</td>
+      <td>4</td>
+      <td>Albert</td>
+      <td>Burns</td>
+      <td>Male</td>
+      <td>Rhynoodle</td>
+      <td>Junior Executive</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>24</td>
+      <td>8</td>
+      <td>Donna</td>
+      <td>Thomas</td>
+      <td>Female</td>
+      <td>Jaxbean</td>
+      <td>Chief Design Engineer</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>27</td>
+      <td>4</td>
+      <td>Jessica</td>
+      <td>Bennett</td>
+      <td>Female</td>
+      <td>Twitternation</td>
+      <td>Account Executive</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pandas_GroupBy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pandas GroupBy</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pandas_datesAndTime.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">pandas datesAndTime</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concat-method">.concat() method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#append-method">.append() method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-method">.merge() Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#left-on-and-right-on-parameters">left_on and right_on parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-by-indexes-left-index-right-index-parameters">Merging by Indexes ( left_index &amp; right_index) Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#join-method">.join() Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-joins-inner-marge">inner Joins (inner marge)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outer-joins-outer-marge">outer Joins (outer marge)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#left-joins-left-marge">left Joins (left marge)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#right-joins-right-marge">right Joins (right marge)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-label">Drop label</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

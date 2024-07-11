@@ -1,0 +1,16 @@
+virtualization
+==============
+
+
+.. toctree::
+    :maxdepth: 9
+    :caption: virtualization blog
+
+    virtualization/virtualization_docker
+    virtualization/virtualization_py_environment
+    virtualization/virtualization_Vargant
+
+
+
+
+

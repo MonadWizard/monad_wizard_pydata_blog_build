@@ -1,0 +1,1050 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PostgreSQL USE on Linux Terminal &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'db/mySQL/mySQL_cheetsheet';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/db/mySQL/mySQL_cheetsheet.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="interview" href="../../interview/index.html" />
+    <link rel="prev" title="mySQL" href="../mysql.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="../index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning blog</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../postgres.html">postgreSQL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../postgreSQL/postgreSQL_cheetsheet.html">PostgreSQL USE on Linux Terminal</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../mysql.html">mySQL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">PostgreSQL USE on Linux Terminal</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Database blog</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../mysql.html" class="nav-link">mySQL</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">PostgreSQL...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="postgresql-use-on-linux-terminal">
+<h1>PostgreSQL USE on Linux Terminal<a class="headerlink" href="#postgresql-use-on-linux-terminal" title="Link to this heading">#</a></h1>
+<p>mySQL cheat-sheet 😸</p>
+<blockquote>
+<div><p>Help with SQL commands to interact with a MySQL database</p>
+</div></blockquote>
+<section id="login">
+<h2>Login<a class="headerlink" href="#login" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
+</pre></div>
+</div>
+</section>
+<section id="user">
+<h2>USER<a class="headerlink" href="#user" title="Link to this heading">#</a></h2>
+<section id="show-users">
+<h3>Show Users<a class="headerlink" href="#show-users" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">User</span><span class="p">,</span><span class="w"> </span><span class="k">Host</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="k">user</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="create-user">
+<h3>Create User<a class="headerlink" href="#create-user" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;someuser&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;somepassword&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="delete-user">
+<h3>Delete User<a class="headerlink" href="#delete-user" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;someuser&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="exit">
+<h3>Exit<a class="headerlink" href="#exit" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">exit</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="grant">
+<h2>Grant<a class="headerlink" href="#grant" title="Link to this heading">#</a></h2>
+<section id="grant-all-priveleges-on-all-databases">
+<h3>Grant All Priveleges On All Databases<a class="headerlink" href="#grant-all-priveleges-on-all-databases" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;someuser&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="show-grants">
+<h3>Show Grants<a class="headerlink" href="#show-grants" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="s1">&#39;someuser&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="remove-grants">
+<h3>Remove Grants<a class="headerlink" href="#remove-grants" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">REVOKE</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">,</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="s1">&#39;someuser&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="database">
+<h2>DataBase<a class="headerlink" href="#database" title="Link to this heading">#</a></h2>
+<section id="show-databases">
+<h3>Show Databases<a class="headerlink" href="#show-databases" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span>
+</pre></div>
+</div>
+</section>
+<section id="create-database">
+<h3>Create Database<a class="headerlink" href="#create-database" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">acme</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="delete-database">
+<h3>Delete Database<a class="headerlink" href="#delete-database" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">acme</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="select-database">
+<h3>Select Database<a class="headerlink" href="#select-database" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">acme</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="table">
+<h2>Table<a class="headerlink" href="#table" title="Link to this heading">#</a></h2>
+<section id="create-table">
+<h3>Create Table<a class="headerlink" href="#create-table" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="p">(</span>
+<span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">   </span><span class="n">first_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">   </span><span class="n">last_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">   </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="w">   </span><span class="n">password</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">   </span><span class="k">location</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">   </span><span class="n">dept</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">   </span><span class="n">is_admin</span><span class="w"> </span><span class="n">TINYINT</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<span class="w">   </span><span class="n">register_date</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">,</span>
+<span class="w">   </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="delete-drop-table">
+<h3>Delete / Drop Table<a class="headerlink" href="#delete-drop-table" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tablename</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="show-tables">
+<h3>Show Tables<a class="headerlink" href="#show-tables" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="row">
+<h2>Row<a class="headerlink" href="#row" title="Link to this heading">#</a></h2>
+<section id="insert-row-record">
+<h3>Insert Row / Record<a class="headerlink" href="#insert-row-record" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">,</span><span class="w"> </span><span class="k">location</span><span class="p">,</span><span class="w"> </span><span class="n">dept</span><span class="p">,</span><span class="w"> </span><span class="n">is_admin</span><span class="p">,</span><span class="w"> </span><span class="n">register_date</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Brad&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Traversy&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;brad@gmail.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">,</span><span class="s1">&#39;Massachusetts&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;development&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">now</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+<section id="insert-multiple-rows">
+<h3>Insert Multiple Rows<a class="headerlink" href="#insert-multiple-rows" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">,</span><span class="w"> </span><span class="k">location</span><span class="p">,</span><span class="w"> </span><span class="n">dept</span><span class="p">,</span><span class="w">  </span><span class="n">is_admin</span><span class="p">,</span><span class="w"> </span><span class="n">register_date</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Fred&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;fred@gmail.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;New York&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;design&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">now</span><span class="p">()),</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Sara&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Watson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sara@gmail.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;New York&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;design&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">now</span><span class="p">()),(</span><span class="s1">&#39;Will&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Jackson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;will@yahoo.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Rhode Island&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;development&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">now</span><span class="p">()),(</span><span class="s1">&#39;Paula&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Johnson&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;paula@yahoo.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Massachusetts&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sales&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">now</span><span class="p">()),(</span><span class="s1">&#39;Tom&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Spears&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;tom@yahoo.com&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Massachusetts&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sales&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">now</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+<section id="select">
+<h3>Select<a class="headerlink" href="#select" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="where-clause">
+<h3>Where Clause<a class="headerlink" href="#where-clause" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">location</span><span class="o">=</span><span class="s1">&#39;Massachusetts&#39;</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">location</span><span class="o">=</span><span class="s1">&#39;Massachusetts&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">dept</span><span class="o">=</span><span class="s1">&#39;sales&#39;</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">is_admin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">is_admin</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="delete-row">
+<h3>Delete Row<a class="headerlink" href="#delete-row" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="update-row">
+<h3>Update Row<a class="headerlink" href="#update-row" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;freddy@gmail.com&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="column">
+<h2>Column<a class="headerlink" href="#column" title="Link to this heading">#</a></h2>
+<section id="add-new-column">
+<h3>Add New Column<a class="headerlink" href="#add-new-column" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="modify-column">
+<h3>Modify Column<a class="headerlink" href="#modify-column" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="nb">INT</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="order-by-sort">
+<h3>Order By (Sort)<a class="headerlink" href="#order-by-sort" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">last_name</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">last_name</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="concatenate-columns">
+<h3>Concatenate Columns<a class="headerlink" href="#concatenate-columns" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">CONCAT</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Name&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Link to this heading">#</a></h2>
+<section id="select-distinct-rows">
+<h3>Select Distinct Rows<a class="headerlink" href="#select-distinct-rows" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">location</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="between-select-range">
+<h3>Between (Select Range)<a class="headerlink" href="#between-select-range" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="like-searching">
+<h3>Like (Searching)<a class="headerlink" href="#like-searching" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;d%&#39;</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;dev%&#39;</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%t&#39;</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%e%&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="not-like">
+<h3>Not Like<a class="headerlink" href="#not-like" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;d%&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="in">
+<h3>IN<a class="headerlink" href="#in" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;design&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sales&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="index">
+<h2>Index<a class="headerlink" href="#index" title="Link to this heading">#</a></h2>
+<section id="create-remove-index">
+<h3>Create &amp; Remove Index<a class="headerlink" href="#create-remove-index" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">LIndex</span><span class="w"> </span><span class="k">On</span><span class="w"> </span><span class="n">users</span><span class="p">(</span><span class="k">location</span><span class="p">);</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">LIndex</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="new-table-with-foreign-key-posts">
+<h3>New Table With Foreign Key (Posts)<a class="headerlink" href="#new-table-with-foreign-key-posts" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">posts</span><span class="p">(</span>
+<span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">   </span><span class="n">user_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">   </span><span class="n">title</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">   </span><span class="n">body</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">   </span><span class="n">publish_date</span><span class="w"> </span><span class="n">DATETIME</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">   </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+<span class="w">   </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">users</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="add-data-to-posts-table">
+<h3>Add Data to Posts Table<a class="headerlink" href="#add-data-to-posts-table" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">posts</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Post One&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is post one&#39;</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Post Two&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is post two&#39;</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Post Three&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is post three&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Post Four&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is post four&#39;</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Post Five&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is post five&#39;</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Post Six&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is post six&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Post Seven&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is post seven&#39;</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Post Eight&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is post eight&#39;</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Post Nine&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is post none&#39;</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Post Ten&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is post ten&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="join">
+<h2>Join<a class="headerlink" href="#join" title="Link to this heading">#</a></h2>
+<section id="inner-join">
+<h3>INNER JOIN<a class="headerlink" href="#inner-join" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">  </span><span class="n">users</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span>
+<span class="w">  </span><span class="n">users</span><span class="p">.</span><span class="n">last_name</span><span class="p">,</span>
+<span class="w">  </span><span class="n">posts</span><span class="p">.</span><span class="n">title</span><span class="p">,</span>
+<span class="w">  </span><span class="n">posts</span><span class="p">.</span><span class="n">publish_date</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">users</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">posts</span>
+<span class="k">ON</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">posts</span><span class="p">.</span><span class="n">user_id</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">posts</span><span class="p">.</span><span class="n">title</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="new-table-with-2-foriegn-keys">
+<h3>New Table With 2 Foriegn Keys<a class="headerlink" href="#new-table-with-2-foriegn-keys" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">comments</span><span class="p">(</span>
+<span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">post_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">user_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">body</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">publish_date</span><span class="w"> </span><span class="n">DATETIME</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">users</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">post_id</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">posts</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="add-data-to-comments-table">
+<h3>Add Data to Comments Table<a class="headerlink" href="#add-data-to-comments-table" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">comments</span><span class="p">(</span><span class="n">post_id</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is comment one&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is comment two&#39;</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is comment three&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is comment four&#39;</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is comment five&#39;</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is comment six&#39;</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is comment six&#39;</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is comment seven&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;This is comment seven&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="left-join">
+<h3>Left Join<a class="headerlink" href="#left-join" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="n">comments</span><span class="p">.</span><span class="n">body</span><span class="p">,</span>
+<span class="n">posts</span><span class="p">.</span><span class="n">title</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">comments</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">posts</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">posts</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comments</span><span class="p">.</span><span class="n">post_id</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">posts</span><span class="p">.</span><span class="n">title</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="join-multiple-tables">
+<h3>Join Multiple Tables<a class="headerlink" href="#join-multiple-tables" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="n">comments</span><span class="p">.</span><span class="n">body</span><span class="p">,</span>
+<span class="n">posts</span><span class="p">.</span><span class="n">title</span><span class="p">,</span>
+<span class="n">users</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span>
+<span class="n">users</span><span class="p">.</span><span class="n">last_name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">comments</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">posts</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">posts</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comments</span><span class="p">.</span><span class="n">post_id</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">users</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">comments</span><span class="p">.</span><span class="n">user_id</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">posts</span><span class="p">.</span><span class="n">title</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="aggregate-functions">
+<h3>Aggregate Functions<a class="headerlink" href="#aggregate-functions" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">UCASE</span><span class="p">(</span><span class="n">first_name</span><span class="p">),</span><span class="w"> </span><span class="n">LCASE</span><span class="p">(</span><span class="n">last_name</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="group-by">
+<h3>Group By<a class="headerlink" href="#group-by" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">HAVING</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>{“mode”:”full”,”isActive”:false}</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../mysql.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">mySQL</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../interview/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">interview</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#login">Login</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user">USER</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#show-users">Show Users</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-user">Create User</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-user">Delete User</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exit">Exit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grant">Grant</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grant-all-priveleges-on-all-databases">Grant All Priveleges On All Databases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#show-grants">Show Grants</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-grants">Remove Grants</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#database">DataBase</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#show-databases">Show Databases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-database">Create Database</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-database">Delete Database</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-database">Select Database</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table">Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-table">Create Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-drop-table">Delete / Drop Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#show-tables">Show Tables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#row">Row</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insert-row-record">Insert Row / Record</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insert-multiple-rows">Insert Multiple Rows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select">Select</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-clause">Where Clause</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-row">Delete Row</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-row">Update Row</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#column">Column</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-new-column">Add New Column</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-column">Modify Column</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-by-sort">Order By (Sort)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenate-columns">Concatenate Columns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operations">Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-distinct-rows">Select Distinct Rows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#between-select-range">Between (Select Range)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#like-searching">Like (Searching)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#not-like">Not Like</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in">IN</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#index">Index</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-remove-index">Create &amp; Remove Index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-table-with-foreign-key-posts">New Table With Foreign Key (Posts)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-data-to-posts-table">Add Data to Posts Table</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#join">Join</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-join">INNER JOIN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-table-with-2-foriegn-keys">New Table With 2 Foriegn Keys</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-data-to-comments-table">Add Data to Comments Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#left-join">Left Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#join-multiple-tables">Join Multiple Tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregate-functions">Aggregate Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-by">Group By</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

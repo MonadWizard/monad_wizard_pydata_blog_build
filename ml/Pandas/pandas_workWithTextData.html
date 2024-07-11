@@ -1,0 +1,1291 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pandas Text Data &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ml/Pandas/pandas_workWithTextData';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/ml/Pandas/pandas_workWithTextData.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Pandas multi Index" href="pandas_multiIndex.html" />
+    <link rel="prev" title="Pandas DataFrames" href="pandas_dataFrames.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning blog</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Numpy.html">Numpy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/numpy_basic.html">numpy basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/numpy_advance.html">numpy Advance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises.html">100 numpy exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises_with_hints.html">100 numpy exercises with hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises_with_solutions.html">100 numpy exercises with solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Numpy/Numpy_100_exercises_solutions_with_hints.html">100 numpy exercises solutions with hints</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Pandas.html">Pandas</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas_series.html">Pandas Series Blog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_dataFrames.html">Pandas DataFrames</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pandas Text Data</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="pandas_multiIndex.html">Pandas multi Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_GroupBy.html">Pandas GroupBy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_mergingJoiningConcatenating.html">pandas merging Joining Concatenating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_datesAndTime.html">pandas datesAndTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_Panels.html">pandas Panels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas_InputAnd_Output.html">Pandas Input And Output</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../joblib.html">Joblib</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../joblib/joblib_basic.html">joblib basic</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pickel.html">pickel</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pickel/pickel_basic.html">pickel</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Machine Learning blog</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../Pandas.html" class="nav-link">Pandas</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Pandas Text Data</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pandas-text-data">
+<h1>Pandas Text Data<a class="headerlink" href="#pandas-text-data" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://github.com/dust-nk-org/pandasDataSet/archive/master.zip">প্রয়োজনীয় data-set যা এই post এ ব্যবহার করা হয়েছে DOWNLOAD </a></p>
+<p>এবং <a class="reference external" href="https://pandas.pydata.org/">Official Doc</a></p>
+<p>Text-Data নিয়ে কাজ করতে হইলে pandas এর str function ব্যবহার করতে হয়। কারণ pandas এর text-data related কাজ গুলো .str function এর sub-function গুলো করে থাকে । আমরা নিচে function গুলো এর example দেখব।</p>
+</section>
+<section id="str-lower-str-upper-str-title-str-len">
+<h1>.str.lower(), .str.upper(), .str.title(), .str.len()<a class="headerlink" href="#str-lower-str-upper-str-title-str-len" title="Link to this heading">#</a></h1>
+<p>যদি data-frame এর সব data string type হয়, তবে আমরা .str function ব্যবহার করতে পারি।</p>
+<p><font color="green"> .str.title() </font> ব্যবহার করে data-frame এর specific column  বা Row এর সকল data এর capitalize করা যায়।
+মানে সকল word এর প্রথম letter Capital হবে। বাকি letter গুলো smaller থাকবে।</p>
+<p><font color="green"> .str.lower() </font> ব্যবহার করে data-frame এর specific column বা Row এর সকল data এর সব word গুলো lower case করা যায়।
+মানে সকল word এর সকল letter lower case হবে।</p>
+<p><font color="green"> .str.upper() </font> ব্যবহার করে data-frame এর specific column বা Row এর সকল word গুলো Upper case করা যায়।
+মানে সকল word এর সকল letter Upper case হবে।</p>
+<p><font color="green"> .str.len() </font> ব্যবহার করে data-frame এর specific column বা Row এর সকল data এর মধ্যে total কতগুলো character আছে তা count করা যায়।
+মানে সকল word এর total character এর পরিমাণ জানা যায় ।</p>
+<p><font color="green"> Example </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span><span class="c1">#</span>
+<span class="n">chicago</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;chicago.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="c1"># reduse memory size</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+
+<span class="c1"># info</span>
+<span class="n">chicago</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> Output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 32062 entries, 0 to 32061
+Data columns (total 4 columns):
+ #   Column                  Non-Null Count  Dtype   
+---  ------                  --------------  -----   
+ 0   Name                    32062 non-null  object  
+ 1   Position Title          32062 non-null  category
+ 2   Department              32062 non-null  category
+ 3   Employee Annual Salary  32062 non-null  category
+dtypes: category(3), object(1)
+memory usage: 756.6+ KB
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Capitalize Name column&#39;s Data</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><font color="Salmon"> Output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0            Aaron,  Elvia J
+1          Aaron,  Jeffery M
+2             Aaron,  Karina
+3        Aaron,  Kimberlei R
+4        Abad Jr,  Vicente M
+                ...         
+32057    Zygadlo,  Michael J
+32058     Zygowicz,  Peter J
+32059      Zymantas,  Mark E
+32060    Zyrkowski,  Carlo E
+32061    Zyskowski,  Dariusz
+Name: Name, Length: 32062, dtype: object
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># lower all Department column&#39;s Data</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><font color="Salmon"> Output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0             water mgmnt
+1                  police
+2                  police
+3        general services
+4             water mgmnt
+               ...       
+32057    general services
+32058              police
+32059              police
+32060              police
+32061                doit
+Name: Department, Length: 32062, dtype: object
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Upper all Position Title column&#39;s Data</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><font color="Salmon"> Output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0                      WATER RATE TAKER
+1                        POLICE OFFICER
+2                        POLICE OFFICER
+3              CHIEF CONTRACT EXPEDITER
+4                     CIVIL ENGINEER IV
+                      ...              
+32057    FRM OF MACHINISTS - AUTOMOTIVE
+32058                    POLICE OFFICER
+32059                    POLICE OFFICER
+32060                    POLICE OFFICER
+32061           CHIEF DATA BASE ANALYST
+Name: Position Title, Length: 32062, dtype: object
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># count total character par row by </span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> Output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0        16
+1        14
+2        14
+3        24
+4        17
+         ..
+32057    30
+32058    14
+32059    14
+32060    14
+32061    23
+Name: Position Title, Length: 32062, dtype: int64
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#count total String</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]))</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> Output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>32062
+</pre></div>
+</div>
+<section id="str-replace">
+<h2>.str.replace()<a class="headerlink" href="#str-replace" title="Link to this heading">#</a></h2>
+<p>আমরা data-frame এর specific column এর যে কোন data কে change করতে পারি। আমরা <font color="green"> .str.replace(“target”,”output”)</font> এ target=যে value change করতে চাই এবং output=update value হিসেবে যে value চাই।
+তা ব্যবহার করে আমরা Data-frame বা Series এর যে কোন data যত জায়গায় আছে সব জায়গা থেকে update করতে পারি define করার মাধ্যমে।</p>
+<p><font color="green"> Example </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span><span class="c1">#</span>
+<span class="n">chicago</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;chicago.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="c1"># reduse memory size</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+
+<span class="c1"># # info</span>
+<span class="c1"># chicago.info()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;before : </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">])</span>  <span class="c1"># before change</span>
+
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;MGMNT&quot;</span><span class="p">,</span><span class="s2">&quot;MANAGEMENT&quot;</span><span class="p">)</span>  <span class="c1"># replace(&quot;terget&quot;, &quot;output&quot;)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="c1"># astype() for reduce memory</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> after : </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> &quot;</span><span class="p">,</span><span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">])</span>  <span class="c1"># after change</span>
+</pre></div>
+</div>
+<p><font color="Salmon"> Output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>before : 
+ 
+ 0             WATER MGMNT
+1                  POLICE
+2                  POLICE
+3        GENERAL SERVICES
+4             WATER MGMNT
+               ...       
+32057    GENERAL SERVICES
+32058              POLICE
+32059              POLICE
+32060              POLICE
+32061                DoIT
+Name: Department, Length: 32062, dtype: category
+Categories (35, object): [ADMIN HEARNG, ANIMAL CONTRL, AVIATION, BOARD OF ELECTION, ..., STREETS &amp; SAN, TRANSPORTN, TREASURER, WATER MGMNT]
+
+ after : 
+ 
+  0        WATER MANAGEMENT
+1                  POLICE
+2                  POLICE
+3        GENERAL SERVICES
+4        WATER MANAGEMENT
+               ...       
+32057    GENERAL SERVICES
+32058              POLICE
+32059              POLICE
+32060              POLICE
+32061                DoIT
+Name: Department, Length: 32062, dtype: object
+</pre></div>
+</div>
+</section>
+<section id="filtering-with-string-method">
+<h2>Filtering with String Method<a class="headerlink" href="#filtering-with-string-method" title="Link to this heading">#</a></h2>
+<p>Data-frame বা Series এর data গুলো আমরা specific data অনুসারে filter করতে পারি।</p>
+<p>filter এর জন্য সকল data কে upper বা lower case এ convert করার প্রয়োজন হইতে পারে। আমরা একটা script এ বেশকিছু condition apply করতে পারি।</p>
+<p><font color="green"> .str.contains() </font> ব্যবহার করে যদি আমরা filter-data define করি তা হইলে initial data-frame বা series এর যে সব data এর মধ্যে filter-data থাকবে , আমরা শুধু ঐ সব data পাব।</p>
+<p><font color="green"> .str.startswith() </font> ব্যবহার করে যদি আমরা filter-data define করি তা হইলে initial data-frame বা series এর যে সব data এর শুরুতে filter-data থাকবে , আমরা শুধু ঐ সব data পাব।</p>
+<p><font color="green"> .str.endswith() </font> ব্যবহার করে যদি আমরা filter-data define করি তা হইলে initial data-frame বা series এর যে সব data এর শেষ এ filter-data থাকবে , আমরা শুধু ঐ সব data পাব।</p>
+<p><font color="green"> Example </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">chicago</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;chicago.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="c1"># reduse memory size</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># if found water in any whhere in Position Title</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;water&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;found water in any whhere in Position Title </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">chicago</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
+
+<span class="c1"># if found water in first in  Position Title</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> if found water in first in  Position Title: </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">,</span> <span class="n">chicago</span><span class="p">[</span><span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;water&quot;</span><span class="p">)])</span>
+
+<span class="c1"># if found ist in last in  Position Title</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> if found ist in last in  Position Title: </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">,</span> <span class="n">chicago</span><span class="p">[</span><span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;ist&quot;</span><span class="p">)])</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> Output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>found water in any whhere in Position Title 
+ 
+ 
+                        Name                                 Position Title  \
+0           AARON,  ELVIA J                               WATER RATE TAKER   
+554      ALUISE,  VINCENT G             FOREMAN OF WATER PIPE CONSTRUCTION   
+671         ANDER,  PERRY A                               WATER CHEMIST II   
+685     ANDERSON,  ANDREW J  DISTRICT SUPERINTENDENT OF WATER DISTRIBUTION   
+702       ANDERSON,  DONALD             FOREMAN OF WATER PIPE CONSTRUCTION   
+...                     ...                                            ...   
+29669        VERMA,  ANUPAM           MANAGING ENGINEER - WATER MANAGEMENT   
+30239   WASHINGTON,  JOSEPH                              WATER CHEMIST III   
+30544       WEST,  THOMAS R                   GEN SUPT OF WATER MANAGEMENT   
+30991    WILLIAMS,  MATTHEW             FOREMAN OF WATER PIPE CONSTRUCTION   
+31405  WOODRIDGE,  ROBERT L             FOREMAN OF WATER PIPE CONSTRUCTION   
+
+        Department Employee Annual Salary  
+0      WATER MGMNT              $90744.00  
+554    WATER MGMNT             $102440.00  
+671    WATER MGMNT              $82044.00  
+685    WATER MGMNT             $109272.00  
+702    WATER MGMNT             $102440.00  
+...            ...                    ...  
+29669  WATER MGMNT             $111192.00  
+30239  WATER MGMNT              $89676.00  
+30544  WATER MGMNT             $115704.00  
+30991  WATER MGMNT             $102440.00  
+31405  WATER MGMNT             $102440.00  
+
+[111 rows x 4 columns]
+
+ 
+ if found water in first in  Position Title: 
+ 
+ 
+                          Name           Position Title   Department  \
+0             AARON,  ELVIA J         WATER RATE TAKER  WATER MGMNT   
+671           ANDER,  PERRY A         WATER CHEMIST II  WATER MGMNT   
+1054         ASHLEY,  KARMA T         WATER CHEMIST II  WATER MGMNT   
+1079        ATKINS,  JOANNA M         WATER CHEMIST II  WATER MGMNT   
+1181       AZEEM,  MOHAMMED A         WATER CHEMIST II  WATER MGMNT   
+...                       ...                      ...          ...   
+28574      THREATT,  DENISE R  WATER QUALITY INSPECTOR  WATER MGMNT   
+28602       TIGNOR,  DARRYL B         WATER RATE TAKER  WATER MGMNT   
+28955  TRAVIS COOK,  LESLIE R         WATER RATE TAKER  WATER MGMNT   
+29584        VELAZQUEZ,  JOHN         WATER RATE TAKER  WATER MGMNT   
+30239     WASHINGTON,  JOSEPH        WATER CHEMIST III  WATER MGMNT   
+
+      Employee Annual Salary  
+0                  $90744.00  
+671                $82044.00  
+1054               $82044.00  
+1079               $82044.00  
+1181               $53172.00  
+...                      ...  
+28574              $62004.00  
+28602              $78948.00  
+28955              $78948.00  
+29584              $78948.00  
+30239              $89676.00  
+
+[75 rows x 4 columns]
+
+ 
+ if found ist in last in  Position Title: 
+ 
+ 
+                           Name                        Position Title  \
+184             AFROZ,  NAYYAR                          PSYCHIATRIST   
+308           ALARCON,  LUIS J            LOAN PROCESSING SPECIALIST   
+422           ALLAIN,  CAROLYN  SENIOR TELECOMMUNICATIONS SPECIALIST   
+472             ALLEN,  ROBERT                             MACHINIST   
+705        ANDERSON,  EDWARD M             SR PROCUREMENT SPECIALIST   
+...                        ...                                   ...   
+31667         YODER,  TERESA G                   ARCHIVAL SPECIALIST   
+31688  YOUNGBLOOM,  LAURENCE G        CRIMES SURVEILLANCE SPECIALIST   
+31717       YOUNG,  KIMBERLY M             SR PROCUREMENT SPECIALIST   
+31837            ZAPATA,  HUGO             SR PROCUREMENT SPECIALIST   
+31918        ZEMKE,  RICHARD P                             MACHINIST   
+
+                  Department Employee Annual Salary  
+184                   HEALTH              $99840.00  
+308    COMMUNITY DEVELOPMENT              $81948.00  
+422                     DoIT              $89880.00  
+472              WATER MGMNT              $94328.00  
+705              PROCUREMENT              $91476.00  
+...                      ...                    ...  
+31667         PUBLIC LIBRARY              $74304.00  
+31688                   OEMC              $19676.80  
+31717            PROCUREMENT              $68556.00  
+31837            PROCUREMENT              $87324.00  
+31918               AVIATION              $94328.00  
+
+[172 rows x 4 columns]
+</pre></div>
+</div>
+</section>
+<section id="strip-lstrip-rstrip-for-remove-freespace">
+<h2>.strip(), .lstrip(), .rstrip() for remove freeSpace<a class="headerlink" href="#strip-lstrip-rstrip-for-remove-freespace" title="Link to this heading">#</a></h2>
+<p>data-set এর data গুলো তে অনেক সময় অপ্রয়োজনীয় space থেকে যায়। আমরা <font color="green"> .str.strip()</font> বা <font color="green"> .str.lstrip()</font> বা <font color="green"> .str.rstrip()</font> ব্যবহার করে space remove করতে পারি।</p>
+<p><font color="green"> .str.rstrip()</font> দ্বারা right-side এর space remove করা যায়।
+<font color="green"> .str.lstrip()</font> দ্বারা left-side এর space remove করা যায়।</p>
+<p><font color="green"> .str.strip()</font> দ্বারা left-side এবং right-side (উভয় পাশ) এর space একই সঙ্ঘে remove করা যায়।</p>
+<p><font color="green"> Example </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">chicago</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;chicago.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="c1"># reduse memory size</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">chicago</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># remove white space only from left and from right </span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;use rstrip() and lstrip : </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">])</span>
+
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> use strip() : </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">])</span>
+
+
+</pre></div>
+</div>
+<p><font color="Salmon"> Output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                  Name            Position Title        Department  \
+0      AARON,  ELVIA J          WATER RATE TAKER       WATER MGMNT   
+1    AARON,  JEFFERY M            POLICE OFFICER            POLICE   
+2       AARON,  KARINA            POLICE OFFICER            POLICE   
+3  AARON,  KIMBERLEI R  CHIEF CONTRACT EXPEDITER  GENERAL SERVICES   
+4  ABAD JR,  VICENTE M         CIVIL ENGINEER IV       WATER MGMNT   
+
+  Employee Annual Salary  
+0              $90744.00  
+1              $84450.00  
+2              $84450.00  
+3              $89880.00  
+4             $106836.00  
+use rstrip() and lstrip : 
+ 
+ 
+ 0            AARON,  ELVIA J
+1          AARON,  JEFFERY M
+2             AARON,  KARINA
+3        AARON,  KIMBERLEI R
+4        ABAD JR,  VICENTE M
+                ...         
+32057    ZYGADLO,  MICHAEL J
+32058     ZYGOWICZ,  PETER J
+32059      ZYMANTAS,  MARK E
+32060    ZYRKOWSKI,  CARLO E
+32061    ZYSKOWSKI,  DARIUSZ
+Name: Name, Length: 32062, dtype: object
+
+ 
+ 
+ use strip() : 
+ 
+ 
+ 0                      WATER RATE TAKER
+1                        POLICE OFFICER
+2                        POLICE OFFICER
+3              CHIEF CONTRACT EXPEDITER
+4                     CIVIL ENGINEER IV
+                      ...              
+32057    FRM OF MACHINISTS - AUTOMOTIVE
+32058                    POLICE OFFICER
+32059                    POLICE OFFICER
+32060                    POLICE OFFICER
+32061           CHIEF DATA BASE ANALYST
+Name: Position Title, Length: 32062, dtype: object
+</pre></div>
+</div>
+</section>
+<section id="str-split-method-for-spliting-strings">
+<h2>.str.split() method for Spliting Strings<a class="headerlink" href="#str-split-method-for-spliting-strings" title="Link to this heading">#</a></h2>
+<p>.str.split() method data-frame এ কাজ করে, series এ single data থাকে তাই series এ কিছুই split করার নাই।
+কোন series এ split() ব্যবহার করলে error face করে।</p>
+<p><font color="green"> Example </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">chicago</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;chicago.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="c1"># reduse memory size</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chicago</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">firstName</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">lastName</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lastName</span><span class="p">)</span>
+
+<span class="c1">#position = chicago[&quot;Position Title&quot;].srt.split(&quot; &quot;).str.get(0).value_counts()  # no separated multiple data as Series</span>
+
+<span class="c1"># split and got single name </span>
+
+</pre></div>
+</div>
+<p><font color="Salmon"> Output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                Name    Position Title   Department Employee Annual Salary
+0    AARON,  ELVIA J  WATER RATE TAKER  WATER MGMNT              $90744.00
+1  AARON,  JEFFERY M    POLICE OFFICER       POLICE              $84450.00
+2     AARON,  KARINA    POLICE OFFICER       POLICE              $84450.00
+0              ELVIA J
+1            JEFFERY M
+2               KARINA
+3          KIMBERLEI R
+4            VICENTE M
+             ...      
+32057        MICHAEL J
+32058          PETER J
+32059           MARK E
+32060          CARLO E
+32061          DARIUSZ
+Name: Name, Length: 32062, dtype: object
+</pre></div>
+</div>
+</section>
+<section id="some-fun-with-split-and-strip">
+<h2>some Fun With .split() and .strip()<a class="headerlink" href="#some-fun-with-split-and-strip" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">chicago</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;chicago.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="c1"># reduse memory size</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chicago</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+
+<span class="c1"># try to understand or comment </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> take first part of last Name </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># try to understand or comment </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> count last Name&#39;s first part </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><font color="Salmon"> Output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                Name    Position Title   Department Employee Annual Salary
+0    AARON,  ELVIA J  WATER RATE TAKER  WATER MGMNT              $90744.00
+1  AARON,  JEFFERY M    POLICE OFFICER       POLICE              $84450.00
+2     AARON,  KARINA    POLICE OFFICER       POLICE              $84450.00
+
+ 
+ 
+ take first part of last Name 
+ 
+ 
+ 0            ELVIA
+1          JEFFERY
+2           KARINA
+3        KIMBERLEI
+4          VICENTE
+           ...    
+32057      MICHAEL
+32058        PETER
+32059         MARK
+32060        CARLO
+32061      DARIUSZ
+Name: Name, Length: 32062, dtype: object
+
+ 
+ count last Name&#39;s first part 
+ 
+ 
+ MICHAEL    1153
+JOHN        899
+JAMES       676
+ROBERT      622
+JOSEPH      537
+DAVID       506
+THOMAS      490
+Name: Name, dtype: int64
+</pre></div>
+</div>
+</section>
+<section id="more-parameter-of-srt-split-expend-true">
+<h2>more parameter of .srt.split(expend = True)<a class="headerlink" href="#more-parameter-of-srt-split-expend-true" title="Link to this heading">#</a></h2>
+<p>expend paramenet এর মান defaultly False থাকে। expend=True এর দ্বারা আমরা data-frame এর split করা data গুলো দ্বারা new data-frame structure পাই। যার columns নামে define করা থাকে না।</p>
+<p><font color="green"> Example </font></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">chicago</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;chicago.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="c1"># reduse memory size</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Department&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Position Title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Employee Annual Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="n">chicago</span><span class="p">[[</span><span class="s2">&quot;First Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Last Name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">chicago</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">chicago</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><font color="Salmon"> Output </font></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>               0              1
+0          AARON        ELVIA J
+1          AARON      JEFFERY M
+2          AARON         KARINA
+3          AARON    KIMBERLEI R
+4        ABAD JR      VICENTE M
+...          ...            ...
+32057    ZYGADLO      MICHAEL J
+32058   ZYGOWICZ        PETER J
+32059   ZYMANTAS         MARK E
+32060  ZYRKOWSKI        CARLO E
+32061  ZYSKOWSKI        DARIUSZ
+
+[32062 rows x 2 columns]
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Position Title</th>
+      <th>Department</th>
+      <th>Employee Annual Salary</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AARON,  ELVIA J</td>
+      <td>WATER RATE TAKER</td>
+      <td>WATER MGMNT</td>
+      <td>$90744.00</td>
+      <td>AARON</td>
+      <td>ELVIA J</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AARON,  JEFFERY M</td>
+      <td>POLICE OFFICER</td>
+      <td>POLICE</td>
+      <td>$84450.00</td>
+      <td>AARON</td>
+      <td>JEFFERY M</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>AARON,  KARINA</td>
+      <td>POLICE OFFICER</td>
+      <td>POLICE</td>
+      <td>$84450.00</td>
+      <td>AARON</td>
+      <td>KARINA</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AARON,  KIMBERLEI R</td>
+      <td>CHIEF CONTRACT EXPEDITER</td>
+      <td>GENERAL SERVICES</td>
+      <td>$89880.00</td>
+      <td>AARON</td>
+      <td>KIMBERLEI R</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ABAD JR,  VICENTE M</td>
+      <td>CIVIL ENGINEER IV</td>
+      <td>WATER MGMNT</td>
+      <td>$106836.00</td>
+      <td>ABAD JR</td>
+      <td>VICENTE M</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+<section id="more-parameter-of-srt-split-expend-true-n">
+<h2>more parameter of .srt.split(expend = True, n)<a class="headerlink" href="#more-parameter-of-srt-split-expend-true-n" title="Link to this heading">#</a></h2>
+<p>n এর মান define করার মাধ্যমে আমরা n পরিমাণ columns তৈরি করা যায় । <font color="green"> .str.split(expend=True, n=3 </font> দ্বারা ৩টি column create হয়। যে সব data এর ৩টি value নাই সেই সব data এর empty row তে None থাকে।</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pandas_dataFrames.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pandas DataFrames</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pandas_multiIndex.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Pandas multi Index</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pandas Text Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#str-lower-str-upper-str-title-str-len">.str.lower(), .str.upper(), .str.title(), .str.len()</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#str-replace">.str.replace()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-with-string-method">Filtering with String Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strip-lstrip-rstrip-for-remove-freespace">.strip(), .lstrip(), .rstrip() for remove freeSpace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#str-split-method-for-spliting-strings">.str.split() method for Spliting Strings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-fun-with-split-and-strip">some Fun With .split() and .strip()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-parameter-of-srt-split-expend-true">more parameter of .srt.split(expend = True)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-parameter-of-srt-split-expend-true-n">more parameter of .srt.split(expend = True, n)</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

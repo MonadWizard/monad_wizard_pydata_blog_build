@@ -1,10 +1,10 @@
-daphne
+linux
 ==========
 
 
 .. toctree::
     :maxdepth: 9
-    :caption: daphne blog
+    :caption: linux blog
 
     linux/pacman
 

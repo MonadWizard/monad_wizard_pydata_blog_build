@@ -7,4 +7,6 @@ postgreSQL
     :caption: postgreSQL Library Doc in Bangla
 
     postgreSQL/postgreSQL_cheetsheet
+    postgreSQL/pg_cron
+
 

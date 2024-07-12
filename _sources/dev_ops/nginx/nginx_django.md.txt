@@ -1,12 +1,13 @@
 
 # Nginx Django project deploy
 
+## essential dependency install
 
 
     sudo apt update
     sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
 
-#### Creating the PostgreSQL Database and User
+## Creating the PostgreSQL Database and User
 
 Log into an interactive Postgres session by typing:
 
@@ -14,13 +15,13 @@ Log into an interactive Postgres session by typing:
     sudo -u postgres psql
 ```
 
-#### First, create a database for your project
+## First, create a database for your project
 
 ```
     CREATE DATABASE myproject;
 ```
 
-#### Next, create a database user for our project. Make sure to select a secure password
+## Next, create a database user for our project. Make sure to select a secure password
 
 ```
     CREATE USER myprojectuser WITH PASSWORD 'password';
@@ -80,7 +81,7 @@ With your virtual environment active, install Django, Gunicorn, and the psycopg2
     pip install django gunicorn psycopg2-binary
 ```
 
-#### Clone and Configuring a New Django Project
+## Clone and Configuring a New Django Project
 
 Clone your existiong Django project from Git :
 
@@ -100,7 +101,7 @@ Start by locating the ALLOWED_HOSTS directive. This defines a list of the server
     ALLOWED_HOSTS = ['your_server_domain_or_IP', 'second_domain_or_IP', . . ., 'localhost']
 ```
 
-#### Change the settings with your PostgreSQL database information.You can leave the PORT setting as an empty string
+## Change the settings with your PostgreSQL database information.You can leave the PORT setting as an empty string
 
 ```
     DATABASES = {
@@ -168,7 +169,7 @@ In your web browser, visit your server’s domain name or IP address followed by
 
 When you are finished exploring, hit CTRL-C in the terminal window to shut down the development server.
 
-### Testing Gunicorn’s Ability to Serve the Project
+## Testing Gunicorn’s Ability to Serve the Project
 
 The last thing we want to do before leaving our virtual environment is test Gunicorn to make sure that it can serve the application. We can do this by entering our project directory and using gunicorn to load the project’s WSGI module:
 
@@ -182,7 +183,7 @@ The last thing we want to do before leaving our virtual environment is test Guni
 
 When you are finished testing, hit `CTRL-C` in the terminal window to stop Gunicorn.
 
-#### Creating systemd Socket and Service Files for Gunicorn
+## Creating systemd Socket and Service Files for Gunicorn
 
 The Gunicorn socket will be created at boot and will listen for connections. When a connection occurs, systemd will automatically start the Gunicorn process to handle the connection.
 
@@ -267,7 +268,7 @@ Finally, we’ll add an `[Install]` section. This will tell systemd what to link
     WantedBy=multi-user.target
 ```
 
-#### We can add daphne configuration on gunicorn service
+## We can add daphne configuration on gunicorn service
 
 Daphne can bind with a new port and replace ExecStart part from wsgi to asgi file. Then our full django project can execute with asgi configuration instant of wsgi.
 
@@ -315,7 +316,7 @@ We can now start and enable the Gunicorn socket. This will create the socket fil
 
 We can confirm that the operation was successful by checking for the socket file.
 
-### Checking for the Gunicorn Socket File
+## Checking for the Gunicorn Socket File
 
 Check the status of the process to find out whether it was able to start:
 

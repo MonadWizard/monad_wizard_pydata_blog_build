@@ -1,0 +1,21 @@
+Sphinx
+======
+
+.. toctree::
+    :maxdepth: 9
+    :caption: Sphinx auto Doc static site tutorial
+
+
+    Sphinx/1-environment-setup
+    Sphinx/2-getting-started-with-sphinx
+    Sphinx/3-restructuredtext-basics
+    Sphinx/4-documenting-your-api
+    Sphinx/5-generating-docs
+    Sphinx/6-selecting-a-theme
+    Sphinx/7-hosting-on-github-pages
+    Sphinx/8-automating-documentation-updates
+    Sphinx/9-versioning
+    Sphinx/10-automating-versioning
+    Sphinx/11-glossary
+    Sphinx/12-further-reading
+

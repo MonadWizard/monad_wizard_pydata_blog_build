@@ -1,0 +1,864 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Versioning &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ui_framework/Sphinx/9-versioning';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/ui_framework/Sphinx/9-versioning.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Automating versioning" href="10-automating-versioning.html" />
+    <link rel="prev" title="Automating documentation updates" href="8-automating-documentation-updates.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="../index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    devops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python_blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    PL_Blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database blog
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">UI framework post</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../sphinx.html">Sphinx</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1-environment-setup.html">Environment setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2-getting-started-with-sphinx.html">Getting started with Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-restructuredtext-basics.html"><code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4-documenting-your-api.html">Documenting your API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5-generating-docs.html">Generating HTML docs from docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6-selecting-a-theme.html">Selecting a theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7-hosting-on-github-pages.html">Hosting on GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8-automating-documentation-updates.html">Automating documentation updates</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-automating-versioning.html">Automating versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12-further-reading.html">Further reading</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Bootstrap5_learning_kit.html">Bootstrap 5 Learning Kit</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">UI framework</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../sphinx.html" class="nav-link">Sphinx</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Versioning</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="versioning">
+<h1>Versioning<a class="headerlink" href="#versioning" title="Link to this heading">#</a></h1>
+<p>As your project evolves and new features are added, you may be supporting different versions of
+your code. For this reason, it is a good idea to keep an archive of different versions of your
+documentation, so your users can refer to it depending on the software version they are using.</p>
+<p>Let’s see how you can achieve that.</p>
+<section id="using-sphinx-multiversion">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">sphinx-multiversion</span></code><a class="headerlink" href="#using-sphinx-multiversion" title="Link to this heading">#</a></h2>
+<p>We will be using <a class="reference external" href="https://holzhaus.github.io/sphinx-multiversion/master/"><code class="docutils literal notranslate"><span class="pre">sphinx-multiversion</span></code></a>, a
+popular extension that makes versioning your documentation easy. This will replace the traditional
+<code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> command (which was executed under the hood when we ran <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>!).</p>
+<p>In your virtual environment, install:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">multiversion</span>
+</pre></div>
+</div>
+<p>and add the extension to <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;sphinx.ext.autodoc&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinx.ext.githubpages&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinx.ext.napoleon&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinx_multiversion&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<section id="configuring-the-site-s-sidebar">
+<h3>Configuring the site’s sidebar<a class="headerlink" href="#configuring-the-site-s-sidebar" title="Link to this heading">#</a></h3>
+<p>We want to give our website visitors the option to select which version of the docs they would like
+to view. For this reason, we need to configure our sidebar to display them by adding an html
+template. Let’s create a file <code class="docutils literal notranslate"><span class="pre">docs/_templates/sidebar/versions.html</span></code> that will display a list of
+versions (git tags and branches):</p>
+<p>{% highlight html %}
+{% raw %}
+{% if versions %}</p>
+<div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">{{ _('Branches') }}</span></p>
+  <ul>
+    {%- for item in versions.branches %}
+    <li class="toctree-l1"><a class="reference" href="{{ item.url }}">{{ item.name }}</a></li>
+    {%- endfor %}
+  </ul>
+  <p class="caption" role="heading"><span class="caption-text">{{ _('Tags') }}</span></p>
+  <ul>
+    {%- for item in versions.tags %}
+    <li class="toctree-l1"><a class="reference" href="{{ item.url }}">{{ item.name }}</a></li>
+    {%- endfor %}
+  </ul>
+</div>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+<p>Next, we need to point Sphinx to use this file. In <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>, add the following:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;_templates&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">html_sidebars</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;**&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;sidebar/brand.html&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sidebar/search.html&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sidebar/scroll-start.html&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sidebar/navigation.html&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sidebar/versions.html&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sidebar/scroll-end.html&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We’ve only added a <code class="docutils literal notranslate"><span class="pre">versions.html</span></code> to <code class="docutils literal notranslate"><span class="pre">_templates/sidebar/</span></code> folder. So where are the other <code class="docutils literal notranslate"><span class="pre">html</span></code>
+files coming from? They are the default <code class="docutils literal notranslate"><span class="pre">sidebar</span></code> components that ship with <code class="docutils literal notranslate"><span class="pre">furo</span></code>, namely:</p>
+<ul class="simple">
+<li><p>the website title</p></li>
+<li><p>the search bar</p></li>
+<li><p>the content tree</p></li>
+<li><p>the scrollable section of the sidebar</p></li>
+</ul>
+<p>Now that we are overriding the html_sidebar contents, we need to explicitly tell <code class="docutils literal notranslate"><span class="pre">furo</span></code> we still
+want those components in our sidebar in addition to our custom <code class="docutils literal notranslate"><span class="pre">versions</span></code> section.</p>
+<p>Finally, we are ready to test this command locally. From the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> dir, run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
+make<span class="w"> </span>clean
+rm<span class="w"> </span>-rf<span class="w"> </span>_build/html/*<span class="w">  </span><span class="c1"># wipe out the current html folder contents</span>
+sphinx-multiversion<span class="w"> </span>.<span class="w"> </span>./_build/html
+</pre></div>
+</div>
+<p>You will notice that now, in your <code class="docutils literal notranslate"><span class="pre">_build/html</span></code> folder, there is a subfolder corresponding to each
+branch and tag you have in your repo. Since you currently only have the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, there’ll be
+one <code class="docutils literal notranslate"><span class="pre">main</span></code> folder in which their corresponding output <code class="docutils literal notranslate"><span class="pre">html</span></code> files live. As you create more
+branches and tags, more output <code class="docutils literal notranslate"><span class="pre">html</span></code> folders will be created for them.</p>
+<p>Let’s commit the changes we have done to support <code class="docutils literal notranslate"><span class="pre">sphinx-multiversion</span></code> to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># from the project root</span>
+git<span class="w"> </span>add<span class="w"> </span>docs/conf.py<span class="w"> </span>docs/_templates/sidebar/versions.html
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add support for sphinx-multiversion extension&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+</section>
+<section id="generating-different-versions-for-your-docs">
+<h3>Generating different versions for your docs<a class="headerlink" href="#generating-different-versions-for-your-docs" title="Link to this heading">#</a></h3>
+<p>Let’s test this out.</p>
+<p>We’ll create a tag, <code class="docutils literal notranslate"><span class="pre">v0.0.1</span></code>, for our current version and push it to our remote repository:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v0.0.1<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;first tag&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>v0.0.1
+</pre></div>
+</div>
+<p>Next, make a small change in <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Welcome</span> <span class="n">to</span> <span class="n">Sphinxy</span><span class="s1">&#39;s documentation!</span>
+<span class="o">===================================</span>
+
+<span class="n">Explore</span> <span class="n">Sphinxy</span><span class="s1">&#39;s documentation.</span>
+</pre></div>
+</div>
+<p>Now, push your changes to <code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>docs/index.rst
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Update docs&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+<p>Now re-run <code class="docutils literal notranslate"><span class="pre">sphinx-multiversion</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># from the project root</span>
+sphinx-multiversion<span class="w"> </span>docs<span class="w"> </span>./docs/_build/html
+</pre></div>
+</div>
+<p>You should now see that a new HTML folder was generated: <code class="docutils literal notranslate"><span class="pre">./docs/_build/html/v0.0.1</span></code>. Preview both
+<code class="docutils literal notranslate"><span class="pre">index.html</span></code> locally: <code class="docutils literal notranslate"><span class="pre">./docs/_build/html/main/index.html</span></code> and
+<code class="docutils literal notranslate"><span class="pre">./docs/_build/html/v0.0.1/index.html</span></code>. As you would expect, the modification will appear on tag
+<code class="docutils literal notranslate"><span class="pre">main</span></code>’s <code class="docutils literal notranslate"><span class="pre">index.html</span></code>, but not on <code class="docutils literal notranslate"><span class="pre">v0.0.1</span></code>’s.</p>
+<p>You’ll also notice the new sidebar section we added titled <code class="docutils literal notranslate"><span class="pre">Versions</span></code>, with links to all available
+versions of your documentation.</p>
+<p>Finally, let’s push the latest contents of the <code class="docutils literal notranslate"><span class="pre">html/</span></code> folder to <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>./docs/_build/html
+git<span class="w"> </span>branch<span class="w"> </span><span class="c1"># ensure you are on the gh-pages branch</span>
+git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add versioning support&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>origin<span class="w"> </span>gh-pages
+</pre></div>
+</div>
+<p>Once the <code class="docutils literal notranslate"><span class="pre">pages-build-deployment</span></code> workflow has completed, refresh your GitHub Pages URL. You’ll
+notice that you’ll get a <code class="docutils literal notranslate"><span class="pre">404</span> <span class="pre">File</span> <span class="pre">not</span> <span class="pre">found</span></code> error. Why is that?</p>
+</section>
+<section id="choosing-a-default-version">
+<h3>Choosing a default version<a class="headerlink" href="#choosing-a-default-version" title="Link to this heading">#</a></h3>
+<p>GitHub Pages looks for an <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file at the root level of the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch. Since we
+have been using <code class="docutils literal notranslate"><span class="pre">sphinx-multiversion</span></code> we’re storing <code class="docutils literal notranslate"><span class="pre">index.html</span></code> files under their respective git
+branch or tag folders now and GitHub could not find a page to load.</p>
+<p>Modify your GitHub Pages URL to append a branch or a tag name name:</p>
+<p><code class="docutils literal notranslate"><span class="pre">https://&lt;username&gt;.github.io/sphinxy/main</span></code></p>
+<p>You’ll be redirected to that version’s index page and everything looks as expected.</p>
+<p>Of course, this is not convenient. We want to automatically redirect the user to the latest
+version; in our case the version on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch. In order to achieve that, we need to add an
+new file <code class="docutils literal notranslate"><span class="pre">index.html</span></code> at the root of the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch that has this redirection logic (see the
+<a class="reference external" href="https://holzhaus.github.io/sphinx-multiversion/master/github_pages.html?highlight=meta%20http%20equiv%20refresh#redirecting-from-the-document-root">docs</a>).</p>
+<p>First, we create a new file:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>./docs/_build/html
+touch<span class="w"> </span>index.html
+</pre></div>
+</div>
+<p>Now, open up this file, and add the following logic:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Redirecting to main branch<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;refresh&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;0; url=./main/index.html&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;canonical&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://&lt;username&gt;.github.io/sphinxy/main/index.html&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Let’s commit and push it to the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># from the docs/_build/html dir</span>
+git<span class="w"> </span>add<span class="w"> </span>index.html
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add index.html to redirect to main branch&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>gh-pages
+</pre></div>
+</div>
+<p>You should now be automatically redirected to browse the documentation of your <code class="docutils literal notranslate"><span class="pre">main</span></code> branch on
+<code class="docutils literal notranslate"><span class="pre">https://&lt;username&gt;.github.io/sphinxy</span></code>!</p>
+</section>
+<section id="selecting-branches-tags-of-interest">
+<h3>Selecting Branches/Tags of Interest<a class="headerlink" href="#selecting-branches-tags-of-interest" title="Link to this heading">#</a></h3>
+<p>You may not want to include all branches or tags on your documentation website. To configure this
+behaviour, add the following to <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># -- Sphinx Multiversion --------------------------------------------------</span>
+<span class="c1"># https://holzhaus.github.io/sphinx-multiversion/master/configuration.html#</span>
+<span class="n">smv_tag_whitelist</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^v\d+\.\d+\.\d+$&#39;</span>
+<span class="n">smv_branch_whitelist</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^.*$&#39;</span>
+<span class="n">smv_remote_whitelist</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^.*$&#39;</span>
+</pre></div>
+</div>
+<p>Now <code class="docutils literal notranslate"><span class="pre">sphinx-multiversion</span></code> will only generate documentation corresponding to branches and tags
+matching your regex expressions above.</p>
+<p>{: .tip }
+More nuanced settings can be found on
+<a class="reference external" href="https://holzhaus.github.io/sphinx-multiversion/master/configuration.html#"><code class="docutils literal notranslate"><span class="pre">sphinx-multiversion</span></code> docs</a>.</p>
+<p>{: .hint }
+🙌 You have now reached the
+<a class="reference external" href="https://github.com/aelsayed95/sphinxy/tree/09-versioning"><code class="docutils literal notranslate"><span class="pre">09-versioning</span></code></a> part of the tutorial. If
+not, check out that branch and
+<a class="reference external" href="https://github.com/aelsayed95/sphinxy/tree/gh-pages-9"><code class="docutils literal notranslate"><span class="pre">gh-pages-9</span></code></a> branch for <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> and
+continue from there.</p>
+<br />
+[Previous: Automating documentation updates](./8-automating-documentation-updates.md){: .btn .float-left}
+[Next: Automating versioning](./10-automating-versioning.md){: .btn .btn-purple .float-right}
+<br />
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="8-automating-documentation-updates.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Automating documentation updates</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="10-automating-versioning.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Automating versioning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-sphinx-multiversion">Using <code class="docutils literal notranslate"><span class="pre">sphinx-multiversion</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-the-site-s-sidebar">Configuring the site’s sidebar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-different-versions-for-your-docs">Generating different versions for your docs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-default-version">Choosing a default version</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-branches-tags-of-interest">Selecting Branches/Tags of Interest</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

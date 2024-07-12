@@ -38,5 +38,7 @@ Choosing the right UI framework involves balancing between ease of use, customiz
    :maxdepth: 2
    :caption: UI framework post
 
+   sphinx
    Bootstrap5_learning_kit
+
 

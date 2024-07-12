@@ -585,21 +585,22 @@ document.write(`
 sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
 </pre></div>
 </div>
+</section>
 <section id="creating-the-postgresql-database-and-user">
-<h3>Creating the PostgreSQL Database and User<a class="headerlink" href="#creating-the-postgresql-database-and-user" title="Link to this heading">#</a></h3>
+<h2>Creating the PostgreSQL Database and User<a class="headerlink" href="#creating-the-postgresql-database-and-user" title="Link to this heading">#</a></h2>
 <p>Log into an interactive Postgres session by typing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="o">-</span><span class="n">u</span> <span class="n">postgres</span> <span class="n">psql</span>
 </pre></div>
 </div>
 </section>
 <section id="first-create-a-database-for-your-project">
-<h3>First, create a database for your project<a class="headerlink" href="#first-create-a-database-for-your-project" title="Link to this heading">#</a></h3>
+<h2>First, create a database for your project<a class="headerlink" href="#first-create-a-database-for-your-project" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">CREATE</span> <span class="n">DATABASE</span> <span class="n">myproject</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
 <section id="next-create-a-database-user-for-our-project-make-sure-to-select-a-secure-password">
-<h3>Next, create a database user for our project. Make sure to select a secure password<a class="headerlink" href="#next-create-a-database-user-for-our-project-make-sure-to-select-a-secure-password" title="Link to this heading">#</a></h3>
+<h2>Next, create a database user for our project. Make sure to select a secure password<a class="headerlink" href="#next-create-a-database-user-for-our-project-make-sure-to-select-a-secure-password" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">CREATE</span> <span class="n">USER</span> <span class="n">myprojectuser</span> <span class="n">WITH</span> <span class="n">PASSWORD</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -617,7 +618,6 @@ sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    \<span class="n">q</span>
 </pre></div>
 </div>
-</section>
 </section>
 <section id="creating-a-python-virtual-environment-for-your-project">
 <h2>Creating a Python Virtual Environment for your Project<a class="headerlink" href="#creating-a-python-virtual-environment-for-your-project" title="Link to this heading">#</a></h2>
@@ -643,8 +643,9 @@ sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pip</span> <span class="n">install</span> <span class="n">django</span> <span class="n">gunicorn</span> <span class="n">psycopg2</span><span class="o">-</span><span class="n">binary</span>
 </pre></div>
 </div>
+</section>
 <section id="clone-and-configuring-a-new-django-project">
-<h3>Clone and Configuring a New Django Project<a class="headerlink" href="#clone-and-configuring-a-new-django-project" title="Link to this heading">#</a></h3>
+<h2>Clone and Configuring a New Django Project<a class="headerlink" href="#clone-and-configuring-a-new-django-project" title="Link to this heading">#</a></h2>
 <p>Clone your existiong Django project from Git :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Git</span> <span class="n">clone</span> <span class="n">HTTP_URL</span>
 </pre></div>
@@ -659,7 +660,7 @@ sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib
 </div>
 </section>
 <section id="change-the-settings-with-your-postgresql-database-information-you-can-leave-the-port-setting-as-an-empty-string">
-<h3>Change the settings with your PostgreSQL database information.You can leave the PORT setting as an empty string<a class="headerlink" href="#change-the-settings-with-your-postgresql-database-information-you-can-leave-the-port-setting-as-an-empty-string" title="Link to this heading">#</a></h3>
+<h2>Change the settings with your PostgreSQL database information.You can leave the PORT setting as an empty string<a class="headerlink" href="#change-the-settings-with-your-postgresql-database-information-you-can-leave-the-port-setting-as-an-empty-string" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.postgresql_psycopg2&#39;</span><span class="p">,</span>
@@ -710,7 +711,7 @@ We can collect all of the static content into the directory location we configur
 <p>When you are finished exploring, hit CTRL-C in the terminal window to shut down the development server.</p>
 </section>
 <section id="testing-gunicorns-ability-to-serve-the-project">
-<h3>Testing Gunicorn’s Ability to Serve the Project<a class="headerlink" href="#testing-gunicorns-ability-to-serve-the-project" title="Link to this heading">#</a></h3>
+<h2>Testing Gunicorn’s Ability to Serve the Project<a class="headerlink" href="#testing-gunicorns-ability-to-serve-the-project" title="Link to this heading">#</a></h2>
 <p>The last thing we want to do before leaving our virtual environment is test Gunicorn to make sure that it can serve the application. We can do this by entering our project directory and using gunicorn to load the project’s WSGI module:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">cd</span> <span class="o">~/</span><span class="n">myprojectdir</span>
 </pre></div>
@@ -719,11 +720,10 @@ We can collect all of the static content into the directory location we configur
 </pre></div>
 </div>
 <p>When you are finished testing, hit <code class="docutils literal notranslate"><span class="pre">CTRL-C</span></code> in the terminal window to stop Gunicorn.</p>
+</section>
 <section id="creating-systemd-socket-and-service-files-for-gunicorn">
-<h4>Creating systemd Socket and Service Files for Gunicorn<a class="headerlink" href="#creating-systemd-socket-and-service-files-for-gunicorn" title="Link to this heading">#</a></h4>
+<h2>Creating systemd Socket and Service Files for Gunicorn<a class="headerlink" href="#creating-systemd-socket-and-service-files-for-gunicorn" title="Link to this heading">#</a></h2>
 <p>The Gunicorn socket will be created at boot and will listen for connections. When a connection occurs, systemd will automatically start the Gunicorn process to handle the connection.</p>
-</section>
-</section>
 </section>
 <section id="gunicorn">
 <h2>Gunicorn<a class="headerlink" href="#gunicorn" title="Link to this heading">#</a></h2>
@@ -792,8 +792,9 @@ We can collect all of the static content into the directory location we configur
     <span class="n">WantedBy</span><span class="o">=</span><span class="n">multi</span><span class="o">-</span><span class="n">user</span><span class="o">.</span><span class="n">target</span>
 </pre></div>
 </div>
+</section>
 <section id="we-can-add-daphne-configuration-on-gunicorn-service">
-<h3>We can add daphne configuration on gunicorn service<a class="headerlink" href="#we-can-add-daphne-configuration-on-gunicorn-service" title="Link to this heading">#</a></h3>
+<h2>We can add daphne configuration on gunicorn service<a class="headerlink" href="#we-can-add-daphne-configuration-on-gunicorn-service" title="Link to this heading">#</a></h2>
 <p>Daphne can bind with a new port and replace ExecStart part from wsgi to asgi file. Then our full django project can execute with asgi configuration instant of wsgi.</p>
 <p>For that we have to replace previouse ExecStart and add daphne path which install in invironment with an unique port which is allowed and not used.</p>
 <p><code class="docutils literal notranslate"><span class="pre">ExecStart=/home/project/myprojectenv/bin/daphne</span> <span class="pre">-b</span> <span class="pre">0.0.0.0</span> <span class="pre">-p</span> <span class="pre">8001</span> <span class="pre">myproject.asgi:application</span></code></p>
@@ -833,7 +834,7 @@ We can collect all of the static content into the directory location we configur
 <p>We can confirm that the operation was successful by checking for the socket file.</p>
 </section>
 <section id="checking-for-the-gunicorn-socket-file">
-<h3>Checking for the Gunicorn Socket File<a class="headerlink" href="#checking-for-the-gunicorn-socket-file" title="Link to this heading">#</a></h3>
+<h2>Checking for the Gunicorn Socket File<a class="headerlink" href="#checking-for-the-gunicorn-socket-file" title="Link to this heading">#</a></h2>
 <p>Check the status of the process to find out whether it was able to start:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">status</span> <span class="n">myprojectgunicorn</span><span class="o">.</span><span class="n">socket</span>
 </pre></div>
@@ -860,7 +861,6 @@ We can collect all of the static content into the directory location we configur
 </pre></div>
 </div>
 <p>Take another look at your <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/myprojectgunicorn.socket</span></code> file to fix any problems before continuing.</p>
-</section>
 </section>
 <section id="testing-socket-activation">
 <h2>Testing Socket Activation<a class="headerlink" href="#testing-socket-activation" title="Link to this heading">#</a></h2>
@@ -1072,26 +1072,18 @@ Start by creating and opening a new server block in Nginx’s sites-available di
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#st-of-all-install-dependency">1st of all install dependency</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-postgresql-database-and-user">Creating the PostgreSQL Database and User</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-create-a-database-for-your-project">First, create a database for your project</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#next-create-a-database-user-for-our-project-make-sure-to-select-a-secure-password">Next, create a database user for our project. Make sure to select a secure password</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-python-virtual-environment-for-your-project">Creating a Python Virtual Environment for your Project</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-and-configuring-a-new-django-project">Clone and Configuring a New Django Project</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#change-the-settings-with-your-postgresql-database-information-you-can-leave-the-port-setting-as-an-empty-string">Change the settings with your PostgreSQL database information.You can leave the PORT setting as an empty string</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-gunicorns-ability-to-serve-the-project">Testing Gunicorn’s Ability to Serve the Project</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-systemd-socket-and-service-files-for-gunicorn">Creating systemd Socket and Service Files for Gunicorn</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gunicorn">Gunicorn</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#we-can-add-daphne-configuration-on-gunicorn-service">We can add daphne configuration on gunicorn service</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-for-the-gunicorn-socket-file">Checking for the Gunicorn Socket File</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#st-of-all-install-dependency">1st of all install dependency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-postgresql-database-and-user">Creating the PostgreSQL Database and User</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-create-a-database-for-your-project">First, create a database for your project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-create-a-database-user-for-our-project-make-sure-to-select-a-secure-password">Next, create a database user for our project. Make sure to select a secure password</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-python-virtual-environment-for-your-project">Creating a Python Virtual Environment for your Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-and-configuring-a-new-django-project">Clone and Configuring a New Django Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#change-the-settings-with-your-postgresql-database-information-you-can-leave-the-port-setting-as-an-empty-string">Change the settings with your PostgreSQL database information.You can leave the PORT setting as an empty string</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-gunicorns-ability-to-serve-the-project">Testing Gunicorn’s Ability to Serve the Project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-systemd-socket-and-service-files-for-gunicorn">Creating systemd Socket and Service Files for Gunicorn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gunicorn">Gunicorn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#we-can-add-daphne-configuration-on-gunicorn-service">We can add daphne configuration on gunicorn service</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-for-the-gunicorn-socket-file">Checking for the Gunicorn Socket File</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-socket-activation">Testing Socket Activation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-nginx-to-proxy-pass-to-gunicorn">Configure Nginx to Proxy Pass to Gunicorn</a></li>
 </ul>

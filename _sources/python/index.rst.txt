@@ -1,4 +1,4 @@
-python_blog
+python
 ===========
 
 
@@ -40,6 +40,6 @@ In summary, Python's versatility, readability, and vibrant ecosystem make it an 
 
 .. toctree::
    :maxdepth: 2
-   :caption: python_blog
+   :caption: python
 
    cs

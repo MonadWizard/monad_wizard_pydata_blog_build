@@ -1,4 +1,4 @@
-Machine Learning blog
+Machine Learning
 =====================
 
 
@@ -40,7 +40,7 @@ In summary, understanding the fundamentals, choosing the right framework, buildi
 
 .. toctree::
    :maxdepth: 2
-   :caption: Machine Learning blog
+   :caption: Machine Learning
 
    Numpy
    Pandas

@@ -1,4 +1,4 @@
-PL_Blog
+pl/SQL
 =========
 
 
@@ -41,7 +41,7 @@ In summary, PostgreSQL's reliability, extensive feature set, and community suppo
 
 .. toctree::
    :maxdepth: 2
-   :caption: PL_Blog
+   :caption: pl/SQL
 
    cs
 

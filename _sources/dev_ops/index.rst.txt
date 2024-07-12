@@ -1,4 +1,4 @@
-devops
+dev-ops
 =========
 
 
@@ -23,7 +23,7 @@ Infrastructure as Code (IaC) allows teams to manage and provision infrastructure
 
 .. toctree::
    :maxdepth: 2
-   :caption: devops
+   :caption: dev-ops
 
    
    git

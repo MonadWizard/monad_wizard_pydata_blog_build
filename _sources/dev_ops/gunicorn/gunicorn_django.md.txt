@@ -6,7 +6,7 @@
     sudo apt update
     sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
 
-#### Creating the PostgreSQL Database and User
+## Creating the PostgreSQL Database and User
 
 Log into an interactive Postgres session by typing:
 
@@ -14,13 +14,13 @@ Log into an interactive Postgres session by typing:
     sudo -u postgres psql
 ```
 
-#### First, create a database for your project
+## First, create a database for your project
 
 ```
     CREATE DATABASE myproject;
 ```
 
-#### Next, create a database user for our project. Make sure to select a secure password
+## Next, create a database user for our project. Make sure to select a secure password
 
 ```
     CREATE USER myprojectuser WITH PASSWORD 'password';
@@ -80,7 +80,7 @@ With your virtual environment active, install Django, Gunicorn, and the psycopg2
     pip install django gunicorn psycopg2-binary
 ```
 
-#### Clone and Configuring a New Django Project
+## Clone and Configuring a New Django Project
 
 Clone your existiong Django project from Git :
 
@@ -100,7 +100,7 @@ Start by locating the ALLOWED_HOSTS directive. This defines a list of the server
     ALLOWED_HOSTS = ['your_server_domain_or_IP', 'second_domain_or_IP', . . ., 'localhost']
 ```
 
-#### Change the settings with your PostgreSQL database information.You can leave the PORT setting as an empty string
+## Change the settings with your PostgreSQL database information.You can leave the PORT setting as an empty string
 
 ```
     DATABASES = {
@@ -182,7 +182,7 @@ The last thing we want to do before leaving our virtual environment is test Guni
 
 When you are finished testing, hit `CTRL-C` in the terminal window to stop Gunicorn.
 
-#### Creating systemd Socket and Service Files for Gunicorn
+## Creating systemd Socket and Service Files for Gunicorn
 
 The Gunicorn socket will be created at boot and will listen for connections. When a connection occurs, systemd will automatically start the Gunicorn process to handle the connection.
 
@@ -267,7 +267,7 @@ Finally, we’ll add an `[Install]` section. This will tell systemd what to link
     WantedBy=multi-user.target
 ```
 
-#### We can add daphne configuration on gunicorn service
+## We can add daphne configuration on gunicorn service
 
 Daphne can bind with a new port and replace ExecStart part from wsgi to asgi file. Then our full django project can execute with asgi configuration instant of wsgi.
 

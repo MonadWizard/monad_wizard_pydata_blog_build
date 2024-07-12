@@ -1,6 +1,6 @@
 # Pandas multi Index
 
-***
+
 
 ## .set_index() Method
 

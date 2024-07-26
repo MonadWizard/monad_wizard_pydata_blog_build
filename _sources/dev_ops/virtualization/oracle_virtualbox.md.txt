@@ -1,0 +1,189 @@
+
+# Oracle VirtualBox 
+
+
+## Port Forwarding for NAT Connection on Oracle VirtualBox
+
+*** 
+
+1. **Open VirtualBox**:
+   - Start Oracle VirtualBox and make sure your virtual machine (VM) is powered off.
+
+2. **Access VM Settings**:
+   - Select the VM you want to configure and click on the `Settings` button.
+
+3. **Network Settings**:
+   - In the `Settings` window, go to the `Network` section.
+   - Make sure `Attached to` is set to `NAT`.
+
+4. **Port Forwarding**:
+   - Click on the `Advanced` dropdown to expand it.
+   - Click on `Port Forwarding`.
+
+5. **Add New Rule**:
+   - In the `Port Forwarding Rules` window, click on the `+` icon to add a new rule.
+
+6. **Configure Rule**:
+   - **Name**: Give a descriptive name for the rule.
+   - **Protocol**: Choose `TCP` or `UDP` depending on your requirements.
+   - **Host IP**: Leave it blank or set it to `0.0.0.0` if you want it to listen on all interfaces. you can also use `127.0.0.1` as localhost
+   - **Host Port**: Specify the port number on the host machine.
+   - **Guest IP**: Leave it blank (it will default to the guest's internal IP). you can also use guest ip as `***.*.*.*` 
+   - **Guest Port**: Specify the port number on the guest machine.
+
+- For example, if you want to forward port 8080 on the host to port 80 on the guest:
+   - **Name**: `webserver`
+   - **Protocol**: `TCP`
+   - **Host IP**: Leave blank
+   - **Host Port**: `8080`
+   - **Guest IP**: Leave blank
+   - **Guest Port**: `80`
+
+7. **Save and Start**:
+   - Click `OK` to save the rule.
+   - Click `OK` again to close the `Settings` window.
+   - Start your VM.
+
+### Example Usage
+
+Assuming you have a web server running on port 80 inside your VM, you can access it from your host machine using `http://localhost:8080` after setting up port forwarding as described.
+
+
+#### you can do same for ssh where your NAT virtual OS will remotely access by another port like
+
+- For example, if you want to forward port 8080 on the host to port 80 on the guest:
+   - **Name**: `ssh`
+   - **Protocol**: `TCP`
+   - **Host IP**: 127.0.0.1
+   - **Host Port**: `2200`
+   - **Guest IP**: `***.*.*.*` example 10.0.0.1
+   - **Guest Port**: `22`
+
+
+now access from remote ssh like : 
+
+    ssh username@127.0.0.1 -p 2200
+
+
+### Troubleshooting
+
+- **Check Firewall Settings**: Ensure that the firewall on both the host and guest OS is not blocking the forwarded ports.
+- **Verify Services**: Make sure that the service (e.g., a web server) inside the VM is running and listening on the correct port.
+- **Correct Ports**: Double-check that you've entered the correct ports for both the host and guest.
+
+### Additional Tips
+
+- You can add multiple port forwarding rules if you need to forward different ports for different services.
+- If you have multiple VMs and need unique port forwarding rules, make sure to use different host ports to avoid conflicts.
+
+By following these steps, you should be able to set up port forwarding for a NAT connection in Oracle VirtualBox successfully.
+
+
+
+
+
+
+## Running VirtualBox Headless from the Terminal
+
+*** 
+
+
+### Prerequisites
+
+1. **Install VirtualBox**:
+   - Ensure you have VirtualBox installed on your system. You can download it from the [official VirtualBox website](https://www.virtualbox.org/).
+
+2. **Install the VirtualBox Extension Pack**:
+   - Download the "Oracle VM VirtualBox Extension Pack" from the [official VirtualBox download page](https://www.virtualbox.org/wiki/Downloads).
+     - Download the file under "All supported platforms".
+   - Open VirtualBox.
+   - Go to `File -> Preferences -> Extensions`.
+   - Click the `+` button and add the downloaded Extension Pack.
+   - Save the changes.
+
+### Running VirtualBox Headless
+
+#### List Installed VMs as an example
+
+To see all installed VirtualBox OS instances, open your terminal and run:
+
+```sh
+$ VBoxManage list vms
+
+```
+
+Example output look like:
+```sh
+    "ubuntu 22.04 server" {0f00c3b4-c6b8-46f0-9285-374b7cca8732}
+    "kali-linux-2022.3-virtualbox-amd64" {724bd8df-0804-4d30-9dbd-d8a1c55d8755}
+```
+
+
+### Start a VM in Headless Mode
+
+To start a specific VM in headless mode, use the following command:
+
+```sh
+$ VBoxHeadless -s "ubuntu 22.04 server"
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+### for Windows Specific Instructions
+
+If you are using Windows , you may need to add VirtualBox to your system's PATH environment variable.
+
+### Add VirtualBox to PATH:
+
+- Open Control Panel -> System and Security -> System -> Advanced system settings.
+- Click on Environment Variables.
+- Under System variables, find the Path variable, select it, and click Edit.
+- Add the path to your VirtualBox installation, typically C:\Program Files\Oracle\VirtualBox.
+
+### List Installed VMs:
+
+Open Command Prompt and run:
+
+```sh
+C:\Users\rcare>VBoxManage list vms
+```
+
+Example output:
+
+```sh
+VBoxManage list vms
+"fedora_37" {f6ec3e86-eba9-4ee8-a6f5-2525f79b94de}
+Start a VM in Headless Mode:
+```
+
+```sh
+C:\Users\rcare>VBoxHeadless -s "fedora_37"
+```
+
+Example output:
+
+```sh
+
+Oracle VM VirtualBox Headless Interface 7.0.4
+Copyright (C) 2008-2022 Oracle and/or its affiliates
+
+Starting virtual machine: 10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+
+```
+
+By following these steps, you can successfully run VirtualBox VMs in headless mode from the terminal on both Linux and Windows.
+
+
+
+
+

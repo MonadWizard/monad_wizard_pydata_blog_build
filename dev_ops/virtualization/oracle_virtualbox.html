@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SLint, Prettier snippets VSCODE &#8212; MonadWizard Blog 0.01 documentation</title>
+    <title>Oracle VirtualBox &#8212; MonadWizard Blog 0.01 documentation</title>
   
   
   
@@ -38,13 +38,13 @@
     <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_ops/text_editor/ESLint_workspace-setup-VSCODE';</script>
-    <link rel="canonical" href="blog.monadwizard.xyz/dev_ops/text_editor/ESLint_workspace-setup-VSCODE.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_ops/virtualization/oracle_virtualbox';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/dev_ops/virtualization/oracle_virtualbox.html" />
     <link rel="icon" href="../../_static/logo.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Emoji snippet VSCODE" href="emojisence.html" />
-    <link rel="prev" title="Simple Vim workflow example" href="vim_cheatsheet.html" />
+    <link rel="next" title="dockers" href="virtualization_docker.html" />
+    <link rel="prev" title="virtualization" href="../virtualization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -505,17 +505,17 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="../nginx/nginx_django.html">Nginx Django project deploy</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../text_editor.html">text editor</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="vim_cheatsheet.html">Simple Vim workflow example</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">SLint, Prettier snippets VSCODE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="emojisence.html">Emoji snippet VSCODE</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../text_editor.html">text editor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/vim_cheatsheet.html">Simple Vim workflow example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/ESLint_workspace-setup-VSCODE.html">SLint, Prettier snippets VSCODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/emojisence.html">Emoji snippet VSCODE</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../virtualization.html">virtualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../virtualization/oracle_virtualbox.html">Oracle VirtualBox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_docker.html">dockers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_py_environment.html">python virtual environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_Vargant.html">Vargant virtualization</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../virtualization.html">virtualization</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Oracle VirtualBox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualization_docker.html">dockers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualization_py_environment.html">python virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualization_Vargant.html">Vargant virtualization</a></li>
 </ul>
 </details></li>
 </ul>
@@ -559,9 +559,9 @@ document.write(`
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">dev-ops</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../text_editor.html" class="nav-link">text editor</a></li>
+    <li class="breadcrumb-item"><a href="../virtualization.html" class="nav-link">virtualization</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">SLint,...</li>
+    <li class="breadcrumb-item active" aria-current="page">Oracle VirtualBox</li>
   </ul>
 </nav>
 </div>
@@ -578,150 +578,195 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="slint-prettier-snippets-vscode">
-<h1>SLint, Prettier snippets VSCODE<a class="headerlink" href="#slint-prettier-snippets-vscode" title="Link to this heading">#</a></h1>
-<section id="editor-setup">
-<h2>Editor Setup<a class="headerlink" href="#editor-setup" title="Link to this heading">#</a></h2>
-<p>এই পোস্ট টিতে mainly VSCODE এ react.js এর জন্য কিছু usefull plug-in এর setup দেওয়া হয়েছে ।</p>
-<section id="plugins">
-<h3>Plugins<a class="headerlink" href="#plugins" title="Link to this heading">#</a></h3>
-<p>নিম্নের extention গুলো install দেওয়া থাকতে হবে।</p>
+  <section id="oracle-virtualbox">
+<h1>Oracle VirtualBox<a class="headerlink" href="#oracle-virtualbox" title="Link to this heading">#</a></h1>
+<section id="port-forwarding-for-nat-connection-on-oracle-virtualbox">
+<h2>Port Forwarding for NAT Connection on Oracle VirtualBox<a class="headerlink" href="#port-forwarding-for-nat-connection-on-oracle-virtualbox" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p><strong>Open VirtualBox</strong>:</p>
 <ul class="simple">
-<li><p>ESLint by Dirk Baeumer</p></li>
-<li><p>Prettier - Code formatter by Prettier</p></li>
-<li><p>Dracula Official Theme (optional)</p></li>
+<li><p>Start Oracle VirtualBox and make sure your virtual machine (VM) is powered off.</p></li>
+</ul>
+</li>
+<li><p><strong>Access VM Settings</strong>:</p>
+<ul class="simple">
+<li><p>Select the VM you want to configure and click on the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> button.</p></li>
+</ul>
+</li>
+<li><p><strong>Network Settings</strong>:</p>
+<ul class="simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> window, go to the <code class="docutils literal notranslate"><span class="pre">Network</span></code> section.</p></li>
+<li><p>Make sure <code class="docutils literal notranslate"><span class="pre">Attached</span> <span class="pre">to</span></code> is set to <code class="docutils literal notranslate"><span class="pre">NAT</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Port Forwarding</strong>:</p>
+<ul class="simple">
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Advanced</span></code> dropdown to expand it.</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">Forwarding</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Add New Rule</strong>:</p>
+<ul class="simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">Forwarding</span> <span class="pre">Rules</span></code> window, click on the <code class="docutils literal notranslate"><span class="pre">+</span></code> icon to add a new rule.</p></li>
+</ul>
+</li>
+<li><p><strong>Configure Rule</strong>:</p>
+<ul class="simple">
+<li><p><strong>Name</strong>: Give a descriptive name for the rule.</p></li>
+<li><p><strong>Protocol</strong>: Choose <code class="docutils literal notranslate"><span class="pre">TCP</span></code> or <code class="docutils literal notranslate"><span class="pre">UDP</span></code> depending on your requirements.</p></li>
+<li><p><strong>Host IP</strong>: Leave it blank or set it to <code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code> if you want it to listen on all interfaces. you can also use <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> as localhost</p></li>
+<li><p><strong>Host Port</strong>: Specify the port number on the host machine.</p></li>
+<li><p><strong>Guest IP</strong>: Leave it blank (it will default to the guest’s internal IP). you can also use guest ip as <code class="docutils literal notranslate"><span class="pre">***.*.*.*</span></code></p></li>
+<li><p><strong>Guest Port</strong>: Specify the port number on the guest machine.</p></li>
+</ul>
+</li>
+</ol>
+<ul class="simple">
+<li><p>For example, if you want to forward port 8080 on the host to port 80 on the guest:</p>
+<ul>
+<li><p><strong>Name</strong>: <code class="docutils literal notranslate"><span class="pre">webserver</span></code></p></li>
+<li><p><strong>Protocol</strong>: <code class="docutils literal notranslate"><span class="pre">TCP</span></code></p></li>
+<li><p><strong>Host IP</strong>: Leave blank</p></li>
+<li><p><strong>Host Port</strong>: <code class="docutils literal notranslate"><span class="pre">8080</span></code></p></li>
+<li><p><strong>Guest IP</strong>: Leave blank</p></li>
+<li><p><strong>Guest Port</strong>: <code class="docutils literal notranslate"><span class="pre">80</span></code></p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="7">
+<li><p><strong>Save and Start</strong>:</p>
+<ul class="simple">
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">OK</span></code> to save the rule.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">OK</span></code> again to close the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> window.</p></li>
+<li><p>Start your VM.</p></li>
+</ul>
+</li>
+</ol>
+<section id="example-usage">
+<h3>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading">#</a></h3>
+<p>Assuming you have a web server running on port 80 inside your VM, you can access it from your host machine using <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code> after setting up port forwarding as described.</p>
+<section id="you-can-do-same-for-ssh-where-your-nat-virtual-os-will-remotely-access-by-another-port-like">
+<h4>you can do same for ssh where your NAT virtual OS will remotely access by another port like<a class="headerlink" href="#you-can-do-same-for-ssh-where-your-nat-virtual-os-will-remotely-access-by-another-port-like" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>For example, if you want to forward port 8080 on the host to port 80 on the guest:</p>
+<ul>
+<li><p><strong>Name</strong>: <code class="docutils literal notranslate"><span class="pre">ssh</span></code></p></li>
+<li><p><strong>Protocol</strong>: <code class="docutils literal notranslate"><span class="pre">TCP</span></code></p></li>
+<li><p><strong>Host IP</strong>: 127.0.0.1</p></li>
+<li><p><strong>Host Port</strong>: <code class="docutils literal notranslate"><span class="pre">2200</span></code></p></li>
+<li><p><strong>Guest IP</strong>: <code class="docutils literal notranslate"><span class="pre">***.*.*.*</span></code> example 10.0.0.1</p></li>
+<li><p><strong>Guest Port</strong>: <code class="docutils literal notranslate"><span class="pre">22</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>now access from remote ssh like :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ssh username@127.0.0.1 -p 2200
+</pre></div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h3>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Check Firewall Settings</strong>: Ensure that the firewall on both the host and guest OS is not blocking the forwarded ports.</p></li>
+<li><p><strong>Verify Services</strong>: Make sure that the service (e.g., a web server) inside the VM is running and listening on the correct port.</p></li>
+<li><p><strong>Correct Ports</strong>: Double-check that you’ve entered the correct ports for both the host and guest.</p></li>
 </ul>
 </section>
-<section id="settings">
-<h3>Settings<a class="headerlink" href="#settings" title="Link to this heading">#</a></h3>
-<p>Follow the below settings for VS Code -</p>
+<section id="additional-tips">
+<h3>Additional Tips<a class="headerlink" href="#additional-tips" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>You can add multiple port forwarding rules if you need to forward different ports for different services.</p></li>
+<li><p>If you have multiple VMs and need unique port forwarding rules, make sure to use different host ports to avoid conflicts.</p></li>
+</ul>
+<p>By following these steps, you should be able to set up port forwarding for a NAT connection in Oracle VirtualBox successfully.</p>
+</section>
+</section>
+<section id="running-virtualbox-headless-from-the-terminal">
+<h2>Running VirtualBox Headless from the Terminal<a class="headerlink" href="#running-virtualbox-headless-from-the-terminal" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Create a new folder called “.vscode” inside the project root folder</p></li>
-<li><p>Create a new file called “settings.json” inside that folder.</p></li>
-<li><p>Paste the below json in the newly created settings.json file and save the file.</p></li>
+<li><p><strong>Install VirtualBox</strong>:</p>
+<ul class="simple">
+<li><p>Ensure you have VirtualBox installed on your system. You can download it from the <a class="reference external" href="https://www.virtualbox.org/">official VirtualBox website</a>.</p></li>
+</ul>
+</li>
+<li><p><strong>Install the VirtualBox Extension Pack</strong>:</p>
+<ul class="simple">
+<li><p>Download the “Oracle VM VirtualBox Extension Pack” from the <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">official VirtualBox download page</a>.</p>
+<ul>
+<li><p>Download the file under “All supported platforms”.</p></li>
+</ul>
+</li>
+<li><p>Open VirtualBox.</p></li>
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Preferences</span> <span class="pre">-&gt;</span> <span class="pre">Extensions</span></code>.</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">+</span></code> button and add the downloaded Extension Pack.</p></li>
+<li><p>Save the changes.</p></li>
+</ul>
+</li>
 </ol>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Theme</span>
-<span class="w">    </span><span class="nt">&quot;workbench.colorTheme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dracula&quot;</span><span class="p">,</span>
+</section>
+<section id="running-virtualbox-headless">
+<h3>Running VirtualBox Headless<a class="headerlink" href="#running-virtualbox-headless" title="Link to this heading">#</a></h3>
+<section id="list-installed-vms-as-an-example">
+<h4>List Installed VMs as an example<a class="headerlink" href="#list-installed-vms-as-an-example" title="Link to this heading">#</a></h4>
+<p>To see all installed VirtualBox OS instances, open your terminal and run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>VBoxManage<span class="w"> </span>list<span class="w"> </span>vms
+</pre></div>
+</div>
+<p>Example output look like:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="s2">&quot;ubuntu 22.04 server&quot;</span><span class="w"> </span><span class="o">{</span>0f00c3b4-c6b8-46f0-9285-374b7cca8732<span class="o">}</span>
+<span class="w">    </span><span class="s2">&quot;kali-linux-2022.3-virtualbox-amd64&quot;</span><span class="w"> </span><span class="o">{</span>724bd8df-0804-4d30-9dbd-d8a1c55d8755<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="start-a-vm-in-headless-mode">
+<h3>Start a VM in Headless Mode<a class="headerlink" href="#start-a-vm-in-headless-mode" title="Link to this heading">#</a></h3>
+<p>To start a specific VM in headless mode, use the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>VBoxHeadless<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;ubuntu 22.04 server&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="for-windows-specific-instructions">
+<h3>for Windows Specific Instructions<a class="headerlink" href="#for-windows-specific-instructions" title="Link to this heading">#</a></h3>
+<p>If you are using Windows , you may need to add VirtualBox to your system’s PATH environment variable.</p>
+</section>
+<section id="add-virtualbox-to-path">
+<h3>Add VirtualBox to PATH:<a class="headerlink" href="#add-virtualbox-to-path" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Open Control Panel -&gt; System and Security -&gt; System -&gt; Advanced system settings.</p></li>
+<li><p>Click on Environment Variables.</p></li>
+<li><p>Under System variables, find the Path variable, select it, and click Edit.</p></li>
+<li><p>Add the path to your VirtualBox installation, typically C:\Program Files\Oracle\VirtualBox.</p></li>
+</ul>
+</section>
+<section id="list-installed-vms">
+<h3>List Installed VMs:<a class="headerlink" href="#list-installed-vms" title="Link to this heading">#</a></h3>
+<p>Open Command Prompt and run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\U</span>sers<span class="se">\r</span>care&gt;VBoxManage<span class="w"> </span>list<span class="w"> </span>vms
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>VBoxManage<span class="w"> </span>list<span class="w"> </span>vms
+<span class="s2">&quot;fedora_37&quot;</span><span class="w"> </span><span class="o">{</span>f6ec3e86-eba9-4ee8-a6f5-2525f79b94de<span class="o">}</span>
+Start<span class="w"> </span>a<span class="w"> </span>VM<span class="w"> </span><span class="k">in</span><span class="w"> </span>Headless<span class="w"> </span>Mode:
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\U</span>sers<span class="se">\r</span>care&gt;VBoxHeadless<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;fedora_37&quot;</span>
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Oracle<span class="w"> </span>VM<span class="w"> </span>VirtualBox<span class="w"> </span>Headless<span class="w"> </span>Interface<span class="w"> </span><span class="m">7</span>.0.4
+Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2008</span>-2022<span class="w"> </span>Oracle<span class="w"> </span>and/or<span class="w"> </span>its<span class="w"> </span>affiliates
 
-<span class="w">    </span><span class="c1">// config related to code formatting</span>
-<span class="w">    </span><span class="nt">&quot;editor.defaultFormatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;esbenp.prettier-vscode&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;[javascript]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;editor.defaultFormatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;[javascriptreact]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;editor.formatOnSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;editor.defaultFormatter&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;javascript.validate.enable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">//disable all built-in syntax checking</span>
-<span class="w">    </span><span class="nt">&quot;editor.codeActionsOnSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;source.fixAll.eslint&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;source.fixAll.tslint&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;source.organizeImports&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;eslint.alwaysShowStatus&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">// emmet</span>
-<span class="w">    </span><span class="nt">&quot;emmet.triggerExpansionOnTab&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;emmet.includeLanguages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;javascript&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;javascriptreact&quot;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
+Starting<span class="w"> </span>virtual<span class="w"> </span>machine:<span class="w"> </span><span class="m">10</span>%...20%...30%...40%...50%...60%...70%...80%...90%...100%
 </pre></div>
 </div>
-<p>If you followed all previous steps, the theme should change and your editor should be ready.</p>
-</section>
-<section id="set-line-breaks">
-<h3>Set Line Breaks<a class="headerlink" href="#set-line-breaks" title="Link to this heading">#</a></h3>
-<p>Make sure in your VS Code Editor, “LF” is selected as line feed instead of CRLF (Carriage return and line feed). To do that, just click LF/CRLF in bottom right corner of editor, click it and change it to “LF”. If you dont do that, you will get errors in my setup.</p>
-</section>
-</section>
-<section id="linting-setup">
-<h2>Linting Setup<a class="headerlink" href="#linting-setup" title="Link to this heading">#</a></h2>
-<p>In order to lint and format your React project automatically according to popular airbnb style guide, I recommend you to follow the instructions below.</p>
-<section id="install-dev-dependencies">
-<h3>Install Dev Dependencies<a class="headerlink" href="#install-dev-dependencies" title="Link to this heading">#</a></h3>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>yarn<span class="w"> </span>add<span class="w"> </span>-D<span class="w"> </span>prettier
-yarn<span class="w"> </span>add<span class="w"> </span>-D<span class="w"> </span>babel-eslint
-npx<span class="w"> </span>install-peerdeps<span class="w"> </span>--dev<span class="w"> </span>eslint-config-airbnb
-yarn<span class="w"> </span>add<span class="w"> </span>-D<span class="w"> </span>eslint-config-prettier<span class="w"> </span>eslint-plugin-prettier
-</pre></div>
-</div>
-<p>or You can also add a new script in the scripts section like below to install everything with a single command:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="err">scrip</span><span class="kc">ts</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;lint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;yarn add -D prettier &amp;&amp; yarn add -D babel-eslint &amp;&amp; npx install-peerdeps --dev eslint-config-airbnb &amp;&amp; yarn add -D eslint-config-prettier eslint-plugin-prettier&quot;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>and then simply run the below command in the terminal -</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>yarn<span class="w"> </span>lint<span class="w"> </span><span class="c1">#or &#39;npm run lint&#39;</span>
-</pre></div>
-</div>
-</section>
-<section id="create-linting-configuration-file-manually">
-<h3>Create Linting Configuration file manually<a class="headerlink" href="#create-linting-configuration-file-manually" title="Link to this heading">#</a></h3>
-<p>Create a <code class="docutils literal notranslate"><span class="pre">.eslintrc</span></code> file in the project root and enter the below contents:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;extends&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;airbnb&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;airbnb/hooks&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;eslint:recommended&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;prettier&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s2">&quot;plugin:jsx-a11y/recommended&quot;</span>
-<span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;parser&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;babel-eslint&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;parserOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;ecmaVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;browser&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;node&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;es6&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;jest&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;react/react-in-jsx-scope&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;react-hooks/rules-of-hooks&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;no-console&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;react/state-in-constructor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;indent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;linebreak-style&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;react/prop-types&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;jsx-a11y/click-events-have-key-events&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;react/jsx-filename-extension&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;extensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;.js&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.jsx&quot;</span><span class="p">]</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;prettier/prettier&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;trailingComma&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;es5&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;singleQuote&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;printWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;tabWidth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;semi&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;endOfLine&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auto&quot;</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">]</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;plugins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;prettier&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;react-hooks&quot;</span><span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
-<section id="for-ignore-eslint-checking">
-<h3>for ignore eslint checking<a class="headerlink" href="#for-ignore-eslint-checking" title="Link to this heading">#</a></h3>
-<p>eslint আর node_modules এর ভিতরের eslint এর version এ error হইতে পারে। এর জন্য simpley just terminal এর prosedure টা follow করলেই চলবে ।
-such as , প্রথমে যে directory তে yarn.lock বা .eslintrc
-file আছে ঐ directory তে .env ফাইল তৈরি করে তার ভিতর</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SKIP_PREFLIGHT_CHECK</span><span class="o">=</span><span class="n">true</span>
-
-</pre></div>
-</div>
-<p>দিয়ে দিব , টা হইলে এর error face হবে না।</p>
+<p>By following these steps, you can successfully run VirtualBox VMs in headless mode from the terminal on both Linux and Windows.</p>
 </section>
 </section>
 </section>
@@ -737,20 +782,20 @@ file আছে ঐ directory তে .env ফাইল তৈরি করে ত
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="vim_cheatsheet.html"
+       href="../virtualization.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Simple Vim workflow example</p>
+        <p class="prev-next-title">virtualization</p>
       </div>
     </a>
     <a class="right-next"
-       href="emojisence.html"
+       href="virtualization_docker.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Emoji snippet VSCODE</p>
+        <p class="prev-next-title">dockers</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -772,16 +817,25 @@ file আছে ঐ directory তে .env ফাইল তৈরি করে ত
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editor-setup">Editor Setup</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plugins">Plugins</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#settings">Settings</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-line-breaks">Set Line Breaks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#port-forwarding-for-nat-connection-on-oracle-virtualbox">Port Forwarding for NAT Connection on Oracle VirtualBox</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-usage">Example Usage</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#you-can-do-same-for-ssh-where-your-nat-virtual-os-will-remotely-access-by-another-port-like">you can do same for ssh where your NAT virtual OS will remotely access by another port like</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting-setup">Linting Setup</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-dev-dependencies">Install Dev Dependencies</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-linting-configuration-file-manually">Create Linting Configuration file manually</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-ignore-eslint-checking">for ignore eslint checking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-tips">Additional Tips</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-virtualbox-headless-from-the-terminal">Running VirtualBox Headless from the Terminal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-virtualbox-headless">Running VirtualBox Headless</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#list-installed-vms-as-an-example">List Installed VMs as an example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-a-vm-in-headless-mode">Start a VM in Headless Mode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-windows-specific-instructions">for Windows Specific Instructions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-virtualbox-to-path">Add VirtualBox to PATH:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-installed-vms">List Installed VMs:</a></li>
 </ul>
 </li>
 </ul>

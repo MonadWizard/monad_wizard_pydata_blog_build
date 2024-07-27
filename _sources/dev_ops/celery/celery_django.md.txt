@@ -1,0 +1,325 @@
+# Celery supervisor setup 
+
+here I create a selery service name `monad`. and below you found 
+- celery_beat_service.conf
+- celery_flower_service.conf
+- celery_service.conf
+
+
+***
+
+#### Install supervisor by :  
+    
+    sudo apt-get install supervisor
+
+now go to supervisor directory and add new configuration 
+
+    cd /etc/supervisor/conf.d/
+
+
+
+
+
+## celery service
+
+This configuration file defines the service for running the main Celery worker process. Celery workers are responsible for executing the tasks that are sent to the Celery queue.
+
+
+`➜  conf.d` 
+    
+    cat celery_service.conf 
+
+### celery_service.conf
+
+```sh
+
+[program:celery_service]
+ command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend.celery worker -E --loglevel=INFO
+ directory=/var/www/backend/monad_celery_backend
+ 
+ user=ubuntu
+ numprocs=1
+
+ stdout_logfile=/var/log/celery/celery_service.log
+ stderr_logfile=/var/log/celery/celery_service.err.log
+ 
+ autostart=true
+ autorestart=true
+ startsecs=10
+ stopwaitsecs = 600
+ killasgroup=true
+ priority=998
+
+
+```
+
+* Key Sections:
+- Unit: Describes the service and its dependencies.
+- Service: Contains the details for starting the Celery worker. This includes the user and group under which the service runs, the working directory, environment variables, and the command to start the Celery worker.
+- Install: Specifies when the service should be started (e.g., during system boot).
+
+
+
+DETAIL Example:
+
+```sh
+[program:celery_service]
+ ; Set full path to celery program if using virtualenv
+ command=/var/www/backend/scheduler.algorithmgeneration.com/celery_env/bin/celery -A celeryapi.celery worker -E --loglevel=INFO
+ ; The directory to your Django project
+ directory=/var/www/backend/scheduler.algorithmgeneration.com
+ ; If supervisord is run as the root user, switch users to this UNIX user account before doing any processing.
+ user=ubuntu
+ ; Supervisor will start as many instances of this program as named by numprocs
+ numprocs=1
+ ; Put process stdout output in this file
+ stdout_logfile=/var/log/celery/celery_service.log
+ ; Put process stderr output in this file
+ stderr_logfile=/var/log/celery/celery_service.err.log
+ ; If true, this program will start automatically when supervisord is started
+ autostart=true
+ ; May be one of false, unexpected, or true. If false, the process will never be autorestarted. If unexpected, the process will be restart when the program
+ ; exits with an exit code that is not one of the exit codes associated with this process’ configuration (see exitcodes). If true, the process will be
+ ; unconditionally restarted when it exits, without regard to its exit code.
+ autorestart=true
+ ; The total number of seconds which the program needs to stay running after a startup to consider the start successful.
+ startsecs=10
+ ; Need to wait for currently executing tasks to finish at shutdown. Increase this if you have very long running tasks.
+ stopwaitsecs = 600
+ ; When resorting to send SIGKILL to the program to terminate it send SIGKILL to its whole process group instead, taking care of its children as well.
+ killasgroup=true
+ ; if your broker is supervised, set its priority higher so it starts first
+ priority=998
+
+```
+
+
+
+
+
+
+## celery beat service
+
+
+This configuration file defines the service for running the Celery Beat scheduler. Celery Beat is responsible for scheduling tasks to be run at specific times or intervals.
+
+`➜  conf.d` 
+
+    cat celery_beat_service.conf
+
+
+### celery_beat_service.conf
+
+
+
+```sh
+[program:celery_beat_service]
+ 
+ command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend beat -E --logfile=INFO
+ 
+ directory=/var/www/backend/monad_celery_backend
+ user=ubuntu
+ numprocs=1
+ 
+ stdout_logfile=/var/log/celery/celery_beat_service.log
+ stderr_logfile=/var/log/celery/celery_beat_service.err.log
+ 
+ autostart=true
+ autorestart=true
+ startsecs=0
+ priority=999
+
+```
+
+
+* Key Sections:
+- Unit: Describes the service and its dependencies.
+- Service: Contains the details for starting the Celery worker. This includes the user and group under which the service runs, the working directory, environment variables, and the command to start the Celery worker.
+- Install: Specifies when the service should be started (e.g., during system boot).
+
+
+
+#### DETAIL EXAMPLE:
+
+```sh
+[program:celery_beat_service]
+ ; Set full path to celery program if using virtualenv
+ command=/var/www/backend/scheduler.algorithmgeneration.com/celery_env/bin/celery -A celeryapi beat -E --logfile=INFO
+ ; The directory to your Django project
+ directory=/var/www/backend/scheduler.algorithmgeneration.com
+ ; If supervisord is run as the root user, switch users to this UNIX user account before doing any processing.
+ user=ubuntu
+ ; Supervisor will start as many instances of this program as named by numprocs
+ numprocs=1
+ ; Put process stdout output in this file
+ stdout_logfile=/var/log/celery/celery_beat_service.log
+ ; Put process stderr output in this file
+ stderr_logfile=/var/log/celery/celery_beat_service.err.log
+ ; If true, this program will start automatically when supervisord is started
+ autostart=true
+ ; May be one of false, unexpected, or true. If false, the process will never be autorestarted. If unexpected, the process will be restart when the program
+ ; exits with an exit code that is not one of the exit codes associated with this process’ configuration (see exitcodes). If true, the process will be
+ ; unconditionally restarted when it exits, without regard to its exit code.
+ autorestart=true
+ ; The total number of seconds which the program needs to stay running after a startup to consider the start successful.
+ startsecs=0
+ ; if your broker is supervised, set its priority higher so it starts first
+ priority=999
+```
+
+
+## celery flower service
+
+
+`➜  conf.d` 
+
+    cat celery_flower_service.conf 
+
+
+### celery_flower_service.conf
+
+This configuration file defines the service for running Celery Flower. Flower is a real-time web-based monitoring tool for Celery.
+
+
+```sh
+[program:celery_flower_service]
+ command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend flower --loglevel=INFO
+ 
+ directory=/var/www/backend/monad_celery_backend
+ user=ubuntu
+ numprocs=1
+ 
+ stdout_logfile=/var/log/celery/celery_flower_service.log
+ stderr_logfile=/var/log/celery/celery_flower_service.err.log
+ 
+ autostart=true
+ autorestart=true
+ startsecs=10
+ stopwaitsecs = 0
+ killasgroup=true
+ priority=998
+
+```
+
+
+* Key Sections:
+- Unit: Describes the service and its dependencies.
+- Service: Contains the details for starting the Celery Flower web interface. This includes the user and group under which the service runs, the working directory, environment variables, and the command to start Flower.
+- Install: Specifies when the service should be started (e.g., during system boot).
+
+
+
+
+#### DETAIL Example:
+
+```sh
+[program:celery_flower_service]
+ ; Set full path to celery program if using virtualenv
+ command=/var/www/backend/scheduler.algorithmgeneration.com/celery_env/bin/celery -A celeryapi flower --loglevel=INFO
+ ; The directory to your Django project
+ directory=/var/www/backend/scheduler.algorithmgeneration.com
+ ; If supervisord is run as the root user, switch users to this UNIX user account before doing any processing.
+ user=ubuntu
+ ; Supervisor will start as many instances of this program as named by numprocs
+ numprocs=1
+ ; Put process stdout output in this file
+ stdout_logfile=/var/log/celery/celery_flower_service.log
+ ; Put process stderr output in this file
+ stderr_logfile=/var/log/celery/celery_flower_service.err.log
+ ; If true, this program will start automatically when supervisord is started
+ autostart=true
+ ; May be one of false, unexpected, or true. If false, the process will never be autorestarted. If unexpected, the process will be restart when the program
+ ; exits with an exit code that is not one of the exit codes associated with this process’ configuration (see exitcodes). If true, the process will be
+ ; unconditionally restarted when it exits, without regard to its exit code.
+ autorestart=true
+ ; The total number of seconds which the program needs to stay running after a startup to consider the start successful.
+ startsecs=10
+ ; Need to wait for currently executing tasks to finish at shutdown. Increase this if you have very long running tasks.
+ stopwaitsecs = 0
+ ; When resorting to send SIGKILL to the program to terminate it send SIGKILL to its whole process group instead, taking care of its children as well.
+ killasgroup=true
+ ; if your broker is supervised, set its priority higher so it starts first
+ priority=998
+```
+
+
+
+
+
+#### Start Celery Service : 
+
+    sudo service supervisor start
+
+    sudo systemctl restart supervisor.service
+
+
+
+## IN short total monad Celery configurations file are : 
+
+
+
+` cat celery_beat_service.conf `
+
+```sh
+[program:celery_beat_service]
+
+ ;command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend beat -E --logfile=INFO
+ command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend beat -l info
+
+ directory=/var/www/backend/monad_celery_backend
+ user=root
+ numprocs=1
+
+ stdout_logfile=/var/log/celery/celery_beat_service.log
+ stderr_logfile=/var/log/celery/celery_beat_service.err.log
+ 
+ autostart=true
+ autorestart=true
+ startsecs=0
+ priority=999
+```
+
+` cat celery_flower_service.conf `
+
+```sh
+[program:celery_flower_service]
+ command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend flower --loglevel=INFO
+ 
+ directory=/var/www/backend/monad_celery_backend
+ user=root
+ numprocs=1
+ 
+ stdout_logfile=/var/log/celery/celery_flower_service.log
+ stderr_logfile=/var/log/celery/celery_flower_service.err.log
+ 
+ autostart=true
+ autorestart=true
+ startsecs=10
+ stopwaitsecs = 0
+ killasgroup=true
+ priority=998
+```
+
+
+` cat celery_service.conf ` 
+
+```sh
+[program:celery_service]
+; command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend.celery worker -E --loglevel=INFO
+ command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend.celery worker --pool=prefork -l info
+
+ directory=/var/www/backend/monad_celery_backend
+ 
+ user=root
+ numprocs=1
+
+ stdout_logfile=/var/log/celery/celery_service.log
+ stderr_logfile=/var/log/celery/celery_service.err.log
+ 
+ autostart=true
+ autorestart=true
+ startsecs=10
+ stopwaitsecs = 600
+ killasgroup=true
+ priority=998
+```

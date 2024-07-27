@@ -1,0 +1,985 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Celery supervisor setup &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_ops/celery/celery_django';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/dev_ops/celery/celery_django.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="daphne" href="../daphne.html" />
+    <link rel="prev" title="celery" href="../celery.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    dev-ops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    pl/SQL
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    dev-ops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    pl/SQL
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">dev-ops</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../git.html">git</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../git/git_cheetsheet.html">cheet sheet github and git</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../git/git_discribe.html">গিট এর সব essential topicগুলো cover করা হয়েছে।</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../linux.html">linux</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linux/pacman.html">Package Manager (pacman)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../celery.html">celery</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Celery supervisor setup</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../daphne.html">daphne</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../daphne/daphne_django.html">daphne django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gunicorn.html">gunicorn</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gunicorn/gunicorn_django.html">Gunicorn Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nginx.html">nginx</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nginx/nginx_django.html">Nginx Django project deploy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../text_editor.html">text editor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/vim_cheatsheet.html">Simple Vim workflow example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/ESLint_workspace-setup-VSCODE.html">SLint, Prettier snippets VSCODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor/emojisence.html">Emoji snippet VSCODE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../virtualization.html">virtualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/oracle_virtualbox.html">Oracle VirtualBox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_docker.html">dockers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_py_environment.html">python virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../virtualization/virtualization_Vargant.html">Vargant virtualization</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">dev-ops</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../celery.html" class="nav-link">celery</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Celery...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="celery-supervisor-setup">
+<h1>Celery supervisor setup<a class="headerlink" href="#celery-supervisor-setup" title="Link to this heading">#</a></h1>
+<p>here I create a selery service name <code class="docutils literal notranslate"><span class="pre">monad</span></code>. and below you found</p>
+<ul class="simple">
+<li><p>celery_beat_service.conf</p></li>
+<li><p>celery_flower_service.conf</p></li>
+<li><p>celery_service.conf</p></li>
+</ul>
+<hr class="docutils" />
+<section id="install-supervisor-by">
+<h2>Install supervisor by :<a class="headerlink" href="#install-supervisor-by" title="Link to this heading">#</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt-get install supervisor
+</pre></div>
+</div>
+<p>now go to supervisor directory and add new configuration</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd /etc/supervisor/conf.d/
+</pre></div>
+</div>
+</section>
+<section id="celery-service">
+<h2>celery service<a class="headerlink" href="#celery-service" title="Link to this heading">#</a></h2>
+<p>This configuration file defines the service for running the main Celery worker process. Celery workers are responsible for executing the tasks that are sent to the Celery queue.</p>
+<p><code class="docutils literal notranslate"><span class="pre">➜</span>&#160; <span class="pre">conf.d</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cat celery_service.conf 
+</pre></div>
+</div>
+<section id="celery-service-conf">
+<h3>celery_service.conf<a class="headerlink" href="#celery-service-conf" title="Link to this heading">#</a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>program:celery_service<span class="o">]</span>
+<span class="w"> </span><span class="nv">command</span><span class="o">=</span>/var/www/backend/monad_celery_backend/env/bin/celery<span class="w"> </span>-A<span class="w"> </span>monad_celery_backend.celery<span class="w"> </span>worker<span class="w"> </span>-E<span class="w"> </span>--loglevel<span class="o">=</span>INFO
+<span class="w"> </span><span class="nv">directory</span><span class="o">=</span>/var/www/backend/monad_celery_backend
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">user</span><span class="o">=</span>ubuntu
+<span class="w"> </span><span class="nv">numprocs</span><span class="o">=</span><span class="m">1</span>
+
+<span class="w"> </span><span class="nv">stdout_logfile</span><span class="o">=</span>/var/log/celery/celery_service.log
+<span class="w"> </span><span class="nv">stderr_logfile</span><span class="o">=</span>/var/log/celery/celery_service.err.log
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">autostart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">autorestart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">startsecs</span><span class="o">=</span><span class="m">10</span>
+<span class="w"> </span><span class="nv">stopwaitsecs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">600</span>
+<span class="w"> </span><span class="nv">killasgroup</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">priority</span><span class="o">=</span><span class="m">998</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Key Sections:</p></li>
+</ul>
+<ul class="simple">
+<li><p>Unit: Describes the service and its dependencies.</p></li>
+<li><p>Service: Contains the details for starting the Celery worker. This includes the user and group under which the service runs, the working directory, environment variables, and the command to start the Celery worker.</p></li>
+<li><p>Install: Specifies when the service should be started (e.g., during system boot).</p></li>
+</ul>
+<p>DETAIL Example:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>program:celery_service<span class="o">]</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Set<span class="w"> </span>full<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>celery<span class="w"> </span>program<span class="w"> </span><span class="k">if</span><span class="w"> </span>using<span class="w"> </span>virtualenv
+<span class="w"> </span><span class="nv">command</span><span class="o">=</span>/var/www/backend/scheduler.algorithmgeneration.com/celery_env/bin/celery<span class="w"> </span>-A<span class="w"> </span>celeryapi.celery<span class="w"> </span>worker<span class="w"> </span>-E<span class="w"> </span>--loglevel<span class="o">=</span>INFO
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>The<span class="w"> </span>directory<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>Django<span class="w"> </span>project
+<span class="w"> </span><span class="nv">directory</span><span class="o">=</span>/var/www/backend/scheduler.algorithmgeneration.com
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>If<span class="w"> </span>supervisord<span class="w"> </span>is<span class="w"> </span>run<span class="w"> </span>as<span class="w"> </span>the<span class="w"> </span>root<span class="w"> </span>user,<span class="w"> </span>switch<span class="w"> </span>users<span class="w"> </span>to<span class="w"> </span>this<span class="w"> </span>UNIX<span class="w"> </span>user<span class="w"> </span>account<span class="w"> </span>before<span class="w"> </span>doing<span class="w"> </span>any<span class="w"> </span>processing.
+<span class="w"> </span><span class="nv">user</span><span class="o">=</span>ubuntu
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Supervisor<span class="w"> </span>will<span class="w"> </span>start<span class="w"> </span>as<span class="w"> </span>many<span class="w"> </span>instances<span class="w"> </span>of<span class="w"> </span>this<span class="w"> </span>program<span class="w"> </span>as<span class="w"> </span>named<span class="w"> </span>by<span class="w"> </span>numprocs
+<span class="w"> </span><span class="nv">numprocs</span><span class="o">=</span><span class="m">1</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Put<span class="w"> </span>process<span class="w"> </span>stdout<span class="w"> </span>output<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>file
+<span class="w"> </span><span class="nv">stdout_logfile</span><span class="o">=</span>/var/log/celery/celery_service.log
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Put<span class="w"> </span>process<span class="w"> </span>stderr<span class="w"> </span>output<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>file
+<span class="w"> </span><span class="nv">stderr_logfile</span><span class="o">=</span>/var/log/celery/celery_service.err.log
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>If<span class="w"> </span>true,<span class="w"> </span>this<span class="w"> </span>program<span class="w"> </span>will<span class="w"> </span>start<span class="w"> </span>automatically<span class="w"> </span>when<span class="w"> </span>supervisord<span class="w"> </span>is<span class="w"> </span>started
+<span class="w"> </span><span class="nv">autostart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>May<span class="w"> </span>be<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>false,<span class="w"> </span>unexpected,<span class="w"> </span>or<span class="w"> </span>true.<span class="w"> </span>If<span class="w"> </span>false,<span class="w"> </span>the<span class="w"> </span>process<span class="w"> </span>will<span class="w"> </span>never<span class="w"> </span>be<span class="w"> </span>autorestarted.<span class="w"> </span>If<span class="w"> </span>unexpected,<span class="w"> </span>the<span class="w"> </span>process<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>restart<span class="w"> </span>when<span class="w"> </span>the<span class="w"> </span>program
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>exits<span class="w"> </span>with<span class="w"> </span>an<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code<span class="w"> </span>that<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>codes<span class="w"> </span>associated<span class="w"> </span>with<span class="w"> </span>this<span class="w"> </span>process’<span class="w"> </span>configuration<span class="w"> </span><span class="o">(</span>see<span class="w"> </span>exitcodes<span class="o">)</span>.<span class="w"> </span>If<span class="w"> </span>true,<span class="w"> </span>the<span class="w"> </span>process<span class="w"> </span>will<span class="w"> </span>be
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>unconditionally<span class="w"> </span>restarted<span class="w"> </span>when<span class="w"> </span>it<span class="w"> </span>exits,<span class="w"> </span>without<span class="w"> </span>regard<span class="w"> </span>to<span class="w"> </span>its<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
+<span class="w"> </span><span class="nv">autorestart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>The<span class="w"> </span>total<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>seconds<span class="w"> </span>which<span class="w"> </span>the<span class="w"> </span>program<span class="w"> </span>needs<span class="w"> </span>to<span class="w"> </span>stay<span class="w"> </span>running<span class="w"> </span>after<span class="w"> </span>a<span class="w"> </span>startup<span class="w"> </span>to<span class="w"> </span>consider<span class="w"> </span>the<span class="w"> </span>start<span class="w"> </span>successful.
+<span class="w"> </span><span class="nv">startsecs</span><span class="o">=</span><span class="m">10</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Need<span class="w"> </span>to<span class="w"> </span><span class="nb">wait</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>currently<span class="w"> </span>executing<span class="w"> </span>tasks<span class="w"> </span>to<span class="w"> </span>finish<span class="w"> </span>at<span class="w"> </span>shutdown.<span class="w"> </span>Increase<span class="w"> </span>this<span class="w"> </span><span class="k">if</span><span class="w"> </span>you<span class="w"> </span>have<span class="w"> </span>very<span class="w"> </span>long<span class="w"> </span>running<span class="w"> </span>tasks.
+<span class="w"> </span><span class="nv">stopwaitsecs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">600</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>When<span class="w"> </span>resorting<span class="w"> </span>to<span class="w"> </span>send<span class="w"> </span>SIGKILL<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>program<span class="w"> </span>to<span class="w"> </span>terminate<span class="w"> </span>it<span class="w"> </span>send<span class="w"> </span>SIGKILL<span class="w"> </span>to<span class="w"> </span>its<span class="w"> </span>whole<span class="w"> </span>process<span class="w"> </span>group<span class="w"> </span>instead,<span class="w"> </span>taking<span class="w"> </span>care<span class="w"> </span>of<span class="w"> </span>its<span class="w"> </span>children<span class="w"> </span>as<span class="w"> </span>well.
+<span class="w"> </span><span class="nv">killasgroup</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>your<span class="w"> </span>broker<span class="w"> </span>is<span class="w"> </span>supervised,<span class="w"> </span><span class="nb">set</span><span class="w"> </span>its<span class="w"> </span>priority<span class="w"> </span>higher<span class="w"> </span>so<span class="w"> </span>it<span class="w"> </span>starts<span class="w"> </span>first
+<span class="w"> </span><span class="nv">priority</span><span class="o">=</span><span class="m">998</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="celery-beat-service">
+<h2>celery beat service<a class="headerlink" href="#celery-beat-service" title="Link to this heading">#</a></h2>
+<p>This configuration file defines the service for running the Celery Beat scheduler. Celery Beat is responsible for scheduling tasks to be run at specific times or intervals.</p>
+<p><code class="docutils literal notranslate"><span class="pre">➜</span>&#160; <span class="pre">conf.d</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cat celery_beat_service.conf
+</pre></div>
+</div>
+<section id="celery-beat-service-conf">
+<h3>celery_beat_service.conf<a class="headerlink" href="#celery-beat-service-conf" title="Link to this heading">#</a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>program:celery_beat_service<span class="o">]</span>
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">command</span><span class="o">=</span>/var/www/backend/monad_celery_backend/env/bin/celery<span class="w"> </span>-A<span class="w"> </span>monad_celery_backend<span class="w"> </span>beat<span class="w"> </span>-E<span class="w"> </span>--logfile<span class="o">=</span>INFO
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">directory</span><span class="o">=</span>/var/www/backend/monad_celery_backend
+<span class="w"> </span><span class="nv">user</span><span class="o">=</span>ubuntu
+<span class="w"> </span><span class="nv">numprocs</span><span class="o">=</span><span class="m">1</span>
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">stdout_logfile</span><span class="o">=</span>/var/log/celery/celery_beat_service.log
+<span class="w"> </span><span class="nv">stderr_logfile</span><span class="o">=</span>/var/log/celery/celery_beat_service.err.log
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">autostart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">autorestart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">startsecs</span><span class="o">=</span><span class="m">0</span>
+<span class="w"> </span><span class="nv">priority</span><span class="o">=</span><span class="m">999</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Key Sections:</p></li>
+</ul>
+<ul class="simple">
+<li><p>Unit: Describes the service and its dependencies.</p></li>
+<li><p>Service: Contains the details for starting the Celery worker. This includes the user and group under which the service runs, the working directory, environment variables, and the command to start the Celery worker.</p></li>
+<li><p>Install: Specifies when the service should be started (e.g., during system boot).</p></li>
+</ul>
+<section id="detail-example">
+<h4>DETAIL EXAMPLE:<a class="headerlink" href="#detail-example" title="Link to this heading">#</a></h4>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>program:celery_beat_service<span class="o">]</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Set<span class="w"> </span>full<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>celery<span class="w"> </span>program<span class="w"> </span><span class="k">if</span><span class="w"> </span>using<span class="w"> </span>virtualenv
+<span class="w"> </span><span class="nv">command</span><span class="o">=</span>/var/www/backend/scheduler.algorithmgeneration.com/celery_env/bin/celery<span class="w"> </span>-A<span class="w"> </span>celeryapi<span class="w"> </span>beat<span class="w"> </span>-E<span class="w"> </span>--logfile<span class="o">=</span>INFO
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>The<span class="w"> </span>directory<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>Django<span class="w"> </span>project
+<span class="w"> </span><span class="nv">directory</span><span class="o">=</span>/var/www/backend/scheduler.algorithmgeneration.com
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>If<span class="w"> </span>supervisord<span class="w"> </span>is<span class="w"> </span>run<span class="w"> </span>as<span class="w"> </span>the<span class="w"> </span>root<span class="w"> </span>user,<span class="w"> </span>switch<span class="w"> </span>users<span class="w"> </span>to<span class="w"> </span>this<span class="w"> </span>UNIX<span class="w"> </span>user<span class="w"> </span>account<span class="w"> </span>before<span class="w"> </span>doing<span class="w"> </span>any<span class="w"> </span>processing.
+<span class="w"> </span><span class="nv">user</span><span class="o">=</span>ubuntu
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Supervisor<span class="w"> </span>will<span class="w"> </span>start<span class="w"> </span>as<span class="w"> </span>many<span class="w"> </span>instances<span class="w"> </span>of<span class="w"> </span>this<span class="w"> </span>program<span class="w"> </span>as<span class="w"> </span>named<span class="w"> </span>by<span class="w"> </span>numprocs
+<span class="w"> </span><span class="nv">numprocs</span><span class="o">=</span><span class="m">1</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Put<span class="w"> </span>process<span class="w"> </span>stdout<span class="w"> </span>output<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>file
+<span class="w"> </span><span class="nv">stdout_logfile</span><span class="o">=</span>/var/log/celery/celery_beat_service.log
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Put<span class="w"> </span>process<span class="w"> </span>stderr<span class="w"> </span>output<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>file
+<span class="w"> </span><span class="nv">stderr_logfile</span><span class="o">=</span>/var/log/celery/celery_beat_service.err.log
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>If<span class="w"> </span>true,<span class="w"> </span>this<span class="w"> </span>program<span class="w"> </span>will<span class="w"> </span>start<span class="w"> </span>automatically<span class="w"> </span>when<span class="w"> </span>supervisord<span class="w"> </span>is<span class="w"> </span>started
+<span class="w"> </span><span class="nv">autostart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>May<span class="w"> </span>be<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>false,<span class="w"> </span>unexpected,<span class="w"> </span>or<span class="w"> </span>true.<span class="w"> </span>If<span class="w"> </span>false,<span class="w"> </span>the<span class="w"> </span>process<span class="w"> </span>will<span class="w"> </span>never<span class="w"> </span>be<span class="w"> </span>autorestarted.<span class="w"> </span>If<span class="w"> </span>unexpected,<span class="w"> </span>the<span class="w"> </span>process<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>restart<span class="w"> </span>when<span class="w"> </span>the<span class="w"> </span>program
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>exits<span class="w"> </span>with<span class="w"> </span>an<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code<span class="w"> </span>that<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>codes<span class="w"> </span>associated<span class="w"> </span>with<span class="w"> </span>this<span class="w"> </span>process’<span class="w"> </span>configuration<span class="w"> </span><span class="o">(</span>see<span class="w"> </span>exitcodes<span class="o">)</span>.<span class="w"> </span>If<span class="w"> </span>true,<span class="w"> </span>the<span class="w"> </span>process<span class="w"> </span>will<span class="w"> </span>be
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>unconditionally<span class="w"> </span>restarted<span class="w"> </span>when<span class="w"> </span>it<span class="w"> </span>exits,<span class="w"> </span>without<span class="w"> </span>regard<span class="w"> </span>to<span class="w"> </span>its<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
+<span class="w"> </span><span class="nv">autorestart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>The<span class="w"> </span>total<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>seconds<span class="w"> </span>which<span class="w"> </span>the<span class="w"> </span>program<span class="w"> </span>needs<span class="w"> </span>to<span class="w"> </span>stay<span class="w"> </span>running<span class="w"> </span>after<span class="w"> </span>a<span class="w"> </span>startup<span class="w"> </span>to<span class="w"> </span>consider<span class="w"> </span>the<span class="w"> </span>start<span class="w"> </span>successful.
+<span class="w"> </span><span class="nv">startsecs</span><span class="o">=</span><span class="m">0</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>your<span class="w"> </span>broker<span class="w"> </span>is<span class="w"> </span>supervised,<span class="w"> </span><span class="nb">set</span><span class="w"> </span>its<span class="w"> </span>priority<span class="w"> </span>higher<span class="w"> </span>so<span class="w"> </span>it<span class="w"> </span>starts<span class="w"> </span>first
+<span class="w"> </span><span class="nv">priority</span><span class="o">=</span><span class="m">999</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="celery-flower-service">
+<h2>celery flower service<a class="headerlink" href="#celery-flower-service" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">➜</span>&#160; <span class="pre">conf.d</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cat celery_flower_service.conf 
+</pre></div>
+</div>
+<section id="celery-flower-service-conf">
+<h3>celery_flower_service.conf<a class="headerlink" href="#celery-flower-service-conf" title="Link to this heading">#</a></h3>
+<p>This configuration file defines the service for running Celery Flower. Flower is a real-time web-based monitoring tool for Celery.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>program:celery_flower_service<span class="o">]</span>
+<span class="w"> </span><span class="nv">command</span><span class="o">=</span>/var/www/backend/monad_celery_backend/env/bin/celery<span class="w"> </span>-A<span class="w"> </span>monad_celery_backend<span class="w"> </span>flower<span class="w"> </span>--loglevel<span class="o">=</span>INFO
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">directory</span><span class="o">=</span>/var/www/backend/monad_celery_backend
+<span class="w"> </span><span class="nv">user</span><span class="o">=</span>ubuntu
+<span class="w"> </span><span class="nv">numprocs</span><span class="o">=</span><span class="m">1</span>
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">stdout_logfile</span><span class="o">=</span>/var/log/celery/celery_flower_service.log
+<span class="w"> </span><span class="nv">stderr_logfile</span><span class="o">=</span>/var/log/celery/celery_flower_service.err.log
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">autostart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">autorestart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">startsecs</span><span class="o">=</span><span class="m">10</span>
+<span class="w"> </span><span class="nv">stopwaitsecs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="w"> </span><span class="nv">killasgroup</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">priority</span><span class="o">=</span><span class="m">998</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Key Sections:</p></li>
+</ul>
+<ul class="simple">
+<li><p>Unit: Describes the service and its dependencies.</p></li>
+<li><p>Service: Contains the details for starting the Celery Flower web interface. This includes the user and group under which the service runs, the working directory, environment variables, and the command to start Flower.</p></li>
+<li><p>Install: Specifies when the service should be started (e.g., during system boot).</p></li>
+</ul>
+<section id="id1">
+<h4>DETAIL Example:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>program:celery_flower_service<span class="o">]</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Set<span class="w"> </span>full<span class="w"> </span>path<span class="w"> </span>to<span class="w"> </span>celery<span class="w"> </span>program<span class="w"> </span><span class="k">if</span><span class="w"> </span>using<span class="w"> </span>virtualenv
+<span class="w"> </span><span class="nv">command</span><span class="o">=</span>/var/www/backend/scheduler.algorithmgeneration.com/celery_env/bin/celery<span class="w"> </span>-A<span class="w"> </span>celeryapi<span class="w"> </span>flower<span class="w"> </span>--loglevel<span class="o">=</span>INFO
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>The<span class="w"> </span>directory<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>Django<span class="w"> </span>project
+<span class="w"> </span><span class="nv">directory</span><span class="o">=</span>/var/www/backend/scheduler.algorithmgeneration.com
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>If<span class="w"> </span>supervisord<span class="w"> </span>is<span class="w"> </span>run<span class="w"> </span>as<span class="w"> </span>the<span class="w"> </span>root<span class="w"> </span>user,<span class="w"> </span>switch<span class="w"> </span>users<span class="w"> </span>to<span class="w"> </span>this<span class="w"> </span>UNIX<span class="w"> </span>user<span class="w"> </span>account<span class="w"> </span>before<span class="w"> </span>doing<span class="w"> </span>any<span class="w"> </span>processing.
+<span class="w"> </span><span class="nv">user</span><span class="o">=</span>ubuntu
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Supervisor<span class="w"> </span>will<span class="w"> </span>start<span class="w"> </span>as<span class="w"> </span>many<span class="w"> </span>instances<span class="w"> </span>of<span class="w"> </span>this<span class="w"> </span>program<span class="w"> </span>as<span class="w"> </span>named<span class="w"> </span>by<span class="w"> </span>numprocs
+<span class="w"> </span><span class="nv">numprocs</span><span class="o">=</span><span class="m">1</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Put<span class="w"> </span>process<span class="w"> </span>stdout<span class="w"> </span>output<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>file
+<span class="w"> </span><span class="nv">stdout_logfile</span><span class="o">=</span>/var/log/celery/celery_flower_service.log
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Put<span class="w"> </span>process<span class="w"> </span>stderr<span class="w"> </span>output<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>file
+<span class="w"> </span><span class="nv">stderr_logfile</span><span class="o">=</span>/var/log/celery/celery_flower_service.err.log
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>If<span class="w"> </span>true,<span class="w"> </span>this<span class="w"> </span>program<span class="w"> </span>will<span class="w"> </span>start<span class="w"> </span>automatically<span class="w"> </span>when<span class="w"> </span>supervisord<span class="w"> </span>is<span class="w"> </span>started
+<span class="w"> </span><span class="nv">autostart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>May<span class="w"> </span>be<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>false,<span class="w"> </span>unexpected,<span class="w"> </span>or<span class="w"> </span>true.<span class="w"> </span>If<span class="w"> </span>false,<span class="w"> </span>the<span class="w"> </span>process<span class="w"> </span>will<span class="w"> </span>never<span class="w"> </span>be<span class="w"> </span>autorestarted.<span class="w"> </span>If<span class="w"> </span>unexpected,<span class="w"> </span>the<span class="w"> </span>process<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>restart<span class="w"> </span>when<span class="w"> </span>the<span class="w"> </span>program
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>exits<span class="w"> </span>with<span class="w"> </span>an<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code<span class="w"> </span>that<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>codes<span class="w"> </span>associated<span class="w"> </span>with<span class="w"> </span>this<span class="w"> </span>process’<span class="w"> </span>configuration<span class="w"> </span><span class="o">(</span>see<span class="w"> </span>exitcodes<span class="o">)</span>.<span class="w"> </span>If<span class="w"> </span>true,<span class="w"> </span>the<span class="w"> </span>process<span class="w"> </span>will<span class="w"> </span>be
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>unconditionally<span class="w"> </span>restarted<span class="w"> </span>when<span class="w"> </span>it<span class="w"> </span>exits,<span class="w"> </span>without<span class="w"> </span>regard<span class="w"> </span>to<span class="w"> </span>its<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code.
+<span class="w"> </span><span class="nv">autorestart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>The<span class="w"> </span>total<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>seconds<span class="w"> </span>which<span class="w"> </span>the<span class="w"> </span>program<span class="w"> </span>needs<span class="w"> </span>to<span class="w"> </span>stay<span class="w"> </span>running<span class="w"> </span>after<span class="w"> </span>a<span class="w"> </span>startup<span class="w"> </span>to<span class="w"> </span>consider<span class="w"> </span>the<span class="w"> </span>start<span class="w"> </span>successful.
+<span class="w"> </span><span class="nv">startsecs</span><span class="o">=</span><span class="m">10</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>Need<span class="w"> </span>to<span class="w"> </span><span class="nb">wait</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>currently<span class="w"> </span>executing<span class="w"> </span>tasks<span class="w"> </span>to<span class="w"> </span>finish<span class="w"> </span>at<span class="w"> </span>shutdown.<span class="w"> </span>Increase<span class="w"> </span>this<span class="w"> </span><span class="k">if</span><span class="w"> </span>you<span class="w"> </span>have<span class="w"> </span>very<span class="w"> </span>long<span class="w"> </span>running<span class="w"> </span>tasks.
+<span class="w"> </span><span class="nv">stopwaitsecs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span>When<span class="w"> </span>resorting<span class="w"> </span>to<span class="w"> </span>send<span class="w"> </span>SIGKILL<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>program<span class="w"> </span>to<span class="w"> </span>terminate<span class="w"> </span>it<span class="w"> </span>send<span class="w"> </span>SIGKILL<span class="w"> </span>to<span class="w"> </span>its<span class="w"> </span>whole<span class="w"> </span>process<span class="w"> </span>group<span class="w"> </span>instead,<span class="w"> </span>taking<span class="w"> </span>care<span class="w"> </span>of<span class="w"> </span>its<span class="w"> </span>children<span class="w"> </span>as<span class="w"> </span>well.
+<span class="w"> </span><span class="nv">killasgroup</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>your<span class="w"> </span>broker<span class="w"> </span>is<span class="w"> </span>supervised,<span class="w"> </span><span class="nb">set</span><span class="w"> </span>its<span class="w"> </span>priority<span class="w"> </span>higher<span class="w"> </span>so<span class="w"> </span>it<span class="w"> </span>starts<span class="w"> </span>first
+<span class="w"> </span><span class="nv">priority</span><span class="o">=</span><span class="m">998</span>
+</pre></div>
+</div>
+</section>
+<section id="start-celery-service">
+<h4>Start Celery Service :<a class="headerlink" href="#start-celery-service" title="Link to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo service supervisor start
+
+sudo systemctl restart supervisor.service
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="in-short-total-monad-celery-configurations-file-are">
+<h2>IN short total monad Celery configurations file are :<a class="headerlink" href="#in-short-total-monad-celery-configurations-file-are" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">celery_beat_service.conf</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>program:celery_beat_service<span class="o">]</span>
+
+<span class="w"> </span><span class="p">;</span><span class="nv">command</span><span class="o">=</span>/var/www/backend/monad_celery_backend/env/bin/celery<span class="w"> </span>-A<span class="w"> </span>monad_celery_backend<span class="w"> </span>beat<span class="w"> </span>-E<span class="w"> </span>--logfile<span class="o">=</span>INFO
+<span class="w"> </span><span class="nv">command</span><span class="o">=</span>/var/www/backend/monad_celery_backend/env/bin/celery<span class="w"> </span>-A<span class="w"> </span>monad_celery_backend<span class="w"> </span>beat<span class="w"> </span>-l<span class="w"> </span>info
+
+<span class="w"> </span><span class="nv">directory</span><span class="o">=</span>/var/www/backend/monad_celery_backend
+<span class="w"> </span><span class="nv">user</span><span class="o">=</span>root
+<span class="w"> </span><span class="nv">numprocs</span><span class="o">=</span><span class="m">1</span>
+
+<span class="w"> </span><span class="nv">stdout_logfile</span><span class="o">=</span>/var/log/celery/celery_beat_service.log
+<span class="w"> </span><span class="nv">stderr_logfile</span><span class="o">=</span>/var/log/celery/celery_beat_service.err.log
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">autostart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">autorestart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">startsecs</span><span class="o">=</span><span class="m">0</span>
+<span class="w"> </span><span class="nv">priority</span><span class="o">=</span><span class="m">999</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">celery_flower_service.conf</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>program:celery_flower_service<span class="o">]</span>
+<span class="w"> </span><span class="nv">command</span><span class="o">=</span>/var/www/backend/monad_celery_backend/env/bin/celery<span class="w"> </span>-A<span class="w"> </span>monad_celery_backend<span class="w"> </span>flower<span class="w"> </span>--loglevel<span class="o">=</span>INFO
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">directory</span><span class="o">=</span>/var/www/backend/monad_celery_backend
+<span class="w"> </span><span class="nv">user</span><span class="o">=</span>root
+<span class="w"> </span><span class="nv">numprocs</span><span class="o">=</span><span class="m">1</span>
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">stdout_logfile</span><span class="o">=</span>/var/log/celery/celery_flower_service.log
+<span class="w"> </span><span class="nv">stderr_logfile</span><span class="o">=</span>/var/log/celery/celery_flower_service.err.log
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">autostart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">autorestart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">startsecs</span><span class="o">=</span><span class="m">10</span>
+<span class="w"> </span><span class="nv">stopwaitsecs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="w"> </span><span class="nv">killasgroup</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">priority</span><span class="o">=</span><span class="m">998</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">celery_service.conf</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>program:celery_service<span class="o">]</span>
+<span class="p">;</span><span class="w"> </span><span class="nv">command</span><span class="o">=</span>/var/www/backend/monad_celery_backend/env/bin/celery<span class="w"> </span>-A<span class="w"> </span>monad_celery_backend.celery<span class="w"> </span>worker<span class="w"> </span>-E<span class="w"> </span>--loglevel<span class="o">=</span>INFO
+<span class="w"> </span><span class="nv">command</span><span class="o">=</span>/var/www/backend/monad_celery_backend/env/bin/celery<span class="w"> </span>-A<span class="w"> </span>monad_celery_backend.celery<span class="w"> </span>worker<span class="w"> </span>--pool<span class="o">=</span>prefork<span class="w"> </span>-l<span class="w"> </span>info
+
+<span class="w"> </span><span class="nv">directory</span><span class="o">=</span>/var/www/backend/monad_celery_backend
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">user</span><span class="o">=</span>root
+<span class="w"> </span><span class="nv">numprocs</span><span class="o">=</span><span class="m">1</span>
+
+<span class="w"> </span><span class="nv">stdout_logfile</span><span class="o">=</span>/var/log/celery/celery_service.log
+<span class="w"> </span><span class="nv">stderr_logfile</span><span class="o">=</span>/var/log/celery/celery_service.err.log
+<span class="w"> </span>
+<span class="w"> </span><span class="nv">autostart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">autorestart</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">startsecs</span><span class="o">=</span><span class="m">10</span>
+<span class="w"> </span><span class="nv">stopwaitsecs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">600</span>
+<span class="w"> </span><span class="nv">killasgroup</span><span class="o">=</span><span class="nb">true</span>
+<span class="w"> </span><span class="nv">priority</span><span class="o">=</span><span class="m">998</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../celery.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">celery</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../daphne.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">daphne</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-supervisor-by">Install supervisor by :</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#celery-service">celery service</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#celery-service-conf">celery_service.conf</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#celery-beat-service">celery beat service</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#celery-beat-service-conf">celery_beat_service.conf</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#detail-example">DETAIL EXAMPLE:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#celery-flower-service">celery flower service</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#celery-flower-service-conf">celery_flower_service.conf</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">DETAIL Example:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#start-celery-service">Start Celery Service :</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-short-total-monad-celery-configurations-file-are">IN short total monad Celery configurations file are :</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

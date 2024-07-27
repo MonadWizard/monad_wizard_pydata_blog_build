@@ -28,6 +28,7 @@ Infrastructure as Code (IaC) allows teams to manage and provision infrastructure
    
    git
    linux
+   celery
    daphne
    gunicorn
    nginx

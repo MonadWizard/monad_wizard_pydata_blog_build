@@ -1,0 +1,184 @@
+# Oh My Zsh & Powerlevel10k
+
+Oh My Zsh is a delightful, open-source, community-driven framework for managing your Zsh configuration. This guide will walk you through installing Oh My Zsh, adding useful extensions, and setting up the Powerlevel10k theme along with the required font.
+
+## Step 1: Install Zsh
+
+If you don't already have Zsh installed, you can install it using the package manager for your operating system.
+
+### For Ubuntu/Debian:
+```sh
+sudo apt update
+sudo apt install zsh
+```
+
+
+### For Fedora:
+```sh
+sudo dnf install zsh
+```
+
+### For macOS:
+```sh
+brew install zsh
+```
+
+## Step 2: Set Zsh as Default Shell
+
+you can check your current shell by 
+
+```sh
+echo $SHELL
+```
+
+it return  `/bin/bash` if my linux shell is not change to zsh
+
+
+Now, to change your shell, you can use `usermod` or `chsh` command. 
+
+For example, to change the default shell for the user `monad`, simply run;
+
+```sh
+sudo usermod -s $(which zsh) monad
+```
+
+or 
+
+```bash
+chsh -s $(which zsh)
+```
+
+
+
+
+
+
+
+
+
+
+## Step 3: Install Oh My Zsh
+
+Install Oh My Zsh using the following command:
+
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+## Step 4: Install Powerlevel10k Theme
+
+Clone the Powerlevel10k repository:
+
+```bash
+
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10k
+```
+
+now Set Powerlevel10k as the theme in your .zshrc:
+
+```bash
+sed -i 's/ZSH_THEME=".*"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
+```
+
+
+Restart Zsh to load the theme:
+```bash
+exec zsh
+```
+
+
+
+
+## Step 5: Install Recommended Fonts for Powerlevel10k
+
+Powerlevel10k requires a font with icons. It is recommended to install MesloLGS NF.
+
+### Download the font:
+- [MesloLGS NF Regular](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf)
+- [MesloLGS NF Bold](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf)
+- [MesloLGS NF Italic](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf)
+- [MesloLGS NF Bold Italic](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf)
+
+### Install the font:
+1. Download the fonts from the links above.
+2. Open the downloaded files and click "Install" for each one.
+
+### Set the font in your terminal:
+- **iTerm2**: iTerm2 → Preferences → Profiles → Text → Change Font → Select `MesloLGS NF`.
+- **Terminal.app**: Terminal → Preferences → Profiles → Text → Change Font → Select `MesloLGS NF`.
+- **VSCode**: File → Preferences → Settings → Search for `Font Family` → Set to `MesloLGS NF`.
+
+
+
+## Step 6: Configure Powerlevel10k
+Run the configuration wizard:
+
+```bash
+p10k configure
+```
+Follow the prompts to customize your prompt.
+
+## Step 7: Add Useful Plugins
+
+
+### Install the plugins:
+
+`Zsh Syntax Highlighting`
+
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+```
+
+`Zsh Autosuggestions`
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+```
+
+Edit your .zshrc file to include useful plugins. Below are some recommended plugins:
+
+```bash
+
+plugins=(
+  git
+  z
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
+```
+
+
+### Apply the changes:
+```bash
+source ~/.zshrc
+```
+
+
+
+
+## Step 8: Customize .zshrc for Additional Functionality
+
+Here are some useful configurations you can add to your .zshrc:
+
+* Alias for Common Commands:
+
+```bash
+alias ll='ls -la'
+alias gs='git status'
+alias gp='git pull'
+alias gf='git fetch'
+alias gc='git commit -v'
+alias gl='git log --oneline --graph --decorate'
+```
+
+* Customize the Prompt:
+```bash
+export DEFAULT_USER=$(whoami)
+```
+
+* Enable Auto-Completion:
+
+```bash
+autoload -Uz compinit
+compinit
+```

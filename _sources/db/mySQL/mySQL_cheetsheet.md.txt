@@ -1,8 +1,5 @@
 
-
-# PostgreSQL USE on Linux Terminal
-
-mySQL cheat-sheet 😸
+# mySQL cheat-sheet 😸
 
 > Help with SQL commands to interact with a MySQL database
 

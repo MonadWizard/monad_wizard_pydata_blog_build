@@ -6,6 +6,7 @@ linux
     :maxdepth: 9
     :caption: linux blog
 
+    linux/zsh_install
     linux/pacman
 
 

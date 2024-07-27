@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Package Manager (pacman) &#8212; MonadWizard Blog 0.01 documentation</title>
+    <title>Oh My Zsh &amp; Powerlevel10k &#8212; MonadWizard Blog 0.01 documentation</title>
   
   
   
@@ -38,13 +38,13 @@
     <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_ops/linux/pacman';</script>
-    <link rel="canonical" href="blog.monadwizard.xyz/dev_ops/linux/pacman.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_ops/linux/zsh_install';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/dev_ops/linux/zsh_install.html" />
     <link rel="icon" href="../../_static/logo.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="celery" href="../celery.html" />
-    <link rel="prev" title="Oh My Zsh &amp; Powerlevel10k" href="zsh_install.html" />
+    <link rel="next" title="Package Manager (pacman)" href="pacman.html" />
+    <link rel="prev" title="linux" href="../linux.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -490,8 +490,8 @@ document.write(`
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../linux.html">linux</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="zsh_install.html">Oh My Zsh &amp; Powerlevel10k</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Package Manager (pacman)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Oh My Zsh &amp; Powerlevel10k</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pacman.html">Package Manager (pacman)</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../celery.html">celery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -566,7 +566,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../linux.html" class="nav-link">linux</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Package...</li>
+    <li class="breadcrumb-item active" aria-current="page">Oh My Zsh...</li>
   </ul>
 </nav>
 </div>
@@ -583,227 +583,162 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="package-manager-pacman">
-<h1>Package Manager (pacman)<a class="headerlink" href="#package-manager-pacman" title="Link to this heading">#</a></h1>
-<section id="update-and-upgrade">
-<h2>Update and Upgrade<a class="headerlink" href="#update-and-upgrade" title="Link to this heading">#</a></h2>
-<section id="update-package-list">
-<h3>Update package list<a class="headerlink" href="#update-package-list" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Syy</span>
+  <section id="oh-my-zsh-powerlevel10k">
+<h1>Oh My Zsh &amp; Powerlevel10k<a class="headerlink" href="#oh-my-zsh-powerlevel10k" title="Link to this heading">#</a></h1>
+<p>Oh My Zsh is a delightful, open-source, community-driven framework for managing your Zsh configuration. This guide will walk you through installing Oh My Zsh, adding useful extensions, and setting up the Powerlevel10k theme along with the required font.</p>
+<section id="step-1-install-zsh">
+<h2>Step 1: Install Zsh<a class="headerlink" href="#step-1-install-zsh" title="Link to this heading">#</a></h2>
+<p>If you don’t already have Zsh installed, you can install it using the package manager for your operating system.</p>
+<section id="for-ubuntu-debian">
+<h3>For Ubuntu/Debian:<a class="headerlink" href="#for-ubuntu-debian" title="Link to this heading">#</a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zsh
 </pre></div>
 </div>
 </section>
-<section id="update-and-upgrade-all">
-<h3>Update and upgrade all<a class="headerlink" href="#update-and-upgrade-all" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Syu</span>
+<section id="for-fedora">
+<h3>For Fedora:<a class="headerlink" href="#for-fedora" title="Link to this heading">#</a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>zsh
 </pre></div>
 </div>
 </section>
-<section id="update-and-upgrade-aur-packages">
-<h3>Update and upgrade aur packages<a class="headerlink" href="#update-and-upgrade-aur-packages" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">yaourt</span> <span class="o">-</span><span class="n">Syu</span> <span class="o">--</span><span class="n">aur</span>
-</pre></div>
-</div>
-</section>
-<section id="update-and-upgrade-yaourt-packages">
-<h3>Update and upgrade yaourt packages<a class="headerlink" href="#update-and-upgrade-yaourt-packages" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">yaourt</span> <span class="o">-</span><span class="n">Syua</span>
-</pre></div>
-</div>
-</section>
-<section id="get-distro-version">
-<h3>Get distro version<a class="headerlink" href="#get-distro-version" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">lsb_release</span> <span class="o">-</span><span class="n">a</span>
+<section id="for-macos">
+<h3>For macOS:<a class="headerlink" href="#for-macos" title="Link to this heading">#</a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>zsh
 </pre></div>
 </div>
 </section>
 </section>
-<section id="install-or-find-package">
-<h2>Install or find Package<a class="headerlink" href="#install-or-find-package" title="Link to this heading">#</a></h2>
-<section id="install-specific-package">
-<h3>Install specific package<a class="headerlink" href="#install-specific-package" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">pkgname</span>
+<section id="step-2-set-zsh-as-default-shell">
+<h2>Step 2: Set Zsh as Default Shell<a class="headerlink" href="#step-2-set-zsh-as-default-shell" title="Link to this heading">#</a></h2>
+<p>you can check your current shell by</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="nv">$SHELL</span>
+</pre></div>
+</div>
+<p>it return  <code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code> if my linux shell is not change to zsh</p>
+<p>Now, to change your shell, you can use <code class="docutils literal notranslate"><span class="pre">usermod</span></code> or <code class="docutils literal notranslate"><span class="pre">chsh</span></code> command.</p>
+<p>For example, to change the default shell for the user <code class="docutils literal notranslate"><span class="pre">monad</span></code>, simply run;</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>usermod<span class="w"> </span>-s<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>zsh<span class="k">)</span><span class="w"> </span>monad
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chsh<span class="w"> </span>-s<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>zsh<span class="k">)</span>
 </pre></div>
 </div>
 </section>
-<section id="find-available-packages">
-<h3>Find available packages<a class="headerlink" href="#find-available-packages" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Ss</span> <span class="n">keyword</span>
+<section id="step-3-install-oh-my-zsh">
+<h2>Step 3: Install Oh My Zsh<a class="headerlink" href="#step-3-install-oh-my-zsh" title="Link to this heading">#</a></h2>
+<p>Install Oh My Zsh using the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </section>
-<section id="find-available-local-packages">
-<h3>Find available local packages<a class="headerlink" href="#find-available-local-packages" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Qs</span> <span class="n">keyword</span>
+<section id="step-4-install-powerlevel10k-theme">
+<h2>Step 4: Install Powerlevel10k Theme<a class="headerlink" href="#step-4-install-powerlevel10k-theme" title="Link to this heading">#</a></h2>
+<p>Clone the Powerlevel10k repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>https://github.com/romkatv/powerlevel10k.git<span class="w"> </span><span class="nv">$ZSH</span>/custom/themes/powerlevel10k
+</pre></div>
+</div>
+<p>now Set Powerlevel10k as the theme in your .zshrc:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/ZSH_THEME=&quot;.*&quot;/ZSH_THEME=&quot;powerlevel10k\/powerlevel10k&quot;/&#39;</span><span class="w"> </span>~/.zshrc
+</pre></div>
+</div>
+<p>Restart Zsh to load the theme:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">exec</span><span class="w"> </span>zsh
 </pre></div>
 </div>
 </section>
-<section id="show-packages-of-group-xorg">
-<h3>Show packages of group xorg<a class="headerlink" href="#show-packages-of-group-xorg" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pacman</span> <span class="o">-</span><span class="n">Sg</span> <span class="n">xorg</span>
+<section id="step-5-install-recommended-fonts-for-powerlevel10k">
+<h2>Step 5: Install Recommended Fonts for Powerlevel10k<a class="headerlink" href="#step-5-install-recommended-fonts-for-powerlevel10k" title="Link to this heading">#</a></h2>
+<p>Powerlevel10k requires a font with icons. It is recommended to install MesloLGS NF.</p>
+<section id="download-the-font">
+<h3>Download the font:<a class="headerlink" href="#download-the-font" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf">MesloLGS NF Regular</a></p></li>
+<li><p><a class="reference external" href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf">MesloLGS NF Bold</a></p></li>
+<li><p><a class="reference external" href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf">MesloLGS NF Italic</a></p></li>
+<li><p><a class="reference external" href="https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf">MesloLGS NF Bold Italic</a></p></li>
+</ul>
+</section>
+<section id="install-the-font">
+<h3>Install the font:<a class="headerlink" href="#install-the-font" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Download the fonts from the links above.</p></li>
+<li><p>Open the downloaded files and click “Install” for each one.</p></li>
+</ol>
+</section>
+<section id="set-the-font-in-your-terminal">
+<h3>Set the font in your terminal:<a class="headerlink" href="#set-the-font-in-your-terminal" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>iTerm2</strong>: iTerm2 → Preferences → Profiles → Text → Change Font → Select <code class="docutils literal notranslate"><span class="pre">MesloLGS</span> <span class="pre">NF</span></code>.</p></li>
+<li><p><strong>Terminal.app</strong>: Terminal → Preferences → Profiles → Text → Change Font → Select <code class="docutils literal notranslate"><span class="pre">MesloLGS</span> <span class="pre">NF</span></code>.</p></li>
+<li><p><strong>VSCode</strong>: File → Preferences → Settings → Search for <code class="docutils literal notranslate"><span class="pre">Font</span> <span class="pre">Family</span></code> → Set to <code class="docutils literal notranslate"><span class="pre">MesloLGS</span> <span class="pre">NF</span></code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="step-6-configure-powerlevel10k">
+<h2>Step 6: Configure Powerlevel10k<a class="headerlink" href="#step-6-configure-powerlevel10k" title="Link to this heading">#</a></h2>
+<p>Run the configuration wizard:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>p10k<span class="w"> </span>configure
+</pre></div>
+</div>
+<p>Follow the prompts to customize your prompt.</p>
+</section>
+<section id="step-7-add-useful-plugins">
+<h2>Step 7: Add Useful Plugins<a class="headerlink" href="#step-7-add-useful-plugins" title="Link to this heading">#</a></h2>
+<section id="install-the-plugins">
+<h3>Install the plugins:<a class="headerlink" href="#install-the-plugins" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Zsh</span> <span class="pre">Syntax</span> <span class="pre">Highlighting</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/zsh-users/zsh-syntax-highlighting.git<span class="w"> </span><span class="nv">$ZSH_CUSTOM</span>/plugins/zsh-syntax-highlighting
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Zsh</span> <span class="pre">Autosuggestions</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/zsh-users/zsh-autosuggestions<span class="w"> </span><span class="nv">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions
+</pre></div>
+</div>
+<p>Edit your .zshrc file to include useful plugins. Below are some recommended plugins:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">plugins</span><span class="o">=(</span>
+<span class="w">  </span>git
+<span class="w">  </span>z
+<span class="w">  </span>zsh-syntax-highlighting
+<span class="w">  </span>zsh-autosuggestions
+<span class="o">)</span>
 </pre></div>
 </div>
 </section>
-<section id="list-all-files-from-package">
-<h3>List all files from package<a class="headerlink" href="#list-all-files-from-package" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pacman</span> <span class="o">-</span><span class="n">Ql</span> <span class="n">pkgname</span>
-</pre></div>
-</div>
-</section>
-<section id="pacman-log-file">
-<h3>Pacman log file<a class="headerlink" href="#pacman-log-file" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">pacman</span><span class="o">.</span><span class="n">log</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="remove-package">
-<h2>Remove Package<a class="headerlink" href="#remove-package" title="Link to this heading">#</a></h2>
-<section id="remove-only-a-package">
-<h3>Remove only a package<a class="headerlink" href="#remove-only-a-package" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pacman</span> <span class="o">-</span><span class="n">R</span> <span class="n">package_name</span>
-</pre></div>
-</div>
-</section>
-<section id="to-remove-a-package-and-its-dependencies-which-are-not-required-by-any-other-installed-package">
-<h3>To remove a package and its dependencies which are not required by any other installed package<a class="headerlink" href="#to-remove-a-package-and-its-dependencies-which-are-not-required-by-any-other-installed-package" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Rs</span> <span class="n">package_name</span>
-</pre></div>
-</div>
-</section>
-<section id="list-all-packages-no-longer-required-as-dependencies">
-<h3>List all packages no longer required as dependencies<a class="headerlink" href="#list-all-packages-no-longer-required-as-dependencies" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Qdt</span>
-</pre></div>
-</div>
-</section>
-<section id="clean-package-cache">
-<h3>Clean package cache<a class="headerlink" href="#clean-package-cache" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pacman</span> <span class="o">-</span><span class="n">Sc</span>
-</pre></div>
-</div>
-</section>
-<section id="screen-recording">
-<h3>Screen recording<a class="headerlink" href="#screen-recording" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">gtk</span><span class="o">-</span><span class="n">recordmydesktop</span>
-</pre></div>
-</div>
-</section>
-<section id="mount-iso-file">
-<h3>Mount iso file<a class="headerlink" href="#mount-iso-file" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">fuseiso</span> <span class="o">-</span><span class="n">p</span>  <span class="n">testimage</span><span class="o">.</span><span class="n">iso</span> <span class="n">testimagemountpoint</span>
-</pre></div>
-</div>
-</section>
-<section id="to-unmount">
-<h3>To unmount<a class="headerlink" href="#to-unmount" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">fusermount</span> <span class="o">-</span><span class="n">u</span> <span class="o">&lt;</span><span class="n">mountpoint</span><span class="o">&gt;</span>
-</pre></div>
-</div>
-</section>
-<section id="get-ip-address">
-<h3>Get IP address<a class="headerlink" href="#get-ip-address" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">ip</span> <span class="n">addr</span>
+<section id="apply-the-changes">
+<h3>Apply the changes:<a class="headerlink" href="#apply-the-changes" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.zshrc
 </pre></div>
 </div>
 </section>
 </section>
-<section id="operators">
-<h2>Operators<a class="headerlink" href="#operators" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>used like</p></th>
-<th class="head"><p>Specifications</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>-D, –database</p></td>
-<td><p>Operate on the package database</p></td>
-</tr>
-<tr class="row-odd"><td><p>-Q, –query</p></td>
-<td><p>Query the package database</p></td>
-</tr>
-<tr class="row-even"><td><p>-R, –remove</p></td>
-<td><p>Remove package(s) from the system</p></td>
-</tr>
-<tr class="row-odd"><td><p>-S, –sync</p></td>
-<td><p>Synchr­onize packages</p></td>
-</tr>
-<tr class="row-even"><td><p>-T, –deptest</p></td>
-<td><p>Check depend­encies</p></td>
-</tr>
-<tr class="row-odd"><td><p>-U, –upgrade</p></td>
-<td><p>Upgrade or add package(s) to the system</p></td>
-</tr>
-<tr class="row-even"><td><p>-F, –files</p></td>
-<td><p>Query the files database</p></td>
-</tr>
-<tr class="row-odd"><td><p>-V, –version</p></td>
-<td><p>Display version and exit</p></td>
-</tr>
-<tr class="row-even"><td><p>-h, –help</p></td>
-<td><p>Display syntax for the given operation</p></td>
-</tr>
-</tbody>
-</table>
+<section id="step-8-customize-zshrc-for-additional-functionality">
+<h2>Step 8: Customize .zshrc for Additional Functionality<a class="headerlink" href="#step-8-customize-zshrc-for-additional-functionality" title="Link to this heading">#</a></h2>
+<p>Here are some useful configurations you can add to your .zshrc:</p>
+<ul class="simple">
+<li><p>Alias for Common Commands:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">alias</span><span class="w"> </span><span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -la&#39;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">gs</span><span class="o">=</span><span class="s1">&#39;git status&#39;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">gp</span><span class="o">=</span><span class="s1">&#39;git pull&#39;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">gf</span><span class="o">=</span><span class="s1">&#39;git fetch&#39;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">gc</span><span class="o">=</span><span class="s1">&#39;git commit -v&#39;</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">gl</span><span class="o">=</span><span class="s1">&#39;git log --oneline --graph --decorate&#39;</span>
+</pre></div>
 </div>
-</section>
-<section id="options">
-<h2>Options<a class="headerlink" href="#options" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>used like</p></th>
-<th class="head"><p>Specifications</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>-b, –dbpath</p></td>
-<td><p>Specify an altern­ative database location</p></td>
-</tr>
-<tr class="row-odd"><td><p>-r, –root</p></td>
-<td><p>Specify an altern­ative instal­lation root</p></td>
-</tr>
-<tr class="row-even"><td><p>-v, –verbose</p></td>
-<td><p>Output paths such as as the Root, Conf File, DB Path, Cache Dirs</p></td>
-</tr>
-<tr class="row-odd"><td><p>–arch &lt;ar­ch&gt;</p></td>
-<td><p>Specify an alternate archit­ecture</p></td>
-</tr>
-<tr class="row-even"><td><p>–cachedir &lt;di­r&gt;</p></td>
-<td><p>Specify al altern­ative package cache location</p></td>
-</tr>
-<tr class="row-odd"><td><p>–color &lt;wh­en&gt;</p></td>
-<td><p>Specify when to enable coloring</p></td>
-</tr>
-<tr class="row-even"><td><p>–config &lt;fi­le&gt;</p></td>
-<td><p>Specify an alternate config­uration file</p></td>
-</tr>
-<tr class="row-odd"><td><p>–debug</p></td>
-<td><p>Display debug messages</p></td>
-</tr>
-<tr class="row-even"><td><p>–gpgdir &lt;di­r&gt;</p></td>
-<td><p>Specify a directory of files used by GnuPG to verify package signatures</p></td>
-</tr>
-<tr class="row-odd"><td><p>–hookdir &lt;di­r&gt;</p></td>
-<td><p>Specify an alternate directory containing hook files</p></td>
-</tr>
-<tr class="row-even"><td><p>–logfile &lt;fi­le&gt;</p></td>
-<td><p>Specify an alternate log file</p></td>
-</tr>
-<tr class="row-odd"><td><p>–noco­nfirm</p></td>
-<td><p>Bypass any and all “Are you sure?” messages</p></td>
-</tr>
-<tr class="row-even"><td><p>–confirm</p></td>
-<td><p>Cancels the effects of a previous –noco­nfirm</p></td>
-</tr>
-<tr class="row-odd"><td><p>–disa­ble­-do­wnl­oad­-ti­meout</p></td>
-<td><p>Disable defaults for low speed limit and timeout on downloads</p></td>
-</tr>
-<tr class="row-even"><td><p>–sysroot &lt;di­r&gt;</p></td>
-<td><p>Specify an altern­ative system root</p></td>
-</tr>
-</tbody>
-</table>
+<ul class="simple">
+<li><p>Customize the Prompt:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">DEFAULT_USER</span><span class="o">=</span><span class="k">$(</span>whoami<span class="k">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Enable Auto-Completion:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>autoload<span class="w"> </span>-Uz<span class="w"> </span>compinit
+compinit
+</pre></div>
 </div>
 </section>
 </section>
@@ -819,20 +754,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="zsh_install.html"
+       href="../linux.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Oh My Zsh &amp; Powerlevel10k</p>
+        <p class="prev-next-title">linux</p>
       </div>
     </a>
     <a class="right-next"
-       href="../celery.html"
+       href="pacman.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">celery</p>
+        <p class="prev-next-title">Package Manager (pacman)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -854,36 +789,28 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-and-upgrade">Update and Upgrade</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-package-list">Update package list</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-and-upgrade-all">Update and upgrade all</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-and-upgrade-aur-packages">Update and upgrade aur packages</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-and-upgrade-yaourt-packages">Update and upgrade yaourt packages</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-distro-version">Get distro version</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-install-zsh">Step 1: Install Zsh</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-ubuntu-debian">For Ubuntu/Debian:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-fedora">For Fedora:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-macos">For macOS:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-or-find-package">Install or find Package</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-specific-package">Install specific package</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-available-packages">Find available packages</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-available-local-packages">Find available local packages</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#show-packages-of-group-xorg">Show packages of group xorg</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-all-files-from-package">List all files from package</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pacman-log-file">Pacman log file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-set-zsh-as-default-shell">Step 2: Set Zsh as Default Shell</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-install-oh-my-zsh">Step 3: Install Oh My Zsh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-install-powerlevel10k-theme">Step 4: Install Powerlevel10k Theme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-install-recommended-fonts-for-powerlevel10k">Step 5: Install Recommended Fonts for Powerlevel10k</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-font">Download the font:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-font">Install the font:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-font-in-your-terminal">Set the font in your terminal:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-package">Remove Package</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-only-a-package">Remove only a package</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-remove-a-package-and-its-dependencies-which-are-not-required-by-any-other-installed-package">To remove a package and its dependencies which are not required by any other installed package</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-all-packages-no-longer-required-as-dependencies">List all packages no longer required as dependencies</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-package-cache">Clean package cache</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#screen-recording">Screen recording</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mount-iso-file">Mount iso file</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#to-unmount">To unmount</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-ip-address">Get IP address</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-configure-powerlevel10k">Step 6: Configure Powerlevel10k</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-add-useful-plugins">Step 7: Add Useful Plugins</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-plugins">Install the plugins:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-the-changes">Apply the changes:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operators">Operators</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#options">Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-customize-zshrc-for-additional-functionality">Step 8: Customize .zshrc for Additional Functionality</a></li>
 </ul>
   </nav></div>
 

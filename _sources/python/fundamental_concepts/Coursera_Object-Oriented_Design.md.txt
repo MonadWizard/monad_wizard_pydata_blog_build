@@ -1,0 +1,147 @@
+# Coursera - Object-Oriented Design
+
+Object-Oriented Design (OOD) is a methodology used to design a system by visualizing it as a group of interacting objects, each with its responsibilities. This approach is fundamental in building software that is modular, reusable, and easy to maintain.
+
+## Core Principles of Object-Oriented Design
+
+Object-Oriented Design revolves around a few core principles:
+
+1. **Encapsulation**: Bundling the data (attributes) and methods (functions) that operate on the data into a single unit or class.
+2. **Abstraction**: Hiding the complex implementation details and showing only the essential features of the object.
+3. **Inheritance**: Allowing a new class to inherit the properties and methods of an existing class.
+4. **Polymorphism**: Allowing objects of different classes to be treated as objects of a common super class. It is the ability of different objects to respond to the same function call.
+
+## Steps in Object-Oriented Design
+
+1. **Identify the Objects**: Determine what objects will be a part of your system.
+2. **Define the Relationships**: Define how these objects interact with each other.
+3. **Design Class Hierarchies**: Use inheritance to promote code reuse and create a structure for your classes.
+4. **Establish Object Collaboration**: Define how objects collaborate by sending messages to each other.
+
+## Example: Designing a Library Management System
+
+Let’s consider a simple example of a Library Management System to apply these principles.
+
+### Step 1: Identify the Objects
+
+For a library system, the key objects could be:
+- `Book`
+- `Member`
+- `Library`
+
+### Step 2: Define the Relationships
+
+- A `Library` contains many `Book` objects.
+- A `Member` can borrow `Book` objects from the `Library`.
+
+### Step 3: Design Class Hierarchies
+
+We can use inheritance to model different types of books (e.g., `PrintedBook`, `EBook`) and different types of members (e.g., `Student`, `Faculty`).
+
+### Step 4: Establish Object Collaboration
+
+- `Member` interacts with `Library` to borrow a `Book`.
+- `Library` manages the inventory of `Book` objects and records of borrowing.
+
+### Python Implementation
+
+Here’s a Python code example that applies the above design.
+
+```python
+class Book:
+    def __init__(self, title: str, author: str, isbn: str):
+        self.title = title
+        self.author = author
+        self.isbn = isbn
+        self.is_borrowed = False
+
+    def borrow(self):
+        if not self.is_borrowed:
+            self.is_borrowed = True
+            print(f"Book '{self.title}' borrowed successfully!")
+        else:
+            print(f"Book '{self.title}' is already borrowed.")
+
+    def return_book(self):
+        if self.is_borrowed:
+            self.is_borrowed = False
+            print(f"Book '{self.title}' returned successfully!")
+        else:
+            print(f"Book '{self.title}' was not borrowed.")
+
+class Member:
+    def __init__(self, name: str, member_id: int):
+        self.name = name
+        self.member_id = member_id
+        self.borrowed_books = []
+
+    def borrow_book(self, book: Book):
+        if book not in self.borrowed_books:
+            book.borrow()
+            self.borrowed_books.append(book)
+        else:
+            print(f"{self.name} has already borrowed '{book.title}'.")
+
+    def return_book(self, book: Book):
+        if book in self.borrowed_books:
+            book.return_book()
+            self.borrowed_books.remove(book)
+        else:
+            print(f"{self.name} did not borrow '{book.title}'.")
+
+class Library:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self, book: Book):
+        self.books.append(book)
+        print(f"Book '{book.title}' added to the library.")
+
+    def find_book_by_title(self, title: str) -> Book:
+        for book in self.books:
+            if book.title == title:
+                return book
+        print(f"Book '{title}' not found in the library.")
+        return None
+
+# Example Usage
+library = Library()
+
+# Add Books
+book1 = Book("Python Programming", "John Doe", "123456")
+book2 = Book("Machine Learning", "Jane Smith", "654321")
+
+library.add_book(book1)
+library.add_book(book2)
+
+# Member borrows and returns a book
+member = Member("Alice", 1)
+borrowed_book = library.find_book_by_title("Python Programming")
+
+if borrowed_book:
+    member.borrow_book(borrowed_book)
+    member.return_book(borrowed_book)
+
+# Attempting to borrow the same book again
+member.borrow_book(borrowed_book)
+```
+
+
+
+### Explanation
+
+- `Encapsulation:` The `Book`, `Member`, and `Library` classes encapsulate their respective data and behavior.
+- `Abstraction:` We hide the details of how borrowing and returning books are implemented from the user of the `Library` class.
+- `Inheritance:` In more complex designs, you could have classes like `PrintedBook` and `EBook` inherit from `Book`.
+- `Polymorphism:` Methods like `borrow_book()` and `return_book()` would work on any type of `Book`, regardless of whether it is a `PrintedBook` or `EBook` in a more advanced example.
+
+### Conclusion
+
+Object-Oriented Design allows you to break down complex systems into manageable objects with clear relationships. By applying principles like encapsulation, abstraction, inheritance, and polymorphism, you can create a robust and maintainable system. The example above demonstrates these principles in a simple Library Management System.
+
+
+
+
+
+
+

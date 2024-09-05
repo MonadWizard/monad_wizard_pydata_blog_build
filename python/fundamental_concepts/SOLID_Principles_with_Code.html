@@ -1,0 +1,1406 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SOLID Principles with Code &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/fundamental_concepts/SOLID_Principles_with_Code';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/python/fundamental_concepts/SOLID_Principles_with_Code.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DRY Principle" href="DRY_Principle.html" />
+    <link rel="prev" title="Basics OOP Concepts" href="Basics_OOP_Concepts.html" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G04RGCJ0SY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G04RGCJ0SY');
+  </script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    dev-ops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    python
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    pl/SQL
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pycconverter/" title="pyc" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-python fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">pyc</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    dev-ops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    python
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    pl/SQL
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pycconverter/" title="pyc" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-python fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">pyc</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../fc.html">Low Level Design</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Basics_OOP_Concepts.html">Basics OOP Concepts</a></li>
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">SOLID Principles with Code</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="DRY_Principle.html">DRY Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Coursera_Object-Oriented_Design.html">Coursera - Object-Oriented Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="KISS_Principle.html">KISS Low-Level Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="YAGNI_Principle.html">YAGNI Principle (You Aren’t Gonna Need It)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../magic.html">python magic methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../magic_methods/all_magic_methods.html">Python Dunder Methods</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">python</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../fc.html" class="nav-link">Low Level Design</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">SOLID...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="solid-principles-with-code">
+<h1>SOLID Principles with Code<a class="headerlink" href="#solid-principles-with-code" title="Link to this heading">#</a></h1>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Letter</p></th>
+<th class="head"><p>Principle</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>S</strong></p></td>
+<td><p><strong>Single Responsibility Principle</strong></p></td>
+<td><p>A class should have one and only one reason to change, meaning it should have only one job.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>O</strong></p></td>
+<td><p><strong>Open/Closed Principle</strong></p></td>
+<td><p>Software entities should be open for extension, but closed for modification.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>L</strong></p></td>
+<td><p><strong>Liskov Substitution Principle</strong></p></td>
+<td><p>Objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>I</strong></p></td>
+<td><p><strong>Interface Segregation Principle</strong></p></td>
+<td><p>Clients should not be forced to depend on methods they do not use.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>D</strong></p></td>
+<td><p><strong>Dependency Inversion Principle</strong></p></td>
+<td><p>High-level modules should not depend on low-level modules. Both should depend on abstractions.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="single-responsibility-principle-srp">
+<h1>Single Responsibility Principle (SRP)<a class="headerlink" href="#single-responsibility-principle-srp" title="Link to this heading">#</a></h1>
+<section id="what-is-srp">
+<h2>What is SRP?<a class="headerlink" href="#what-is-srp" title="Link to this heading">#</a></h2>
+<p>The <strong>Single Responsibility Principle (SRP)</strong> is one of the five SOLID principles of object-oriented design. It states that <strong>a class should have only one reason to change</strong>, meaning that a class should only have one responsibility or one job.</p>
+<p>In simpler terms, each class should only focus on a single task or functionality, and it should encapsulate that functionality completely. By adhering to SRP, you can create modular, maintainable, and reusable code. It helps reduce the impact of code changes and makes your code easier to understand and test.</p>
+</section>
+<section id="benefits-of-srp">
+<h2>Benefits of SRP<a class="headerlink" href="#benefits-of-srp" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Easier Maintenance</strong>: When classes have distinct responsibilities, it’s easier to modify one without affecting others.</p></li>
+<li><p><strong>Improved Readability</strong>: Code is easier to understand when each class does one thing.</p></li>
+<li><p><strong>Enhanced Testability</strong>: Classes with single responsibilities are easier to test in isolation.</p></li>
+<li><p><strong>Better Reusability</strong>: Smaller, well-defined classes can often be reused across different projects or contexts.</p></li>
+</ol>
+</section>
+<section id="srp-violations">
+<h2>SRP Violations<a class="headerlink" href="#srp-violations" title="Link to this heading">#</a></h2>
+<p>A violation of SRP occurs when a class tries to do too much. For example, if a single class handles business logic, data validation, and database persistence, it is likely to violate SRP. Any change in one area (e.g., the business logic) could affect other areas (e.g., data persistence), making the class harder to maintain.</p>
+</section>
+<hr class="docutils" />
+<section id="python-example-of-srp">
+<h2>Python Example of SRP<a class="headerlink" href="#python-example-of-srp" title="Link to this heading">#</a></h2>
+<p>Let’s consider a complex scenario involving a report generation system that generates reports, saves them to a file, and sends them via email. Here’s a Python example that violates SRP and then an improved version adhering to SRP.</p>
+<section id="example-srp-violation">
+<h3>Example: SRP Violation<a class="headerlink" href="#example-srp-violation" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">smtplib</span>
+
+<span class="k">class</span> <span class="nc">Report</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">content</span>
+
+    <span class="k">def</span> <span class="nf">generate_report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Report Title: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="se">\n</span><span class="s2">Report Content: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="nf">save_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generate_report</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Report saved to </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">send_via_email</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recipient_email</span><span class="p">):</span>
+        <span class="n">sender_email</span> <span class="o">=</span> <span class="s2">&quot;you@example.com&quot;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Subject: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="se">\n\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">with</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="s1">&#39;smtp.example.com&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">server</span><span class="p">:</span>
+            <span class="n">server</span><span class="o">.</span><span class="n">sendmail</span><span class="p">(</span><span class="n">sender_email</span><span class="p">,</span> <span class="n">recipient_email</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Report sent to </span><span class="si">{</span><span class="n">recipient_email</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+<section id="issues-with-this-code">
+<h2>Issues with this Code:<a class="headerlink" href="#issues-with-this-code" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Report</span></code> class is responsible for generating the report, saving the report to a file, and sending it via email.
+This violates SRP because the <code class="docutils literal notranslate"><span class="pre">Report</span></code> class has multiple reasons to change: changes in the reporting format, changes in the file handling logic, and changes in the email sending process.</p></li>
+</ul>
+</section>
+<section id="example-srp-adherence">
+<h2>Example: SRP Adherence<a class="headerlink" href="#example-srp-adherence" title="Link to this heading">#</a></h2>
+<p>Let’s refactor the above code to adhere to the Single Responsibility Principle. We’ll separate the concerns into different classes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">Report</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">content</span>
+
+    <span class="k">def</span> <span class="nf">generate_report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Report Title: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="se">\n</span><span class="s2">Report Content: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="k">class</span> <span class="nc">ReportSaver</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">report</span><span class="o">.</span><span class="n">generate_report</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Report saved to </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">EmailSender</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">recipient_email</span><span class="p">):</span>
+        <span class="n">sender_email</span> <span class="o">=</span> <span class="s2">&quot;you@example.com&quot;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Subject: </span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="se">\n\n</span><span class="si">{</span><span class="n">report</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">with</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="s1">&#39;smtp.example.com&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">server</span><span class="p">:</span>
+            <span class="n">server</span><span class="o">.</span><span class="n">sendmail</span><span class="p">(</span><span class="n">sender_email</span><span class="p">,</span> <span class="n">recipient_email</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Report sent to </span><span class="si">{</span><span class="n">recipient_email</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">Report</span><span class="p">(</span><span class="s2">&quot;Sales Report&quot;</span><span class="p">,</span> <span class="s2">&quot;Content of sales report&quot;</span><span class="p">)</span>
+
+<span class="c1"># Save the report</span>
+<span class="n">ReportSaver</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="s2">&quot;sales_report.txt&quot;</span><span class="p">)</span>
+
+<span class="c1"># Send the report via email</span>
+<span class="n">EmailSender</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="s2">&quot;recipient@example.com&quot;</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="improvements-in-srp-version">
+<h2>Improvements in SRP Version:<a class="headerlink" href="#improvements-in-srp-version" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Report Class: Now only responsible for generating the report.</p></li>
+<li><p>ReportSaver Class: Handles saving reports to files.</p></li>
+<li><p>EmailSender Class: Deals with sending reports via email.</p></li>
+</ul>
+<p>Each class now has a single responsibility, making the system more modular, testable, and easier to maintain.</p>
+<section id="summary-of-srp-in-python">
+<h3>Summary of SRP in Python:<a class="headerlink" href="#summary-of-srp-in-python" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A complex example showing how a class can be overloaded with responsibilities.</p></li>
+<li><p>A refactored example that breaks responsibilities into separate classes, each with a single responsibility.</p></li>
+<li><p>SRP is all about making your classes more modular and maintainable by focusing on a single task.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="open-closed-principle-ocp">
+<h1>Open/Closed Principle (OCP)<a class="headerlink" href="#open-closed-principle-ocp" title="Link to this heading">#</a></h1>
+<section id="what-is-the-open-closed-principle-ocp">
+<h2>What is the Open/Closed Principle (OCP)?<a class="headerlink" href="#what-is-the-open-closed-principle-ocp" title="Link to this heading">#</a></h2>
+<p>The Open/Closed Principle (OCP) is one of the five SOLID principles of object-oriented programming. It states that:</p>
+<ul class="simple">
+<li><p>Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification.</p></li>
+</ul>
+<p>In other words, the behavior of a module should be able to be extended without altering its source code. This principle encourages writing code in such a way that new functionality can be added to existing modules by introducing new code rather than changing existing code.</p>
+<p>The primary idea behind OCP is to prevent modifications to existing code, which can introduce bugs or break existing functionality. Instead, the code should be extended by adding new classes, methods, or other components.</p>
+<section id="benefits-of-ocp">
+<h3>Benefits of OCP<a class="headerlink" href="#benefits-of-ocp" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Maintainability: Since you avoid changing existing code, there’s less risk of introducing bugs.</p></li>
+<li><p>Scalability: By allowing extensions, you can easily add new features without disrupting the existing system.</p></li>
+<li><p>Flexibility: The system becomes more adaptable to changes in requirements without the need for frequent refactoring.</p></li>
+</ul>
+</section>
+</section>
+<section id="python-example">
+<h2>Python Example<a class="headerlink" href="#python-example" title="Link to this heading">#</a></h2>
+<p>In this example, we’ll implement a simple order processing system that calculates discounts based on different customer types (e.g., regular customers, VIP customers). We’ll refactor the code to follow the OCP, allowing new discount strategies to be added without modifying the core order processing logic.</p>
+<section id="initial-code-violates-ocp">
+<h3>Initial Code (Violates OCP)<a class="headerlink" href="#initial-code-violates-ocp" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">Order</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">customer_type</span><span class="p">,</span> <span class="n">total_price</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">customer_type</span> <span class="o">=</span> <span class="n">customer_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_price</span> <span class="o">=</span> <span class="n">total_price</span>
+
+    <span class="k">def</span> <span class="nf">calculate_discount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">customer_type</span> <span class="o">==</span> <span class="s1">&#39;regular&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_price</span> <span class="o">*</span> <span class="mf">0.05</span>  <span class="c1"># 5% discount</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">customer_type</span> <span class="o">==</span> <span class="s1">&#39;vip&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_price</span> <span class="o">*</span> <span class="mf">0.2</span>  <span class="c1"># 20% discount</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># No discount</span>
+
+<span class="c1"># Usage</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">Order</span><span class="p">(</span><span class="s1">&#39;regular&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">order</span><span class="o">.</span><span class="n">calculate_discount</span><span class="p">())</span>  <span class="c1"># 50</span>
+
+<span class="n">order2</span> <span class="o">=</span> <span class="n">Order</span><span class="p">(</span><span class="s1">&#39;vip&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">order2</span><span class="o">.</span><span class="n">calculate_discount</span><span class="p">())</span>  <span class="c1"># 200</span>
+
+
+</pre></div>
+</div>
+<p>In this implementation, if we need to add more customer types or discount logic, we will have to modify the calculate_discount() method. This violates the Open/Closed Principle because the class needs to be modified to support new discount strategies.</p>
+</section>
+</section>
+<section id="refactored-code-follows-ocp">
+<h2>Refactored Code (Follows OCP)<a class="headerlink" href="#refactored-code-follows-ocp" title="Link to this heading">#</a></h2>
+<p>To follow the Open/Closed Principle, we’ll refactor the code by separating the discount logic from the Order class. We will use strategy patterns where new discount strategies can be added by extending the system without modifying the existing code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="c1"># Base Discount Strategy</span>
+<span class="k">class</span> <span class="nc">DiscountStrategy</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">apply_discount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_price</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="c1"># Regular Customer Discount</span>
+<span class="k">class</span> <span class="nc">RegularDiscount</span><span class="p">(</span><span class="n">DiscountStrategy</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">apply_discount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_price</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">total_price</span> <span class="o">*</span> <span class="mf">0.05</span>  <span class="c1"># 5% discount</span>
+
+<span class="c1"># VIP Customer Discount</span>
+<span class="k">class</span> <span class="nc">VIPDiscount</span><span class="p">(</span><span class="n">DiscountStrategy</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">apply_discount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_price</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">total_price</span> <span class="o">*</span> <span class="mf">0.2</span>  <span class="c1"># 20% discount</span>
+
+<span class="c1"># No Discount for other customers</span>
+<span class="k">class</span> <span class="nc">NoDiscount</span><span class="p">(</span><span class="n">DiscountStrategy</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">apply_discount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_price</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># No discount</span>
+
+<span class="c1"># Order class with extension support</span>
+<span class="k">class</span> <span class="nc">Order</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_price</span><span class="p">,</span> <span class="n">discount_strategy</span><span class="p">:</span> <span class="n">DiscountStrategy</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_price</span> <span class="o">=</span> <span class="n">total_price</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discount_strategy</span> <span class="o">=</span> <span class="n">discount_strategy</span>
+
+    <span class="k">def</span> <span class="nf">calculate_discount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">discount_strategy</span><span class="o">.</span><span class="n">apply_discount</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">total_price</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">Order</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">RegularDiscount</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">order</span><span class="o">.</span><span class="n">calculate_discount</span><span class="p">())</span>  <span class="c1"># 50</span>
+
+<span class="n">order2</span> <span class="o">=</span> <span class="n">Order</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">VIPDiscount</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">order2</span><span class="o">.</span><span class="n">calculate_discount</span><span class="p">())</span>  <span class="c1"># 200</span>
+
+<span class="n">order3</span> <span class="o">=</span> <span class="n">Order</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">NoDiscount</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">order3</span><span class="o">.</span><span class="n">calculate_discount</span><span class="p">())</span>  <span class="c1"># 0</span>
+
+
+</pre></div>
+</div>
+<section id="explanation">
+<h3>Explanation<a class="headerlink" href="#explanation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Open for Extension: We can now add new discount strategies by creating new classes that inherit from DiscountStrategy. For example, we can add a new PremiumDiscount without modifying the existing Order class.</p></li>
+<li><p>Closed for Modification: The Order class doesn’t need to be changed to accommodate new discount types. The class is “closed” for modification but still “open” for extension via new strategies.</p></li>
+</ul>
+</section>
+</section>
+<section id="adding-a-new-discount-strategy">
+<h2>Adding a New Discount Strategy<a class="headerlink" href="#adding-a-new-discount-strategy" title="Link to this heading">#</a></h2>
+<p>Suppose a new requirement comes up to add a PremiumDiscount. We can do this by simply creating a new class without touching any of the existing code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Premium Customer Discount</span>
+<span class="k">class</span> <span class="nc">PremiumDiscount</span><span class="p">(</span><span class="n">DiscountStrategy</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">apply_discount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_price</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">total_price</span> <span class="o">*</span> <span class="mf">0.3</span>  <span class="c1"># 30% discount</span>
+
+<span class="c1"># Usage</span>
+<span class="n">order4</span> <span class="o">=</span> <span class="n">Order</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">PremiumDiscount</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">order4</span><span class="o">.</span><span class="n">calculate_discount</span><span class="p">())</span>  <span class="c1"># 300</span>
+
+
+</pre></div>
+</div>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>By using the Open/Closed Principle, we’ve made the system more flexible and easier to extend. Adding new discount types no longer requires modifying the existing logic, thus reducing the risk of introducing bugs and increasing maintainability.</p>
+</section>
+</section>
+</section>
+<section id="liskov-substitution-principle-lsp">
+<h1>Liskov Substitution Principle (LSP)<a class="headerlink" href="#liskov-substitution-principle-lsp" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>The <strong>Liskov Substitution Principle (LSP)</strong> is the third principle in the SOLID principles of Object-Oriented Design. Introduced by Barbara Liskov in 1987, this principle states that:</p>
+<p><strong>“Objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program.”</strong></p>
+<p>In simpler terms, if class <code class="docutils literal notranslate"><span class="pre">B</span></code> is a subclass of class <code class="docutils literal notranslate"><span class="pre">A</span></code>, then it should be possible to replace instances of <code class="docutils literal notranslate"><span class="pre">A</span></code> with instances of <code class="docutils literal notranslate"><span class="pre">B</span></code> without altering the behavior of the program.</p>
+<section id="key-requirements-for-lsp">
+<h3>Key Requirements for LSP<a class="headerlink" href="#key-requirements-for-lsp" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Preconditions</strong>: Subclasses should not strengthen the preconditions for methods of the superclass. The subclass should accept the same or more generalized inputs as the superclass.</p></li>
+<li><p><strong>Postconditions</strong>: Subclasses should not weaken the postconditions of the superclass. The subclass should guarantee at least the same results as the superclass.</p></li>
+<li><p><strong>Invariant Preservation</strong>: Subclasses should maintain the invariants of the superclass. The set of properties that are true for the superclass should also hold for the subclass.</p></li>
+<li><p><strong>Behavioral Substitutability</strong>: When a subclass overrides a method of the superclass, it must ensure that it behaves in a way consistent with the expectations set by the superclass.</p></li>
+</ol>
+</section>
+</section>
+<section id="violation-example">
+<h2>Violation Example<a class="headerlink" href="#violation-example" title="Link to this heading">#</a></h2>
+<p>Consider a base class <code class="docutils literal notranslate"><span class="pre">Bird</span></code> and two subclasses <code class="docutils literal notranslate"><span class="pre">Penguin</span></code> and <code class="docutils literal notranslate"><span class="pre">Eagle</span></code>. Violating LSP would occur if the subclass <code class="docutils literal notranslate"><span class="pre">Penguin</span></code> behaves in a way inconsistent with the base class’s contract.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Bird</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">fly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;This method should be overridden by subclasses&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Eagle</span><span class="p">(</span><span class="n">Bird</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">fly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eagle is flying&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Penguin</span><span class="p">(</span><span class="n">Bird</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">fly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Penguins can&#39;t fly!&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">let_bird_fly</span><span class="p">(</span><span class="n">bird</span><span class="p">:</span> <span class="n">Bird</span><span class="p">):</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">fly</span><span class="p">()</span>
+
+<span class="n">eagle</span> <span class="o">=</span> <span class="n">Eagle</span><span class="p">()</span>
+<span class="n">penguin</span> <span class="o">=</span> <span class="n">Penguin</span><span class="p">()</span>
+
+<span class="n">let_bird_fly</span><span class="p">(</span><span class="n">eagle</span><span class="p">)</span>   <span class="c1"># Works fine</span>
+<span class="n">let_bird_fly</span><span class="p">(</span><span class="n">penguin</span><span class="p">)</span> <span class="c1"># Raises an Exception (LSP is violated)</span>
+
+</pre></div>
+</div>
+<p>Here, the subclass Penguin violates the Liskov Substitution Principle by changing the behavior of the fly() method. According to LSP, a subclass should honor the expectations set by the superclass, but Penguin clearly doesn’t.</p>
+</section>
+<section id="corrected-example-using-lsp">
+<h2>Corrected Example using LSP<a class="headerlink" href="#corrected-example-using-lsp" title="Link to this heading">#</a></h2>
+<p>Let’s refactor the design to adhere to LSP by introducing a more suitable design where we have a common interface for “flying” birds and separate behaviors for non-flying birds.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">Bird</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This bird is eating.&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">FlyingBird</span><span class="p">(</span><span class="n">Bird</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">fly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This bird can fly.&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">NonFlyingBird</span><span class="p">(</span><span class="n">Bird</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">walk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This bird can only walk.&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Eagle</span><span class="p">(</span><span class="n">FlyingBird</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">fly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eagle is soaring high in the sky!&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Penguin</span><span class="p">(</span><span class="n">NonFlyingBird</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">walk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Penguin is waddling on ice!&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test_bird_behavior</span><span class="p">(</span><span class="n">bird</span><span class="p">:</span> <span class="n">Bird</span><span class="p">):</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">eat</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bird</span><span class="p">,</span> <span class="n">FlyingBird</span><span class="p">):</span>
+        <span class="n">bird</span><span class="o">.</span><span class="n">fly</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bird</span><span class="p">,</span> <span class="n">NonFlyingBird</span><span class="p">):</span>
+        <span class="n">bird</span><span class="o">.</span><span class="n">walk</span><span class="p">()</span>
+
+<span class="n">eagle</span> <span class="o">=</span> <span class="n">Eagle</span><span class="p">()</span>
+<span class="n">penguin</span> <span class="o">=</span> <span class="n">Penguin</span><span class="p">()</span>
+
+<span class="n">test_bird_behavior</span><span class="p">(</span><span class="n">eagle</span><span class="p">)</span>   <span class="c1"># Eagle can fly and eat (LSP holds)</span>
+<span class="n">test_bird_behavior</span><span class="p">(</span><span class="n">penguin</span><span class="p">)</span> <span class="c1"># Penguin can walk and eat (LSP holds)</span>
+
+
+</pre></div>
+</div>
+<section id="key-changes">
+<h3>Key Changes:<a class="headerlink" href="#key-changes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>We introduced two separate classes: FlyingBird and NonFlyingBird to represent birds that can fly and those that cannot. This ensures that subclasses only override behavior relevant to their capabilities.</p></li>
+<li><p>Now, Penguin no longer has to override a method that doesn’t make sense for its type (fly()). Instead, it provides its own behavior (walk()), and both Eagle and Penguin can be substituted where a Bird is expected without violating LSP.</p></li>
+</ul>
+</section>
+<section id="benefits-of-lsp-compliance">
+<h3>Benefits of LSP Compliance<a class="headerlink" href="#benefits-of-lsp-compliance" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Code Reusability: When LSP is followed, code written for a base class can be reused with its subclasses without the need for modification.</p></li>
+<li><p>Maintainability: Adhering to LSP makes the code easier to extend and maintain, as it ensures consistent behavior across the class hierarchy.</p></li>
+<li><p>Predictability: Following LSP ensures that subclasses behave in an expected way, leading to fewer surprises and more predictable code behavior.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="interface-segregation-principle-isp">
+<h1>Interface Segregation Principle (ISP)<a class="headerlink" href="#interface-segregation-principle-isp" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>Overview<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>The <strong>Interface Segregation Principle (ISP)</strong> is the fourth principle in the SOLID principles of Object-Oriented Design. This principle states that:</p>
+<p><strong>“No client should be forced to depend on methods it does not use.”</strong></p>
+<p>In other words, large, monolithic interfaces should be split into smaller, more specific interfaces so that clients only need to know about the methods that are relevant to them.</p>
+<section id="key-concepts">
+<h3>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Interface Granularity</strong>: Rather than having one large interface that includes many methods, break it down into smaller, more focused interfaces. This way, classes implementing an interface only need to provide the functionality relevant to them.</p></li>
+<li><p><strong>No Method Pollution</strong>: Clients should not be forced to implement methods they don’t use. If an interface is too large, it might make the client dependent on methods it doesn’t care about.</p></li>
+<li><p><strong>High Cohesion</strong>: Smaller interfaces ensure higher cohesion by keeping related methods together and unrelated methods separate.</p></li>
+</ol>
+<p>By following ISP, we promote <strong>separation of concerns</strong>, <strong>flexibility</strong>, and <strong>reusability</strong> in object-oriented design.</p>
+</section>
+</section>
+<section id="id2">
+<h2>Violation Example<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Consider an example of a <code class="docutils literal notranslate"><span class="pre">Worker</span></code> interface that is implemented by different classes like <code class="docutils literal notranslate"><span class="pre">Robot</span></code> and <code class="docutils literal notranslate"><span class="pre">Human</span></code>. Both are required to implement <code class="docutils literal notranslate"><span class="pre">eat()</span></code> and <code class="docutils literal notranslate"><span class="pre">work()</span></code>, even though a <code class="docutils literal notranslate"><span class="pre">Robot</span></code> should not be forced to implement <code class="docutils literal notranslate"><span class="pre">eat()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a fat interface violating ISP</span>
+<span class="k">class</span> <span class="nc">Worker</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Human</span><span class="p">(</span><span class="n">Worker</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Human is working.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Human is eating.&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Robot</span><span class="p">(</span><span class="n">Worker</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Robot is working.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Robots don&#39;t eat!&quot;</span><span class="p">)</span>  <span class="c1"># Violates ISP</span>
+
+<span class="k">def</span> <span class="nf">manage_worker</span><span class="p">(</span><span class="n">worker</span><span class="p">:</span> <span class="n">Worker</span><span class="p">):</span>
+    <span class="n">worker</span><span class="o">.</span><span class="n">work</span><span class="p">()</span>
+    <span class="n">worker</span><span class="o">.</span><span class="n">eat</span><span class="p">()</span>  <span class="c1"># Not relevant for Robot, leads to exceptions</span>
+
+<span class="n">human</span> <span class="o">=</span> <span class="n">Human</span><span class="p">()</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">()</span>
+
+<span class="n">manage_worker</span><span class="p">(</span><span class="n">human</span><span class="p">)</span>  <span class="c1"># Works fine</span>
+<span class="n">manage_worker</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>  <span class="c1"># Raises NotImplementedError (ISP violation)</span>
+
+</pre></div>
+</div>
+<section id="id3">
+<h3>Explanation:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Worker</span></code> interface has two methods: <code class="docutils literal notranslate"><span class="pre">work()</span></code> and <code class="docutils literal notranslate"><span class="pre">eat()</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Robot</span></code>, which is a type of Worker, should not have to implement <code class="docutils literal notranslate"><span class="pre">eat()</span></code> because it’s irrelevant to a robot. However, since Worker is a single, large interface, <code class="docutils literal notranslate"><span class="pre">Robot</span></code> is forced to implement <code class="docutils literal notranslate"><span class="pre">eat()</span></code> and throw an error, violating ISP.</p></li>
+</ul>
+</section>
+</section>
+<section id="corrected-example-using-isp">
+<h2>Corrected Example using ISP<a class="headerlink" href="#corrected-example-using-isp" title="Link to this heading">#</a></h2>
+<p>To adhere to the Interface Segregation Principle, we split the Worker interface into two smaller, more cohesive interfaces: Workable and Eatable. Now, classes implement only the interfaces they need.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># Segregated interfaces adhering to ISP</span>
+<span class="k">class</span> <span class="nc">Workable</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Eatable</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Human</span><span class="p">(</span><span class="n">Workable</span><span class="p">,</span> <span class="n">Eatable</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Human is working.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Human is eating.&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Robot</span><span class="p">(</span><span class="n">Workable</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Robot is working.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Now we can manage workers without forcing irrelevant methods</span>
+<span class="k">def</span> <span class="nf">manage_worker</span><span class="p">(</span><span class="n">worker</span><span class="p">:</span> <span class="n">Workable</span><span class="p">):</span>
+    <span class="n">worker</span><span class="o">.</span><span class="n">work</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">manage_eating</span><span class="p">(</span><span class="n">eater</span><span class="p">:</span> <span class="n">Eatable</span><span class="p">):</span>
+    <span class="n">eater</span><span class="o">.</span><span class="n">eat</span><span class="p">()</span>
+
+<span class="n">human</span> <span class="o">=</span> <span class="n">Human</span><span class="p">()</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">()</span>
+
+<span class="n">manage_worker</span><span class="p">(</span><span class="n">human</span><span class="p">)</span>  <span class="c1"># Works fine</span>
+<span class="n">manage_worker</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>  <span class="c1"># Works fine, no need to implement eat()</span>
+
+<span class="n">manage_eating</span><span class="p">(</span><span class="n">human</span><span class="p">)</span>  <span class="c1"># Works fine</span>
+<span class="c1"># manage_eating(robot)  # Will raise an error if attempted, but it&#39;s clear Robots don&#39;t eat</span>
+
+
+</pre></div>
+</div>
+<section id="id4">
+<h3>Key Changes:<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Smaller Interfaces: We split the <code class="docutils literal notranslate"><span class="pre">Worker</span></code> interface into two: <code class="docutils literal notranslate"><span class="pre">Workable</span></code> (for work-related methods) and <code class="docutils literal notranslate"><span class="pre">Eatable</span></code> (for eating-related methods). Now, Robot only needs to implement <code class="docutils literal notranslate"><span class="pre">Workable</span></code>, and <code class="docutils literal notranslate"><span class="pre">Human</span></code> implements both Workable and Eatable.</p></li>
+<li><p>No Redundant Methods: Robot is no longer forced to implement a method it doesn’t need (eat()), adhering to ISP.</p></li>
+</ul>
+</section>
+<section id="benefits-of-isp-compliance">
+<h3>Benefits of ISP Compliance<a class="headerlink" href="#benefits-of-isp-compliance" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Decoupling: Interfaces are more specific to what a class truly needs, resulting in a decoupled and flexible system.</p></li>
+<li><p>Easier to Understand and Maintain: Smaller, focused interfaces are easier to understand and maintain, making the codebase cleaner.</p></li>
+<li><p>Reduced Impact of Changes: When interfaces are small, changes to an interface affect fewer classes, thus minimizing the ripple effect of changes in the system.</p></li>
+<li><p>Reusability: Smaller interfaces can be reused across different contexts, enhancing code reusability.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>Conclusion<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>The Interface Segregation Principle encourages the use of small, specific interfaces that are easy to implement. By breaking down large interfaces into more granular ones, we reduce the risk of forcing classes to implement methods they do not use, leading to a cleaner, more maintainable design.</p>
+</section>
+</section>
+</section>
+<section id="dependency-inversion-principle-dip">
+<h1>Dependency Inversion Principle (DIP)<a class="headerlink" href="#dependency-inversion-principle-dip" title="Link to this heading">#</a></h1>
+<section id="id6">
+<h2>Overview<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>The <strong>Dependency Inversion Principle (DIP)</strong> is the fifth and final principle in the SOLID principles of Object-Oriented Design. This principle states that:</p>
+<p><strong>“High-level modules should not depend on low-level modules. Both should depend on abstractions.”</strong></p>
+<p>In simple terms, instead of high-level components (the “brains” of your program) depending directly on lower-level components (which carry out details), both should depend on interfaces or abstract classes. This ensures that the system is more flexible and easier to maintain or extend.</p>
+<section id="id7">
+<h3>Key Concepts<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>High-Level Modules</strong>: These modules contain complex business logic and should not be tightly coupled with the details of implementation.</p></li>
+<li><p><strong>Low-Level Modules</strong>: These modules are responsible for more specific operations, such as reading/writing to databases, handling HTTP requests, or interacting with the file system.</p></li>
+<li><p><strong>Abstractions</strong>: Both high- and low-level modules should rely on abstractions, such as interfaces or abstract classes, rather than concrete implementations. This allows for more flexibility and easier modifications.</p></li>
+</ol>
+</section>
+<section id="goals-of-dip">
+<h3>Goals of DIP<a class="headerlink" href="#goals-of-dip" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Decoupling</strong>: The goal is to decouple the high-level logic from low-level details, so that the system becomes more flexible and extendable.</p></li>
+<li><p><strong>Flexibility</strong>: By using abstractions, you can change implementations (e.g., switching from a SQL to NoSQL database) without modifying high-level modules.</p></li>
+</ul>
+</section>
+</section>
+<section id="id8">
+<h2>Violation Example<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>Let’s consider a scenario where a high-level <code class="docutils literal notranslate"><span class="pre">UserService</span></code> class depends directly on a low-level <code class="docutils literal notranslate"><span class="pre">MySQLDatabase</span></code> class. This is a violation of DIP because <code class="docutils literal notranslate"><span class="pre">UserService</span></code> is tightly coupled with <code class="docutils literal notranslate"><span class="pre">MySQLDatabase</span></code>, making it harder to replace or extend.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MySQLDatabase</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetching user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2"> from MySQL database&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">UserService</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="n">MySQLDatabase</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">db</span>
+
+    <span class="k">def</span> <span class="nf">find_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">MySQLDatabase</span><span class="p">()</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">UserService</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+<span class="n">service</span><span class="o">.</span><span class="n">find_user</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<section id="problems">
+<h3>Problems:<a class="headerlink" href="#problems" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Tight Coupling: <code class="docutils literal notranslate"><span class="pre">UserService</span></code> depends directly on <code class="docutils literal notranslate"><span class="pre">MySQLDatabase</span></code>, meaning if we want to change the database (e.g., to PostgreSQL), we would have to modify <code class="docutils literal notranslate"><span class="pre">UserService</span></code>.</p></li>
+<li><p>No Flexibility: The design isn’t flexible enough to accommodate other databases or data sources.</p></li>
+</ul>
+</section>
+<section id="corrected-example-using-dip">
+<h3>Corrected Example using DIP<a class="headerlink" href="#corrected-example-using-dip" title="Link to this heading">#</a></h3>
+<p>To adhere to the Dependency Inversion Principle, we introduce an abstraction (an interface or abstract class) that both <code class="docutils literal notranslate"><span class="pre">UserService</span></code> and any database class depend on. This allows us to easily swap out different database implementations without modifying <code class="docutils literal notranslate"><span class="pre">UserService</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+
+<span class="c1"># Abstract interface that both high-level and low-level classes depend on</span>
+<span class="k">class</span> <span class="nc">Database</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="c1"># Low-level module: MySQL database implementation</span>
+<span class="k">class</span> <span class="nc">MySQLDatabase</span><span class="p">(</span><span class="n">Database</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetching user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2"> from MySQL database&quot;</span><span class="p">)</span>
+
+<span class="c1"># Low-level module: PostgreSQL database implementation</span>
+<span class="k">class</span> <span class="nc">PostgreSQLDatabase</span><span class="p">(</span><span class="n">Database</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetching user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2"> from PostgreSQL database&quot;</span><span class="p">)</span>
+
+<span class="c1"># High-level module: UserService depends on the Database abstraction</span>
+<span class="k">class</span> <span class="nc">UserService</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="n">Database</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">db</span>
+
+    <span class="k">def</span> <span class="nf">find_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">mysql_db</span> <span class="o">=</span> <span class="n">MySQLDatabase</span><span class="p">()</span>
+<span class="n">postgresql_db</span> <span class="o">=</span> <span class="n">PostgreSQLDatabase</span><span class="p">()</span>
+
+<span class="c1"># UserService can now work with any database that implements the Database interface</span>
+<span class="n">service_with_mysql</span> <span class="o">=</span> <span class="n">UserService</span><span class="p">(</span><span class="n">mysql_db</span><span class="p">)</span>
+<span class="n">service_with_postgresql</span> <span class="o">=</span> <span class="n">UserService</span><span class="p">(</span><span class="n">postgresql_db</span><span class="p">)</span>
+
+<span class="n">service_with_mysql</span><span class="o">.</span><span class="n">find_user</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>       <span class="c1"># Fetching user 42 from MySQL database</span>
+<span class="n">service_with_postgresql</span><span class="o">.</span><span class="n">find_user</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># Fetching user 42 from PostgreSQL database</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3>Key Changes:<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Abstraction (Database): We define a Database interface that declares the get_user() method. This ensures that UserService depends on an abstraction rather than a concrete implementation.</p></li>
+<li><p>Low-Level Modules (MySQLDatabase, PostgreSQLDatabase): Both MySQLDatabase and PostgreSQLDatabase now implement the Database interface, adhering to a common contract.</p></li>
+<li><p>High-Level Module (UserService): Now depends on the Database interface, making it flexible enough to work with any database implementation.</p></li>
+</ul>
+</section>
+<section id="benefits-of-dip-compliance">
+<h3>Benefits of DIP Compliance<a class="headerlink" href="#benefits-of-dip-compliance" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Loose Coupling: The high-level module (UserService) no longer directly depends on the low-level module (MySQLDatabase). It only depends on the Database abstraction, allowing for flexible and maintainable code.</p></li>
+<li><p>Easier to Extend: If a new database (e.g., MongoDBDatabase) needs to be supported, it can be added without modifying the UserService class.</p></li>
+<li><p>Testability: Dependency injection becomes easier. For instance, a mock database implementation can be injected into UserService for testing purposes.</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>Conclusion<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>The Dependency Inversion Principle ensures that high-level components aren’t tightly coupled with low-level implementation details. By introducing abstractions (interfaces or abstract classes), systems become more flexible and maintainable, and low-level details can be changed or extended with minimal impact on the system’s core logic.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Basics_OOP_Concepts.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Basics OOP Concepts</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="DRY_Principle.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">DRY Principle</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">SOLID Principles with Code</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#single-responsibility-principle-srp">Single Responsibility Principle (SRP)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-srp">What is SRP?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-srp">Benefits of SRP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#srp-violations">SRP Violations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-example-of-srp">Python Example of SRP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-srp-violation">Example: SRP Violation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#issues-with-this-code">Issues with this Code:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-srp-adherence">Example: SRP Adherence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#improvements-in-srp-version">Improvements in SRP Version:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-srp-in-python">Summary of SRP in Python:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#open-closed-principle-ocp">Open/Closed Principle (OCP)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-open-closed-principle-ocp">What is the Open/Closed Principle (OCP)?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-ocp">Benefits of OCP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-example">Python Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-code-violates-ocp">Initial Code (Violates OCP)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refactored-code-follows-ocp">Refactored Code (Follows OCP)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-new-discount-strategy">Adding a New Discount Strategy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#liskov-substitution-principle-lsp">Liskov Substitution Principle (LSP)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-requirements-for-lsp">Key Requirements for LSP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violation-example">Violation Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corrected-example-using-lsp">Corrected Example using LSP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-changes">Key Changes:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-lsp-compliance">Benefits of LSP Compliance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interface-segregation-principle-isp">Interface Segregation Principle (ISP)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Violation Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Explanation:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corrected-example-using-isp">Corrected Example using ISP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Key Changes:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-isp-compliance">Benefits of ISP Compliance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dependency-inversion-principle-dip">Dependency Inversion Principle (DIP)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-of-dip">Goals of DIP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Violation Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corrected-example-using-dip">Corrected Example using DIP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Key Changes:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-dip-compliance">Benefits of DIP Compliance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,355 @@
+DRY Principle
+==================
+
+
+## Overview
+
+The **DRY Principle** stands for **"Don't Repeat Yourself"**. It is one of the fundamental principles of software development aimed at reducing duplication in logic and code. The core idea is:
+
+**"Every piece of knowledge must have a single, unambiguous, authoritative representation within a system."**
+
+In simple terms, DRY encourages developers to avoid writing duplicate code, which not only reduces redundancy but also makes code easier to maintain, modify, and understand.
+
+### Why is DRY Important?
+
+1. **Maintainability**: If the same code appears in multiple places, any bug fix or improvement needs to be applied to each instance, increasing the chance of errors.
+   
+2. **Readability**: Non-repetitive, well-structured code is easier to read and understand, especially in larger projects.
+
+3. **Reusability**: Code adhering to the DRY principle is more modular and reusable across various parts of an application.
+
+4. **Single Source of Truth**: Duplication often leads to inconsistent logic across different parts of the system, making the application harder to reason about.
+
+### Violation of DRY
+A violation occurs when you copy-paste the same code or logic into different parts of your application, which could be encapsulated and reused instead.
+
+---
+
+## Example 1: Refactoring Repeated Logic
+
+### Before (DRY Violation)
+In the following example, the logic to calculate total salary is repeated in different places.
+
+```python
+class Employee:
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    def annual_salary(self):
+        # Logic repeated here
+        return self.salary * 12
+
+class Contractor:
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    def annual_salary(self):
+        # Same logic repeated here
+        return self.salary * 12
+
+employee = Employee("Alice", 5000)
+contractor = Contractor("Bob", 6000)
+
+print(employee.annual_salary())  # Repeated logic
+print(contractor.annual_salary()) # Repeated logic
+
+```
+
+
+
+## After (DRY Applied)
+We can extract the repeated logic into a reusable method in a base class.
+
+```python
+
+class Worker:
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    def annual_salary(self):
+        return self.salary * 12  # Shared logic
+
+class Employee(Worker):
+    pass
+
+class Contractor(Worker):
+    pass
+
+employee = Employee("Alice", 5000)
+contractor = Contractor("Bob", 6000)
+
+print(employee.annual_salary())  # No repetition
+print(contractor.annual_salary())  # No repetition
+
+
+```
+
+### Key Improvements:
+- The calculation logic is centralized in the Worker class, and both Employee and Contractor reuse the method.
+- If the calculation logic changes, it needs to be updated in only one place.
+
+
+## Refactoring Similar Functions with a Common Utility
+`Before (DRY Violation)`
+The following example shows similar functions calculating areas of different shapes, repeating similar logic.
+
+
+```python
+
+def rectangle_area(length, width):
+    return length * width
+
+def square_area(side):
+    return side * side
+
+def triangle_area(base, height):
+    return 0.5 * base * height
+
+print(rectangle_area(4, 5))
+print(square_area(4))
+print(triangle_area(6, 3))
+
+
+```
+
+
+### After (DRY Applied)
+We can refactor the code to reuse a common shape area calculation function.
+
+```python
+
+def calculate_area(shape, *dimensions):
+    if shape == "rectangle":
+        return dimensions[0] * dimensions[1]
+    elif shape == "square":
+        return dimensions[0] * dimensions[0]
+    elif shape == "triangle":
+        return 0.5 * dimensions[0] * dimensions[1]
+    else:
+        raise ValueError(f"Unsupported shape: {shape}")
+
+print(calculate_area("rectangle", 4, 5))  # Rectangle
+print(calculate_area("square", 4))        # Square
+print(calculate_area("triangle", 6, 3))   # Triangle
+
+
+```
+
+### Key Improvements:
+- The calculation logic is centralized in the calculate_area function, making it easy to extend to other shapes.
+- We eliminated repetitive functions for each shape.
+
+
+## Refactoring Repeated Database Operations
+
+`Before (DRY Violation)`
+Imagine a scenario where database queries are repeated across different parts of the code.
+
+
+```python
+
+import sqlite3
+
+def get_all_users():
+    conn = sqlite3.connect('example.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM users")
+    return cursor.fetchall()
+
+def get_all_orders():
+    conn = sqlite3.connect('example.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM orders")
+    return cursor.fetchall()
+
+users = get_all_users()
+orders = get_all_orders()
+
+
+```
+
+### After (DRY Applied)
+We can abstract the database operations into a generic function.
+
+
+```python
+
+import sqlite3
+
+def fetch_all(table_name):
+    conn = sqlite3.connect('example.db')
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM {table_name}")
+    return cursor.fetchall()
+
+users = fetch_all("users")  # Reuse for users table
+orders = fetch_all("orders")  # Reuse for orders table
+
+
+```
+
+### Key Improvements:
+- The repetitive database fetching logic is encapsulated in the fetch_all function.
+- This makes it easier to query other tables by reusing the same function.
+
+
+
+
+
+
+## Avoiding Code Duplication
+
+In this example, we will refactor a situation where code duplication occurs when performing similar validation checks across multiple methods.
+
+### Before (DRY Violation)
+Here, we perform user input validation repeatedly across different methods, leading to code duplication.
+
+```python
+class UserService:
+    def create_user(self, username, age):
+        if not username:
+            raise ValueError("Username cannot be empty")
+        if age < 18:
+            raise ValueError("User must be at least 18 years old")
+        
+        # Logic for creating a user
+        print(f"User {username} created successfully")
+
+    def update_user(self, user_id, username, age):
+        if not username:
+            raise ValueError("Username cannot be empty")
+        if age < 18:
+            raise ValueError("User must be at least 18 years old")
+        
+        # Logic for updating a user
+        print(f"User {username} with ID {user_id} updated successfully")
+
+service = UserService()
+service.create_user("Alice", 20)
+service.update_user(1, "Alice", 25)
+
+```
+
+
+
+### After (DRY Applied)
+By extracting the validation logic into a separate reusable method, we eliminate code duplication.
+
+
+```python
+
+class UserService:
+    def validate_user_input(self, username, age):
+        if not username:
+            raise ValueError("Username cannot be empty")
+        if age < 18:
+            raise ValueError("User must be at least 18 years old")
+
+    def create_user(self, username, age):
+        self.validate_user_input(username, age)
+        # Logic for creating a user
+        print(f"User {username} created successfully")
+
+    def update_user(self, user_id, username, age):
+        self.validate_user_input(username, age)
+        # Logic for updating a user
+        print(f"User {username} with ID {user_id} updated successfully")
+
+service = UserService()
+service.create_user("Alice", 20)
+service.update_user(1, "Alice", 25)
+
+
+```
+
+
+### Key Improvements:
+* The validate_user_input method centralizes the validation logic, avoiding repetition.
+* This improves maintainability, as any change to the validation logic needs to be made in only one place.
+
+
+
+## Using Decorators for Cross-Cutting Concerns
+Cross-cutting concerns, such as logging, authorization, or caching, often affect multiple parts of an application. These concerns can lead to code duplication if not properly abstracted. Decorators are a common Python feature used to follow the DRY principle and handle cross-cutting concerns elegantly.
+
+### Before (DRY Violation)
+In this example, logging is implemented directly within business logic, leading to duplication of logging code across methods.
+
+
+```python
+
+import time
+
+class PaymentService:
+    def process_payment(self, user_id, amount):
+        print(f"[INFO] Starting payment process for user {user_id}...")
+        # Simulate payment processing
+        time.sleep(1)
+        print(f"Processed payment of {amount} for user {user_id}")
+        print(f"[INFO] Payment process for user {user_id} finished")
+
+    def refund_payment(self, user_id, amount):
+        print(f"[INFO] Starting refund process for user {user_id}...")
+        # Simulate refund processing
+        time.sleep(1)
+        print(f"Refunded {amount} to user {user_id}")
+        print(f"[INFO] Refund process for user {user_id} finished")
+
+service = PaymentService()
+service.process_payment(42, 100)
+service.refund_payment(42, 100)
+
+
+```
+
+
+### After (DRY Applied with Decorators)
+We can extract the logging logic into a reusable decorator, applying the DRY principle to avoid duplicating the logging code.
+
+
+```python
+
+import time
+from functools import wraps
+
+def log_execution(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f"[INFO] Starting {func.__name__}...")
+        result = func(*args, **kwargs)
+        print(f"[INFO] Finished {func.__name__}")
+        return result
+    return wrapper
+
+class PaymentService:
+    @log_execution
+    def process_payment(self, user_id, amount):
+        # Simulate payment processing
+        time.sleep(1)
+        print(f"Processed payment of {amount} for user {user_id}")
+
+    @log_execution
+    def refund_payment(self, user_id, amount):
+        # Simulate refund processing
+        time.sleep(1)
+        print(f"Refunded {amount} to user {user_id}")
+
+service = PaymentService()
+service.process_payment(42, 100)
+service.refund_payment(42, 100)
+
+
+```
+
+
+### Key Improvements:
+- The log_execution decorator eliminates the need to repeat logging logic within each method.
+By applying the decorator to any method, we can easily handle cross-cutting concerns like logging in a reusable and consistent way.
+- The separation of concerns improves the readability of the business logic, making the methods more focused.
+
+
+
+

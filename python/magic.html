@@ -1,0 +1,894 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>python magic methods &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/magic';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/python/magic.html" />
+    <link rel="icon" href="../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python Dunder Methods" href="magic_methods/all_magic_methods.html" />
+    <link rel="prev" title="YAGNI Principle (You Aren’t Gonna Need It)" href="fundamental_concepts/YAGNI_Principle.html" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G04RGCJ0SY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G04RGCJ0SY');
+  </script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_ops/index.html">
+    dev-ops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    python
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../ml/index.html">
+    Machine Learning
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../plSQL/index.html">
+    pl/SQL
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../db/index.html">
+    Database
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pycconverter/" title="pyc" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-python fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">pyc</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_ops/index.html">
+    dev-ops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    python
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../ml/index.html">
+    Machine Learning
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../plSQL/index.html">
+    pl/SQL
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../db/index.html">
+    Database
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pycconverter/" title="pyc" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-python fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">pyc</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="fc.html">Low Level Design</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="fundamental_concepts/Basics_OOP_Concepts.html">Basics OOP Concepts</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="fundamental_concepts/SOLID_Principles_with_Code.html">SOLID Principles with Code</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="fundamental_concepts/DRY_Principle.html">DRY Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental_concepts/Coursera_Object-Oriented_Design.html">Coursera - Object-Oriented Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental_concepts/KISS_Principle.html">KISS Low-Level Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamental_concepts/YAGNI_Principle.html">YAGNI Principle (You Aren’t Gonna Need It)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">python magic methods</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html">Python Dunder Methods</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">python</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">python magic methods</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="python-magic-methods">
+<h1>python magic methods<a class="headerlink" href="#python-magic-methods" title="Link to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Magic Methods list in Bangla</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="magic_methods/all_magic_methods.html">Python Dunder Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#object-initialization-and-finalization">1. Object Initialization and Finalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#object-representation">2. Object Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#attribute-access">3. Attribute Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#attribute-management">4. Attribute Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#container-emulation">5. Container Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#numeric-emulation">6. Numeric Emulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="magic_methods/all_magic_methods.html#unary-operators">Unary Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="magic_methods/all_magic_methods.html#binary-operators">Binary Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="magic_methods/all_magic_methods.html#in-place-operators">In-Place Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="magic_methods/all_magic_methods.html#reflected-operators">Reflected Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#type-conversion">7. Type Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#comparison-operators">8. Comparison Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#callable-objects">9. Callable Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#context-management">10. Context Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#descriptor-protocol">11. Descriptor Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#metaprogramming">12. Metaprogramming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#memory-management">13. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#async-and-await-support">14. Async and Await Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#pickling-and-serialization">15. Pickling and Serialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#weak-reference-support">16. Weak Reference Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#garbage-collection">17. Garbage Collection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#object-copying-and-cloning">18. Object Copying and Cloning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#coercion-operations">19. Coercion Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#buffer-interface">20. Buffer Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#string-like-behavior">21. String-Like Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#sequence-and-mapping-protocols">22. Sequence and Mapping Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#string-interpolation">23. String Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#hashing-and-identity">24. Hashing and Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#dynamic-class-creation">25. Dynamic Class Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#instance-creation-and-initialization">26. Instance Creation and Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#performance-optimization">27. Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#reversed-operations">28. Reversed Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#type-hinting-and-annotations">29. Type Hinting and Annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#context-manager-support">30. Context Manager Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#callable-object-and-function-protocol">31. Callable Object and Function Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#metaclasses">32. Metaclasses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id1">33. Weak Reference Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#pickling-support">34. Pickling Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id2">35. Buffer Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#string-formatting">36. String Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#memory-management-and-object-information">37. Memory Management and Object Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#dynamic-class-behavior">38. Dynamic Class Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#context-manager-protocol">39. Context Manager Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-class-creation">40. Customizing Class Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id3">41. Descriptor Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#coercion-protocol">42. Coercion Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#string-representation">43. String Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id4">44. Attribute Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#class-method-support">45. Class Method Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#hashing-and-comparison">46. Hashing and Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#overriding-default-behavior">47. Overriding Default Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#iteration-and-mapping">48. Iteration and Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#function-and-method-protocol">49. Function and Method Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id5">50. Class Method Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#miscellaneous">51. Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#mapping-protocol">52. Mapping Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#sequence-protocol">53. Sequence Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#file-and-io-protocol">54. File and IO Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-method-for-instance-creation">55. Special Method for Instance Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-repr-and-str">56. Customizing <code class="docutils literal notranslate"><span class="pre">repr</span></code> and <code class="docutils literal notranslate"><span class="pre">str</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-attribute-access">57. Customizing Attribute Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-object-comparison">58. Customizing Object Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-arithmetic-operations">59. Special Methods for Arithmetic Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-unary-operations">60. Special Methods for Unary Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-in-place-operations">61. Special Methods for In-place Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-callable-objects">62. Customizing Callable Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id6">63. Context Manager Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#debugging-and-introspection">64. Debugging and Introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id7">65. Attribute Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#callable-and-function-protocol">66. Callable and Function Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-object-representation">67. Customizing Object Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id8">68. Special Methods for Arithmetic Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id9">69. Special Methods for Unary Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id10">70. Special Methods for In-place Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#collection-protocol">71. Collection Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id11">72. Customizing Object Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id12">73. File and IO Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#object-creation-and-initialization">74. Object Creation and Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#hashing-and-equality">75. Hashing and Equality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id13">76. Context Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id14">77. Customizing Attribute Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#sequence-and-mapping-protocol">78. Sequence and Mapping Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-object-behavior">79. Customizing Object Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id15">80. Dynamic Class Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id16">81. Descriptor Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#pickling-protocol">82. Pickling Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#buffer-protocol">83. Buffer Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id17">84. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#meta-programming">85. Meta Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#method-wrapping">86. Method Wrapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#async-iteration">87. Async Iteration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id18">88. String Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#data-descriptor">89. Data Descriptor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id19">90. Collection Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-object-deletion">91. Customizing Object Deletion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id20">92. Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#type-protocol">93. Type Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#initialization-and-setup">94. Initialization and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#descriptor-access">95. Descriptor Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#object-management">96. Object Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#container-protocol">97. Container Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-hash">98. Customizing Hash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-boolean-context">99. Customizing Boolean Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-string-conversion">100. Customizing String Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id21">101. Function and Method Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id22">102. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#protocol-for-callable-objects">103. Protocol for Callable Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#object-state-management">104. Object State Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#async-context-manager">105. Async Context Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-indexing-and-slicing">106. Special Methods for Indexing and Slicing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#asynchronous-iteration">107. Asynchronous Iteration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#asynchronous-callable">108. Asynchronous Callable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-type-checking">109. Special Methods for Type Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#object-creation-and-management">110. Object Creation and Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#callable-protocol">111. Callable Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id23">112. Attribute Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id24">113. Context Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id25">114. String Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#arithmetic-operations">115. Arithmetic Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#in-place-operations">116. In-place Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#comparison-operations">117. Comparison Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#type-casting">118. Type Casting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#numeric-operations">119. Numeric Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#iteration">120. Iteration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-method-for-class-management">121. Special Method for Class Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-object-creation">122. Special Methods for Object Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id26">123. Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#asynchronous-context-management">124. Asynchronous Context Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id27">125. Mapping Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#set-protocol">126. Set Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id28">127. Sequence Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#numeric-protocol">128. Numeric Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#string-representation-and-formatting">129. String Representation and Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#pickling-and-unpickling">130. Pickling and Unpickling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id29">131. Buffer Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-method-resolution">132. Customizing Method Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#descriptors-and-attribute-management">133. Descriptors and Attribute Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#debugging">134. Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id30">135. Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id31">136. Container Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#descriptor-methods">137. Descriptor Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#meta-methods">138. Meta Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id32">139. Comparison Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#numeric-methods">140. Numeric Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#in-place-methods">141. In-Place Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id33">142. String Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#iterator-protocol">143. Iterator Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#context-manager">144. Context Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id34">145. Callable Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id35">146. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id36">147. Buffer Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id37">148. Pickling and Unpickling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#descriptors-and-attributes">149. Descriptors and Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#descriptor-management">150. Descriptor Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#class-creation-and-initialization">151. Class Creation and Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#type-checking">152. Type Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#object-initialization">153. Object Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id38">154. Async Iteration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-iterators">155. Customizing Iterators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id39">156. Callable Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id40">157. Memory Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-string-representation">158. Customizing String Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-hashing">159. Customizing Hashing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id41">160. Attribute Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-containers">161. Customizing Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-slicing">162. Customizing Slicing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-numeric-operations">163. Customizing Numeric Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#in-place-numeric-operations">164. In-Place Numeric Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id42">165. Numeric Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#string-methods">166. String Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id43">167. Object State Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id44">168. Buffer Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id45">169. Type Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#class-management">170. Class Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-attribute-access">171. Special Methods for Attribute Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-class-management">172. Special Methods for Class Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-method-resolution-order-mro">173. Special Methods for Method Resolution Order (MRO)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#customizing-container-behavior">174. Customizing Container Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-numeric-conversion">175. Special Methods for Numeric Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-object-comparison">176. Special Methods for Object Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-iterables">177. Special Methods for Iterables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-class-attributes">178. Special Methods for Class Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-buffer-protocol">179. Special Methods for Buffer Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-pickling">180. Special Methods for Pickling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-context-management">181. Special Methods for Context Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-callable-objects">182. Special Methods for Callable Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id46">183. Special Methods for Arithmetic Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-in-place-arithmetic-operations">184. Special Methods for In-Place Arithmetic Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-conversion">185. Special Methods for Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-collections">186. Special Methods for Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-descriptor-protocol">187. Special Methods for Descriptor Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-context-managers">188. Special Methods for Context Managers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id47">189. Special Methods for Callable Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-numeric-types">190. Special Methods for Numeric Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-mathematical-operations">191. Special Methods for Mathematical Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id48">192. Special Methods for In-Place Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-binary-operations">193. Special Methods for Binary Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-object-construction">194. Special Methods for Object Construction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-method-resolution">195. Special Methods for Method Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-object-representation">196. Special Methods for Object Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-data-management">197. Special Methods for Data Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-iteration">198. Special Methods for Iteration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-container-management">199. Special Methods for Container Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id49">200. Special Methods for Numeric Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id50">201. Special Methods for Arithmetic Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id51">202. Special Methods for In-Place Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-comparison">203. Special Methods for Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#special-methods-for-string-conversion">204. Special Methods for String Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id52">205. Special Methods for Pickling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id53">206. Special Methods for Buffer Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id54">207. Special Methods for Context Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="magic_methods/all_magic_methods.html#id55">208. Special Methods for Class Management</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="fundamental_concepts/YAGNI_Principle.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">YAGNI Principle (You Aren’t Gonna Need It)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="magic_methods/all_magic_methods.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python Dunder Methods</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

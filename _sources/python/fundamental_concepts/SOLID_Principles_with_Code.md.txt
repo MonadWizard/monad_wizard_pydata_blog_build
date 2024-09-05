@@ -1,0 +1,620 @@
+SOLID Principles with Code
+==========================
+
+
+| Letter | Principle                          | Description                                                                 |
+|--------|------------------------------------|-----------------------------------------------------------------------------|
+| **S**  | **Single Responsibility Principle**| A class should have one and only one reason to change, meaning it should have only one job. |
+| **O**  | **Open/Closed Principle**          | Software entities should be open for extension, but closed for modification. |
+| **L**  | **Liskov Substitution Principle**  | Objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program. |
+| **I**  | **Interface Segregation Principle**| Clients should not be forced to depend on methods they do not use.           |
+| **D**  | **Dependency Inversion Principle** | High-level modules should not depend on low-level modules. Both should depend on abstractions. |
+
+
+
+
+
+# Single Responsibility Principle (SRP)
+
+## What is SRP?
+
+The **Single Responsibility Principle (SRP)** is one of the five SOLID principles of object-oriented design. It states that **a class should have only one reason to change**, meaning that a class should only have one responsibility or one job. 
+
+In simpler terms, each class should only focus on a single task or functionality, and it should encapsulate that functionality completely. By adhering to SRP, you can create modular, maintainable, and reusable code. It helps reduce the impact of code changes and makes your code easier to understand and test.
+
+## Benefits of SRP
+
+1. **Easier Maintenance**: When classes have distinct responsibilities, it’s easier to modify one without affecting others.
+2. **Improved Readability**: Code is easier to understand when each class does one thing.
+3. **Enhanced Testability**: Classes with single responsibilities are easier to test in isolation.
+4. **Better Reusability**: Smaller, well-defined classes can often be reused across different projects or contexts.
+
+## SRP Violations
+
+A violation of SRP occurs when a class tries to do too much. For example, if a single class handles business logic, data validation, and database persistence, it is likely to violate SRP. Any change in one area (e.g., the business logic) could affect other areas (e.g., data persistence), making the class harder to maintain.
+
+---
+
+## Python Example of SRP
+
+Let’s consider a complex scenario involving a report generation system that generates reports, saves them to a file, and sends them via email. Here’s a Python example that violates SRP and then an improved version adhering to SRP.
+
+### Example: SRP Violation
+
+```python
+import smtplib
+
+class Report:
+    def __init__(self, title, content):
+        self.title = title
+        self.content = content
+
+    def generate_report(self):
+        return f"Report Title: {self.title}\nReport Content: {self.content}"
+
+    def save_to_file(self, file_name):
+        with open(file_name, 'w') as f:
+            f.write(self.generate_report())
+        print(f"Report saved to {file_name}")
+
+    def send_via_email(self, recipient_email):
+        sender_email = "you@example.com"
+        message = f"Subject: {self.title}\n\n{self.content}"
+
+        with smtplib.SMTP('smtp.example.com') as server:
+            server.sendmail(sender_email, recipient_email, message)
+        print(f"Report sent to {recipient_email}")
+
+```
+
+
+## Issues with this Code:
+
+- The `Report` class is responsible for generating the report, saving the report to a file, and sending it via email.
+This violates SRP because the `Report` class has multiple reasons to change: changes in the reporting format, changes in the file handling logic, and changes in the email sending process.
+
+
+## Example: SRP Adherence
+
+Let’s refactor the above code to adhere to the Single Responsibility Principle. We’ll separate the concerns into different classes:
+
+
+```python
+
+class Report:
+    def __init__(self, title, content):
+        self.title = title
+        self.content = content
+
+    def generate_report(self):
+        return f"Report Title: {self.title}\nReport Content: {self.content}"
+
+class ReportSaver:
+    @staticmethod
+    def save(report, file_name):
+        with open(file_name, 'w') as f:
+            f.write(report.generate_report())
+        print(f"Report saved to {file_name}")
+
+class EmailSender:
+    @staticmethod
+    def send(report, recipient_email):
+        sender_email = "you@example.com"
+        message = f"Subject: {report.title}\n\n{report.content}"
+
+        with smtplib.SMTP('smtp.example.com') as server:
+            server.sendmail(sender_email, recipient_email, message)
+        print(f"Report sent to {recipient_email}")
+
+# Usage
+report = Report("Sales Report", "Content of sales report")
+
+# Save the report
+ReportSaver.save(report, "sales_report.txt")
+
+# Send the report via email
+EmailSender.send(report, "recipient@example.com")
+
+
+```
+
+
+
+## Improvements in SRP Version:
+- Report Class: Now only responsible for generating the report.
+- ReportSaver Class: Handles saving reports to files.
+- EmailSender Class: Deals with sending reports via email.
+
+Each class now has a single responsibility, making the system more modular, testable, and easier to maintain.
+
+
+
+### Summary of SRP in Python:
+- A complex example showing how a class can be overloaded with responsibilities.
+- A refactored example that breaks responsibilities into separate classes, each with a single responsibility.
+- SRP is all about making your classes more modular and maintainable by focusing on a single task.
+
+
+
+
+
+
+# Open/Closed Principle (OCP)
+
+## What is the Open/Closed Principle (OCP)?
+
+The Open/Closed Principle (OCP) is one of the five SOLID principles of object-oriented programming. It states that:
+
+- Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification.
+
+In other words, the behavior of a module should be able to be extended without altering its source code. This principle encourages writing code in such a way that new functionality can be added to existing modules by introducing new code rather than changing existing code.
+
+The primary idea behind OCP is to prevent modifications to existing code, which can introduce bugs or break existing functionality. Instead, the code should be extended by adding new classes, methods, or other components.
+
+### Benefits of OCP
+- Maintainability: Since you avoid changing existing code, there's less risk of introducing bugs.
+- Scalability: By allowing extensions, you can easily add new features without disrupting the existing system.
+- Flexibility: The system becomes more adaptable to changes in requirements without the need for frequent refactoring.
+
+## Python Example
+
+In this example, we'll implement a simple order processing system that calculates discounts based on different customer types (e.g., regular customers, VIP customers). We'll refactor the code to follow the OCP, allowing new discount strategies to be added without modifying the core order processing logic.
+
+### Initial Code (Violates OCP)
+
+
+```python
+
+class Order:
+    def __init__(self, customer_type, total_price):
+        self.customer_type = customer_type
+        self.total_price = total_price
+
+    def calculate_discount(self):
+        if self.customer_type == 'regular':
+            return self.total_price * 0.05  # 5% discount
+        elif self.customer_type == 'vip':
+            return self.total_price * 0.2  # 20% discount
+        else:
+            return 0  # No discount
+
+# Usage
+order = Order('regular', 1000)
+print(order.calculate_discount())  # 50
+
+order2 = Order('vip', 1000)
+print(order2.calculate_discount())  # 200
+
+
+```
+
+In this implementation, if we need to add more customer types or discount logic, we will have to modify the calculate_discount() method. This violates the Open/Closed Principle because the class needs to be modified to support new discount strategies.
+
+## Refactored Code (Follows OCP)
+To follow the Open/Closed Principle, we’ll refactor the code by separating the discount logic from the Order class. We will use strategy patterns where new discount strategies can be added by extending the system without modifying the existing code.
+
+
+```python
+
+from abc import ABC, abstractmethod
+
+# Base Discount Strategy
+class DiscountStrategy(ABC):
+    @abstractmethod
+    def apply_discount(self, total_price):
+        pass
+
+# Regular Customer Discount
+class RegularDiscount(DiscountStrategy):
+    def apply_discount(self, total_price):
+        return total_price * 0.05  # 5% discount
+
+# VIP Customer Discount
+class VIPDiscount(DiscountStrategy):
+    def apply_discount(self, total_price):
+        return total_price * 0.2  # 20% discount
+
+# No Discount for other customers
+class NoDiscount(DiscountStrategy):
+    def apply_discount(self, total_price):
+        return 0  # No discount
+
+# Order class with extension support
+class Order:
+    def __init__(self, total_price, discount_strategy: DiscountStrategy):
+        self.total_price = total_price
+        self.discount_strategy = discount_strategy
+
+    def calculate_discount(self):
+        return self.discount_strategy.apply_discount(self.total_price)
+
+# Usage
+order = Order(1000, RegularDiscount())
+print(order.calculate_discount())  # 50
+
+order2 = Order(1000, VIPDiscount())
+print(order2.calculate_discount())  # 200
+
+order3 = Order(1000, NoDiscount())
+print(order3.calculate_discount())  # 0
+
+
+```
+
+### Explanation
+- Open for Extension: We can now add new discount strategies by creating new classes that inherit from DiscountStrategy. For example, we can add a new PremiumDiscount without modifying the existing Order class.
+- Closed for Modification: The Order class doesn't need to be changed to accommodate new discount types. The class is "closed" for modification but still "open" for extension via new strategies.
+
+## Adding a New Discount Strategy
+
+Suppose a new requirement comes up to add a PremiumDiscount. We can do this by simply creating a new class without touching any of the existing code:
+
+
+
+```python
+
+# Premium Customer Discount
+class PremiumDiscount(DiscountStrategy):
+    def apply_discount(self, total_price):
+        return total_price * 0.3  # 30% discount
+
+# Usage
+order4 = Order(1000, PremiumDiscount())
+print(order4.calculate_discount())  # 300
+
+
+```
+
+### Conclusion
+By using the Open/Closed Principle, we’ve made the system more flexible and easier to extend. Adding new discount types no longer requires modifying the existing logic, thus reducing the risk of introducing bugs and increasing maintainability.
+
+
+
+# Liskov Substitution Principle (LSP)
+
+## Overview
+
+The **Liskov Substitution Principle (LSP)** is the third principle in the SOLID principles of Object-Oriented Design. Introduced by Barbara Liskov in 1987, this principle states that:
+
+**"Objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program."**
+
+In simpler terms, if class `B` is a subclass of class `A`, then it should be possible to replace instances of `A` with instances of `B` without altering the behavior of the program.
+
+### Key Requirements for LSP
+
+1. **Preconditions**: Subclasses should not strengthen the preconditions for methods of the superclass. The subclass should accept the same or more generalized inputs as the superclass.
+   
+2. **Postconditions**: Subclasses should not weaken the postconditions of the superclass. The subclass should guarantee at least the same results as the superclass.
+
+3. **Invariant Preservation**: Subclasses should maintain the invariants of the superclass. The set of properties that are true for the superclass should also hold for the subclass.
+
+4. **Behavioral Substitutability**: When a subclass overrides a method of the superclass, it must ensure that it behaves in a way consistent with the expectations set by the superclass.
+
+## Violation Example
+
+Consider a base class `Bird` and two subclasses `Penguin` and `Eagle`. Violating LSP would occur if the subclass `Penguin` behaves in a way inconsistent with the base class's contract.
+
+```python
+class Bird:
+    def fly(self):
+        raise NotImplementedError("This method should be overridden by subclasses")
+
+class Eagle(Bird):
+    def fly(self):
+        print("Eagle is flying")
+
+class Penguin(Bird):
+    def fly(self):
+        raise Exception("Penguins can't fly!")
+
+def let_bird_fly(bird: Bird):
+    bird.fly()
+
+eagle = Eagle()
+penguin = Penguin()
+
+let_bird_fly(eagle)   # Works fine
+let_bird_fly(penguin) # Raises an Exception (LSP is violated)
+
+```
+
+
+
+Here, the subclass Penguin violates the Liskov Substitution Principle by changing the behavior of the fly() method. According to LSP, a subclass should honor the expectations set by the superclass, but Penguin clearly doesn't.
+
+## Corrected Example using LSP
+Let's refactor the design to adhere to LSP by introducing a more suitable design where we have a common interface for "flying" birds and separate behaviors for non-flying birds.
+
+
+```python
+
+class Bird:
+    def eat(self):
+        print("This bird is eating.")
+
+class FlyingBird(Bird):
+    def fly(self):
+        print("This bird can fly.")
+
+class NonFlyingBird(Bird):
+    def walk(self):
+        print("This bird can only walk.")
+
+class Eagle(FlyingBird):
+    def fly(self):
+        print("Eagle is soaring high in the sky!")
+
+class Penguin(NonFlyingBird):
+    def walk(self):
+        print("Penguin is waddling on ice!")
+
+def test_bird_behavior(bird: Bird):
+    bird.eat()
+    if isinstance(bird, FlyingBird):
+        bird.fly()
+    elif isinstance(bird, NonFlyingBird):
+        bird.walk()
+
+eagle = Eagle()
+penguin = Penguin()
+
+test_bird_behavior(eagle)   # Eagle can fly and eat (LSP holds)
+test_bird_behavior(penguin) # Penguin can walk and eat (LSP holds)
+
+
+```
+
+### Key Changes:
+- We introduced two separate classes: FlyingBird and NonFlyingBird to represent birds that can fly and those that cannot. This ensures that subclasses only override behavior relevant to their capabilities.
+- Now, Penguin no longer has to override a method that doesn't make sense for its type (fly()). Instead, it provides its own behavior (walk()), and both Eagle and Penguin can be substituted where a Bird is expected without violating LSP.
+
+### Benefits of LSP Compliance
+- Code Reusability: When LSP is followed, code written for a base class can be reused with its subclasses without the need for modification.
+- Maintainability: Adhering to LSP makes the code easier to extend and maintain, as it ensures consistent behavior across the class hierarchy.
+- Predictability: Following LSP ensures that subclasses behave in an expected way, leading to fewer surprises and more predictable code behavior.
+
+
+
+
+
+
+# Interface Segregation Principle (ISP)
+
+## Overview
+
+The **Interface Segregation Principle (ISP)** is the fourth principle in the SOLID principles of Object-Oriented Design. This principle states that:
+
+**"No client should be forced to depend on methods it does not use."**
+
+In other words, large, monolithic interfaces should be split into smaller, more specific interfaces so that clients only need to know about the methods that are relevant to them.
+
+### Key Concepts
+
+1. **Interface Granularity**: Rather than having one large interface that includes many methods, break it down into smaller, more focused interfaces. This way, classes implementing an interface only need to provide the functionality relevant to them.
+
+2. **No Method Pollution**: Clients should not be forced to implement methods they don’t use. If an interface is too large, it might make the client dependent on methods it doesn’t care about.
+
+3. **High Cohesion**: Smaller interfaces ensure higher cohesion by keeping related methods together and unrelated methods separate.
+
+By following ISP, we promote **separation of concerns**, **flexibility**, and **reusability** in object-oriented design.
+
+## Violation Example
+
+Consider an example of a `Worker` interface that is implemented by different classes like `Robot` and `Human`. Both are required to implement `eat()` and `work()`, even though a `Robot` should not be forced to implement `eat()`.
+
+```python
+# This is a fat interface violating ISP
+class Worker:
+    def work(self):
+        pass
+
+    def eat(self):
+        pass
+
+class Human(Worker):
+    def work(self):
+        print("Human is working.")
+
+    def eat(self):
+        print("Human is eating.")
+
+class Robot(Worker):
+    def work(self):
+        print("Robot is working.")
+
+    def eat(self):
+        raise NotImplementedError("Robots don't eat!")  # Violates ISP
+
+def manage_worker(worker: Worker):
+    worker.work()
+    worker.eat()  # Not relevant for Robot, leads to exceptions
+
+human = Human()
+robot = Robot()
+
+manage_worker(human)  # Works fine
+manage_worker(robot)  # Raises NotImplementedError (ISP violation)
+
+```
+
+
+
+### Explanation:
+- The `Worker` interface has two methods: `work()` and `eat()`.
+- `Robot`, which is a type of Worker, should not have to implement `eat()` because it's irrelevant to a robot. However, since Worker is a single, large interface, `Robot` is forced to implement `eat()` and throw an error, violating ISP.
+
+## Corrected Example using ISP
+To adhere to the Interface Segregation Principle, we split the Worker interface into two smaller, more cohesive interfaces: Workable and Eatable. Now, classes implement only the interfaces they need.
+
+
+```python
+
+# Segregated interfaces adhering to ISP
+class Workable:
+    def work(self):
+        pass
+
+class Eatable:
+    def eat(self):
+        pass
+
+class Human(Workable, Eatable):
+    def work(self):
+        print("Human is working.")
+
+    def eat(self):
+        print("Human is eating.")
+
+class Robot(Workable):
+    def work(self):
+        print("Robot is working.")
+
+# Now we can manage workers without forcing irrelevant methods
+def manage_worker(worker: Workable):
+    worker.work()
+
+def manage_eating(eater: Eatable):
+    eater.eat()
+
+human = Human()
+robot = Robot()
+
+manage_worker(human)  # Works fine
+manage_worker(robot)  # Works fine, no need to implement eat()
+
+manage_eating(human)  # Works fine
+# manage_eating(robot)  # Will raise an error if attempted, but it's clear Robots don't eat
+
+
+```
+
+
+### Key Changes:
+- Smaller Interfaces: We split the `Worker` interface into two: `Workable` (for work-related methods) and `Eatable` (for eating-related methods). Now, Robot only needs to implement `Workable`, and `Human` implements both Workable and Eatable.
+- No Redundant Methods: Robot is no longer forced to implement a method it doesn't need (eat()), adhering to ISP.
+
+### Benefits of ISP Compliance
+ * Decoupling: Interfaces are more specific to what a class truly needs, resulting in a decoupled and flexible system.
+* Easier to Understand and Maintain: Smaller, focused interfaces are easier to understand and maintain, making the codebase cleaner.
+* Reduced Impact of Changes: When interfaces are small, changes to an interface affect fewer classes, thus minimizing the ripple effect of changes in the system.
+* Reusability: Smaller interfaces can be reused across different contexts, enhancing code reusability.
+
+### Conclusion
+The Interface Segregation Principle encourages the use of small, specific interfaces that are easy to implement. By breaking down large interfaces into more granular ones, we reduce the risk of forcing classes to implement methods they do not use, leading to a cleaner, more maintainable design.
+
+
+
+# Dependency Inversion Principle (DIP)
+
+## Overview
+
+The **Dependency Inversion Principle (DIP)** is the fifth and final principle in the SOLID principles of Object-Oriented Design. This principle states that:
+
+**"High-level modules should not depend on low-level modules. Both should depend on abstractions."**
+
+In simple terms, instead of high-level components (the "brains" of your program) depending directly on lower-level components (which carry out details), both should depend on interfaces or abstract classes. This ensures that the system is more flexible and easier to maintain or extend.
+
+### Key Concepts
+
+1. **High-Level Modules**: These modules contain complex business logic and should not be tightly coupled with the details of implementation.
+   
+2. **Low-Level Modules**: These modules are responsible for more specific operations, such as reading/writing to databases, handling HTTP requests, or interacting with the file system.
+
+3. **Abstractions**: Both high- and low-level modules should rely on abstractions, such as interfaces or abstract classes, rather than concrete implementations. This allows for more flexibility and easier modifications.
+
+### Goals of DIP
+- **Decoupling**: The goal is to decouple the high-level logic from low-level details, so that the system becomes more flexible and extendable.
+- **Flexibility**: By using abstractions, you can change implementations (e.g., switching from a SQL to NoSQL database) without modifying high-level modules.
+  
+## Violation Example
+
+Let's consider a scenario where a high-level `UserService` class depends directly on a low-level `MySQLDatabase` class. This is a violation of DIP because `UserService` is tightly coupled with `MySQLDatabase`, making it harder to replace or extend.
+
+```python
+class MySQLDatabase:
+    def get_user(self, user_id: int):
+        print(f"Fetching user {user_id} from MySQL database")
+
+class UserService:
+    def __init__(self, db: MySQLDatabase):
+        self.db = db
+
+    def find_user(self, user_id: int):
+        self.db.get_user(user_id)
+
+# Usage
+db = MySQLDatabase()
+service = UserService(db)
+service.find_user(42)
+
+```
+
+
+### Problems:
+- Tight Coupling: `UserService` depends directly on `MySQLDatabase`, meaning if we want to change the database (e.g., to PostgreSQL), we would have to modify `UserService`.
+- No Flexibility: The design isn't flexible enough to accommodate other databases or data sources.
+
+### Corrected Example using DIP
+
+To adhere to the Dependency Inversion Principle, we introduce an abstraction (an interface or abstract class) that both `UserService` and any database class depend on. This allows us to easily swap out different database implementations without modifying `UserService`.
+
+
+```python
+
+from abc import ABC, abstractmethod
+
+# Abstract interface that both high-level and low-level classes depend on
+class Database(ABC):
+    @abstractmethod
+    def get_user(self, user_id: int):
+        pass
+
+# Low-level module: MySQL database implementation
+class MySQLDatabase(Database):
+    def get_user(self, user_id: int):
+        print(f"Fetching user {user_id} from MySQL database")
+
+# Low-level module: PostgreSQL database implementation
+class PostgreSQLDatabase(Database):
+    def get_user(self, user_id: int):
+        print(f"Fetching user {user_id} from PostgreSQL database")
+
+# High-level module: UserService depends on the Database abstraction
+class UserService:
+    def __init__(self, db: Database):
+        self.db = db
+
+    def find_user(self, user_id: int):
+        self.db.get_user(user_id)
+
+# Usage
+mysql_db = MySQLDatabase()
+postgresql_db = PostgreSQLDatabase()
+
+# UserService can now work with any database that implements the Database interface
+service_with_mysql = UserService(mysql_db)
+service_with_postgresql = UserService(postgresql_db)
+
+service_with_mysql.find_user(42)       # Fetching user 42 from MySQL database
+service_with_postgresql.find_user(42)  # Fetching user 42 from PostgreSQL database
+
+
+```
+
+
+### Key Changes:
+* Abstraction (Database): We define a Database interface that declares the get_user() method. This ensures that UserService depends on an abstraction rather than a concrete implementation.
+* Low-Level Modules (MySQLDatabase, PostgreSQLDatabase): Both MySQLDatabase and PostgreSQLDatabase now implement the Database interface, adhering to a common contract.
+* High-Level Module (UserService): Now depends on the Database interface, making it flexible enough to work with any database implementation.
+
+### Benefits of DIP Compliance
+
+- Loose Coupling: The high-level module (UserService) no longer directly depends on the low-level module (MySQLDatabase). It only depends on the Database abstraction, allowing for flexible and maintainable code.
+
+- Easier to Extend: If a new database (e.g., MongoDBDatabase) needs to be supported, it can be added without modifying the UserService class.
+
+- Testability: Dependency injection becomes easier. For instance, a mock database implementation can be injected into UserService for testing purposes.
+
+### Conclusion
+The Dependency Inversion Principle ensures that high-level components aren't tightly coupled with low-level implementation details. By introducing abstractions (interfaces or abstract classes), systems become more flexible and maintainable, and low-level details can be changed or extended with minimal impact on the system's core logic.
+

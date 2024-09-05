@@ -42,4 +42,9 @@ In summary, Python's versatility, readability, and vibrant ecosystem make it an 
    :maxdepth: 2
    :caption: python
 
-   cs
+   fc
+   magic
+   dp
+   uml
+
+   

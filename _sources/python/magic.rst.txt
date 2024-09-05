@@ -1,0 +1,9 @@
+python magic methods
+============================
+
+.. toctree::
+    :maxdepth: 9
+    :caption: Python Magic Methods list in Bangla
+
+    magic_methods/all_magic_methods
+    

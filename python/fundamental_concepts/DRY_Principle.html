@@ -1,0 +1,1068 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>DRY Principle &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/fundamental_concepts/DRY_Principle';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/python/fundamental_concepts/DRY_Principle.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Coursera - Object-Oriented Design" href="Coursera_Object-Oriented_Design.html" />
+    <link rel="prev" title="SOLID Principles with Code" href="SOLID_Principles_with_Code.html" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G04RGCJ0SY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G04RGCJ0SY');
+  </script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    dev-ops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    python
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    pl/SQL
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
+    Database
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pycconverter/" title="pyc" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-python fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">pyc</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    dev-ops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    python
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    pl/SQL
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../db/index.html">
+    Database
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pycconverter/" title="pyc" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-python fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">pyc</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">python</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../fc.html">Low Level Design</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Basics_OOP_Concepts.html">Basics OOP Concepts</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="SOLID_Principles_with_Code.html">SOLID Principles with Code</a></li>
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">DRY Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Coursera_Object-Oriented_Design.html">Coursera - Object-Oriented Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="KISS_Principle.html">KISS Low-Level Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="YAGNI_Principle.html">YAGNI Principle (You Aren’t Gonna Need It)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../magic.html">python magic methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../magic_methods/all_magic_methods.html">Python Dunder Methods</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">python</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../fc.html" class="nav-link">Low Level Design</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">DRY Principle</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="dry-principle">
+<h1>DRY Principle<a class="headerlink" href="#dry-principle" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>The <strong>DRY Principle</strong> stands for <strong>“Don’t Repeat Yourself”</strong>. It is one of the fundamental principles of software development aimed at reducing duplication in logic and code. The core idea is:</p>
+<p><strong>“Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.”</strong></p>
+<p>In simple terms, DRY encourages developers to avoid writing duplicate code, which not only reduces redundancy but also makes code easier to maintain, modify, and understand.</p>
+<section id="why-is-dry-important">
+<h3>Why is DRY Important?<a class="headerlink" href="#why-is-dry-important" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Maintainability</strong>: If the same code appears in multiple places, any bug fix or improvement needs to be applied to each instance, increasing the chance of errors.</p></li>
+<li><p><strong>Readability</strong>: Non-repetitive, well-structured code is easier to read and understand, especially in larger projects.</p></li>
+<li><p><strong>Reusability</strong>: Code adhering to the DRY principle is more modular and reusable across various parts of an application.</p></li>
+<li><p><strong>Single Source of Truth</strong>: Duplication often leads to inconsistent logic across different parts of the system, making the application harder to reason about.</p></li>
+</ol>
+</section>
+<section id="violation-of-dry">
+<h3>Violation of DRY<a class="headerlink" href="#violation-of-dry" title="Link to this heading">#</a></h3>
+<p>A violation occurs when you copy-paste the same code or logic into different parts of your application, which could be encapsulated and reused instead.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="example-1-refactoring-repeated-logic">
+<h2>Example 1: Refactoring Repeated Logic<a class="headerlink" href="#example-1-refactoring-repeated-logic" title="Link to this heading">#</a></h2>
+<section id="before-dry-violation">
+<h3>Before (DRY Violation)<a class="headerlink" href="#before-dry-violation" title="Link to this heading">#</a></h3>
+<p>In the following example, the logic to calculate total salary is repeated in different places.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
+
+    <span class="k">def</span> <span class="nf">annual_salary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Logic repeated here</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">*</span> <span class="mi">12</span>
+
+<span class="k">class</span> <span class="nc">Contractor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
+
+    <span class="k">def</span> <span class="nf">annual_salary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Same logic repeated here</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">*</span> <span class="mi">12</span>
+
+<span class="n">employee</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="n">contractor</span> <span class="o">=</span> <span class="n">Contractor</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">6000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">employee</span><span class="o">.</span><span class="n">annual_salary</span><span class="p">())</span>  <span class="c1"># Repeated logic</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contractor</span><span class="o">.</span><span class="n">annual_salary</span><span class="p">())</span> <span class="c1"># Repeated logic</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+<section id="after-dry-applied">
+<h2>After (DRY Applied)<a class="headerlink" href="#after-dry-applied" title="Link to this heading">#</a></h2>
+<p>We can extract the repeated logic into a reusable method in a base class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">Worker</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">salary</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
+
+    <span class="k">def</span> <span class="nf">annual_salary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">*</span> <span class="mi">12</span>  <span class="c1"># Shared logic</span>
+
+<span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">Worker</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Contractor</span><span class="p">(</span><span class="n">Worker</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">employee</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="n">contractor</span> <span class="o">=</span> <span class="n">Contractor</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">6000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">employee</span><span class="o">.</span><span class="n">annual_salary</span><span class="p">())</span>  <span class="c1"># No repetition</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contractor</span><span class="o">.</span><span class="n">annual_salary</span><span class="p">())</span>  <span class="c1"># No repetition</span>
+
+
+</pre></div>
+</div>
+<section id="key-improvements">
+<h3>Key Improvements:<a class="headerlink" href="#key-improvements" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The calculation logic is centralized in the Worker class, and both Employee and Contractor reuse the method.</p></li>
+<li><p>If the calculation logic changes, it needs to be updated in only one place.</p></li>
+</ul>
+</section>
+</section>
+<section id="refactoring-similar-functions-with-a-common-utility">
+<h2>Refactoring Similar Functions with a Common Utility<a class="headerlink" href="#refactoring-similar-functions-with-a-common-utility" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Before</span> <span class="pre">(DRY</span> <span class="pre">Violation)</span></code>
+The following example shows similar functions calculating areas of different shapes, repeating similar logic.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">rectangle_area</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">length</span> <span class="o">*</span> <span class="n">width</span>
+
+<span class="k">def</span> <span class="nf">square_area</span><span class="p">(</span><span class="n">side</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">side</span> <span class="o">*</span> <span class="n">side</span>
+
+<span class="k">def</span> <span class="nf">triangle_area</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">base</span> <span class="o">*</span> <span class="n">height</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">rectangle_area</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">square_area</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">triangle_area</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+
+</pre></div>
+</div>
+<section id="id1">
+<h3>After (DRY Applied)<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>We can refactor the code to reuse a common shape area calculation function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">calculate_area</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">dimensions</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">shape</span> <span class="o">==</span> <span class="s2">&quot;rectangle&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dimensions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">dimensions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">shape</span> <span class="o">==</span> <span class="s2">&quot;square&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dimensions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">dimensions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">shape</span> <span class="o">==</span> <span class="s2">&quot;triangle&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">dimensions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">dimensions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported shape: </span><span class="si">{</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">calculate_area</span><span class="p">(</span><span class="s2">&quot;rectangle&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># Rectangle</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">calculate_area</span><span class="p">(</span><span class="s2">&quot;square&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>        <span class="c1"># Square</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">calculate_area</span><span class="p">(</span><span class="s2">&quot;triangle&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>   <span class="c1"># Triangle</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>Key Improvements:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The calculation logic is centralized in the calculate_area function, making it easy to extend to other shapes.</p></li>
+<li><p>We eliminated repetitive functions for each shape.</p></li>
+</ul>
+</section>
+</section>
+<section id="refactoring-repeated-database-operations">
+<h2>Refactoring Repeated Database Operations<a class="headerlink" href="#refactoring-repeated-database-operations" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Before</span> <span class="pre">(DRY</span> <span class="pre">Violation)</span></code>
+Imagine a scenario where database queries are repeated across different parts of the code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="k">def</span> <span class="nf">get_all_users</span><span class="p">():</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">get_all_orders</span><span class="p">():</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM orders&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="n">get_all_users</span><span class="p">()</span>
+<span class="n">orders</span> <span class="o">=</span> <span class="n">get_all_orders</span><span class="p">()</span>
+
+
+</pre></div>
+</div>
+<section id="id3">
+<h3>After (DRY Applied)<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>We can abstract the database operations into a generic function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="k">def</span> <span class="nf">fetch_all</span><span class="p">(</span><span class="n">table_name</span><span class="p">):</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SELECT * FROM </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="n">fetch_all</span><span class="p">(</span><span class="s2">&quot;users&quot;</span><span class="p">)</span>  <span class="c1"># Reuse for users table</span>
+<span class="n">orders</span> <span class="o">=</span> <span class="n">fetch_all</span><span class="p">(</span><span class="s2">&quot;orders&quot;</span><span class="p">)</span>  <span class="c1"># Reuse for orders table</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Key Improvements:<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The repetitive database fetching logic is encapsulated in the fetch_all function.</p></li>
+<li><p>This makes it easier to query other tables by reusing the same function.</p></li>
+</ul>
+</section>
+</section>
+<section id="avoiding-code-duplication">
+<h2>Avoiding Code Duplication<a class="headerlink" href="#avoiding-code-duplication" title="Link to this heading">#</a></h2>
+<p>In this example, we will refactor a situation where code duplication occurs when performing similar validation checks across multiple methods.</p>
+<section id="id5">
+<h3>Before (DRY Violation)<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>Here, we perform user input validation repeatedly across different methods, leading to code duplication.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserService</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Username cannot be empty&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;User must be at least 18 years old&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Logic for creating a user</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> created successfully&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Username cannot be empty&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;User must be at least 18 years old&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Logic for updating a user</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> with ID </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2"> updated successfully&quot;</span><span class="p">)</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">UserService</span><span class="p">()</span>
+<span class="n">service</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">service</span><span class="o">.</span><span class="n">update_user</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>After (DRY Applied)<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>By extracting the validation logic into a separate reusable method, we eliminate code duplication.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">UserService</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">validate_user_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Username cannot be empty&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;User must be at least 18 years old&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_user_input</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+        <span class="c1"># Logic for creating a user</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> created successfully&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_user_input</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+        <span class="c1"># Logic for updating a user</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> with ID </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2"> updated successfully&quot;</span><span class="p">)</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">UserService</span><span class="p">()</span>
+<span class="n">service</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">service</span><span class="o">.</span><span class="n">update_user</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>Key Improvements:<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The validate_user_input method centralizes the validation logic, avoiding repetition.</p></li>
+<li><p>This improves maintainability, as any change to the validation logic needs to be made in only one place.</p></li>
+</ul>
+</section>
+</section>
+<section id="using-decorators-for-cross-cutting-concerns">
+<h2>Using Decorators for Cross-Cutting Concerns<a class="headerlink" href="#using-decorators-for-cross-cutting-concerns" title="Link to this heading">#</a></h2>
+<p>Cross-cutting concerns, such as logging, authorization, or caching, often affect multiple parts of an application. These concerns can lead to code duplication if not properly abstracted. Decorators are a common Python feature used to follow the DRY principle and handle cross-cutting concerns elegantly.</p>
+<section id="id8">
+<h3>Before (DRY Violation)<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>In this example, logging is implemented directly within business logic, leading to duplication of logging code across methods.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">PaymentService</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">process_payment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[INFO] Starting payment process for user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="c1"># Simulate payment processing</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processed payment of </span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s2"> for user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[INFO] Payment process for user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2"> finished&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">refund_payment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[INFO] Starting refund process for user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="c1"># Simulate refund processing</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Refunded </span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s2"> to user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[INFO] Refund process for user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2"> finished&quot;</span><span class="p">)</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">PaymentService</span><span class="p">()</span>
+<span class="n">service</span><span class="o">.</span><span class="n">process_payment</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">service</span><span class="o">.</span><span class="n">refund_payment</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="after-dry-applied-with-decorators">
+<h3>After (DRY Applied with Decorators)<a class="headerlink" href="#after-dry-applied-with-decorators" title="Link to this heading">#</a></h3>
+<p>We can extract the logging logic into a reusable decorator, applying the DRY principle to avoid duplicating the logging code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+
+<span class="k">def</span> <span class="nf">log_execution</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[INFO] Starting </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[INFO] Finished </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="k">class</span> <span class="nc">PaymentService</span><span class="p">:</span>
+    <span class="nd">@log_execution</span>
+    <span class="k">def</span> <span class="nf">process_payment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+        <span class="c1"># Simulate payment processing</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processed payment of </span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s2"> for user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nd">@log_execution</span>
+    <span class="k">def</span> <span class="nf">refund_payment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+        <span class="c1"># Simulate refund processing</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Refunded </span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s2"> to user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">PaymentService</span><span class="p">()</span>
+<span class="n">service</span><span class="o">.</span><span class="n">process_payment</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">service</span><span class="o">.</span><span class="n">refund_payment</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3>Key Improvements:<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The log_execution decorator eliminates the need to repeat logging logic within each method.
+By applying the decorator to any method, we can easily handle cross-cutting concerns like logging in a reusable and consistent way.</p></li>
+<li><p>The separation of concerns improves the readability of the business logic, making the methods more focused.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="SOLID_Principles_with_Code.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">SOLID Principles with Code</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Coursera_Object-Oriented_Design.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Coursera - Object-Oriented Design</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-dry-important">Why is DRY Important?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#violation-of-dry">Violation of DRY</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-refactoring-repeated-logic">Example 1: Refactoring Repeated Logic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-dry-violation">Before (DRY Violation)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#after-dry-applied">After (DRY Applied)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-improvements">Key Improvements:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refactoring-similar-functions-with-a-common-utility">Refactoring Similar Functions with a Common Utility</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">After (DRY Applied)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Key Improvements:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refactoring-repeated-database-operations">Refactoring Repeated Database Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">After (DRY Applied)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Key Improvements:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avoiding-code-duplication">Avoiding Code Duplication</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Before (DRY Violation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">After (DRY Applied)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Key Improvements:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-decorators-for-cross-cutting-concerns">Using Decorators for Cross-Cutting Concerns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Before (DRY Violation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#after-dry-applied-with-decorators">After (DRY Applied with Decorators)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Key Improvements:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

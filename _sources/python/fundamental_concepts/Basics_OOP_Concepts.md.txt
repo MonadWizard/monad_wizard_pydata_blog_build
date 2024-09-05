@@ -1,0 +1,582 @@
+Basics OOP Concepts
+====================
+
+
+Introduction to Object-Oriented Programming (OOP) in Python
+Object-Oriented Programming (OOP) is a programming paradigm that facilitates software development using objects and classes. It allows the programs to be structured in a way that mirrors real-world concepts and promotes code reuse.
+
+# Class and Object
+
+A class is a blueprint or template from which one or more objects can be created. An object is an instance of a class, representing individual entities that follow the structure defined by the class.
+
+
+```python
+# ক্লাস তৈরি
+class Car:
+    def __init__(self, model, year):
+        self.model = model
+        self.year = year
+
+    def display_info(self):
+        print(f"গাড়ির মডেল: {self.model}, সাল: {self.year}")
+
+# অবজেক্ট তৈরি
+my_car = Car("Toyota", 2020)
+my_car.display_info()
+
+```
+
+`আউটপুট:`
+    গাড়ির মডেল: Toyota, সাল: 2020
+
+
+
+
+# Inheritance in Object-Oriented Programming (OOP)
+Inheritance is a fundamental concept in Object-Oriented Programming (OOP) that allows a class (called a child or subclass) to inherit attributes and methods from another class (called a parent or superclass). This promotes code reusability and the creation of hierarchical class structures.
+
+`Key Benefits of Inheritance:`
+
+* Code Reusability: You can reuse the parent class’s code, avoiding the need to rewrite the same functionality in the child class.
+
+* Method Overriding: The child class can modify or extend the behavior of methods inherited from the parent class.
+
+* Extensibility: You can build upon existing classes by adding new features without altering the original class.
+
+`Types of Inheritance in Python`
+
+* Single Inheritance: A child class inherits from a single parent class.
+* Multiple Inheritance: A child class inherits from more than one parent class.
+* Multilevel Inheritance: A class inherits from another class, which itself is derived from another class.
+* Hierarchical Inheritance: Multiple classes inherit from a single parent class.
+* Hybrid Inheritance: A combination of two or more types of inheritance.
+Example of Inheritance in Python
+
+### Single Inheritance
+
+```python
+
+# Parent class
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return f"{self.name} makes a sound."
+
+# Child class inheriting from Animal
+class Dog(Animal):
+    def speak(self):
+        return f"{self.name} barks."
+
+# Create object from child class
+dog = Dog("Rex")
+print(dog.speak())
+
+
+
+```
+
+
+
+`output:`
+    Rex barks.
+
+
+
+In this example, the Dog class inherits from the Animal class. The Dog class overrides the speak() method from the Animal class to provide its own behavior.
+
+### Multiple Inheritance
+
+```python
+# Parent class 1
+class Flyer:
+    def fly(self):
+        return "This can fly."
+
+# Parent class 2
+class Swimmer:
+    def swim(self):
+        return "This can swim."
+
+# Child class inheriting from both Flyer and Swimmer
+class Duck(Flyer, Swimmer):
+    def quack(self):
+        return "Duck quacks."
+
+# Create object from Duck class
+duck = Duck()
+print(duck.fly())    # Inherits from Flyer
+print(duck.swim())   # Inherits from Swimmer
+print(duck.quack())  # Duck-specific method
+```
+
+`output:`
+    This can fly.
+    This can swim.
+    Duck quacks.
+
+
+
+In this case, the Duck class inherits from both Flyer and Swimmer classes, demonstrating multiple inheritance. This allows the Duck class to have methods from both parent classes.
+
+### Method Overriding
+In the inheritance hierarchy, if a child class has the same method as its parent class, it overrides the parent class’s method. The child class’s method will be called instead of the parent’s.
+
+
+```python
+
+class Vehicle:
+    def description(self):
+        return "This is a vehicle."
+
+class Car(Vehicle):
+    def description(self):
+        return "This is a car."
+
+# Create object from Car class
+my_car = Car()
+print(my_car.description())  # Calls the Car's description method
+
+```
+
+`output`
+    This is a car.
+
+
+`super()` Function
+The `super()` function in Python allows you to call methods from the parent class inside the child class, which can be useful when you want to extend the parent class’s functionality rather than completely override it.
+
+
+```python
+
+class Animal:
+    def speak(self):
+        return "Animal makes a sound."
+
+class Dog(Animal):
+    def speak(self):
+        parent_speak = super().speak()  # Calling the parent class method
+        return f"{parent_speak} But a dog barks."
+
+# Create object from Dog class
+dog = Dog()
+print(dog.speak())
+
+
+```
+
+
+`output`
+    Animal makes a sound. But a dog barks.
+
+
+Here, `super()` is used to call the `speak()` method from the parent class `(Animal)` and then add extra behavior specific to the child class `(Dog)`.
+
+
+```python
+
+# প্রথম ক্লাস - Parent 1
+class Engine:
+    def __init__(self, engine_type):
+        self.engine_type = engine_type
+
+    def start_engine(self):
+        print(f"{self.engine_type} ইঞ্জিন চালু হয়েছে।")
+
+# দ্বিতীয় ক্লাস - Parent 2
+class Wheels:
+    def __init__(self, num_wheels):
+        self.num_wheels = num_wheels
+
+    def rotate_wheels(self):
+        print(f"{self.num_wheels} চাকা ঘুরছে।")
+
+# তৃতীয় ক্লাস - Child Class, যা Engine এবং Wheels ক্লাস থেকে উত্তরাধিকার সূত্রে পায়
+class Car(Engine, Wheels):
+    def __init__(self, engine_type, num_wheels, brand):
+        # দুইটি প্যারেন্ট ক্লাসকে `super()` দিয়ে কল করা হয়েছে
+        Engine.__init__(self, engine_type)
+        Wheels.__init__(self, num_wheels)
+        self.brand = brand
+
+    def start_car(self):
+        print(f"{self.brand} গাড়ি চালু হচ্ছে...")
+        # প্যারেন্ট ক্লাসের মেথডগুলো ব্যবহার করা হচ্ছে
+        self.start_engine()
+        self.rotate_wheels()
+
+# অবজেক্ট তৈরি এবং মেথড কল করা
+my_car = Car("ডিজেল", 4, "Toyota")
+my_car.start_car()
+
+
+
+```
+
+`আউটপুট:`
+    Toyota গাড়ি চালু হচ্ছে...
+    ডিজেল ইঞ্জিন চালু হয়েছে।
+    4 চাকা ঘুরছে।
+
+
+
+## ব্যাখ্যা:
+Engine এবং Wheels হল দুটি প্যারেন্ট ক্লাস।
+
+Engine ক্লাস ইঞ্জিন সম্পর্কিত বৈশিষ্ট্য এবং মেথড ধারণ করে।
+Wheels ক্লাস চাকা সম্পর্কিত বৈশিষ্ট্য এবং মেথড ধারণ করে।
+Car ক্লাসটি এই দুটি প্যারেন্ট ক্লাসের উত্তরাধিকার সূত্রে বৈশিষ্ট্য এবং মেথডগুলো পায় এবং একটি নতুন প্রপার্টি brand যোগ করে।
+
+super() এর মাধ্যমে প্যারেন্ট ক্লাসের কন্সট্রাক্টরগুলোকে কল করা হয়েছে, যাতে প্যারেন্ট ক্লাসের ইনিশিয়ালাইজেশন প্রক্রিয়া সঠিকভাবে সম্পন্ন হয়।
+
+* Key Points:
+Multiple Inheritance: Python-এ কোনো ক্লাস একাধিক ক্লাস থেকে উত্তরাধিকার সূত্রে পেতে পারে, যেমন Car ক্লাসটি Engine এবং Wheels থেকে পাচ্ছে।
+super(): এটি প্যারেন্ট ক্লাসের মেথডগুলোকে কল করার জন্য ব্যবহৃত হয়।
+
+
+
+
+
+# পলিমরফিজম (Polymorphism)
+
+`Polymorphism` is a fundamental concept in Object-Oriented Programming (OOP) that allows objects of different classes to be treated as objects of a common base class. The term "polymorphism" comes from the Greek words "poly," meaning many, and "morph," meaning form. In OOP, polymorphism refers to the ability of different objects to respond to the same method or function call in a way specific to their class.
+
+In simpler terms, polymorphism allows you to define one interface (method) and have multiple implementations for different data types or classes. This promotes flexibility and makes the code more general and extensible.
+
+### There are two main types of polymorphism:
+
+* Compile-time Polymorphism (Method Overloading):
+This occurs when multiple methods have the same name but differ in the number or type of their parameters. This is not supported directly in Python as it is in some other languages like Java or C++.
+
+* Run-time Polymorphism (Method Overriding):
+This is achieved when a method in a derived class overrides or redefines a method in its base class. This type of polymorphism is supported in Python.
+
+### Polymorphism in Python
+
+In Python, polymorphism is achieved primarily through method overriding and the use of `duck typing`. Duck typing means that Python cares about what an object can do rather than the specific class it belongs to.
+
+### Example 1: Polymorphism through Method Overriding
+Method overriding occurs when a subclass provides a specific implementation of a method that is already defined in its superclass.
+
+```python
+
+class Animal:
+    def sound(self):
+        raise NotImplementedError("Subclass must implement abstract method")
+
+class Dog(Animal):
+    def sound(self):
+        return "Woof"
+
+class Cat(Animal):
+    def sound(self):
+        return "Meow"
+
+# Polymorphism in action
+animals = [Dog(), Cat()]
+
+for animal in animals:
+    print(animal.sound())
+
+```
+
+`output`
+    Woof
+    Meow
+
+
+In the example above, both Dog and Cat classes override the sound() method from the Animal base class. Depending on the type of object, the appropriate sound() method is called during runtime, demonstrating polymorphism.
+
+## Example 2: Polymorphism with Functions
+Python allows you to write functions that can operate on objects of different types, as long as the objects support the required methods. This is a practical implementation of duck typing.
+
+
+
+```python
+
+class Bird:
+    def fly(self):
+        return "Bird is flying."
+
+class Airplane:
+    def fly(self):
+        return "Airplane is flying."
+
+class Fish:
+    def swim(self):
+        return "Fish is swimming."
+
+# A function that takes an object with a 'fly' method
+def make_it_fly(entity):
+    print(entity.fly())
+
+# Polymorphism in action
+bird = Bird()
+plane = Airplane()
+
+make_it_fly(bird)   # Works because Bird has a fly() method
+make_it_fly(plane)  # Works because Airplane has a fly() method
+
+
+```
+
+`output`
+
+    Bird is flying.
+    Airplane is flying.
+
+
+
+In this example, both the `Bird` and `Airplane` classes have a `fly()` method. The `make_it_fly()` function works with both of these objects because it expects any object that can "fly," irrespective of their specific class type.
+
+### Example 3: Polymorphism with Inheritance
+Polymorphism becomes especially powerful when used with inheritance, as the child classes can have their unique implementations, while still adhering to the structure of the base class.
+
+
+```python
+
+class Shape:
+    def area(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.1416 * self.radius ** 2
+
+# List of different shapes
+shapes = [Rectangle(10, 20), Circle(7)]
+
+for shape in shapes:
+    print(shape.area())
+
+
+```
+
+
+`output`
+    200
+    153.9384
+
+
+
+Here, Rectangle and Circle both inherit from the base class Shape but implement the area() method differently. When the area() method is called on objects of these classes, the appropriate version is executed based on the type of object. This is run-time polymorphism in action.
+
+### Advantages of Polymorphism
+* Code Reusability: It allows you to write more generic code, making it easier to reuse.
+* Flexibility: You can add new types of objects that adhere to a common interface without changing the existing code.
+* Simplifies Code: Polymorphism leads to simpler and cleaner code because objects can be used interchangeably as long as they provide a specific behavior.
+
+`Summary`
+Polymorphism in Python is a powerful OOP feature that allows objects of different classes to be treated uniformly based on shared methods or behaviors. By using method overriding and duck typing, Python ensures flexibility and code reusability, enhancing the structure and maintainability of programs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# এনক্যাপসুলেশন (Encapsulation)
+
+
+`Encapsulation` is one of the fundamental principles of Object-Oriented Programming (OOP). It refers to the concept of bundling data (attributes) and methods (functions) that operate on the data into a single unit or class. Encapsulation helps in hiding the internal state of an object and requiring all interaction to be performed through an object's methods, which enhances security and control over the data.
+
+`Key Concepts of Encapsulation`
+* Data Hiding: Encapsulation hides the internal state of an object from the outside world. It protects an object's data from being directly accessed or modified from outside the class.
+
+* Access Modifiers: Encapsulation uses access modifiers to control access to the data. Common access modifiers include:
+
+- Public: Accessible from outside the class.
+- Protected: Intended to be accessible within its own class and by subclasses (indicated by a single underscore _ in Python).
+- Private: Restricted to the class itself (indicated by a double underscore __ in Python).
+* Getters and Setters: These are methods used to access and update the value of private attributes. They provide a controlled way to interact with private data.
+
+## Encapsulation in Python
+Python does not enforce strict access control as some other languages do, but it uses naming conventions to indicate the intended visibility of class attributes and methods.
+
+Here's how encapsulation is typically implemented in Python:
+
+- Public Attributes and Methods: By default, all attributes and methods in Python are public.
+
+- Protected Attributes and Methods: Indicated by a single underscore (_). This is a convention to indicate that these attributes or methods are intended for internal use.
+
+- Private Attributes and Methods: Indicated by a double underscore (__). Python performs name mangling to make these attributes less accessible from outside the class.
+
+### Example of Encapsulation in Python
+
+```python
+
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.__balance = balance  # Private attribute
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f"Deposited: ${amount}")
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+            print(f"Withdrew: ${amount}")
+        else:
+            print("Insufficient funds or invalid amount")
+
+    def get_balance(self):
+        return self.__balance
+
+# Creating an instance of BankAccount
+account = BankAccount("Alice", 1000)
+
+# Accessing public method
+account.deposit(500)
+account.withdraw(200)
+
+# Accessing private attribute directly (not recommended)
+print(account.__balance)  # This will raise an AttributeError
+
+# Correct way to access the private attribute
+print(account.get_balance())  # Outputs: 1300
+
+
+```
+
+
+### Explanation
+- Private Attribute: __balance is a private attribute and cannot be accessed directly from outside the class. It can only be modified or accessed through public methods (deposit, withdraw, and get_balance).
+
+- Public Methods: Methods like deposit, withdraw, and get_balance provide controlled access to the private attribute. They ensure that the __balance is only changed through valid operations.
+
+- Direct Access Attempt: Trying to access __balance directly from outside the class results in an AttributeError, demonstrating the encapsulation principle of hiding the internal state.
+
+Encapsulation ensures that an object's internal representation is hidden from the outside, and only the necessary operations are exposed through public methods, providing a secure and controlled way to interact with the object's data.
+
+
+
+
+
+# অ্যাবস্ট্রাকশন (Abstraction)
+Abstract methods are a key concept in Object-Oriented Programming (OOP), especially when dealing with abstract classes. They are used to define methods that must be implemented by any subclass of the abstract class. Here’s a detailed explanation:
+
+`Key Concepts`
+
+## 1. Abstract Class:
+
+ - An abstract class cannot be instantiated directly. It serves as a blueprint for other classes. Abstract classes can contain both abstract methods and concrete methods.
+ - Abstract methods are methods that are declared in the abstract class but contain no implementation. They must be implemented by subclasses.
+
+## 2. Abstract Method:
+
+- An abstract method is a method that is declared but does not contain an implementation. It is meant to be overridden in derived classes.
+- In Python, abstract methods are defined using the @abstractmethod decorator from the abc module.
+
+### Python Implementation
+To use abstract methods in Python, you need to:
+
+- Import the ABC class and abstractmethod decorator from the abc module.
+- Create an abstract class by inheriting from ABC.
+- Define abstract methods using the @abstractmethod decorator.
+- Inherit from the abstract class in concrete classes and provide implementations for the abstract methods.
+
+### Example in Python
+
+
+```python
+
+from abc import ABC, abstractmethod
+
+# Abstract class
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+# Concrete class inheriting from the abstract class
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+# Concrete class inheriting from the abstract class
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14159 * (self.radius ** 2)
+
+    def perimeter(self):
+        return 2 * 3.14159 * self.radius
+
+# Instantiate the concrete classes
+rectangle = Rectangle(5, 10)
+circle = Circle(7)
+
+print(f"Rectangle area: {rectangle.area()}")  # Output: Rectangle area: 50
+print(f"Rectangle perimeter: {rectangle.perimeter()}")  # Output: Rectangle perimeter: 30
+
+print(f"Circle area: {circle.area()}")  # Output: Circle area: 153.93804
+print(f"Circle perimeter: {circle.perimeter()}")  # Output: Circle perimeter: 43.98226
+
+
+
+```
+
+### Explanation
+
+- Shape Class:
+
+    * Shape is an abstract class with two abstract methods: area() and perimeter(). These methods have no implementation in the Shape class, signaling that any subclass must provide its own implementation.
+
+- Rectangle and Circle Classes:
+
+    * Both Rectangle and Circle classes inherit from Shape. They provide concrete implementations of the area() and perimeter() methods.
+
+- Instantiation and Usage:
+
+    * You can create instances of Rectangle and Circle and use them to call the area() and perimeter() methods, demonstrating polymorphism and ensuring that the abstract methods are implemented.
+
+Abstract methods enforce a contract for subclasses, ensuring that certain methods are implemented, which can help in creating a more structured and maintainable codebase.
+
+
+
+
+
+
+
+
+
+
+
+

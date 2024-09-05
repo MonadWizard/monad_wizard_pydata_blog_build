@@ -1,0 +1,13 @@
+Low Level Design
+============================
+
+.. toctree::
+    :maxdepth: 9
+    :caption: Low Level Design (LLD) fundamental concepts Doc in Bangla
+
+    fundamental_concepts/Basics_OOP_Concepts
+    fundamental_concepts/SOLID_Principles_with_Code
+    fundamental_concepts/DRY_Principle
+    fundamental_concepts/Coursera_Object-Oriented_Design
+    fundamental_concepts/KISS_Principle
+    fundamental_concepts/YAGNI_Principle

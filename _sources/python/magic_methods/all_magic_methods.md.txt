@@ -1,0 +1,1320 @@
+# Python Dunder Methods
+
+Python dunder (double underscore) methods, also known as "magic" methods, are special methods that have double underscores at the beginning and the end of their names. They enable you to define the behavior of your custom objects for built-in operations and functions.
+
+## 1. Object Initialization and Finalization
+
+-   **`**new**(cls, \*args, **kwargs)`\*\*: Creates a new instance of the class.
+-   **`**init**(self, \*args, **kwargs)`\*\*: Initializes the instance after it's created.
+-   **`__del__(self)`**: Called when an object is about to be destroyed.
+
+## 2. Object Representation
+
+-   **`__repr__(self)`**: Defines the “official” string representation of an object (used by `repr()`).
+-   **`__str__(self)`**: Defines the “informal” or nicely printable string representation (used by `str()`).
+-   **`__bytes__(self)`**: Defines how an object is represented as a byte string (used by `bytes()`).
+-   **`__format__(self, format_spec)`**: Defines how an object is formatted by the `format()` function and formatted string literals.
+
+## 3. Attribute Access
+
+-   **`__getattr__(self, name)`**: Called when an attribute is not found in the usual places.
+-   **`__getattribute__(self, name)`**: Called unconditionally to get an attribute.
+-   **`__setattr__(self, name, value)`**: Called when an attribute assignment is attempted.
+-   **`__delattr__(self, name)`**: Called when an attribute deletion is attempted.
+-   **`__dir__(self)`**: Defines the behavior of the `dir()` function.
+
+## 4. Attribute Management
+
+-   **`__set_name__(self, owner, name)`**: Called when a class attribute is assigned.
+-   **`__slots__`**: Limits the attributes an object can have to optimize memory usage.
+
+## 5. Container Emulation
+
+-   **`__len__(self)`**: Returns the length of the container.
+-   **`__getitem__(self, key)`**: Retrieves an item from the container.
+-   **`__setitem__(self, key, value)`**: Sets an item in the container.
+-   **`__delitem__(self, key)`**: Deletes an item from the container.
+-   **`__iter__(self)`**: Returns an iterator object.
+-   **`__reversed__(self)`**: Returns an iterator for reversed iteration.
+-   **`__contains__(self, item)`**: Checks if an item is in the container.
+
+## 6. Numeric Emulation
+
+### Unary Operators
+
+-   **`__neg__(self)`**: Implements the unary `-` operator.
+-   **`__pos__(self)`**: Implements the unary `+` operator.
+-   **`__abs__(self)`**: Implements the `abs()` function.
+-   **`__invert__(self)`**: Implements the `~` operator.
+
+### Binary Operators
+
+-   **`__add__(self, other)`**: Implements `+`.
+-   **`__sub__(self, other)`**: Implements `-`.
+-   **`__mul__(self, other)`**: Implements `*`.
+-   **`__matmul__(self, other)`**: Implements `@`.
+-   **`__truediv__(self, other)`**: Implements `/`.
+-   **`__floordiv__(self, other)`**: Implements `//`.
+-   **`__mod__(self, other)`**: Implements `%`.
+-   **`__pow__(self, other, modulo=None)`**: Implements `**`.
+-   **`__lshift__(self, other)`**: Implements `<<`.
+-   **`__rshift__(self, other)`**: Implements `>>`.
+-   **`__and__(self, other)`**: Implements `&`.
+-   **`__xor__(self, other)`**: Implements `^`.
+-   **`__or__(self, other)`**: Implements `|`.
+
+### In-Place Operators
+
+-   **`__iadd__(self, other)`**: Implements `+=`.
+-   **`__isub__(self, other)`**: Implements `-=`.
+-   **`__imul__(self, other)`**: Implements `*=`.
+-   **`__imatmul__(self, other)`**: Implements `@=`.
+-   **`__itruediv__(self, other)`**: Implements `/=`.
+-   **`__ifloordiv__(self, other)`**: Implements `//=`.
+-   **`__imod__(self, other)`**: Implements `%=`.
+-   **`__ipow__(self, other, modulo=None)`**: Implements `**=`.
+-   **`__ilshift__(self, other)`**: Implements `<<=`.
+-   **`__irshift__(self, other)`**: Implements `>>=`.
+-   **`__iand__(self, other)`**: Implements `&=`.
+-   **`__ixor__(self, other)`**: Implements `^=`.
+-   **`__ior__(self, other)`**: Implements `|=`.
+
+### Reflected Operators
+
+-   **`__radd__(self, other)`**: Implements `other + self`.
+-   **`__rsub__(self, other)`**: Implements `other - self`.
+-   **`__rmul__(self, other)`**: Implements `other * self`.
+-   **`__rmatmul__(self, other)`**: Implements `other @ self`.
+-   **`__rtruediv__(self, other)`**: Implements `other / self`.
+-   **`__rfloordiv__(self, other)`**: Implements `other // self`.
+-   **`__rmod__(self, other)`**: Implements `other % self`.
+-   **`__rpow__(self, other, modulo=None)`**: Implements `other ** self`.
+-   **`__rlshift__(self, other)`**: Implements `other << self`.
+-   **`__rrshift__(self, other)`**: Implements `other >> self`.
+-   **`__rand__(self, other)`**: Implements `other & self`.
+-   **`__rxor__(self, other)`**: Implements `other ^ self`.
+-   **`__ror__(self, other)`**: Implements `other | self`.
+
+## 7. Type Conversion
+
+-   **`__int__(self)`**: Implements type conversion to `int`.
+-   **`__float__(self)`**: Implements type conversion to `float`.
+-   **`__complex__(self)`**: Implements type conversion to `complex`.
+-   **`__index__(self)`**: Implements type conversion to an integer when an object is used in slicing or indexing.
+-   **`__round__(self, n)`**: Implements the `round()` function.
+-   **`__trunc__(self)`**: Implements `math.trunc()`.
+-   **`__floor__(self)`**: Implements `math.floor()`.
+-   **`__ceil__(self)`**: Implements `math.ceil()`.
+
+## 8. Comparison Operators
+
+-   **`__eq__(self, other)`**: Implements equality (`==`).
+-   **`__ne__(self, other)`**: Implements inequality (`!=`).
+-   **`__lt__(self, other)`**: Implements less than (`<`).
+-   **`__le__(self, other)`**: Implements less than or equal (`<=`).
+-   **`__gt__(self, other)`**: Implements greater than (`>`).
+-   **`__ge__(self, other)`**: Implements greater than or equal (`>=`).
+
+## 9. Callable Objects
+
+-   **`**call**(self, \*args, **kwargs)`\*\*: Allows an object to be called as a function.
+
+## 10. Context Management
+
+-   **`__enter__(self)`**: Defines the behavior when entering a `with` block.
+-   **`__exit__(self, exc_type, exc_value, traceback)`**: Defines the behavior when exiting a `with` block.
+
+## 11. Descriptor Protocol
+
+-   **`__get__(self, instance, owner)`**: Defines the behavior of a descriptor when its value is retrieved.
+-   **`__set__(self, instance, value)`**: Defines the behavior of a descriptor when its value is set.
+-   **`__delete__(self, instance)`**: Defines the behavior of a descriptor when its value is deleted.
+
+## 12. Metaprogramming
+
+-   **`**prepare**(metacls, name, bases, **kwds)`\*\*: Called before a class body is executed to create a namespace.
+-   **`__instancecheck__(self, instance)`**: Implements `isinstance()` check.
+-   **`__subclasscheck__(self, subclass)`**: Implements `issubclass()` check.
+-   **`**init_subclass**(cls, **kwargs)`\*\*: Called when a class is subclassed.
+-   **`__class_getitem__(cls, key)`**: Supports subscription operations on the class itself (e.g., `SomeClass[key]`).
+
+## 13. Memory Management
+
+-   **`__sizeof__(self)`**: Returns the size of the object in memory, in bytes.
+-   **`__copy__(self)`**: Implements shallow copy support.
+-   **`__deepcopy__(self, memodict={})`**: Implements deep copy
+
+## 14. Async and Await Support
+
+-   **`__await__(self)`**: Defines the behavior of an object when used with `await`.
+-   **`__aiter__(self)`**: Returns an asynchronous iterator object.
+-   **`__anext__(self)`**: Returns the next item from an asynchronous iterator.
+-   **`__aenter__(self)`**: Defines the behavior when entering an async `with` block.
+-   **`__aexit__(self, exc_type, exc_value, traceback)`**: Defines the behavior when exiting an async `with` block.
+
+## 15. Pickling and Serialization
+
+-   **`__getnewargs__(self)`**: Used by `pickle` to get the arguments to pass to `__new__` during unpickling.
+-   **`__getstate__(self)`**: Returns the state of the object for pickling.
+-   **`__setstate__(self, state)`**: Restores the state of the object during unpickling.
+-   **`__reduce__(self)`**: Returns a tuple with enough information to reconstruct the object during unpickling.
+-   **`__reduce_ex__(self, protocol)`**: Similar to `__reduce__`, but can handle different pickling protocols.
+
+## 16. Weak Reference Support
+
+-   **`__weakref__`**: A placeholder attribute for weak references, allowing an object to be weakly referenced.
+
+## 17. Garbage Collection
+
+-   **`__getinitargs__(self)`**: Returns a tuple of arguments that were passed to `__init__`.
+-   **`__getnewargs_ex__(self)`**: Like `__getnewargs__`, but returns additional information.
+-   **`__getformat__(self, typestr)`**: Used by `struct` to format bytes in a particular endianness.
+
+## 18. Object Copying and Cloning
+
+-   **`__copy__(self)`**: Defines behavior for the `copy.copy()` function.
+-   **`__deepcopy__(self, memo)`**: Defines behavior for the `copy.deepcopy()` function.
+
+## 19. Coercion Operations
+
+-   **`__coerce__(self, other)`**: Implements type coercion; this is mainly used in Python 2 for operations involving different types.
+
+## 20. Buffer Interface
+
+-   **`__buffer__(self)`**: Returns a buffer object that represents the internal data of an object.
+-   **`__getbuffer__(self, view, flags)`**: Requests a buffer from an object.
+
+## 21. String-Like Behavior
+
+-   **`__fspath__(self)`**: Returns the file system path representation of the object (used by `os` functions).
+-   **`__rmod__(self, other)`**: Implements the reverse `%` operator, used with strings for formatting.
+-   **`__index__(self)`**: Converts an object to an integer (used in slicing).
+
+## 22. Sequence and Mapping Protocols
+
+-   **`__missing__(self, key)`**: Called by `dict` when a key is not found.
+-   **`__round__(self, n)`**: Called by `round()` to round off a value.
+
+## 23. String Interpolation
+
+-   **`__mod__(self, other)`**: Implements the `%` operator for formatting strings.
+-   **`__rmod__(self, other)`**: Implements the reverse `%` operator, allowing custom formatting in strings.
+
+## 24. Hashing and Identity
+
+-   **`__hash__(self)`**: Returns the hash value of the object (used by `hash()` and for dictionary keys).
+-   **`__eq__(self, other)`**: Determines if two objects are equal.
+-   **`__ne__(self, other)`**: Determines if two objects are not equal.
+-   **`__lt__(self, other)`**: Determines if an object is less than another.
+-   **`__le__(self, other)`**: Determines if an object is less than or equal to another.
+-   **`__gt__(self, other)`**: Determines if an object is greater than another.
+-   **`__ge__(self, other)`**: Determines if an object is greater than or equal to another.
+
+## 25. Dynamic Class Creation
+
+-   **`**prepare**(cls, name, bases, **kwds)`\*\*: Called to create a namespace for a class during its creation.
+-   **`**init_subclass**(cls, **kwargs)`\*\*: Called when a class is subclassed.
+
+## 26. Instance Creation and Initialization
+
+-   **`**call**(self, \*args, **kwargs)`\*\*: Allows an instance to be called as a function.
+-   **`__missing__(self, key)`**: Called by `dict` subclasses when a key is not found in the dictionary.
+-   **`__instancecheck__(self, instance)`**: Used to customize `isinstance()` checks.
+-   **`__subclasscheck__(self, subclass)`**: Used to customize `issubclass()` checks.
+
+## 27. Performance Optimization
+
+-   **`__sizeof__(self)`**: Returns the memory size of the object in bytes.
+
+## 28. Reversed Operations
+
+-   **`__rlshift__(self, other)`**: Implements the reverse `<<` operation.
+-   **`__rrshift__(self, other)`**: Implements the reverse `>>` operation.
+-   **`__rand__(self, other)`**: Implements the reverse `&` operation.
+-   **`__rxor__(self, other)`**: Implements the reverse `^` operation.
+-   **`__ror__(self, other)`**: Implements the reverse `|` operation.
+
+## 29. Type Hinting and Annotations
+
+-   **`__annotations__`**: Stores type hints and annotations.
+-   **`__class_getitem__(cls, item)`**: Allows for the use of square brackets on the class itself (useful for type hinting).
+
+## 30. Context Manager Support
+
+-   **`__aenter__(self)`**: Enter an asynchronous context manager (used with `async with`).
+-   **`__aexit__(self, exc_type, exc_value, traceback)`**: Exit an asynchronous context manager.
+
+## 31. Callable Object and Function Protocol
+
+-   **`**call**(self, \*args, **kwargs)`\*\*: Enables an instance of a class to be called as if it were a function.
+
+## 32. Metaclasses
+
+-   **`**new**(cls, \*args, **kwargs)`\*\*: Creates a new instance of the class (metaclass method).
+-   **`**init_subclass**(cls, **kwargs)`\*\*: Called when a class is subclassed.
+-   **`**prepare**(cls, name, bases, **kwds)`\*\*: Prepares a namespace for class creation.
+-   **`__class_getitem__(cls, key)`**: Allows for index-based access to the class.
+
+## 33. Weak Reference Support
+
+-   **`__weakref__`**: This attribute is used by the `weakref` module to manage weak references.
+
+## 34. Pickling Support
+
+-   **`__getnewargs__(self)`**: Provides the arguments to `__new__` during unpickling.
+-   **`__getstate__(self)`**: Returns the object state for pickling.
+-   **`__setstate__(self, state)`**: Restores the object state from a pickled state.
+-   **`__reduce__(self)`**: Provides information for pickling the object.
+-   **`__reduce_ex__(self, protocol)`**: Similar to `__reduce__` but supports different protocols.
+
+## 35. Buffer Interface
+
+-   **`__buffer__(self)`**: Defines the buffer interface, useful for binary data operations.
+-   **`__getbuffer__(self, view, flags)`**: Requests a buffer object from the object.
+
+## 36. String Formatting
+
+-   **`__mod__(self, other)`**: Implements `%` string formatting.
+-   **`__rmod__(self, other)`**: Implements reverse `%` string formatting.
+
+## 37. Memory Management and Object Information
+
+-   **`__sizeof__(self)`**: Returns the size of the object in memory.
+
+## 38. Dynamic Class Behavior
+
+-   **`__instancecheck__(self, instance)`**: Customizes `isinstance()` checks.
+-   **`__subclasscheck__(self, subclass)`**: Customizes `issubclass()` checks.
+
+## 39. Context Manager Protocol
+
+-   **`__enter__(self)`**: Enter a context manager.
+-   **`__exit__(self, exc_type, exc_value, traceback)`**: Exit a context manager.
+
+## 40. Customizing Class Creation
+
+-   **`__class_getitem__(cls, key)`**: Allows indexing on the class itself (used for type hints).
+
+## 41. Descriptor Protocol
+
+-   **`__get__(self, instance, owner)`**: Defines behavior for attribute access.
+-   **`__set__(self, instance, value)`**: Defines behavior for attribute assignment.
+-   **`__delete__(self, instance)`**: Defines behavior for attribute deletion.
+
+## 42. Coercion Protocol
+
+-   **`__coerce__(self, other)`**: Defines behavior for type coercion (Python 2 only).
+
+## 43. String Representation
+
+-   **`__repr__(self)`**: Provides an official string representation of the object.
+-   **`__str__(self)`**: Provides a user-friendly string representation of the object.
+
+## 44. Attribute Management
+
+-   **`__dir__(self)`**: Provides the list of attributes of an object.
+
+## 45. Class Method Support
+
+-   **`**new**(cls, \*args, **kwargs)`\*\*: Called to create a new instance of the class.
+
+## 46. Hashing and Comparison
+
+-   **`__hash__(self)`**: Returns the hash value of the object.
+-   **`__eq__(self, other)`**: Checks equality (`==`).
+-   **`__ne__(self, other)`**: Checks inequality (`!=`).
+-   **`__lt__(self, other)`**: Checks if less than (`<`).
+-   **`__le__(self, other)`**: Checks if less than or equal (`<=`).
+-   **`__gt__(self, other)`**: Checks if greater than (`>`).
+-   **`__ge__(self, other)`**: Checks if greater than or equal (`>=`).
+
+## 47. Overriding Default Behavior
+
+-   **`__del__(self)`**: Destructor method, called when an object is about to be destroyed.
+-   **`__setattr__(self, name, value)`**: Called when an attribute assignment is attempted.
+-   **`__delattr__(self, name)`**: Called when an attribute deletion is attempted.
+
+## 48. Iteration and Mapping
+
+-   **`__iter__(self)`**: Returns an iterator object for the instance.
+-   **`__next__(self)`**: Returns the next item from the iterator.
+-   **`__contains__(self, item)`**: Checks membership (`in`).
+-   **`__getitem__(self, key)`**: Retrieves an item from the container.
+-   **`__setitem__(self, key, value)`**: Sets an item in the container.
+-   **`__delitem__(self, key)`**: Deletes an item from the container.
+
+## 49. Function and Method Protocol
+
+-   **`**call**(self, \*args, **kwargs)`\*\*: Enables an object to be called as if it were a function.
+
+## 50. Class Method Support
+
+-   **`__class_getitem__(cls, key)`**: Supports class indexing.
+
+## 51. Miscellaneous
+
+-   **`__format__(self, format_spec)`**: Controls the formatting of the object.
+-   **`__copy__(self)`**: Defines behavior for shallow copying.
+-   **`__deepcopy__(self, memo)`**: Defines behavior for deep copying.
+
+## 52. Mapping Protocol
+
+-   **`__contains__(self, key)`**: Checks if a key is in the container.
+-   **`__getitem__(self, key)`**: Retrieves an item with the given key.
+-   **`__setitem__(self, key, value)`**: Sets the value for the given key.
+-   **`__delitem__(self, key)`**: Deletes the item with the given key.
+
+## 53. Sequence Protocol
+
+-   **`__len__(self)`**: Returns the number of items in the sequence.
+-   **`__getitem__(self, index)`**: Retrieves the item at the specified index.
+-   **`__setitem__(self, index, value)`**: Sets the item at the specified index.
+-   **`__delitem__(self, index)`**: Deletes the item at the specified index.
+-   **`__iter__(self)`**: Returns an iterator for the sequence.
+-   **`__reversed__(self)`**: Returns a reverse iterator for the sequence.
+
+## 54. File and IO Protocol
+
+-   **`__enter__(self)`**: Called when entering a context manager.
+-   **`__exit__(self, exc_type, exc_value, traceback)`**: Called when exiting a context manager.
+-   **`__fspath__(self)`**: Returns the file system path representation of the object (for path-like objects).
+
+## 55. Special Method for Instance Creation
+
+-   **`**new**(cls, \*args, **kwargs)`\*\*: Allocates memory for a new instance of the class.
+
+## 56. Customizing `repr` and `str`
+
+-   **`__format__(self, format_spec)`**: Controls how the object is formatted.
+-   **`__repr__(self)`**: Provides an unambiguous string representation of the object.
+-   **`__str__(self)`**: Provides a readable string representation of the object.
+
+## 57. Customizing Attribute Access
+
+-   **`__getattr__(self, name)`**: Called when an attribute is not found.
+-   **`__setattr__(self, name, value)`**: Called when an attribute is set.
+-   **`__delattr__(self, name)`**: Called when an attribute is deleted.
+
+## 58. Customizing Object Comparison
+
+-   **`__eq__(self, other)`**: Determines if two objects are equal.
+-   **`__ne__(self, other)`**: Determines if two objects are not equal.
+-   **`__lt__(self, other)`**: Determines if an object is less than another.
+-   **`__le__(self, other)`**: Determines if an object is less than or equal to another.
+-   **`__gt__(self, other)`**: Determines if an object is greater than another.
+-   **`__ge__(self, other)`**: Determines if an object is greater than or equal to another.
+
+## 59. Special Methods for Arithmetic Operations
+
+-   **`__add__(self, other)`**: Implements addition (`+`).
+-   **`__sub__(self, other)`**: Implements subtraction (`-`).
+-   **`__mul__(self, other)`**: Implements multiplication (`*`).
+-   **`__truediv__(self, other)`**: Implements division (`/`).
+-   **`__floordiv__(self, other)`**: Implements integer division (`//`).
+-   **`__mod__(self, other)`**: Implements modulo (`%`).
+-   **`__pow__(self, other, modulo=None)`**: Implements power (`**`).
+
+## 60. Special Methods for Unary Operations
+
+-   **`__neg__(self)`**: Implements negation (`-`).
+-   **`__pos__(self)`**: Implements unary positive (`+`).
+-   **`__abs__(self)`**: Implements absolute value (`abs()`).
+
+## 61. Special Methods for In-place Operations
+
+-   **`__iadd__(self, other)`**: Implements in-place addition (`+=`).
+-   **`__isub__(self, other)`**: Implements in-place subtraction (`-=`).
+-   **`__imul__(self, other)`**: Implements in-place multiplication (`*=`).
+-   **`__itruediv__(self, other)`**: Implements in-place division (`/=`).
+-   **`__ifloordiv__(self, other)`**: Implements in-place integer division (`//=`).
+-   **`__imod__(self, other)`**: Implements in-place modulo (`%=`).
+-   **`__ipow__(self, other, modulo=None)`**: Implements in-place power (`**=`).
+
+## 62. Customizing Callable Objects
+
+-   **`**call**(self, \*args, **kwargs)`\*\*: Allows an instance to be called as a function.
+
+## 63. Context Manager Support
+
+-   **`__aenter__(self)`**: Enter an asynchronous context manager.
+-   **`__aexit__(self, exc_type, exc_value, traceback)`**: Exit an asynchronous context manager.
+
+## 64. Debugging and Introspection
+
+-   **`__getattr__(self, name)`**: Handles access to attributes that do not exist.
+-   **`__setattr__(self, name, value)`**: Handles attribute assignments.
+-   **`__delattr__(self, name)`**: Handles attribute deletions.
+
+## 65. Attribute Management
+
+-   **`__getattr__(self, name)`**: Called when an attribute is not found.
+-   **`__setattr__(self, name, value)`**: Called when an attribute is set.
+-   **`__delattr__(self, name)`**: Called when an attribute is deleted.
+
+## 66. Callable and Function Protocol
+
+-   **`**call**(self, \*args, **kwargs)`\*\*: Allows an instance to be called as if it were a function.
+-   **`__get__(self, instance, owner)`**: Called to retrieve an attribute from the object.
+
+## 67. Customizing Object Representation
+
+-   **`__format__(self, format_spec)`**: Controls the formatting of the object.
+-   **`__repr__(self)`**: Returns an unambiguous string representation of the object.
+-   **`__str__(self)`**: Returns a user-friendly string representation of the object.
+
+## 68. Special Methods for Arithmetic Operations
+
+-   **`__add__(self, other)`**: Implements addition (`+`).
+-   **`__sub__(self, other)`**: Implements subtraction (`-`).
+-   **`__mul__(self, other)`**: Implements multiplication (`*`).
+-   **`__truediv__(self, other)`**: Implements true division (`/`).
+-   **`__floordiv__(self, other)`**: Implements floor division (`//`).
+-   **`__mod__(self, other)`**: Implements modulo (`%`).
+-   **`__pow__(self, other, modulo=None)`**: Implements power (`**`).
+
+## 69. Special Methods for Unary Operations
+
+-   **`__neg__(self)`**: Implements unary negation (`-`).
+-   **`__pos__(self)`**: Implements unary positive (`+`).
+-   **`__abs__(self)`**: Implements the absolute value function (`abs()`).
+
+## 70. Special Methods for In-place Operations
+
+-   **`__iadd__(self, other)`**: Implements in-place addition (`+=`).
+-   **`__isub__(self, other)`**: Implements in-place subtraction (`-=`).
+-   **`__imul__(self, other)`**: Implements in-place multiplication (`*=`).
+-   **`__itruediv__(self, other)`**: Implements in-place true division (`/=`).
+-   **`__ifloordiv__(self, other)`**: Implements in-place floor division (`//=`).
+-   **`__imod__(self, other)`**: Implements in-place modulo (`%=`).
+-   **`__ipow__(self, other, modulo=None)`**: Implements in-place power (`**=`).
+
+## 71. Collection Protocol
+
+-   **`__iter__(self)`**: Returns an iterator for the object.
+-   **`__next__(self)`**: Returns the next item from the iterator.
+-   **`__reversed__(self)`**: Returns a reverse iterator for the object.
+
+## 72. Customizing Object Comparison
+
+-   **`__eq__(self, other)`**: Implements equality comparison (`==`).
+-   **`__ne__(self, other)`**: Implements inequality comparison (`!=`).
+-   **`__lt__(self, other)`**: Implements less than comparison (`<`).
+-   **`__le__(self, other)`**: Implements less than or equal comparison (`<=`).
+-   **`__gt__(self, other)`**: Implements greater than comparison (`>`).
+-   **`__ge__(self, other)`**: Implements greater than or equal comparison (`>=`).
+
+## 73. File and IO Protocol
+
+-   **`__enter__(self)`**: Called when entering a context manager (`with` statement).
+-   **`__exit__(self, exc_type, exc_value, traceback)`**: Called when exiting a context manager.
+
+## 74. Object Creation and Initialization
+
+-   **`**new**(cls, \*args, **kwargs)`\*\*: Called to create a new instance of the class.
+-   **`**init**(self, \*args, **kwargs)`\*\*: Called to initialize a new instance.
+
+## 75. Hashing and Equality
+
+-   **`__hash__(self)`**: Returns the hash value of the object.
+-   **`__eq__(self, other)`**: Determines if two objects are equal.
+-   **`__ne__(self, other)`**: Determines if two objects are not equal.
+-   **`__lt__(self, other)`**: Determines if one object is less than another.
+-   **`__le__(self, other)`**: Determines if one object is less than or equal to another.
+-   **`__gt__(self, other)`**: Determines if one object is greater than another.
+-   **`__ge__(self, other)`**: Determines if one object is greater than or equal to another.
+
+## 76. Context Management
+
+-   **`__aenter__(self)`**: Defines behavior for entering an asynchronous context manager.
+-   **`__aexit__(self, exc_type, exc_value, traceback)`**: Defines behavior for exiting an asynchronous context manager.
+
+## 77. Customizing Attribute Access
+
+-   **`__getattr__(self, name)`**: Called when accessing an attribute that does not exist.
+-   **`__setattr__(self, name, value)`**: Called when setting an attribute.
+-   **`__delattr__(self, name)`**: Called when deleting an attribute.
+
+## 78. Sequence and Mapping Protocol
+
+-   **`__len__(self)`**: Returns the number of items in the sequence or mapping.
+-   **`__getitem__(self, key)`**: Retrieves an item from the sequence or mapping.
+-   **`__setitem__(self, key, value)`**: Sets an item in the sequence or mapping.
+-   **`__delitem__(self, key)`**: Deletes an item from the sequence or mapping.
+
+## 79. Customizing Object Behavior
+
+-   **`**call**(self, \*args, **kwargs)`\*\*: Allows an instance to be called as a function.
+-   **`__format__(self, format_spec)`**: Formats the object using the specified format.
+-   **`__repr__(self)`**: Provides a string representation of the object.
+-   **`__str__(self)`**: Provides a user-friendly string representation of the object.
+
+## 80. Dynamic Class Creation
+
+-   **`__class_getitem__(cls, item)`**: Allows for indexing on the class itself.
+
+## 81. Descriptor Protocol
+
+-   **`__get__(self, instance, owner)`**: Defines behavior for attribute access.
+-   **`__set__(self, instance, value)`**: Defines behavior for attribute assignment.
+-   **`__delete__(self, instance)`**: Defines behavior for attribute deletion.
+
+## 82. Pickling Protocol
+
+-   **`__reduce__(self)`**: Returns a tuple that can be used to reconstruct the object.
+-   **`__reduce_ex__(self, protocol)`**: Similar to `__reduce__`, but supports different protocols.
+-   **`__getstate__(self)`**: Returns the object state for pickling.
+-   **`__setstate__(self, state)`**: Restores the object state from a pickled state.
+
+## 83. Buffer Protocol
+
+-   **`__buffer__(self)`**: Defines the buffer protocol.
+-   **`__getbuffer__(self, view, flags)`**: Provides a buffer object for the instance.
+
+## 84. Memory Management
+
+-   **`__sizeof__(self)`**: Returns the size of the object in bytes.
+
+## 85. Meta Programming
+
+-   **`**prepare**(cls, name, bases, **kwds)`\*\*: Prepares the namespace for the class creation.
+-   **`**init_subclass**(cls, **kwargs)`\*\*: Called when a class is subclassed.
+-   **`__instancecheck__(self, instance)`**: Customizes `isinstance()` checks.
+-   **`__subclasscheck__(self, subclass)`**: Customizes `issubclass()` checks.
+
+## 86. Method Wrapping
+
+-   **`__get__(self, instance, owner)`**: Defines behavior for accessing a method.
+-   **`__set__(self, instance, value)`**: Defines behavior for setting a method.
+
+## 87. Async Iteration
+
+-   **`__aiter__(self)`**: Returns an asynchronous iterator object.
+-   **`__anext__(self)`**: Returns the next item from the asynchronous iterator.
+
+## 88. String Interpolation
+
+-   **`__mod__(self, other)`**: Implements string interpolation using `%`.
+-   **`__rmod__(self, other)`**: Implements reverse string interpolation using `%`.
+
+## 89. Data Descriptor
+
+-   **`__set_name__(self, owner, name)`**: Called when the owner class is created to set the name of the attribute.
+
+## 90. Collection Protocol
+
+-   **`__contains__(self, item)`**: Checks if the item is contained within the collection.
+
+## 91. Customizing Object Deletion
+
+-   **`__del__(self)`**: Called when an object is about to be destroyed.
+
+## 92. Miscellaneous
+
+-   **`__dir__(self)`**: Returns a list of attributes for the object.
+-   **`__sizeof__(self)`**: Returns the size of the object in memory.
+-   **`__getnewargs__(self)`**: Provides arguments for `__new__` during unpickling.
+
+## 93. Type Protocol
+
+-   **`__subclasshook__(cls, subclass)`**: Used for customizing `issubclass()` checks for the class.
+
+## 94. Initialization and Setup
+
+-   **`**init_subclass**(cls, **kwargs)`\*\*: Called when a class is subclassed, allowing customization of the subclass initialization.
+
+## 95. Descriptor Access
+
+-   **`__getattribute__(self, name)`**: Called for attribute access, before `__getattr__`.
+
+## 96. Object Management
+
+-   **`__delitem__(self, key)`**: Deletes the item with the given key.
+-   **`__copy__(self)`**: Creates a shallow copy of the object.
+-   **`__deepcopy__(self, memo)`**: Creates a deep copy of the object.
+
+## 97. Container Protocol
+
+-   **`__contains__(self, item)`**: Checks if the container includes the item.
+
+## 98. Customizing Hash
+
+-   **`__hash__(self)`**: Returns the hash value of the object for use in hash-based collections like sets and dictionaries.
+
+## 99. Customizing Boolean Context
+
+-   **`__bool__(self)`**: Determines the truthiness of the object (`True` or `False`).
+-   **`__nonzero__(self)`**: Python 2 compatibility for truthiness (replaced by `__bool__` in Python 3).
+
+## 100. Customizing String Conversion
+
+-   **`__format__(self, format_spec)`**: Formats the object using the provided format specification.
+
+## 101. Function and Method Protocol
+
+-   **`**call**(self, \*args, **kwargs)`\*\*: Allows an instance to be called like a function.
+
+## 102. Memory Management
+
+-   **`__del__(self)`**: Called when an object is about to be destroyed, for cleanup actions.
+
+## 103. Protocol for Callable Objects
+
+-   **`__get__(self, instance, owner)`**: Defines how a callable is retrieved from an instance.
+
+## 104. Object State Management
+
+-   **`__setstate__(self, state)`**: Restores the object’s state from a pickled state.
+
+## 105. Async Context Manager
+
+-   **`__aenter__(self)`**: Enter an asynchronous context manager.
+-   **`__aexit__(self, exc_type, exc_value, traceback)`**: Exit an asynchronous context manager.
+
+## 106. Special Methods for Indexing and Slicing
+
+-   **`__getitem__(self, index)`**: Retrieves an item with the given index.
+-   **`__setitem__(self, index, value)`**: Sets an item with the given index.
+-   **`__delitem__(self, index)`**: Deletes an item with the given index.
+-   **`__contains__(self, item)`**: Checks if an item is in the container.
+
+## 107. Asynchronous Iteration
+
+-   **`__aiter__(self)`**: Returns an asynchronous iterator.
+-   **`__anext__(self)`**: Returns the next item in the asynchronous iteration.
+
+## 108. Asynchronous Callable
+
+-   **`__aenter__(self)`**: Called when entering an asynchronous context manager.
+-   **`__aexit__(self, exc_type, exc_value, traceback)`**: Called when exiting an asynchronous context manager.
+
+## 109. Special Methods for Type Checking
+
+-   **`__instancecheck__(self, instance)`**: Customizes behavior of `isinstance()`.
+-   **`__subclasscheck__(self, subclass)`**: Customizes behavior of `issubclass()`.
+
+## 110. Object Creation and Management
+
+-   **`**new**(cls, \*args, **kwargs)`\*\*: Creates a new instance of the class.
+-   **`**init**(self, \*args, **kwargs)`\*\*: Initializes a new instance of the class.
+
+## 111. Callable Protocol
+
+-   **`__iter__(self)`**: Returns an iterator object to iterate over the object.
+
+## 112. Attribute Access
+
+-   **`__dir__(self)`**: Returns a list of attributes and methods of the object.
+
+## 113. Context Management
+
+-   **`__enter__(self)`**: Defines the behavior of entering a context manager (`with` statement).
+-   **`__exit__(self, exc_type, exc_value, traceback)`**: Defines the behavior of exiting a context manager.
+
+## 114. String Representation
+
+-   **`__repr__(self)`**: Provides an unambiguous string representation of the object, useful for debugging.
+
+## 115. Arithmetic Operations
+
+-   **`__add__(self, other)`**: Implements addition.
+-   **`__sub__(self, other)`**: Implements subtraction.
+-   **`__mul__(self, other)`**: Implements multiplication.
+-   **`__truediv__(self, other)`**: Implements true division.
+-   **`__floordiv__(self, other)`**: Implements floor division.
+-   **`__mod__(self, other)`**: Implements modulo.
+-   **`__pow__(self, other, modulo=None)`**: Implements power operation.
+
+## 116. In-place Operations
+
+-   **`__iadd__(self, other)`**: Implements in-place addition.
+-   **`__isub__(self, other)`**: Implements in-place subtraction.
+-   **`__imul__(self, other)`**: Implements in-place multiplication.
+-   **`__itruediv__(self, other)`**: Implements in-place true division.
+-   **`__ifloordiv__(self, other)`**: Implements in-place floor division.
+-   **`__imod__(self, other)`**: Implements in-place modulo.
+-   **`__ipow__(self, other, modulo=None)`**: Implements in-place power operation.
+
+## 117. Comparison Operations
+
+-   **`__eq__(self, other)`**: Implements equality comparison.
+-   **`__ne__(self, other)`**: Implements inequality comparison.
+-   **`__lt__(self, other)`**: Implements less than comparison.
+-   **`__le__(self, other)`**: Implements less than or equal to comparison.
+-   **`__gt__(self, other)`**: Implements greater than comparison.
+-   **`__ge__(self, other)`**: Implements greater than or equal to comparison.
+
+## 118. Type Casting
+
+-   **`__int__(self)`**: Converts the object to an integer.
+-   **`__float__(self)`**: Converts the object to a float.
+-   **`__complex__(self)`**: Converts the object to a complex number.
+
+## 119. Numeric Operations
+
+-   **`__abs__(self)`**: Implements absolute value.
+-   **`__neg__(self)`**: Implements negation.
+-   **`__pos__(self)`**: Implements unary positive operation.
+-   **`__index__(self)`**: Returns an integer for indexing purposes.
+
+## 120. Iteration
+
+-   **`__next__(self)`**: Returns the next item from an iterator.
+-   **`__reversed__(self)`**: Returns a reverse iterator.
+
+## 121. Special Method for Class Management
+
+-   **`__class_getitem__(cls, item)`**: Defines behavior for indexing on a class.
+
+## 122. Special Methods for Object Creation
+
+-   **`__del__(self)`**: Called when an object is about to be destroyed for cleanup.
+
+## 123. Miscellaneous
+
+-   **`__sizeof__(self)`**: Returns the size of the object in bytes.
+-   **`__copy__(self)`**: Creates a shallow copy of the object.
+-   **`__deepcopy__(self, memo)`**: Creates a deep copy of the object.
+
+## 124. Asynchronous Context Management
+
+-   **`__aenter__(self)`**: Called when entering an asynchronous context manager (`async with` statement).
+-   **`__aexit__(self, exc_type, exc_value, traceback)`**: Called when exiting an asynchronous context manager.
+
+## 125. Mapping Protocol
+
+-   **`__contains__(self, key)`**: Checks if a key is in the mapping.
+-   **`__iter__(self)`**: Returns an iterator over the keys of the mapping.
+-   **`__len__(self)`**: Returns the number of items in the mapping.
+
+## 126. Set Protocol
+
+-   **`__contains__(self, item)`**: Checks if an item is in the set.
+-   **`__iter__(self)`**: Returns an iterator over the items in the set.
+-   **`__len__(self)`**: Returns the number of items in the set.
+
+## 127. Sequence Protocol
+
+-   **`__getitem__(self, index)`**: Retrieves an item by index.
+-   **`__setitem__(self, index, value)`**: Sets an item at a specific index.
+-   **`__delitem__(self, index)`**: Deletes an item at a specific index.
+-   **`__len__(self)`**: Returns the number of items in the sequence.
+
+## 128. Numeric Protocol
+
+-   **`__abs__(self)`**: Returns the absolute value.
+-   **`__add__(self, other)`**: Implements addition.
+-   **`__sub__(self, other)`**: Implements subtraction.
+-   **`__mul__(self, other)`**: Implements multiplication.
+-   **`__truediv__(self, other)`**: Implements true division.
+-   **`__floordiv__(self, other)`**: Implements floor division.
+-   **`__mod__(self, other)`**: Implements modulo.
+-   **`__pow__(self, other, modulo=None)`**: Implements power.
+
+## 129. String Representation and Formatting
+
+-   **`__repr__(self)`**: Returns a string representation for debugging.
+-   **`__str__(self)`**: Returns a string representation for end users.
+-   **`__format__(self, format_spec)`**: Customizes formatting.
+
+## 130. Pickling and Unpickling
+
+-   **`__reduce__(self)`**: Returns a tuple for pickling the object.
+-   **`__reduce_ex__(self, protocol)`**: Similar to `__reduce__`, but with protocol support.
+-   **`__getstate__(self)`**: Returns the state for pickling.
+-   **`__setstate__(self, state)`**: Restores the state from pickling.
+
+## 131. Buffer Protocol
+
+-   **`__getbuffer__(self, view, flags)`**: Provides a buffer for the object.
+
+## 132. Customizing Method Resolution
+
+-   **`__mro__(cls)`**: Returns a tuple of classes that are considered during method resolution.
+
+## 133. Descriptors and Attribute Management
+
+-   **`__set_name__(self, owner, name)`**: Called when the attribute is initialized in the class.
+
+## 134. Debugging
+
+-   **`__tracebackhide__(self)`**: Determines whether to hide traceback information for the object.
+
+## 135. Miscellaneous
+
+-   **`__reversed__(self)`**: Returns an iterator that yields items in reverse order.
+-   **`__index__(self)`**: Returns an integer representation of the object, useful for indexing.
+
+## 136. Container Protocol
+
+-   **`__contains__(self, item)`**: Checks if the container includes the item.
+
+## 137. Descriptor Methods
+
+-   **`__set__(self, instance, value)`**: Defines behavior for setting an attribute on an instance.
+-   **`__delete__(self, instance)`**: Defines behavior for deleting an attribute from an instance.
+
+## 138. Meta Methods
+
+-   **`__class_getitem__(cls, item)`**: Allows indexing on classes, supporting parameterized types.
+
+## 139. Comparison Operations
+
+-   **`__eq__(self, other)`**: Implements equality comparison.
+-   **`__ne__(self, other)`**: Implements inequality comparison.
+-   **`__lt__(self, other)`**: Implements less than comparison.
+-   **`__le__(self, other)`**: Implements less than or equal to comparison.
+-   **`__gt__(self, other)`**: Implements greater than comparison.
+-   **`__ge__(self, other)`**: Implements greater than or equal to comparison.
+
+## 140. Numeric Methods
+
+-   **`__add__(self, other)`**: Implements addition.
+-   **`__sub__(self, other)`**: Implements subtraction.
+-   **`__mul__(self, other)`**: Implements multiplication.
+-   **`__truediv__(self, other)`**: Implements true division.
+-   **`__floordiv__(self, other)`**: Implements floor division.
+-   **`__mod__(self, other)`**: Implements modulo.
+-   **`__pow__(self, other, modulo=None)`**: Implements power operation.
+
+## 141. In-Place Methods
+
+-   **`__iadd__(self, other)`**: Implements in-place addition.
+-   **`__isub__(self, other)`**: Implements in-place subtraction.
+-   **`__imul__(self, other)`**: Implements in-place multiplication.
+-   **`__itruediv__(self, other)`**: Implements in-place true division.
+-   **`__ifloordiv__(self, other)`**: Implements in-place floor division.
+-   **`__imod__(self, other)`**: Implements in-place modulo.
+-   **`__ipow__(self, other, modulo=None)`**: Implements in-place power operation.
+
+## 142. String Representation
+
+-   **`__repr__(self)`**: Returns an unambiguous string representation of the object.
+-   **`__str__(self)`**: Returns a human-readable string representation of the object.
+-   **`__format__(self, format_spec)`**: Formats the object according to the given format specification.
+
+## 143. Iterator Protocol
+
+-   **`__iter__(self)`**: Returns an iterator object.
+-   **`__next__(self)`**: Returns the next item from the iterator.
+
+## 144. Context Manager
+
+-   **`__enter__(self)`**: Defines behavior when entering a context manager.
+-   **`__exit__(self, exc_type, exc_value, traceback)`**: Defines behavior when exiting a context manager.
+
+## 145. Callable Protocol
+
+-   **`**call**(self, \*args, **kwargs)`\*\*: Allows an instance to be called like a function.
+
+## 146. Memory Management
+
+-   **`__sizeof__(self)`**: Returns the size of the object in bytes.
+-   **`__del__(self)`**: Called when an object is about to be destroyed.
+
+## 147. Buffer Protocol
+
+-   **`__getbuffer__(self, view, flags)`**: Provides a buffer for the object.
+
+## 148. Pickling and Unpickling
+
+-   **`__reduce__(self)`**: Returns a tuple for pickling.
+-   **`__reduce_ex__(self, protocol)`**: Returns a tuple for pickling with protocol support.
+-   **`__getstate__(self)`**: Returns the state for pickling.
+-   **`__setstate__(self, state)`**: Restores the state from pickling.
+
+## 149. Descriptors and Attributes
+
+-   **`__set_name__(self, owner, name)`**: Sets the name of the attribute on the owner class.
+
+## 150. Descriptor Management
+
+-   **`__set_name__(self, owner, name)`**: Sets the name of the attribute on the owner class (used for descriptors).
+
+## 151. Class Creation and Initialization
+
+-   **`**prepare**(cls, \*args, **kwargs)`\*\*: Defines the initial namespace for the class being created.
+
+## 152. Type Checking
+
+-   **`__instancecheck__(self, instance)`**: Customizes behavior of `isinstance()`.
+-   **`__subclasscheck__(self, subclass)`**: Customizes behavior of `issubclass()`.
+
+## 153. Object Initialization
+
+-   **`**init_subclass**(cls, **kwargs)`\*\*: Called when a class is subclassed, allowing customization of the subclass initialization.
+
+## 154. Async Iteration
+
+-   **`__aiter__(self)`**: Returns an asynchronous iterator.
+-   **`__anext__(self)`**: Returns the next item from an asynchronous iterator.
+
+## 155. Customizing Iterators
+
+-   **`__iter__(self)`**: Returns an iterator object.
+-   **`__next__(self)`**: Returns the next item from the iterator.
+
+## 156. Callable Objects
+
+-   **`**call**(self, \*args, **kwargs)`\*\*: Allows an instance to be called like a function.
+
+## 157. Memory Management
+
+-   **`__del__(self)`**: Called when an object is about to be destroyed for cleanup.
+
+## 158. Customizing String Representation
+
+-   **`__repr__(self)`**: Returns an unambiguous string representation of the object.
+-   **`__str__(self)`**: Returns a human-readable string representation of the object.
+
+## 159. Customizing Hashing
+
+-   **`__hash__(self)`**: Returns a hash value for the object.
+
+## 160. Attribute Access
+
+-   **`__get__(self, instance, owner)`**: Defines behavior for retrieving an attribute from an instance.
+-   **`__set__(self, instance, value)`**: Defines behavior for setting an attribute on an instance.
+-   **`__delete__(self, instance)`**: Defines behavior for deleting an attribute from an instance.
+
+## 161. Customizing Containers
+
+-   **`__getitem__(self, key)`**: Retrieves an item by key.
+-   **`__setitem__(self, key, value)`**: Sets an item by key.
+-   **`__delitem__(self, key)`**: Deletes an item by key.
+-   **`__contains__(self, item)`**: Checks if an item is in the container.
+
+## 162. Customizing Slicing
+
+-   **`__getitem__(self, key)`**: Retrieves an item by key.
+-   **`__setitem__(self, key, value)`**: Sets an item by key.
+-   **`__delitem__(self, key)`**: Deletes an item by key.
+
+## 163. Customizing Numeric Operations
+
+-   **`__add__(self, other)`**: Implements addition.
+-   **`__sub__(self, other)`**: Implements subtraction.
+-   **`__mul__(self, other)`**: Implements multiplication.
+-   **`__truediv__(self, other)`**: Implements true division.
+-   **`__floordiv__(self, other)`**: Implements floor division.
+-   **`__mod__(self, other)`**: Implements modulo.
+-   **`__pow__(self, other, modulo=None)`**: Implements power operation.
+
+## 164. In-Place Numeric Operations
+
+-   **`__iadd__(self, other)`**: Implements in-place addition.
+-   **`__isub__(self, other)`**: Implements in-place subtraction.
+-   **`__imul__(self, other)`**: Implements in-place multiplication.
+-   **`__itruediv__(self, other)`**: Implements in-place true division.
+-   **`__ifloordiv__(self, other)`**: Implements in-place floor division.
+-   **`__imod__(self, other)`**: Implements in-place modulo.
+-   **`__ipow__(self, other, modulo=None)`**: Implements in-place power operation.
+
+## 165. Numeric Methods
+
+-   **`__abs__(self)`**: Returns the absolute value of the object.
+-   **`__neg__(self)`**: Implements negation.
+-   **`__pos__(self)`**: Implements unary positive operation.
+-   **`__index__(self)`**: Returns an integer for indexing.
+
+## 166. String Methods
+
+-   **`__format__(self, format_spec)`**: Customizes formatting of the object.
+
+## 167. Object State Management
+
+-   **`__getstate__(self)`**: Returns the state of the object for pickling.
+-   **`__setstate__(self, state)`**: Restores the state of the object from pickling.
+
+## 168. Buffer Protocol
+
+-   **`__getbuffer__(self, view, flags)`**: Provides access to the object's buffer.
+
+## 169. Type Protocol
+
+-   **`__subclasshook__(cls, subclass)`**: Customizes behavior of `issubclass()`.
+
+## 170. Class Management
+
+-   **`__class_getitem__(cls, item)`**: Defines behavior for indexing classes.
+-   **`__mro__(cls)`**: Returns the method resolution order.
+
+## 171. Special Methods for Attribute Access
+
+-   **`__getattr__(self, name)`**: Called when an attribute is accessed that doesn’t exist on the instance.
+-   **`__setattr__(self, name, value)`**: Called when an attribute is set.
+-   **`__delattr__(self, name)`**: Called when an attribute is deleted.
+
+## 172. Special Methods for Class Management
+
+-   **`__class__(self)`**: Returns the class of the instance.
+-   **`**new**(cls, \*args, **kwargs)`\*\*: Creates a new instance of the class.
+-   **`**init**(self, \*args, **kwargs)`\*\*: Initializes a new instance of the class.
+
+## 173. Special Methods for Method Resolution Order (MRO)
+
+-   **`__mro__(cls)`**: Returns the method resolution order tuple for the class.
+
+## 174. Customizing Container Behavior
+
+-   **`__iter__(self)`**: Returns an iterator object.
+-   **`__next__(self)`**: Returns the next item from the iterator.
+-   **`__reversed__(self)`**: Returns a reverse iterator.
+
+## 175. Special Methods for Numeric Conversion
+
+-   **`__int__(self)`**: Converts the object to an integer.
+-   **`__float__(self)`**: Converts the object to a float.
+-   **`__complex__(self)`**: Converts the object to a complex number.
+
+## 176. Special Methods for Object Comparison
+
+-   **`__eq__(self, other)`**: Implements equality comparison.
+-   **`__ne__(self, other)`**: Implements inequality comparison.
+-   **`__lt__(self, other)`**: Implements less-than comparison.
+-   **`__le__(self, other)`**: Implements less-than-or-equal comparison.
+-   **`__gt__(self, other)`**: Implements greater-than comparison.
+-   **`__ge__(self, other)`**: Implements greater-than-or-equal comparison.
+
+## 177. Special Methods for Iterables
+
+-   **`__contains__(self, item)`**: Checks if an item is in the container.
+-   **`__getitem__(self, key)`**: Retrieves an item by key.
+-   **`__setitem__(self, key, value)`**: Sets an item by key.
+-   **`__delitem__(self, key)`**: Deletes an item by key.
+
+## 178. Special Methods for Class Attributes
+
+-   **`__getattribute__(self, name)`**: Called when an attribute is accessed.
+-   **`__setattribute__(self, name, value)`**: Called when an attribute is set.
+-   **`__delattribute__(self, name)`**: Called when an attribute is deleted.
+
+## 179. Special Methods for Buffer Protocol
+
+-   **`__getbuffer__(self, view, flags)`**: Provides access to the object’s buffer.
+
+## 180. Special Methods for Pickling
+
+-   **`__reduce__(self)`**: Returns a tuple for pickling.
+-   **`__reduce_ex__(self, protocol)`**: Returns a tuple for pickling with protocol support.
+-   **`__getstate__(self)`**: Returns the state for pickling.
+-   **`__setstate__(self, state)`**: Restores the state from pickling.
+
+## 181. Special Methods for Context Management
+
+-   **`__enter__(self)`**: Called when entering a context manager.
+-   **`__exit__(self, exc_type, exc_value, traceback)`**: Called when exiting a context manager.
+
+## 182. Special Methods for Callable Objects
+
+-   **`**call**(self, \*args, **kwargs)`\*\*: Allows an instance to be called like a function.
+
+## 183. Special Methods for Arithmetic Operations
+
+-   **`__add__(self, other)`**: Implements addition.
+-   **`__sub__(self, other)`**: Implements subtraction.
+-   **`__mul__(self, other)`**: Implements multiplication.
+-   **`__truediv__(self, other)`**: Implements true division.
+-   **`__floordiv__(self, other)`**: Implements floor division.
+-   **`__mod__(self, other)`**: Implements modulo.
+-   **`__pow__(self, other, modulo=None)`**: Implements power operation.
+
+## 184. Special Methods for In-Place Arithmetic Operations
+
+-   **`__iadd__(self, other)`**: Implements in-place addition.
+-   **`__isub__(self, other)`**: Implements in-place subtraction.
+-   **`__imul__(self, other)`**: Implements in-place multiplication.
+-   **`__itruediv__(self, other)`**: Implements in-place true division.
+-   **`__ifloordiv__(self, other)`**: Implements in-place floor division.
+-   **`__imod__(self, other)`**: Implements in-place modulo.
+-   **`__ipow__(self, other, modulo=None)`**: Implements in-place power operation.
+
+## 185. Special Methods for Conversion
+
+-   **`__repr__(self)`**: Returns a string representation for debugging.
+-   **`__str__(self)`**: Returns a string representation for end users.
+-   **`__format__(self, format_spec)`**: Customizes formatting of the object.
+
+## 186. Special Methods for Collections
+
+-   **`__reversed__(self)`**: Returns a reverse iterator over the container.
+-   **`__len__(self)`**: Returns the length of the container.
+-   **`__contains__(self, item)`**: Checks if an item is in the container.
+
+## 187. Special Methods for Descriptor Protocol
+
+-   **`__get__(self, instance, owner)`**: Defines behavior for accessing an attribute from an instance.
+-   **`__set__(self, instance, value)`**: Defines behavior for setting an attribute on an instance.
+-   **`__delete__(self, instance)`**: Defines behavior for deleting an attribute from an instance.
+
+## 188. Special Methods for Context Managers
+
+-   **`__enter__(self)`**: Defines behavior for entering a context manager.
+-   **`__exit__(self, exc_type, exc_value, traceback)`**: Defines behavior for exiting a context manager.
+
+## 189. Special Methods for Callable Objects
+
+-   **`**call**(self, \*args, **kwargs)`\*\*: Allows an instance to be called as a function.
+
+## 190. Special Methods for Numeric Types
+
+-   **`__abs__(self)`**: Returns the absolute value of the object.
+-   **`__neg__(self)`**: Implements negation.
+-   **`__pos__(self)`**: Implements unary positive operation.
+-   **`__invert__(self)`**: Implements bitwise negation.
+-   **`__complex__(self)`**: Converts the object to a complex number.
+-   **`__int__(self)`**: Converts the object to an integer.
+-   **`__float__(self)`**: Converts the object to a float.
+-   **`__index__(self)`**: Returns an integer representation for indexing.
+
+## 191. Special Methods for Mathematical Operations
+
+-   **`__add__(self, other)`**: Implements addition.
+-   **`__sub__(self, other)`**: Implements subtraction.
+-   **`__mul__(self, other)`**: Implements multiplication.
+-   **`__truediv__(self, other)`**: Implements true division.
+-   **`__floordiv__(self, other)`**: Implements floor division.
+-   **`__mod__(self, other)`**: Implements modulo.
+-   **`__pow__(self, other, modulo=None)`**: Implements power operation.
+-   **`__lshift__(self, other)`**: Implements left shift.
+-   **`__rshift__(self, other)`**: Implements right shift.
+-   **`__and__(self, other)`**: Implements bitwise AND.
+-   **`__or__(self, other)`**: Implements bitwise OR.
+-   **`__xor__(self, other)`**: Implements bitwise XOR.
+
+## 192. Special Methods for In-Place Operations
+
+-   **`__iadd__(self, other)`**: Implements in-place addition.
+-   **`__isub__(self, other)`**: Implements in-place subtraction.
+-   **`__imul__(self, other)`**: Implements in-place multiplication.
+-   **`__itruediv__(self, other)`**: Implements in-place true division.
+-   **`__ifloordiv__(self, other)`**: Implements in-place floor division.
+-   **`__imod__(self, other)`**: Implements in-place modulo.
+-   **`__ipow__(self, other, modulo=None)`**: Implements in-place power operation.
+-   **`__ilshift__(self, other)`**: Implements in-place left shift.
+-   **`__irshift__(self, other)`**: Implements in-place right shift.
+-   **`__iand__(self, other)`**: Implements in-place bitwise AND.
+-   **`__ior__(self, other)`**: Implements in-place bitwise OR.
+-   **`__ixor__(self, other)`**: Implements in-place bitwise XOR.
+
+## 193. Special Methods for Binary Operations
+
+-   **`__radd__(self, other)`**: Implements reflected addition.
+-   **`__rsub__(self, other)`**: Implements reflected subtraction.
+-   **`__rmul__(self, other)`**: Implements reflected multiplication.
+-   **`__rtruediv__(self, other)`**: Implements reflected true division.
+-   **`__rfloordiv__(self, other)`**: Implements reflected floor division.
+-   **`__rmod__(self, other)`**: Implements reflected modulo.
+-   **`__rpow__(self, other)`**: Implements reflected power operation.
+-   **`__rlshift__(self, other)`**: Implements reflected left shift.
+-   **`__rrshift__(self, other)`**: Implements reflected right shift.
+-   **`__rand__(self, other)`**: Implements reflected bitwise AND.
+-   **`__ror__(self, other)`**: Implements reflected bitwise OR.
+-   **`__rxor__(self, other)`**: Implements reflected bitwise XOR.
+
+## 194. Special Methods for Object Construction
+
+-   **`**new**(cls, \*args, **kwargs)`\*\*: Creates a new instance of a class.
+-   **`**init**(self, \*args, **kwargs)`\*\*: Initializes an instance of a class.
+
+## 195. Special Methods for Method Resolution
+
+-   **`__mro__(cls)`**: Returns the method resolution order for the class.
+-   **`**prepare**(cls, \*args, **kwargs)`\*\*: Defines the initial namespace for the class being created.
+
+## 196. Special Methods for Object Representation
+
+-   **`__repr__(self)`**: Provides a string representation for debugging.
+-   **`__str__(self)`**: Provides a human-readable string representation.
+
+## 197. Special Methods for Data Management
+
+-   **`__copy__(self)`**: Creates a shallow copy of the object.
+-   **`__deepcopy__(self, memo)`**: Creates a deep copy of the object.
+
+## 198. Special Methods for Iteration
+
+-   **`__iter__(self)`**: Returns an iterator object.
+-   **`__next__(self)`**: Returns the next item from the iterator.
+-   **`__reversed__(self)`**: Returns a reverse iterator.
+
+## 199. Special Methods for Container Management
+
+-   **`__contains__(self, item)`**: Checks if an item is in the container.
+-   **`__getitem__(self, key)`**: Retrieves an item by key.
+-   **`__setitem__(self, key, value)`**: Sets an item by key.
+-   **`__delitem__(self, key)`**: Deletes an item by key.
+
+## 200. Special Methods for Numeric Conversion
+
+-   **`__float__(self)`**: Converts the object to a float.
+-   **`__int__(self)`**: Converts the object to an integer.
+-   **`__complex__(self)`**: Converts the object to a complex number.
+-   **`__index__(self)`**: Returns an integer for indexing.
+
+## 201. Special Methods for Arithmetic Operations
+
+-   **`__add__(self, other)`**: Implements addition.
+-   **`__sub__(self, other)`**: Implements subtraction.
+-   **`__mul__(self, other)`**: Implements multiplication.
+-   **`__truediv__(self, other)`**: Implements true division.
+-   **`__floordiv__(self, other)`**: Implements floor division.
+-   **`__mod__(self, other)`**: Implements modulo.
+-   **`__pow__(self, other, modulo=None)`**: Implements power operation.
+-   **`__lshift__(self, other)`**: Implements left shift.
+-   **`__rshift__(self, other)`**: Implements right shift.
+-   **`__and__(self, other)`**: Implements bitwise AND.
+-   **`__or__(self, other)`**: Implements bitwise OR.
+-   **`__xor__(self, other)`**: Implements bitwise XOR.
+
+## 202. Special Methods for In-Place Operations
+
+-   **`__iadd__(self, other)`**: Implements in-place addition.
+-   **`__isub__(self, other)`**: Implements in-place subtraction.
+-   **`__imul__(self, other)`**: Implements in-place multiplication.
+-   **`__itruediv__(self, other)`**: Implements in-place true division.
+-   **`__ifloordiv__(self, other)`**: Implements in-place floor division.
+-   **`__imod__(self, other)`**: Implements in-place modulo.
+-   **`__ipow__(self, other, modulo=None)`**: Implements in-place power operation.
+-   **`__ilshift__(self, other)`**: Implements in-place left shift.
+-   **`__irshift__(self, other)`**: Implements in-place right shift.
+-   **`__iand__(self, other)`**: Implements in-place bitwise AND.
+-   **`__ior__(self, other)`**: Implements in-place bitwise OR.
+-   **`__ixor__(self, other)`**: Implements in-place bitwise XOR.
+
+## 203. Special Methods for Comparison
+
+-   **`__eq__(self, other)`**: Implements equality comparison.
+-   **`__ne__(self, other)`**: Implements inequality comparison.
+-   **`__lt__(self, other)`**: Implements less-than comparison.
+-   **`__le__(self, other)`**: Implements less-than-or-equal comparison.
+-   **`__gt__(self, other)`**: Implements greater-than comparison.
+-   **`__ge__(self, other)`**: Implements greater-than-or-equal comparison.
+
+## 204. Special Methods for String Conversion
+
+-   **`__repr__(self)`**: Returns a string representation for debugging.
+-   **`__str__(self)`**: Returns a string representation for end users.
+-   **`__format__(self, format_spec)`**: Customizes formatting of the object.
+
+## 205. Special Methods for Pickling
+
+-   **`__reduce__(self)`**: Returns a tuple for pickling.
+-   **`__reduce_ex__(self, protocol)`**: Returns a tuple for pickling with protocol support.
+-   **`__getstate__(self)`**: Returns the state for pickling.
+-   **`__setstate__(self, state)`**: Restores the state from pickling.
+
+## 206. Special Methods for Buffer Protocol
+
+-   **`__getbuffer__(self, view, flags)`**: Provides access to the object’s buffer.
+
+## 207. Special Methods for Context Management
+
+-   **`__enter__(self)`**: Defines behavior for entering a context manager.
+-   **`__exit__(self, exc_type, exc_value, traceback)`**: Defines behavior for exiting a context manager.
+
+## 208. Special Methods for Class Management
+
+-   **`**init_subclass**(cls, **kwargs)`\*\*: Called when a class is subclassed.
+-   **`**prepare**(cls, \*args, **kwargs)`\*\*: Defines the initial namespace for the class being created.
+-   **`**new**(cls, \*args, **kwargs)`\*\*: Creates a new instance of the class.
+-   **`__class__(self)`**: Returns the class of the instance.

@@ -41,4 +41,5 @@ In summary, effective database management is crucial for the success of any appl
 
    postgres
    mysql
+   nosql
 

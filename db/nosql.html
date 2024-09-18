@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>postgreSQL &#8212; MonadWizard Blog 0.01 documentation</title>
+    <title>NoSQL &#8212; MonadWizard Blog 0.01 documentation</title>
   
   
   
@@ -38,13 +38,13 @@
     <script src="../_static/documentation_options.js?v=6ca3c713"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'db/postgres';</script>
-    <link rel="canonical" href="blog.monadwizard.xyz/db/postgres.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'db/nosql';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/db/nosql.html" />
     <link rel="icon" href="../_static/logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="PostgreSQL USE on Linux Terminal" href="postgreSQL/postgreSQL_cheetsheet.html" />
-    <link rel="prev" title="Database" href="index.html" />
+    <link rel="next" title="For Elasticsearch, some Kibana useful commands are:" href="noSQL/kibana.html" />
+    <link rel="prev" title="mySQL cheat-sheet 😸" href="mySQL/mySQL_cheetsheet.html" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -513,7 +513,7 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Database</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">postgreSQL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="postgres.html">postgreSQL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html">PostgreSQL USE on Linux Terminal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="postgreSQL/pg_cron.html">pgcron doc</a></li>
 
@@ -529,7 +529,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html">mySQL cheat-sheet 😸</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="nosql.html">NoSQL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">NoSQL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html">For Elasticsearch, some Kibana useful commands are:</a></li>
 </ul>
 </details></li>
@@ -573,7 +573,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">Database</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">postgreSQL</li>
+    <li class="breadcrumb-item active" aria-current="page">NoSQL</li>
   </ul>
 </nav>
 </div>
@@ -590,73 +590,43 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="postgresql">
-<h1>postgreSQL<a class="headerlink" href="#postgresql" title="Link to this heading">#</a></h1>
+  <section id="nosql">
+<h1>NoSQL<a class="headerlink" href="#nosql" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">postgreSQL Library Doc in Bangla</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">NoSQL Library Doc</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html">PostgreSQL USE on Linux Terminal</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#connection">Connection</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#postgres-login">postgres এ Login</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#alter-postgres-user-password">alter postgres user password</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#specific-user-as-postgres-specific-database-as-db-demo-connect">যদি specific user as (postgres) এবং specific DataBase as (db_demo) ব্যবহার করে connect করতে চাই তাহলে</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#database-connect-port-host-h-add">যদি এমন কোন DataBase এ connect করতে হয় যা আলাদা port থেকে Host করা ,তা হলে -h টাগ টি add করতে হবে</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#ssl-key-database-connect-dbname-sslmode-add">কোন কারণে যদি SSL key ব্যবহার করে DataBase এ connect করতে হয় ,তা হলে “dbname এবং sslmode” টাগ টি add করতে হবে</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noSQL/kibana.html">For Elasticsearch, some Kibana useful commands are:</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#get-the-elasticsearch-version-and-tagline">Get the Elasticsearch version and tagline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#browse-the-documentation-related-to-your-elasticsearch-version">Browse the documentation related to your elasticsearch version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-explore-existing-indices">Quickly explore existing indices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-explore-existing-aliases">Quickly explore existing aliases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-get-settings-mappings-and-aliases-of-an-index">Quickly get settings, mappings and aliases of an index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#switch-manage-aliases">Switch / Manage aliases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-explore-the-data-in-an-index">Quickly explore the data in an index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-get-some-data-based-on-exact-values-and-sorted">Quickly get some data based on exact values and sorted</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-get-data-matching-several-fields-and-explain-the-relevancy">Quickly get data matching several fields and explain the relevancy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-check-how-a-text-is-analyzed">Quickly check how a text is analyzed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#explore-data-grouped-by-a-field">Explore data grouped by a field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quicky-explore-top-terms">Quicky explore top terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#explore-significant-terms-within-one-group">Explore significant terms within one group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#explore-top-terms-and-get-details-on-top-hits">Explore top terms and get details on top hits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-find-min-and-max-values-of-one-field">Quickly find min and max values of one field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-display-a-date-histogram">Quickly display a date histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-update-the-value-of-a-field-in-a-document">Quickly update the value of a field in a document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-increment-the-value-of-a-field-in-a-document">Quickly increment the value of a field in a document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#get-active-index-templates">Get active index templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#update-or-create-an-index-template">Update or create an index template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-reindex-after-template-or-mapping-changes">Quickly reindex (after template or mapping changes)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#get-nodes-information">Get nodes information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#get-the-cluster-health">Get the cluster health</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#get-all-the-cluster-metadata">Get all the cluster metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#get-all-nodes-statistics">Get all nodes statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#activate-the-search-slow-log-on-an-index">Activate the search slow log on an index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-snapshot">Quickly snapshot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#quickly-restore">Quickly restore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html#run-the-support-diagnostics">Run the support diagnostics</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#create-user">Create user</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#create-a-user-without-any-rools">create a user without any rools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#giving-user-a-password">giving user a password</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#create-user-from-postgres-cli-with-password">create user from postgres CLI with password</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#granting-privileges-on-a-database">Granting privileges on a database</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#view-all-users">view all users</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#give-user-specific-roles">give user specific roles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#you-may-for-some-reason-want-to-do-it-purely-via-psql-then-these-are-the-three-magic-commands">you may, for some reason want to do it purely via psql, then these are the three magic commands</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#drop-or-delete-user">Drop or Delete user</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#reassign-owned-by">reassign owned by</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#drop-user-by">Drop User by</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#create-database">Create DataBase</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#database-as-newbd-generally-give-smaller-letter">নতুন DataBase as newbd তৈরি করতে : (generally give smaller letter)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#list-available-data-base-press-q-to-quite">List available Data-Base (press q to quite)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#create-database-with-specific-user">create database with specific user</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#connected-to-existing-database-named-newdb-by">connected to existing DataBase named newdb by</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#drop-or-delete-a-database-that-has-no-active-connection">Drop or Delete a database that has no active connection</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#create-schema">Create Schema</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#create-a-schema-named-newschema-inside-newdb-database-by">create a schema named newschema inside newdb database by</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#list-available-schema">List available schema</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#create-table">Create Table</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#create-a-table-t1-with-columns-id-password-inside-schema-newschema-by">create a table t1 with columns (id,password) inside schema newschema by</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#list-available-tables">List available tables</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#describe-a-table">Describe a table</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#to-describe-a-table-such-as-a-column-type-modifiers-of-columns-etc-you-use-the-following-command">To describe a table such as a column, type, modifiers of columns, etc., you use the following command</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#now-see-all-created-table-by">now see all created table by</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#list-users-and-their-roles-to-list-all-users-and-their-assign-roles-you-use-du-command">List users and their roles (To list all users and their assign roles, you use \du command</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#command-history-to-display-command-history-you-use-the-s-command">Command history (To display command history, you use the \s command.)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#execute-psql-commands-from-a-file-in-case-you-want-to-execute-psql-commands-from-a-file-you-use-i-command-as-follows">Execute psql commands from a file (In case you want to execute psql commands from a file, you use \i command as follows:)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#edit-command-in-your-own-editor">Edit command in your own editor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html#quit-psql">Quit psql</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="postgreSQL/pg_cron.html">pgcron doc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="postgreSQL/pg_cron.html#add-to-postgresql-conf">add to postgresql.conf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="postgreSQL/pg_cron.html#required-to-load-pg-cron-background-worker-on-start-up">required to load pg_cron background worker on start-up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="postgreSQL/pg_cron.html#id1">add to postgresql.conf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="postgreSQL/pg_cron.html#optionally-specify-the-database-in-which-the-pg-cron-background-worker-should-run-defaults-to-postgres">optionally, specify the database in which the pg_cron background worker should run (defaults to postgres)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="postgreSQL/pg_cron.html#hostname-port-database-username-password">hostname:port:database:username:password</a></li>
-<li class="toctree-l1"><a class="reference internal" href="postgreSQL/pg_cron.html#schedule-jobs-via-background-workers-instead-of-localhost-connections">Schedule jobs via background workers instead of localhost connections</a></li>
-<li class="toctree-l1"><a class="reference internal" href="postgreSQL/pg_cron.html#increase-the-number-of-available-background-workers-from-the-default-of-8">Increase the number of available background workers from the default of 8</a></li>
 </ul>
 </div>
 </section>
@@ -672,20 +642,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="mySQL/mySQL_cheetsheet.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Database</p>
+        <p class="prev-next-title">mySQL cheat-sheet 😸</p>
       </div>
     </a>
     <a class="right-next"
-       href="postgreSQL/postgreSQL_cheetsheet.html"
+       href="noSQL/kibana.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">PostgreSQL USE on Linux Terminal</p>
+        <p class="prev-next-title">For Elasticsearch, some Kibana useful commands are:</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

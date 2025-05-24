@@ -46,5 +46,6 @@ In summary, Python's versatility, readability, and vibrant ecosystem make it an 
    magic
    dp
    uml
+   cs
 
    

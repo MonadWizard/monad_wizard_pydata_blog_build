@@ -1,4 +1,3 @@
-
 # Django REST framework example
 
 django REST framework এর function-base বা class-base, সব ধরনের view নিয়ে একটা গিট repo তৈরি করছি।
@@ -11,7 +10,7 @@ django REST framework এর function-base বা class-base, সব ধরন�
 
 <br>
 
-## drf-cheat-sheet
+## drf cheat-sheet
 
 A collection of anything from basics to advanced recommended methods and usages with Django REST Framework for creating browsable and awesome web API's. This could also serve as a quick reference guide.
 
@@ -26,7 +25,7 @@ Summarized from the official docs:
 -   Authentication is easily implemented.
 -   Highly customizable in every sense of the word.
 
-## Base Example Model
+## base example model
 
 Throughout this cheat-sheet, the examples used will be based on this Post and Comment model.
 

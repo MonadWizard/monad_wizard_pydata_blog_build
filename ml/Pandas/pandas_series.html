@@ -16,27 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
   
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ml/Pandas/pandas_series';</script>
     <link rel="canonical" href="blog.monadwizard.xyz/ml/Pandas/pandas_series.html" />
@@ -48,6 +51,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G04RGCJ0SY"></script>
   <script>
@@ -72,19 +76,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -92,7 +85,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -100,8 +92,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -135,7 +127,7 @@
     
     
     <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
-    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+    <img src="../../_static/logo.svg" class="logo__image only-dark pst-js-only" alt="PggPy - Home"/>
   
   
 </a></div>
@@ -185,7 +177,9 @@
 </li>
 
             <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
                     More
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
@@ -205,8 +199,15 @@
 
 
 <li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="../../db/index.html">
-    Database
+  <a class="nav-link dropdown-item nav-internal" href="../../sql_db/index.html">
+    SQL Database
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../nosql_db/index.html">
+    NoSQL Database
   </a>
 </li>
 
@@ -238,29 +239,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -321,15 +314,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -348,7 +337,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -413,8 +403,15 @@ document.write(`
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../db/index.html">
-    Database
+  <a class="nav-link nav-internal" href="../../sql_db/index.html">
+    SQL Database
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../nosql_db/index.html">
+    NoSQL Database
   </a>
 </li>
 
@@ -444,15 +441,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -554,9 +547,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -574,8 +572,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -590,7 +586,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../Pandas.html" class="nav-link">Pandas</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Pandas Series Blog</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Pandas Series Blog</span></li>
   </ul>
 </nav>
 </div>
@@ -705,7 +701,7 @@ document.write(`
 <p>আমরা List এবং Dictionary ব্যবহার করে series তৈরি করব তারপর data set ব্যবহার করে series তৈরি করব। আমার এর পোস্টটি implementation এ main focus দিয়ে তৈরী ।</p>
 <p>pandas নিয়ে যে কোন কাজ করার জন্য padas কে import করে নেয়। pandas নামটি include করে কোন execution করার জন্য একটা sort name define kori syntax <font color="green"> as pd </font>। Series() class কে call করার মাধমে series তৈরী করা হয়। প্রথমে আমরা একটা blank Series তৈরি করবো।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">()</span> <span class="c1"># empty series</span>
 
@@ -717,7 +713,7 @@ document.write(`
 <span class="c1"># List</span>
 <span class="n">ice_cream</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;chocolate&quot;</span><span class="p">,</span> <span class="s2">&quot;vanila&quot;</span><span class="p">,</span> <span class="s2">&quot;strawbarry&quot;</span><span class="p">,</span> <span class="s2">&quot;Run Raisin&quot;</span><span class="p">]</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">ice_cream</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
@@ -752,11 +748,11 @@ document.write(`
 <p>এইবার numpy এর দ্বারা array তৈরী করে তা একটি series এ রুপান্তর করি।
 এর জন্য numpy কে import করতে হবে, সুবিধার জন্য  <font color="green"> as np</font> define করি। numpy এর <font color="green">arange</font> function, python এর <font color="green">range</font> function এর মত । arange function array তৈরি করে।  np.arange(start, end, difference)</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">arr</span><span class="p">)</span>
 <span class="n">ser2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">arr</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">arr2</span><span class="p">)</span>
 
@@ -819,7 +815,7 @@ document.write(`
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">registration</span><span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">registration</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
 
@@ -856,7 +852,7 @@ dictionary এর key কে index এবং value কে data হিসেব�
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Aardvark&quot;</span> <span class="p">:</span> <span class="s2">&quot;An animal&quot;</span><span class="p">,</span> <span class="s2">&quot;Cyan&quot;</span> <span class="p">:</span> <span class="s2">&quot;A color&quot;</span><span class="p">,</span> <span class="s2">&quot;Nothing&quot;</span> <span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">}</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">s3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span>
@@ -891,7 +887,7 @@ dictionary এর key কে index এবং value কে data হিসেব�
 
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Aardvark&quot;</span> <span class="p">:</span> <span class="s2">&quot;An animal&quot;</span><span class="p">,</span> <span class="s2">&quot;Cyan&quot;</span> <span class="p">:</span> <span class="s2">&quot;A color&quot;</span><span class="p">,</span> <span class="s2">&quot;Nothing&quot;</span> <span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">}</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">s3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">s3</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
@@ -917,7 +913,7 @@ object
 <p>min() function দ্বারা সব থেকে ছোট  মান বাহির করা যায়।</p>
 <p>max() function দ্বারা সব থেকে বড় মান বাহির করা যায়।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span><span class="s1">&#39;USSR&#39;</span><span class="p">,</span> <span class="s1">&#39;Japan&#39;</span><span class="p">])</span>   
 
 <span class="nb">print</span><span class="p">(</span><span class="n">ser</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
@@ -939,8 +935,8 @@ object
 <hr class="docutils" />
 <p>এখন আমরা একটা series কে অন্য series এর সঙ্গে concatination করবো আর আমাদের প্রয়োজনীয় series তৈরী করবো। ঠাণ্ডা মাথায় চিন্তা করুন আমার বিশ্বাস আপনারা নিজেরাই পুরটা বঝতে পারবেন।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">ice_cream</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;chocolate&quot;</span><span class="p">,</span> <span class="s2">&quot;vanila&quot;</span><span class="p">,</span> <span class="s2">&quot;strawbarry&quot;</span><span class="p">,</span> <span class="s2">&quot;Run Raisin&quot;</span><span class="p">]</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">ice_cream</span><span class="p">)</span>
@@ -1055,7 +1051,7 @@ read_csv এর প্রায় ৪৯ টির মত parameter আছে। �
 for a basic purpose আমরা read_csv ar ২ টা parameter ব্যবহার করবো। file path এবং use colunms.
 এখন টা হইলে আমরা dataset থেকে data read করি।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1">#[[&quot;salary&quot;,&quot;Age&quot;]] restructured dataset&#39;s columns</span>
 <span class="n">salary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">])[[</span><span class="s2">&quot;Salary&quot;</span><span class="p">,</span><span class="s2">&quot;Age&quot;</span><span class="p">]]</span> 
@@ -1085,7 +1081,7 @@ beton2: &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 <h2>.head()<a class="headerlink" href="#head" title="Link to this heading">#</a></h2>
 <p>.head() এর দ্বারা defaultly প্রথম ৫ টা row এর ডাটা দেখতে পারা যায়। বিশাল dataset এর overview নিতে চাইলেও যদি সম্পূর্ণ dataset print করা হয় তা হইলে ব্যাপারটা যেমন সময় সাপেক্ষ তেমনই তার জন্য memory আর execution এ problem হয়। dataset এর sort overview নিতে তাই .head() ব্যবহার করা হয়। .head() এ যত number define করা হয় সেই কয়টা row print হয়।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">beton2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Beton.csv&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">beton2</span><span class="o">.</span><span class="n">head</span><span class="p">(),</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1155,7 +1151,7 @@ beton2: &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 <p>.head() যেমন প্রথম data গুলো দেখায় .tail() তেমনই শেষ data গুলো দেখায়।</p>
 <p>output নিজেরাই try করে দেখুন।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">beton2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Beton.csv&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">beton2</span><span class="o">.</span><span class="n">tail</span><span class="p">(),</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1170,7 +1166,7 @@ beton2: &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 <p>এই topic টি আপনারা নিজেরাই বুঝে run করবেন।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">beton2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Beton.csv&quot;</span><span class="p">)</span>
 
@@ -1199,7 +1195,7 @@ beton2: &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 <p>dataset এ duplicate value আসে কি না। বা dataset এ একই কোন value  এক এর অধিক  আসছে কি না তা check করতে <font color="green">.is_unique</font> ব্যবহার করা হয়।</p>
 <p>.is_unique এর output booolen type হয়ে থাকে। যদি True হয় তবে কোন duplicate value নেই। আর যদি output টা False হয় তা হইলে duplicate value আছে ।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">beton</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Beton.csv&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">],</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>  <span class="c1">#squeeze convert from dataframe to series</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">beton</span><span class="o">.</span><span class="n">is_unique</span><span class="p">)</span> <span class="c1"># boolen compare unique value</span>
@@ -1212,7 +1208,7 @@ beton2: &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 </div>
 <p>.is_unique function টি series এ কাজ করে। dataFrame এ কাজ করে না। তাই নিচের code টায় error আসবে।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">beton2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Beton.csv&quot;</span><span class="p">)</span> 
 
 <span class="nb">print</span><span class="p">(</span><span class="n">beton2</span><span class="o">.</span><span class="n">is_unique</span><span class="p">)</span> <span class="c1"># boolen compare unique value</span>
@@ -1228,7 +1224,7 @@ beton2: &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 <h2>.ndim<a class="headerlink" href="#ndim" title="Link to this heading">#</a></h2>
 <p>আমরা জানি series 1-Dimention আর DataFrame 2-Dimention. আমরা <font color="green">.ndim</font> এর দ্বারা dataset টা Series না কি DataFrame তা বঝতে পারা যায়। যদি output 1 হয় তবে 1-Dimention বা Series. আর যদি output 2 হয় তবে 2-Dimention বা DataFrame.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1">#squeeze convert from dataframe to series</span>
 <span class="n">beton</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Beton.csv&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">],</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> 
@@ -1250,7 +1246,7 @@ beton2: &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 <h2>.shape<a class="headerlink" href="#shape" title="Link to this heading">#</a></h2>
 <p>dataset এ কত গুলো rows আর columns আছে তা <font color="green">.shape</font> এর দ্বারা বাহির করা যায়। output এ <font color="gray">(rows, columns)</font> এই রুপে দেখা যায়।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1">#squeeze convert from dataframe to series</span>
 <span class="n">beton</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Beton.csv&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">],</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> 
@@ -1272,7 +1268,7 @@ beton2: &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 <h2>.size<a class="headerlink" href="#size" title="Link to this heading">#</a></h2>
 <p>dataset এ null সহ total কতগুল value আছে  তা <font color="green">.size</font> এর দ্বারা দেখা যায়। output এ সব row এবং column এর total value count এর মান  numeric এ দেখা যায়।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1">#squeeze convert from dataframe to series</span>
 <span class="n">beton</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Beton.csv&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">],</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> 
@@ -1294,7 +1290,7 @@ beton2: &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 <h2>.sort_values()<a class="headerlink" href="#sort-values" title="Link to this heading">#</a></h2>
 <p>যদি কখনো dataset এর value sort করে দেখতে হয় মানে ascending order বা descending order এ নিতে হয় তবে <font color="green">.sort_values()</font> ব্যবহার করে তা করা যায়। defaultly ascending parameter টা True থাকে।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1">#squeeze convert from dataframe to series</span>
 <span class="n">beton</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Beton.csv&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">],</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> 
@@ -1386,7 +1382,7 @@ beton2: &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 <h2>inplace Parameter<a class="headerlink" href="#inplace-parameter" title="Link to this heading">#</a></h2>
 <p>আমরা সবাই জানি যে যদি variable এ কোন operation ঘটে তাহলে আমাদের main data-set এ কোন change ঘটবে না। কিন্তু inplace Parameter ব্যবহার করে আমরা instandly variable এর change বা execution এর change টা কে data-set এর real-value তেও change ঘটাতে পারি। by-Defaultly <font color="green"> inplace = False </font> থাকে।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">salary2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">],</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salary2</span><span class="p">)</span>
@@ -1487,7 +1483,7 @@ None</p>
 <h2>.sort_index()<a class="headerlink" href="#sort-index" title="Link to this heading">#</a></h2>
 <p>sort_index() টা অনেকটা sort_values() এর মত। sort_index() দ্বারা data-set এর index কে ascending বা deascending order এ sort করা যায়।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">salary2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">],</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salary2</span><span class="p">)</span>
@@ -1588,7 +1584,7 @@ None</p>
 <h2>in<a class="headerlink" href="#in" title="Link to this heading">#</a></h2>
 <p>data-set এ কাঙ্ক্ষিত data আছে কি নাই টা  <font color="green"> in </font> ব্যবহার করে check করে নিতে পারেন। যদি data টি data-set এ থেকে থাকে তা হইলে output <font color="pink"> True </font> এর যদি না থাকে তা হইলে output <font color="pink"> False </font>আসবে।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">salary2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">],</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salary2</span><span class="p">)</span>
@@ -1662,7 +1658,7 @@ None</p>
 <h2>index_col parameter<a class="headerlink" href="#index-col-parameter" title="Link to this heading">#</a></h2>
 <p>এতক্ষণ আমরা default index নিয়ে কাজ করছি but এখন আমরা দেখব কেমন করে data-set এর একটি column কে index এ রূপান্তর করা যায়। এর জন্য pd.read_csv তে একটা extra parmeter ব্যবহার করতে হবে output <font color="green"> index_col = “column এর নাম” </font></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salaryy</span><span class="p">)</span>
 
@@ -1717,7 +1713,7 @@ None</p>
 <h2>.get()<a class="headerlink" href="#get" title="Link to this heading">#</a></h2>
 <p><font color="green"> .get() </font> ব্যবহার করে আমরা data-set এর index define করে উক্ত index এর value পেতে পারি। but যদি আমরা এমন কোন index define করি যা data-set এ নাই, তা হইলে আমরা error face করব। তাই .get() এ default parameter ব্যবহার করব।<font color="green"> .get() </font> এ ২টা parameter: key, default. <font color="green"> key= “columns name” </font> আর <font color="green"> default=”data না পাইলে যে কোন কিছু comment” </font> দিতে পারেন, যা error এর পরিবর্তে যদি data না থাকে তবে দেখতে পাবেন।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salaryy</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -1797,7 +1793,7 @@ None</p>
 <h2>Math Methods<a class="headerlink" href="#math-methods" title="Link to this heading">#</a></h2>
 <p><font color="green"> dataseries.count() </font>: total কতগুলো data বা row আছে তা .count() এর দ্বারা দেখতে পারা যায়। NaN বা blank data .count() এ count করে না।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salaryy</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
 
@@ -1810,7 +1806,7 @@ None</p>
 <hr class="docutils" />
 <p><font color="green"> len(dataseries) </font>: len(series) method টা অনেকটা .count() এর similar,কিন্তু len() NaN বা blank data সহ সমস্ত data এর length count করে।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">salaryy</span><span class="p">))</span>
 
@@ -1823,7 +1819,7 @@ None</p>
 <hr class="docutils" />
 <p><font color="green"> dataseries.sum()</font> :  dataseries এর data যদি numeric হয় তা হইলে আমরা .sum() ব্যবহার করে total যোগফল বাহির করতে পারি।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salaryy</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 
@@ -1836,7 +1832,7 @@ None</p>
 <hr class="docutils" />
 <p><font color="green"> dataseries.mean() </font>: dataseries এর data যদি numeric হয় তা হইলে আমরা .mean() ব্যবহার করে total data এর গড় বাহির করতে পারি।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salaryy</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
@@ -1850,7 +1846,7 @@ None</p>
 <hr class="docutils" />
 <p><font color="green"> dataseries.std() </font> : dataseries এর data যদি numeric হয় তা হইলে আমরা .std() ব্যবহার করে total data এর standard deviation বাহির করতে পারি।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salaryy</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
@@ -1864,7 +1860,7 @@ None</p>
 <hr class="docutils" />
 <p><font color="green"> dataseries.min() </font> : dataseries এর data যদি numeric হয় তা হইলে আমরা .min() ব্যবহার করে total data এর সব থেকে minimum vaule বাহির করতে পারি।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salaryy</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
@@ -1878,7 +1874,7 @@ None</p>
 <hr class="docutils" />
 <p><font color="green"> dataseries.max() </font> : dataseries এর data যদি numeric হয় তা হইলে আমরা .max() ব্যবহার করে total data এর সব থেকে maximum vaule বাহির করতে পারি।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salaryy</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
@@ -1892,7 +1888,7 @@ None</p>
 <hr class="docutils" />
 <p><font color="green"> dataseries.median() </font> : dataseries এর data যদি numeric হয় তা হইলে আমরা .median() ব্যবহার করে total data এর mid point vaule বাহির করতে পারি।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salaryy</span><span class="o">.</span><span class="n">median</span><span class="p">())</span> <span class="c1"># give mid point value </span>
@@ -1906,7 +1902,7 @@ None</p>
 <hr class="docutils" />
 <p><font color="green"> dataseries.mode() </font> : dataseries এর data যদি numeric হয় তা হইলে আমরা .mode() ব্যবহার করে total data এর most frequently data বাহির করতে পারি।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salaryy</span><span class="o">.</span><span class="n">mode</span><span class="p">())</span>
@@ -1955,7 +1951,7 @@ None</p>
 <hr class="docutils" />
 <p><font color="green"> dataseries.describe() </font> : আমরা data-set এর overview পাইতে চাইলে .describe() ব্যবহার করে <font color="gray"> count </font> row তে NaN ছাড়া total কতটা row আছে তা দেখতে পাই। <font color="gray"> mean </font> row তে total row এর গড় দেখতে পাই। <font color="gray"> std </font> row তে dataseries এর standerd devision এর মান দেখতে পাই।<font color="gray"> min </font> row তে NaN ছাড়া minimum value দেখতে পাই।এ ছাড়া <font color="gray"> 25%,50%,75% </font> row তে total value এর 25% এর বা 50%এর বা 75%এর value কত হইতে পারে তা দেখতে পাই।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">salaryy</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
@@ -2004,7 +2000,7 @@ None</p>
 <h2>.idxmax() AND .idxmin() :<a class="headerlink" href="#idxmax-and-idxmin" title="Link to this heading">#</a></h2>
 <p>আমরা তো maximum বা minimum value বাহির করতে পারি। এখন দেখব কেমনে আমরা max বা min এর index বাহির করতে পারি। .idxmax() দ্বারা আমরা maximum value এর index এবং .idxmin() দ্বারা minimum value এর index পাইতে পারি।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">salaryy</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
@@ -2029,7 +2025,7 @@ None</p>
 <h2>.value_counts() :<a class="headerlink" href="#value-counts" title="Link to this heading">#</a></h2>
 <p>আমরা চাইলে কোন value কতবার আছে তা <font color="green"> .value_counts() </font> এর দ্বারা দেখতে পারি।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 
@@ -2089,7 +2085,7 @@ None</p>
 <h2>.apply() :<a class="headerlink" href="#apply" title="Link to this heading">#</a></h2>
 <p>আমরা data-preprocessing এর জন্য .apply() function use করতে পারি। আমাদের data-set এর কোন column এর সকল ভালু যদি একটা flow তে change করতে চাই তা হইলে <font color="green"> .apply() </font> ব্যবহার করে তা আমরা করতে পারি। .apply() এর জন্য একটি function প্রয়োজন হয়। আমরা annonimus function ব্যবহার করতে পারি। যেমন lambda function. আমরা একটি উদাহারন এ age column এর সব মান ১০০ গুন বাড়ায়ে দেখব।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">salaryy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="n">salaryy</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">age</span> <span class="p">:</span> <span class="n">age</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
@@ -2145,7 +2141,7 @@ None</p>
 <h2>.map()<a class="headerlink" href="#map" title="Link to this heading">#</a></h2>
 <p>আমরা যদি একাধিক dataset কে একটি dataset এ রূপান্তর করতে চাই তা হইলে আমরা <font color="green"> .map() </font>  ব্যবহার করতে পারি। series_value.map(compare_argoment_series). series_value এর column-data এর সঙ্ঘে compare_argoment_series এর index compare হয়। আর নতুন যে series তৈরি হবে, তার index হবে series_value এর column আর compare_argoment_series এর columns গুলো নতুন series এর columns হবে।</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">salary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;salary.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span><span class="p">,</span> <span class="n">usecols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span> <span class="p">,</span> <span class="n">squeeze</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
@@ -2236,7 +2232,8 @@ None</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -2286,8 +2283,8 @@ None</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">

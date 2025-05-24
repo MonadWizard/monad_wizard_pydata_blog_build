@@ -1,0 +1,1172 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>For Elasticsearch, some Kibana useful commands are: &#8212; MonadWizard Blog 0.01 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nosql_db/elastic_search/kibana';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/nosql_db/elastic_search/kibana.html" />
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Install ElasticSearch with SSL and kibana on linux" href="install_elastic_wit_ssl.html" />
+    <link rel="prev" title="elastic search" href="../elastic_search.html" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G04RGCJ0SY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G04RGCJ0SY');
+  </script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
+    <img src="../../_static/logo.svg" class="logo__image only-dark pst-js-only" alt="PggPy - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    dev-ops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../plSQL/index.html">
+    pl/SQL
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../sql_db/index.html">
+    SQL Database
+  </a>
+</li>
+
+
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="../index.html">
+    NoSQL Database
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pycconverter/" title="pyc" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-python fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">pyc</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_ops/index.html">
+    dev-ops
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mcq/index.html">
+    mcq
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../python/index.html">
+    python
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ml/index.html">
+    Machine Learning
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../backend_framework/index.html">
+    Backend Framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ui_framework/index.html">
+    UI framework
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../plSQL/index.html">
+    pl/SQL
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../sql_db/index.html">
+    SQL Database
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    NoSQL Database
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../interview/index.html">
+    interview
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mix/index.html">
+    Mix post
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MonadWizard/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.linkedin.com/in/rakib-hasan-90518b140/" title="LinkedIn" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-linkedin fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.facebook.com/ccaarreelleess" title="Facebook" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-facebook fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Facebook</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pycconverter/" title="pyc" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-python fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">pyc</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">NoSQL Database</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../elastic_search.html">elastic search</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">For Elasticsearch, some Kibana useful commands are:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_elastic_wit_ssl.html">Install ElasticSearch with SSL and kibana on linux</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mongodb.html">mongodb</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mongodb/commingsoon.html">comming soon</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">NoSQL Database</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../elastic_search.html" class="nav-link">elastic search</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">For Elasticsearch, some Kibana useful commands are:</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="for-elasticsearch-some-kibana-useful-commands-are">
+<h1>For Elasticsearch, some Kibana useful commands are:<a class="headerlink" href="#for-elasticsearch-some-kibana-useful-commands-are" title="Link to this heading">#</a></h1>
+<section id="get-the-elasticsearch-version-and-tagline">
+<h2>Get the Elasticsearch version and tagline<a class="headerlink" href="#get-the-elasticsearch-version-and-tagline" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span>
+</pre></div>
+</div>
+</section>
+<section id="browse-the-documentation-related-to-your-elasticsearch-version">
+<h2>Browse the documentation related to your elasticsearch version<a class="headerlink" href="#browse-the-documentation-related-to-your-elasticsearch-version" title="Link to this heading">#</a></h2>
+<p>Go to https://www.elastic.co/guide/en/elasticsearch/reference/X.Y/index.html</p>
+</section>
+<section id="quickly-explore-existing-indices">
+<h2>Quickly explore existing indices<a class="headerlink" href="#quickly-explore-existing-indices" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GET _cat/indices/&lt;index_pattern&gt;?v
+</pre></div>
+</div>
+</section>
+<section id="quickly-explore-existing-aliases">
+<h2>Quickly explore existing aliases<a class="headerlink" href="#quickly-explore-existing-aliases" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GET /_cat/aliases/&lt;alias_pattern&gt;?v
+</pre></div>
+</div>
+</section>
+<section id="quickly-get-settings-mappings-and-aliases-of-an-index">
+<h2>Quickly get settings, mappings and aliases of an index<a class="headerlink" href="#quickly-get-settings-mappings-and-aliases-of-an-index" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">&lt;</span><span class="n">index</span><span class="o">&gt;/</span>
+</pre></div>
+</div>
+</section>
+<section id="switch-manage-aliases">
+<h2>Switch / Manage aliases<a class="headerlink" href="#switch-manage-aliases" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">_aliases</span>
+<span class="p">{</span>
+  <span class="s2">&quot;actions&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;remove&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;old_index&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;alias&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;index_alias&gt;&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;add&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;new_index&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;alias&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;index_alias&gt;&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="quickly-explore-the-data-in-an-index">
+<h2>Quickly explore the data in an index<a class="headerlink" href="#quickly-explore-the-data-in-an-index" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/&lt;</span><span class="n">index</span><span class="o">&gt;/</span><span class="n">_search</span>
+<span class="p">{</span>
+  <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="s2">&quot;_source&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;include&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;&lt;field_patterns_to_include&gt;&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;exclude&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;&lt;field_patterns_to_exclude&gt;&quot;</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;match_all&quot;</span><span class="p">:</span> <span class="p">{}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;&lt;field_agg_name&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;field&gt;.keyword&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="quickly-get-some-data-based-on-exact-values-and-sorted">
+<h2>Quickly get some data based on exact values and sorted<a class="headerlink" href="#quickly-get-some-data-based-on-exact-values-and-sorted" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/&lt;</span><span class="n">index_or_alias</span><span class="o">&gt;/</span><span class="n">_search</span>
+<span class="p">{</span>
+  <span class="s2">&quot;from&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;bool&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;&lt;field&gt;.keyword&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;value_1&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;value_2&quot;</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;sort&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;&lt;sort_field&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;order&quot;</span><span class="p">:</span> <span class="s2">&quot;desc&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="quickly-get-data-matching-several-fields-and-explain-the-relevancy">
+<h2>Quickly get data matching several fields and explain the relevancy<a class="headerlink" href="#quickly-get-data-matching-several-fields-and-explain-the-relevancy" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/&lt;</span><span class="n">index_or_alias</span><span class="o">&gt;/</span><span class="n">_search</span>
+<span class="p">{</span>
+  <span class="s2">&quot;explain&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+  <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;multi_match&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;query&gt;&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;&lt;field1&gt;^10&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;&lt;field2&gt;&quot;</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="quickly-check-how-a-text-is-analyzed">
+<h2>Quickly check how a text is analyzed<a class="headerlink" href="#quickly-check-how-a-text-is-analyzed" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">&lt;</span><span class="n">index</span><span class="o">&gt;/</span><span class="n">_analyze</span>
+<span class="p">{</span>
+  <span class="s2">&quot;field&quot;</span> <span class="p">:</span> <span class="s2">&quot;&lt;field&gt;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;text&quot;</span> <span class="p">:</span> <span class="s2">&quot;&lt;text to analyze&gt;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">&lt;</span><span class="n">index</span><span class="o">&gt;/</span><span class="n">_analyze</span>
+<span class="p">{</span>
+  <span class="s2">&quot;analyzer&quot;</span> <span class="p">:</span> <span class="s2">&quot;standard&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;text&quot;</span> <span class="p">:</span> <span class="s2">&quot;&lt;text to analyze&gt;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="explore-data-grouped-by-a-field">
+<h2>Explore data grouped by a field<a class="headerlink" href="#explore-data-grouped-by-a-field" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/&lt;</span><span class="n">index_or_alias</span><span class="o">&gt;/</span><span class="n">_search</span>
+<span class="p">{</span>
+  <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="s2">&quot;_source&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;excludes&quot;</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;match&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;&lt;field&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;query&gt;&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;collapse&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;collapse_field&gt;.keyword&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;inner_hits&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;inner_hits&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;highlight&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;&lt;field&gt;&quot;</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;sort&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;&lt;inner_hits_sort_field&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;order&quot;</span><span class="p">:</span> <span class="s2">&quot;asc&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="quicky-explore-top-terms">
+<h2>Quicky explore top terms<a class="headerlink" href="#quicky-explore-top-terms" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/&lt;</span><span class="n">index_or_alias</span><span class="o">&gt;/</span><span class="n">_search</span>
+<span class="p">{</span>
+  <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;&lt;agg1&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;field1&gt;.keyword&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="explore-significant-terms-within-one-group">
+<h2>Explore significant terms within one group<a class="headerlink" href="#explore-significant-terms-within-one-group" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/&lt;</span><span class="n">index_or_alias</span><span class="o">&gt;/</span><span class="n">_search</span>
+<span class="p">{</span>
+  <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;&lt;agg1&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;field1&gt;.keyword&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;&lt;agg1.1&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;significant_terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;field2&gt;.keyword&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="explore-top-terms-and-get-details-on-top-hits">
+<h2>Explore top terms and get details on top hits<a class="headerlink" href="#explore-top-terms-and-get-details-on-top-hits" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/&lt;</span><span class="n">index_or_alias</span><span class="o">&gt;/</span><span class="n">_search</span>
+<span class="p">{</span>
+  <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;&lt;agg1&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;terms&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;field&gt;.keyword&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;&lt;details&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;top_hits&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;_source&quot;</span><span class="p">:</span> <span class="p">[</span>
+              <span class="s2">&quot;&lt;details_field&gt;.*&quot;</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;highlight&quot;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s2">&quot;pre_tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;&lt;em&gt;&quot;</span>
+              <span class="p">],</span>
+              <span class="s2">&quot;post_tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;&lt;/em&gt;&quot;</span>
+              <span class="p">],</span>
+              <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;&lt;highlight_fields&gt;.*&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;number_of_fragments&quot;</span><span class="p">:</span> <span class="mi">0</span>
+                <span class="p">}</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="quickly-find-min-and-max-values-of-one-field">
+<h2>Quickly find min and max values of one field<a class="headerlink" href="#quickly-find-min-and-max-values-of-one-field" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/&lt;</span><span class="n">index_or_alias</span><span class="o">&gt;/</span><span class="n">_search</span>
+<span class="p">{</span>
+  <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;min&quot;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;field&gt;&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;max&quot;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;field&gt;&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="quickly-display-a-date-histogram">
+<h2>Quickly display a date histogram<a class="headerlink" href="#quickly-display-a-date-histogram" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/&lt;</span><span class="n">index_or_alias</span><span class="o">&gt;/</span><span class="n">_search</span>
+<span class="p">{</span>
+  <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;aggs&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;histogram&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;date_histogram&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;date_field&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;interval&quot;</span><span class="p">:</span> <span class="s2">&quot;day&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="quickly-update-the-value-of-a-field-in-a-document">
+<h2>Quickly update the value of a field in a document<a class="headerlink" href="#quickly-update-the-value-of-a-field-in-a-document" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">&lt;</span><span class="n">index</span><span class="o">&gt;/&lt;</span><span class="nb">type</span><span class="o">&gt;/&lt;</span><span class="nb">id</span><span class="o">&gt;/</span><span class="n">_update</span>
+<span class="p">{</span>
+  <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;&lt;field&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;&lt;optional_inner_field&gt;&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;new value&gt;&quot;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="quickly-increment-the-value-of-a-field-in-a-document">
+<h2>Quickly increment the value of a field in a document<a class="headerlink" href="#quickly-increment-the-value-of-a-field-in-a-document" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">&lt;</span><span class="n">index</span><span class="o">&gt;/&lt;</span><span class="nb">type</span><span class="o">&gt;/&lt;</span><span class="nb">id</span><span class="o">&gt;/</span><span class="n">_update</span>
+<span class="p">{</span>
+    <span class="s2">&quot;script&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;ctx._source.&lt;field&gt;.&lt;optional_inner_field&gt; += params.count&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;lang&quot;</span><span class="p">:</span> <span class="s2">&quot;painless&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;count&quot;</span> <span class="p">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="get-active-index-templates">
+<h2>Get active index templates<a class="headerlink" href="#get-active-index-templates" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="n">_template</span><span class="o">/&lt;</span><span class="n">template_name_pattern</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="update-or-create-an-index-template">
+<h2>Update or create an index template<a class="headerlink" href="#update-or-create-an-index-template" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">_template</span><span class="o">/&lt;</span><span class="n">template_name</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="s2">&quot;index_patterns&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;index_pattern&gt;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;index.refresh_interval&quot;</span><span class="p">:</span> <span class="s2">&quot;5s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;index.number_of_replicas&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;index.number_of_shards&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;analysis&quot;</span><span class="p">:</span> <span class="p">{}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;mappings&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;&lt;type&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;&lt;date_field&gt;&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;date&quot;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;aliases&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;&lt;index_alias&gt;&quot;</span><span class="p">:</span> <span class="p">{}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="quickly-reindex-after-template-or-mapping-changes">
+<h2>Quickly reindex (after template or mapping changes)<a class="headerlink" href="#quickly-reindex-after-template-or-mapping-changes" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="n">_reindex</span>
+<span class="p">{</span>
+  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;index1&gt;&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;dest&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;index1a&gt;&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="get-nodes-information">
+<h2>Get nodes information<a class="headerlink" href="#get-nodes-information" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GET _cat/nodes?v
+</pre></div>
+</div>
+</section>
+<section id="get-the-cluster-health">
+<h2>Get the cluster health<a class="headerlink" href="#get-the-cluster-health" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="n">_cluster</span><span class="o">/</span><span class="n">health</span>
+</pre></div>
+</div>
+</section>
+<section id="get-all-the-cluster-metadata">
+<h2>Get all the cluster metadata<a class="headerlink" href="#get-all-the-cluster-metadata" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="n">_cluster</span><span class="o">/</span><span class="n">state</span>
+</pre></div>
+</div>
+</section>
+<section id="get-all-nodes-statistics">
+<h2>Get all nodes statistics<a class="headerlink" href="#get-all-nodes-statistics" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="n">_nodes</span><span class="o">/</span><span class="n">stats</span>
+</pre></div>
+</div>
+</section>
+<section id="activate-the-search-slow-log-on-an-index">
+<h2>Activate the search slow log on an index<a class="headerlink" href="#activate-the-search-slow-log-on-an-index" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">&lt;</span><span class="n">index</span><span class="o">&gt;/</span><span class="n">_settings</span>
+<span class="p">{</span>
+  <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;search.slowlog.threshold.query.trace&quot;</span><span class="p">:</span> <span class="s2">&quot;0s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;search.slowlog.threshold.fetch.trace&quot;</span><span class="p">:</span> <span class="s2">&quot;0s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;search.slowlog.threshold.query.debug&quot;</span><span class="p">:</span> <span class="s2">&quot;0s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;search.slowlog.threshold.fetch.debug&quot;</span><span class="p">:</span> <span class="s2">&quot;0s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;search.slowlog.threshold.query.info&quot;</span><span class="p">:</span> <span class="s2">&quot;0s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;search.slowlog.threshold.fetch.info&quot;</span><span class="p">:</span> <span class="s2">&quot;0s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;search.slowlog.threshold.query.warn&quot;</span><span class="p">:</span> <span class="s2">&quot;0s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;search.slowlog.threshold.fetch.warn&quot;</span><span class="p">:</span> <span class="s2">&quot;0s&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tail -f &lt;path.logs&gt;/&lt;index&gt;_index_search_slowlog.log
+</pre></div>
+</div>
+</section>
+<section id="quickly-snapshot">
+<h2>Quickly snapshot<a class="headerlink" href="#quickly-snapshot" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GET /_snapshot/_all
+PUT /_snapshot/&lt;backup&gt;
+{
+  &quot;type&quot;: &quot;fs&quot;,
+  &quot;settings&quot;: {
+    &quot;compress&quot;: true,
+    &quot;location&quot;: &quot;&lt;path.repo&gt;/&lt;backup&gt;&quot;
+  }
+}
+PUT /_snapshot/&lt;backup&gt;/&lt;snapshot&gt;?wait_for_completion=false
+{
+  &quot;indices&quot;: &quot;index1,index2&quot;,
+  &quot;ignore_unavailable&quot;: false,
+  &quot;include_global_state&quot;: false
+}
+GET /_snapshot/&lt;backup&gt;/&lt;snapshot&gt;
+GET /_snapshot/&lt;backup&gt;/&lt;snapshot&gt;/_status
+</pre></div>
+</div>
+</section>
+<section id="quickly-restore">
+<h2>Quickly restore<a class="headerlink" href="#quickly-restore" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">_snapshot</span><span class="o">/&lt;</span><span class="n">backup</span><span class="o">&gt;/&lt;</span><span class="n">snapshot</span><span class="o">&gt;/</span><span class="n">_restore</span>
+<span class="p">{</span>
+  <span class="s2">&quot;indices&quot;</span><span class="p">:</span> <span class="s2">&quot;index1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;index_settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;index.number_of_replicas&quot;</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="run-the-support-diagnostics">
+<h2>Run the support diagnostics<a class="headerlink" href="#run-the-support-diagnostics" title="Link to this heading">#</a></h2>
+<p>Go to https://github.com/elastic/elasticsearch-support-diagnostics/releases/latest</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://github.com/elastic/support-diagnostics/releases/download/X.Y/support-diagnostics-X.Y-dist.zip
+$ unzip support-diagnostics-X.Y-dist.zip
+$ cd support-diagnostics-X.Y/
+$ ./diagnostics.sh --host localhost --port 9200 --type remote
+</pre></div>
+</div>
+<p>See the output in <code class="docutils literal notranslate"><span class="pre">remote-diagnostics-&lt;date&gt;.tar.gz</span></code></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../elastic_search.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">elastic search</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="install_elastic_wit_ssl.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Install ElasticSearch with SSL and kibana on linux</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-elasticsearch-version-and-tagline">Get the Elasticsearch version and tagline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#browse-the-documentation-related-to-your-elasticsearch-version">Browse the documentation related to your elasticsearch version</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-explore-existing-indices">Quickly explore existing indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-explore-existing-aliases">Quickly explore existing aliases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-get-settings-mappings-and-aliases-of-an-index">Quickly get settings, mappings and aliases of an index</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#switch-manage-aliases">Switch / Manage aliases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-explore-the-data-in-an-index">Quickly explore the data in an index</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-get-some-data-based-on-exact-values-and-sorted">Quickly get some data based on exact values and sorted</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-get-data-matching-several-fields-and-explain-the-relevancy">Quickly get data matching several fields and explain the relevancy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-check-how-a-text-is-analyzed">Quickly check how a text is analyzed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-data-grouped-by-a-field">Explore data grouped by a field</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quicky-explore-top-terms">Quicky explore top terms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-significant-terms-within-one-group">Explore significant terms within one group</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-top-terms-and-get-details-on-top-hits">Explore top terms and get details on top hits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-find-min-and-max-values-of-one-field">Quickly find min and max values of one field</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-display-a-date-histogram">Quickly display a date histogram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-update-the-value-of-a-field-in-a-document">Quickly update the value of a field in a document</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-increment-the-value-of-a-field-in-a-document">Quickly increment the value of a field in a document</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-active-index-templates">Get active index templates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-or-create-an-index-template">Update or create an index template</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-reindex-after-template-or-mapping-changes">Quickly reindex (after template or mapping changes)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-nodes-information">Get nodes information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-cluster-health">Get the cluster health</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-all-the-cluster-metadata">Get all the cluster metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-all-nodes-statistics">Get all nodes statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activate-the-search-slow-log-on-an-index">Activate the search slow log on an index</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-snapshot">Quickly snapshot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-restore">Quickly restore</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-support-diagnostics">Run the support diagnostics</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Rakib Hasan.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

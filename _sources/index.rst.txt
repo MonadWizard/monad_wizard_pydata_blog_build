@@ -45,7 +45,8 @@ User interfaces are the gateway to user experience excellence. Learn how to crea
    backend_framework/index
    ui_framework/index
    plSQL/index
-   db/index
+   sql_db/index
+   nosql_db/index
    interview/index
    mix/index
 

@@ -1,0 +1,125 @@
+# Install ElasticSearch with SSL and kibana on linux
+
+## Step 1 - Update Ubuntu 
+
+Both Ubuntu installations are brand new. We update the distribution as well as install some tools we typically use on both machines.
+
+```SHELL
+apt-get update && apt dist-upgrade -y && apt-get install -y vim curl gnupg gpg
+```
+
+## Step 2 - Install Elasticsearch
+
+Both Ubuntu installations needs these dependencies, so run these commands on both:
+
+```SHELL
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg;
+echo 'deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main' | sudo tee /etc/apt/sources.list.d/elastic-8.x.list;
+apt-get update;
+apt-get install -y apt-transport-https;
+apt-get install -y elasticsearch;
+
+```
+
+When installation is complete, make sure you write down the password.
+### On installation find root password as : 
+
+The generated password for the elastic built-in superuser is : `<password>`
+
+## Step 3 - Make Self Signed Certificate for Elasticsearch 
+
+Let's make self-signed SSL certificates for elastic.evermight.net and kibana.evermight.net. Go to the elastic.evermight.net shell.
+
+Make the certificate authority with this command:
+
+```SHELL    
+/usr/share/elasticsearch/bin/elasticsearch-certutil ca --pem --out /etc/elasticsearch/certs/ca.zip
+cd /etc/elasticsearch/certs/
+unzip ca.zip
+```
+
+Now let's make a self-signed certificate for monadwizard.xyz and sign it with our ca.crt:
+
+```shell
+/usr/share/elasticsearch/bin/elasticsearch-certutil cert \
+  --out /etc/elasticsearch/certs/elastic.zip \
+  --name elastic \
+  --ca-cert /etc/elasticsearch/certs/ca/ca.crt \
+  --ca-key /etc/elasticsearch/certs/ca/ca.key \
+  --dns monadwizard.xyz \
+  --pem;
+```
+
+` --dns monadwizard.xyz \ if you have domain else no need `
+
+
+### Optionally, if you are using IP address as well, you can pass in the --ip option and state your IP address.
+
+LIKE: 
+
+```SHELL
+/usr/share/elasticsearch/bin/elasticsearch-certutil cert \
+  --out /etc/elasticsearch/certs/elastic.zip \
+  --name elastic \
+  --ca-cert /etc/elasticsearch/certs/ca/ca.crt \
+  --ca-key /etc/elasticsearch/certs/ca/ca.key \
+  --ip 127.0.0.1 \
+  --ip 13.202.68.253 \
+  --pem
+
+```
+
+## Now extract elastic.zip : 
+
+```SHELL
+cd /etc/elasticsearch/certs/;
+unzip elastic.zip
+```
+
+### Step 4 - Configure Elasticsearch 
+
+Edit `elasticsearch.yml`
+Go to the `/etc/elasticsearch/elasticsearch.yml` file. Edit the following fields:
+
+```yaml
+...etc...
+cluster.name: <anything you want>
+...etc...
+network.host: monadwizard.xyz
+...etc...
+http.port: 9200
+...etc...
+xpack.security.http.ssl:
+  enabled: true
+  key: certs/elastic/elastic.key
+  certificate: certs/elastic/elastic.crt
+  certificate_authorities: certs/ca/ca.crt
+...etc...
+```
+
+### Change ownership
+
+```SHELL
+chown -R elasticsearch:elasticsearch /etc/elasticsearch
+```
+
+## Step 5 - Start Elasticsearch 
+
+Start elasticsearch with these commands:
+
+```SHELL
+systemctl enable elasticsearch;
+systemctl start elasticsearch;
+```
+
+### Confirm elasticsearch is working with this command:
+
+```SHELL
+curl -X GET -u elastic:<password from step 2> https://elastic.evermight.net:9200 --cacert /etc/elasticsearc/cert/ca/ca.crt
+
+```
+
+And you should see something like this:
+
+
+

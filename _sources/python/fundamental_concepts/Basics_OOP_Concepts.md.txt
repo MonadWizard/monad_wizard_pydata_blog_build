@@ -52,7 +52,7 @@ Inheritance is a fundamental concept in Object-Oriented Programming (OOP) that a
 * Hybrid Inheritance: A combination of two or more types of inheritance.
 Example of Inheritance in Python
 
-### Single Inheritance
+## Single Inheritance
 
 ```python
 

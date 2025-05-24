@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Database &#8212; MonadWizard Blog 0.01 documentation</title>
+    <title>mySQL &#8212; MonadWizard Blog 0.01 documentation</title>
   
   
   
@@ -16,38 +16,42 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=6ca3c713"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'db/index';</script>
-    <link rel="canonical" href="blog.monadwizard.xyz/db/index.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sql_db/mysql';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/sql_db/mysql.html" />
     <link rel="icon" href="../_static/logo.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="postgreSQL" href="postgres.html" />
-    <link rel="prev" title="comming soon" href="../plSQL/cs.html" />
+    <link rel="next" title="mySQL cheat-sheet 😸" href="mySQL/mySQL_cheetsheet.html" />
+    <link rel="prev" title="pgcron doc" href="postgreSQL/pg_cron.html" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G04RGCJ0SY"></script>
   <script>
@@ -72,19 +76,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -92,7 +85,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -100,8 +92,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -135,7 +127,7 @@
     
     
     <img src="../_static/logo.svg" class="logo__image only-light" alt="PggPy - Home"/>
-    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="PggPy - Home"/>`);</script>
+    <img src="../_static/logo.svg" class="logo__image only-dark pst-js-only" alt="PggPy - Home"/>
   
   
 </a></div>
@@ -185,7 +177,9 @@
 </li>
 
             <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
                     More
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
@@ -205,8 +199,15 @@
 
 
 <li class=" current active">
-  <a class="nav-link dropdown-item nav-internal" href="#">
-    Database
+  <a class="nav-link dropdown-item nav-internal" href="index.html">
+    SQL Database
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../nosql_db/index.html">
+    NoSQL Database
   </a>
 </li>
 
@@ -238,29 +239,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -321,22 +314,14 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
-  
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
   
 </div>
 
@@ -348,7 +333,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -413,8 +399,15 @@ document.write(`
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
-    Database
+  <a class="nav-link nav-internal" href="index.html">
+    SQL Database
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../nosql_db/index.html">
+    NoSQL Database
   </a>
 </li>
 
@@ -444,15 +437,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -515,8 +504,8 @@ document.write(`
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Database</span></p>
-<ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">SQL Database</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="postgres.html">postgreSQL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html">PostgreSQL USE on Linux Terminal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="postgreSQL/pg_cron.html">pgcron doc</a></li>
@@ -529,12 +518,8 @@ document.write(`
 
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="mysql.html">mySQL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">mySQL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html">mySQL cheat-sheet 😸</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="nosql.html">NoSQL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html">For Elasticsearch, some Kibana useful commands are:</a></li>
 </ul>
 </details></li>
 </ul>
@@ -544,9 +529,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -564,8 +554,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -574,7 +562,10 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Database</li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">SQL Database</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">mySQL</span></li>
   </ul>
 </nav>
 </div>
@@ -591,54 +582,83 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="database">
-<h1>Database<a class="headerlink" href="#database" title="Link to this heading">#</a></h1>
-<section id="the-importance-of-databases">
-<h2>The Importance of Databases<a class="headerlink" href="#the-importance-of-databases" title="Link to this heading">#</a></h2>
-<p>Databases are the backbone of any modern application, providing a structured way to store, manage, and retrieve data. Choosing the right database and optimizing its usage can significantly impact the performance and scalability of your application. Understanding the strengths and limitations of different database systems can help you make informed decisions and ensure that your application remains robust and responsive.</p>
-</section>
-<section id="design-for-scalability">
-<h2>Design for Scalability<a class="headerlink" href="#design-for-scalability" title="Link to this heading">#</a></h2>
-<p>When designing your database schema, it’s crucial to consider scalability from the outset. Normalize your data to eliminate redundancy, but be mindful of over-normalization, which can lead to complex queries and slower performance. Use indexing strategically to speed up query execution, and consider partitioning your data to distribute the load effectively. Planning for scalability ensures that your database can handle growing amounts of data and user traffic without compromising performance.</p>
-</section>
-<section id="backup-and-disaster-recovery">
-<h2>Backup and Disaster Recovery<a class="headerlink" href="#backup-and-disaster-recovery" title="Link to this heading">#</a></h2>
-<p>Data is one of the most valuable assets for any organization, making regular backups and disaster recovery planning essential. Implement automated backup routines to ensure that your data is regularly saved and can be restored in the event of a failure. Test your recovery procedures periodically to verify that backups are complete and can be restored quickly. A robust backup and recovery strategy minimizes downtime and protects against data loss.</p>
-</section>
-<section id="optimize-query-performance">
-<h2>Optimize Query Performance<a class="headerlink" href="#optimize-query-performance" title="Link to this heading">#</a></h2>
-<p>Efficient query performance is critical for maintaining a responsive application. Use query optimization techniques such as indexing, query caching, and avoiding unnecessary joins. Analyze your queries with tools like EXPLAIN to understand their execution plans and identify bottlenecks. By continually monitoring and optimizing your queries, you can ensure that your database operations remain fast and efficient, even as your dataset grows.</p>
-</section>
-<section id="leverage-database-transactions">
-<h2>Leverage Database Transactions<a class="headerlink" href="#leverage-database-transactions" title="Link to this heading">#</a></h2>
-<p>Transactions are a powerful feature that ensures data integrity and consistency. Use transactions to group multiple database operations into a single unit of work, which either completes successfully or rolls back entirely if an error occurs. This atomicity prevents partial updates and maintains the consistency of your data. Additionally, transactions help manage concurrency, allowing multiple users to interact with the database without causing conflicts or data corruption.</p>
-<p>In summary, effective database management is crucial for the success of any application. By designing for scalability, implementing robust backup strategies, optimizing query performance, and leveraging transactions, you can ensure that your database remains reliable, efficient, and capable of supporting your application’s needs.</p>
+  <section id="mysql">
+<h1>mySQL<a class="headerlink" href="#mysql" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Database</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">mySQL Library Doc in Bangla</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="postgres.html">postgreSQL</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/postgreSQL_cheetsheet.html">PostgreSQL USE on Linux Terminal</a></li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/pg_cron.html">pgcron doc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/pg_cron.html#add-to-postgresql-conf">add to postgresql.conf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/pg_cron.html#required-to-load-pg-cron-background-worker-on-start-up">required to load pg_cron background worker on start-up</a></li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/pg_cron.html#id1">add to postgresql.conf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/pg_cron.html#optionally-specify-the-database-in-which-the-pg-cron-background-worker-should-run-defaults-to-postgres">optionally, specify the database in which the pg_cron background worker should run (defaults to postgres)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/pg_cron.html#hostname-port-database-username-password">hostname:port:database:username:password</a></li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/pg_cron.html#schedule-jobs-via-background-workers-instead-of-localhost-connections">Schedule jobs via background workers instead of localhost connections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="postgreSQL/pg_cron.html#increase-the-number-of-available-background-workers-from-the-default-of-8">Increase the number of available background workers from the default of 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html">mySQL cheat-sheet 😸</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#user">USER</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#show-users">Show Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#create-user">Create User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#delete-user">Delete User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#exit">Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="mysql.html">mySQL</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html">mySQL cheat-sheet 😸</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#grant">Grant</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#grant-all-priveleges-on-all-databases">Grant All Priveleges On All Databases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#show-grants">Show Grants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#remove-grants">Remove Grants</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="nosql.html">NoSQL</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="noSQL/kibana.html">For Elasticsearch, some Kibana useful commands are:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#database">DataBase</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#show-databases">Show Databases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#create-database">Create Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#delete-database">Delete Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#select-database">Select Database</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#table">Table</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#create-table">Create Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#delete-drop-table">Delete / Drop Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#show-tables">Show Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#row">Row</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#insert-row-record">Insert Row / Record</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#insert-multiple-rows">Insert Multiple Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#select">Select</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#where-clause">Where Clause</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#delete-row">Delete Row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#update-row">Update Row</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#column">Column</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#add-new-column">Add New Column</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#modify-column">Modify Column</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#order-by-sort">Order By (Sort)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#concatenate-columns">Concatenate Columns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#operations">Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#select-distinct-rows">Select Distinct Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#between-select-range">Between (Select Range)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#like-searching">Like (Searching)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#not-like">Not Like</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#in">IN</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#index">Index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#create-remove-index">Create &amp; Remove Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#new-table-with-foreign-key-posts">New Table With Foreign Key (Posts)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#add-data-to-posts-table">Add Data to Posts Table</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#join">Join</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#inner-join">INNER JOIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#new-table-with-2-foriegn-keys">New Table With 2 Foriegn Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#add-data-to-comments-table">Add Data to Comments Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#left-join">Left Join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#join-multiple-tables">Join Multiple Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#aggregate-functions">Aggregate Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mySQL/mySQL_cheetsheet.html#group-by">Group By</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
-</section>
 </section>
 
 
@@ -652,20 +672,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../plSQL/cs.html"
+       href="postgreSQL/pg_cron.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">comming soon</p>
+        <p class="prev-next-title">pgcron doc</p>
       </div>
     </a>
     <a class="right-next"
-       href="postgres.html"
+       href="mySQL/mySQL_cheetsheet.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">postgreSQL</p>
+        <p class="prev-next-title">mySQL cheat-sheet 😸</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -675,27 +695,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-importance-of-databases">The Importance of Databases</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-for-scalability">Design for Scalability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backup-and-disaster-recovery">Backup and Disaster Recovery</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-query-performance">Optimize Query Performance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leverage-database-transactions">Leverage Database Transactions</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
@@ -708,8 +707,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">

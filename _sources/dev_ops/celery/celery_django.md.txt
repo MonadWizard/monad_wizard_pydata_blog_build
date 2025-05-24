@@ -1,33 +1,28 @@
-# Celery supervisor setup 
+# Celery supervisor setup
 
-here I create a selery service name `monad`. and below you found 
-- celery_beat_service.conf
-- celery_flower_service.conf
-- celery_service.conf
+here I create a selery service name `monad`. and below you found
 
+-   celery_beat_service.conf
+-   celery_flower_service.conf
+-   celery_service.conf
 
-***
+---
 
-#### Install supervisor by :  
-    
+## Install supervisor by :
+
     sudo apt-get install supervisor
 
-now go to supervisor directory and add new configuration 
+now go to supervisor directory and add new configuration
 
     cd /etc/supervisor/conf.d/
-
-
-
-
 
 ## celery service
 
 This configuration file defines the service for running the main Celery worker process. Celery workers are responsible for executing the tasks that are sent to the Celery queue.
 
+`➜  conf.d`
 
-`➜  conf.d` 
-    
-    cat celery_service.conf 
+    cat celery_service.conf
 
 ### celery_service.conf
 
@@ -36,13 +31,13 @@ This configuration file defines the service for running the main Celery worker p
 [program:celery_service]
  command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend.celery worker -E --loglevel=INFO
  directory=/var/www/backend/monad_celery_backend
- 
+
  user=ubuntu
  numprocs=1
 
  stdout_logfile=/var/log/celery/celery_service.log
  stderr_logfile=/var/log/celery/celery_service.err.log
- 
+
  autostart=true
  autorestart=true
  startsecs=10
@@ -53,12 +48,11 @@ This configuration file defines the service for running the main Celery worker p
 
 ```
 
-* Key Sections:
-- Unit: Describes the service and its dependencies.
-- Service: Contains the details for starting the Celery worker. This includes the user and group under which the service runs, the working directory, environment variables, and the command to start the Celery worker.
-- Install: Specifies when the service should be started (e.g., during system boot).
+-   Key Sections:
 
-
+*   Unit: Describes the service and its dependencies.
+*   Service: Contains the details for starting the Celery worker. This includes the user and group under which the service runs, the working directory, environment variables, and the command to start the Celery worker.
+*   Install: Specifies when the service should be started (e.g., during system boot).
 
 DETAIL Example:
 
@@ -93,37 +87,28 @@ DETAIL Example:
 
 ```
 
-
-
-
-
-
 ## celery beat service
-
 
 This configuration file defines the service for running the Celery Beat scheduler. Celery Beat is responsible for scheduling tasks to be run at specific times or intervals.
 
-`➜  conf.d` 
+`➜  conf.d`
 
     cat celery_beat_service.conf
 
-
 ### celery_beat_service.conf
-
-
 
 ```sh
 [program:celery_beat_service]
- 
+
  command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend beat -E --logfile=INFO
- 
+
  directory=/var/www/backend/monad_celery_backend
  user=ubuntu
  numprocs=1
- 
+
  stdout_logfile=/var/log/celery/celery_beat_service.log
  stderr_logfile=/var/log/celery/celery_beat_service.err.log
- 
+
  autostart=true
  autorestart=true
  startsecs=0
@@ -131,13 +116,11 @@ This configuration file defines the service for running the Celery Beat schedule
 
 ```
 
+-   Key Sections:
 
-* Key Sections:
-- Unit: Describes the service and its dependencies.
-- Service: Contains the details for starting the Celery worker. This includes the user and group under which the service runs, the working directory, environment variables, and the command to start the Celery worker.
-- Install: Specifies when the service should be started (e.g., during system boot).
-
-
+*   Unit: Describes the service and its dependencies.
+*   Service: Contains the details for starting the Celery worker. This includes the user and group under which the service runs, the working directory, environment variables, and the command to start the Celery worker.
+*   Install: Specifies when the service should be started (e.g., during system boot).
 
 #### DETAIL EXAMPLE:
 
@@ -167,31 +150,27 @@ This configuration file defines the service for running the Celery Beat schedule
  priority=999
 ```
 
-
 ## celery flower service
 
+`➜  conf.d`
 
-`➜  conf.d` 
-
-    cat celery_flower_service.conf 
-
+    cat celery_flower_service.conf
 
 ### celery_flower_service.conf
 
 This configuration file defines the service for running Celery Flower. Flower is a real-time web-based monitoring tool for Celery.
 
-
 ```sh
 [program:celery_flower_service]
  command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend flower --loglevel=INFO
- 
+
  directory=/var/www/backend/monad_celery_backend
  user=ubuntu
  numprocs=1
- 
+
  stdout_logfile=/var/log/celery/celery_flower_service.log
  stderr_logfile=/var/log/celery/celery_flower_service.err.log
- 
+
  autostart=true
  autorestart=true
  startsecs=10
@@ -201,14 +180,11 @@ This configuration file defines the service for running Celery Flower. Flower is
 
 ```
 
+-   Key Sections:
 
-* Key Sections:
-- Unit: Describes the service and its dependencies.
-- Service: Contains the details for starting the Celery Flower web interface. This includes the user and group under which the service runs, the working directory, environment variables, and the command to start Flower.
-- Install: Specifies when the service should be started (e.g., during system boot).
-
-
-
+*   Unit: Describes the service and its dependencies.
+*   Service: Contains the details for starting the Celery Flower web interface. This includes the user and group under which the service runs, the working directory, environment variables, and the command to start Flower.
+*   Install: Specifies when the service should be started (e.g., during system boot).
 
 #### DETAIL Example:
 
@@ -242,23 +218,15 @@ This configuration file defines the service for running Celery Flower. Flower is
  priority=998
 ```
 
-
-
-
-
-#### Start Celery Service : 
+#### Start Celery Service :
 
     sudo service supervisor start
 
     sudo systemctl restart supervisor.service
 
+## IN short total monad Celery configurations file are :
 
-
-## IN short total monad Celery configurations file are : 
-
-
-
-` cat celery_beat_service.conf `
+`cat celery_beat_service.conf`
 
 ```sh
 [program:celery_beat_service]
@@ -272,26 +240,26 @@ This configuration file defines the service for running Celery Flower. Flower is
 
  stdout_logfile=/var/log/celery/celery_beat_service.log
  stderr_logfile=/var/log/celery/celery_beat_service.err.log
- 
+
  autostart=true
  autorestart=true
  startsecs=0
  priority=999
 ```
 
-` cat celery_flower_service.conf `
+`cat celery_flower_service.conf`
 
 ```sh
 [program:celery_flower_service]
  command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend flower --loglevel=INFO
- 
+
  directory=/var/www/backend/monad_celery_backend
  user=root
  numprocs=1
- 
+
  stdout_logfile=/var/log/celery/celery_flower_service.log
  stderr_logfile=/var/log/celery/celery_flower_service.err.log
- 
+
  autostart=true
  autorestart=true
  startsecs=10
@@ -300,8 +268,7 @@ This configuration file defines the service for running Celery Flower. Flower is
  priority=998
 ```
 
-
-` cat celery_service.conf ` 
+`cat celery_service.conf`
 
 ```sh
 [program:celery_service]
@@ -309,13 +276,13 @@ This configuration file defines the service for running Celery Flower. Flower is
  command=/var/www/backend/monad_celery_backend/env/bin/celery -A monad_celery_backend.celery worker --pool=prefork -l info
 
  directory=/var/www/backend/monad_celery_backend
- 
+
  user=root
  numprocs=1
 
  stdout_logfile=/var/log/celery/celery_service.log
  stderr_logfile=/var/log/celery/celery_service.err.log
- 
+
  autostart=true
  autorestart=true
  startsecs=10

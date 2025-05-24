@@ -1,0 +1,190 @@
+User Create & Access Control in Self-Managed Deployments
+
+# create an admin user and enable authentication:
+
+## Step 1: Starting MongoDB Without Access Control
+
+```
+mongosh
+```
+
+## Creating the Admin User
+
+Replace `myAdminUser` and `myAdminPassword` with your desired admin username and secure password respectively.
+
+Example user : `gcff`
+
+Example pass: `gcff_fu*k`
+
+```
+use admin
+
+db.createUser({
+    user: "gcff",
+    pwd: "gcff_fu*k",
+    roles: [{ role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase"]
+});
+
+```
+
+## Enabling Access Control and Testing Authentication
+
+### Enabling Authentication
+
+To enable authentication, you must edit `mongod.conf`, MongoDB’s configuration file. Once you enable it and restart the Mongo service, users will still be able to connect to the database without authenticating. However, they won’t be able to read or modify any data until they provide a correct username and password.
+
+```
+sudo vi /etc/mongod.conf
+
+```
+
+Scroll down to find the commented-out security section:
+
+```
+. . .
+security:
+  authorization: enabled
+```
+
+Then restart the daemon to put these new changes into effect:
+
+```
+sudo systemctl restart mongod
+```
+
+## Testing Authentication Settings
+
+Now that you’ve enabled authentication, none of the warnings you encountered previously will appear:
+
+```
+mongosh
+```
+
+Confirm whether your access is restricted by running the `show dbs` command again:
+
+```
+show dbs
+```
+
+Next, make sure that your administrative user is able to authenticate properly by running the following mongo command to connect as this user. This command includes the `-u` flag, which precedes the name of the user you want to connect as. Be sure to replace `username` with your own administrative user’s username. It also includes the `-p` flag, which will prompt you for the user’s `password`, and specifies admin as the authentication database where the specified username was created:
+
+```
+mongo -u gcff -p --authenticationDatabase admin
+```
+
+Enter the user’s password when prompted, and then you’ll be dropped into the shell. Once there, try issuing the show dbs command again:
+
+```
+show dbs
+```
+
+This time, because you’ve authenticated properly, the command will successfully return a list of all the databases currently on the server:
+
+# New user for specific database:
+
+mongoDB create new user and other all for only permit for specific project all access :
+
+Assume does not exist on MongoDB:
+
+Project name: `my_project_db`
+
+New MongoDB username: `project_admin`
+
+Password: `secure_password123`
+
+## 🔧 Step 1: Access the Mongo Shell
+
+Use mongosh to connect to your MongoDB instance:
+
+```
+mongosh
+```
+
+If authentication is enabled, use admin user and password :
+
+```
+mongosh -u gcff -p 'gcff_fu*k' --authenticationDatabase admin
+```
+
+## 🛠️ Step 2: Switch to the Project Database
+
+```
+use my_project_db
+```
+
+This ensures the user is created within this specific database.
+
+## 👤 Step 3: Create the User with Full DB Access
+
+```
+db.createUser({
+  user: "project_admin",
+  pwd: "secure_password123",
+  roles: [
+    { role: "readWrite", db: "my_project_db" },
+    { role: "dbAdmin", db: "my_project_db" },
+    { role: "userAdmin", db: "my_project_db" }
+  ]
+})
+```
+
+These roles provide:
+
+`readWrite`: read and write documents.
+
+`dbAdmin`: create indexes, view stats, etc.
+
+`userAdmin`: manage users in this DB only.
+
+✅ This user won’t have access to other databases like admin, config, local, or any other project.
+
+🔐 Optional: Enable Authentication (If Not Enabled Yet)
+If your MongoDB does not yet have authentication enabled:
+Edit your MongoDB config file (mongod.conf) and enable:
+
+```
+security:
+  authorization: enabled
+```
+
+Restart MongoDB.
+
+```
+systemctl restart mongod
+```
+
+## 🧪 Step 4: Test the User Login
+
+Try logging in with:
+
+```
+mongosh -u project_admin -p secure_password123 --authenticationDatabase my_project_db
+```
+
+Try listing collections, inserting documents, etc.
+
+| ✅ Task                        | 💻 Command/Step                                                           |
+| ------------------------------ | ------------------------------------------------------------------------- |
+| Create user with scoped access | Run `db.createUser({...})` **inside `my_project_db`**                     |
+| Limit access to only that DB   | Use roles like `readWrite`, `dbAdmin`, `userAdmin` **on `my_project_db`** |
+| Prevent access to others       | **Do not** assign roles on `admin`, `config`, or any other databases      |
+| Secure server                  | Set `authorization: enabled` in `mongod.conf` and restart `mongod`        |
+
+## 🕳️ No collections or data in the database
+
+MongoDB does not list empty databases (with no collections/documents).
+Create at least one collection and insert one document.
+
+```
+use my_project_db
+
+db.test_collection.insertOne({ name: "test" })
+```
+
+Now try:
+
+```
+show dbs
+```
+
+You should see my_project_db listed.

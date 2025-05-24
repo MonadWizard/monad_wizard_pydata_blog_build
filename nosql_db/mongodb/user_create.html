@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>comming soon &#8212; MonadWizard Blog 0.01 documentation</title>
+    <title>create an admin user and enable authentication: &#8212; MonadWizard Blog 0.01 documentation</title>
   
   
   
@@ -41,8 +41,8 @@
     <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'nosql_db/mongodb/commingsoon';</script>
-    <link rel="canonical" href="blog.monadwizard.xyz/nosql_db/mongodb/commingsoon.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nosql_db/mongodb/user_create';</script>
+    <link rel="canonical" href="blog.monadwizard.xyz/nosql_db/mongodb/user_create.html" />
     <link rel="icon" href="../../_static/logo.svg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -323,6 +323,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -512,7 +516,8 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../mongodb.html">mongodb</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">comming soon</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">create an admin user and enable authentication:</a></li>
+
 </ul>
 </details></li>
 </ul>
@@ -561,7 +566,7 @@
     
     <li class="breadcrumb-item"><a href="../mongodb.html" class="nav-link">mongodb</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">comming soon</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">create an admin user and enable authentication:</span></li>
   </ul>
 </nav>
 </div>
@@ -578,8 +583,173 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="comming-soon">
-<h1>comming soon<a class="headerlink" href="#comming-soon" title="Link to this heading">#</a></h1>
+  <p>User Create &amp; Access Control in Self-Managed Deployments</p>
+<section id="create-an-admin-user-and-enable-authentication">
+<h1>create an admin user and enable authentication:<a class="headerlink" href="#create-an-admin-user-and-enable-authentication" title="Link to this heading">#</a></h1>
+<section id="step-1-starting-mongodb-without-access-control">
+<h2>Step 1: Starting MongoDB Without Access Control<a class="headerlink" href="#step-1-starting-mongodb-without-access-control" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mongosh</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-the-admin-user">
+<h2>Creating the Admin User<a class="headerlink" href="#creating-the-admin-user" title="Link to this heading">#</a></h2>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">myAdminUser</span></code> and <code class="docutils literal notranslate"><span class="pre">myAdminPassword</span></code> with your desired admin username and secure password respectively.</p>
+<p>Example user : <code class="docutils literal notranslate"><span class="pre">gcff</span></code></p>
+<p>Example pass: <code class="docutils literal notranslate"><span class="pre">gcff_fu*k</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use</span> <span class="n">admin</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">createUser</span><span class="p">({</span>
+    <span class="n">user</span><span class="p">:</span> <span class="s2">&quot;gcff&quot;</span><span class="p">,</span>
+    <span class="n">pwd</span><span class="p">:</span> <span class="s2">&quot;gcff_fu*k&quot;</span><span class="p">,</span>
+    <span class="n">roles</span><span class="p">:</span> <span class="p">[{</span> <span class="n">role</span><span class="p">:</span> <span class="s2">&quot;userAdminAnyDatabase&quot;</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="s2">&quot;admin&quot;</span> <span class="p">},</span> <span class="s2">&quot;readWriteAnyDatabase&quot;</span><span class="p">]</span>
+<span class="p">});</span>
+
+</pre></div>
+</div>
+</section>
+<section id="enabling-access-control-and-testing-authentication">
+<h2>Enabling Access Control and Testing Authentication<a class="headerlink" href="#enabling-access-control-and-testing-authentication" title="Link to this heading">#</a></h2>
+<section id="enabling-authentication">
+<h3>Enabling Authentication<a class="headerlink" href="#enabling-authentication" title="Link to this heading">#</a></h3>
+<p>To enable authentication, you must edit <code class="docutils literal notranslate"><span class="pre">mongod.conf</span></code>, MongoDB’s configuration file. Once you enable it and restart the Mongo service, users will still be able to connect to the database without authenticating. However, they won’t be able to read or modify any data until they provide a correct username and password.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mongod</span><span class="o">.</span><span class="n">conf</span>
+
+</pre></div>
+</div>
+<p>Scroll down to find the commented-out security section:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="n">security</span><span class="p">:</span>
+  <span class="n">authorization</span><span class="p">:</span> <span class="n">enabled</span>
+</pre></div>
+</div>
+<p>Then restart the daemon to put these new changes into effect:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">mongod</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing-authentication-settings">
+<h2>Testing Authentication Settings<a class="headerlink" href="#testing-authentication-settings" title="Link to this heading">#</a></h2>
+<p>Now that you’ve enabled authentication, none of the warnings you encountered previously will appear:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mongosh</span>
+</pre></div>
+</div>
+<p>Confirm whether your access is restricted by running the <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">dbs</span></code> command again:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">show</span> <span class="n">dbs</span>
+</pre></div>
+</div>
+<p>Next, make sure that your administrative user is able to authenticate properly by running the following mongo command to connect as this user. This command includes the <code class="docutils literal notranslate"><span class="pre">-u</span></code> flag, which precedes the name of the user you want to connect as. Be sure to replace <code class="docutils literal notranslate"><span class="pre">username</span></code> with your own administrative user’s username. It also includes the <code class="docutils literal notranslate"><span class="pre">-p</span></code> flag, which will prompt you for the user’s <code class="docutils literal notranslate"><span class="pre">password</span></code>, and specifies admin as the authentication database where the specified username was created:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mongo</span> <span class="o">-</span><span class="n">u</span> <span class="n">gcff</span> <span class="o">-</span><span class="n">p</span> <span class="o">--</span><span class="n">authenticationDatabase</span> <span class="n">admin</span>
+</pre></div>
+</div>
+<p>Enter the user’s password when prompted, and then you’ll be dropped into the shell. Once there, try issuing the show dbs command again:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">show</span> <span class="n">dbs</span>
+</pre></div>
+</div>
+<p>This time, because you’ve authenticated properly, the command will successfully return a list of all the databases currently on the server:</p>
+</section>
+</section>
+<section id="new-user-for-specific-database">
+<h1>New user for specific database:<a class="headerlink" href="#new-user-for-specific-database" title="Link to this heading">#</a></h1>
+<p>mongoDB create new user and other all for only permit for specific project all access :</p>
+<p>Assume does not exist on MongoDB:</p>
+<p>Project name: <code class="docutils literal notranslate"><span class="pre">my_project_db</span></code></p>
+<p>New MongoDB username: <code class="docutils literal notranslate"><span class="pre">project_admin</span></code></p>
+<p>Password: <code class="docutils literal notranslate"><span class="pre">secure_password123</span></code></p>
+<section id="step-1-access-the-mongo-shell">
+<h2>🔧 Step 1: Access the Mongo Shell<a class="headerlink" href="#step-1-access-the-mongo-shell" title="Link to this heading">#</a></h2>
+<p>Use mongosh to connect to your MongoDB instance:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mongosh</span>
+</pre></div>
+</div>
+<p>If authentication is enabled, use admin user and password :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mongosh</span> <span class="o">-</span><span class="n">u</span> <span class="n">gcff</span> <span class="o">-</span><span class="n">p</span> <span class="s1">&#39;gcff_fu*k&#39;</span> <span class="o">--</span><span class="n">authenticationDatabase</span> <span class="n">admin</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-switch-to-the-project-database">
+<h2>🛠️ Step 2: Switch to the Project Database<a class="headerlink" href="#step-2-switch-to-the-project-database" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use</span> <span class="n">my_project_db</span>
+</pre></div>
+</div>
+<p>This ensures the user is created within this specific database.</p>
+</section>
+<section id="step-3-create-the-user-with-full-db-access">
+<h2>👤 Step 3: Create the User with Full DB Access<a class="headerlink" href="#step-3-create-the-user-with-full-db-access" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">createUser</span><span class="p">({</span>
+  <span class="n">user</span><span class="p">:</span> <span class="s2">&quot;project_admin&quot;</span><span class="p">,</span>
+  <span class="n">pwd</span><span class="p">:</span> <span class="s2">&quot;secure_password123&quot;</span><span class="p">,</span>
+  <span class="n">roles</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="n">role</span><span class="p">:</span> <span class="s2">&quot;readWrite&quot;</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="s2">&quot;my_project_db&quot;</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="n">role</span><span class="p">:</span> <span class="s2">&quot;dbAdmin&quot;</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="s2">&quot;my_project_db&quot;</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="n">role</span><span class="p">:</span> <span class="s2">&quot;userAdmin&quot;</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="s2">&quot;my_project_db&quot;</span> <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>These roles provide:</p>
+<p><code class="docutils literal notranslate"><span class="pre">readWrite</span></code>: read and write documents.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dbAdmin</span></code>: create indexes, view stats, etc.</p>
+<p><code class="docutils literal notranslate"><span class="pre">userAdmin</span></code>: manage users in this DB only.</p>
+<p>✅ This user won’t have access to other databases like admin, config, local, or any other project.</p>
+<p>🔐 Optional: Enable Authentication (If Not Enabled Yet)
+If your MongoDB does not yet have authentication enabled:
+Edit your MongoDB config file (mongod.conf) and enable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">security</span><span class="p">:</span>
+  <span class="n">authorization</span><span class="p">:</span> <span class="n">enabled</span>
+</pre></div>
+</div>
+<p>Restart MongoDB.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="n">restart</span> <span class="n">mongod</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-test-the-user-login">
+<h2>🧪 Step 4: Test the User Login<a class="headerlink" href="#step-4-test-the-user-login" title="Link to this heading">#</a></h2>
+<p>Try logging in with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mongosh</span> <span class="o">-</span><span class="n">u</span> <span class="n">project_admin</span> <span class="o">-</span><span class="n">p</span> <span class="n">secure_password123</span> <span class="o">--</span><span class="n">authenticationDatabase</span> <span class="n">my_project_db</span>
+</pre></div>
+</div>
+<p>Try listing collections, inserting documents, etc.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>✅ Task</p></th>
+<th class="head"><p>💻 Command/Step</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Create user with scoped access</p></td>
+<td><p>Run <code class="docutils literal notranslate"><span class="pre">db.createUser({...})</span></code> <strong>inside <code class="docutils literal notranslate"><span class="pre">my_project_db</span></code></strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Limit access to only that DB</p></td>
+<td><p>Use roles like <code class="docutils literal notranslate"><span class="pre">readWrite</span></code>, <code class="docutils literal notranslate"><span class="pre">dbAdmin</span></code>, <code class="docutils literal notranslate"><span class="pre">userAdmin</span></code> <strong>on <code class="docutils literal notranslate"><span class="pre">my_project_db</span></code></strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Prevent access to others</p></td>
+<td><p><strong>Do not</strong> assign roles on <code class="docutils literal notranslate"><span class="pre">admin</span></code>, <code class="docutils literal notranslate"><span class="pre">config</span></code>, or any other databases</p></td>
+</tr>
+<tr class="row-odd"><td><p>Secure server</p></td>
+<td><p>Set <code class="docutils literal notranslate"><span class="pre">authorization:</span> <span class="pre">enabled</span></code> in <code class="docutils literal notranslate"><span class="pre">mongod.conf</span></code> and restart <code class="docutils literal notranslate"><span class="pre">mongod</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="no-collections-or-data-in-the-database">
+<h2>🕳️ No collections or data in the database<a class="headerlink" href="#no-collections-or-data-in-the-database" title="Link to this heading">#</a></h2>
+<p>MongoDB does not list empty databases (with no collections/documents).
+Create at least one collection and insert one document.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use</span> <span class="n">my_project_db</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">test_collection</span><span class="o">.</span><span class="n">insertOne</span><span class="p">({</span> <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;test&quot;</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>Now try:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">show</span> <span class="n">dbs</span>
+</pre></div>
+</div>
+<p>You should see my_project_db listed.</p>
+</section>
 </section>
 
 
@@ -616,6 +786,42 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">create an admin user and enable authentication:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-starting-mongodb-without-access-control">Step 1: Starting MongoDB Without Access Control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-admin-user">Creating the Admin User</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-access-control-and-testing-authentication">Enabling Access Control and Testing Authentication</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-authentication">Enabling Authentication</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-authentication-settings">Testing Authentication Settings</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#new-user-for-specific-database">New user for specific database:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-access-the-mongo-shell">🔧 Step 1: Access the Mongo Shell</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-switch-to-the-project-database">🛠️ Step 2: Switch to the Project Database</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-create-the-user-with-full-db-access">👤 Step 3: Create the User with Full DB Access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-test-the-user-login">🧪 Step 4: Test the User Login</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no-collections-or-data-in-the-database">🕳️ No collections or data in the database</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
